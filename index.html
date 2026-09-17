@@ -635,13 +635,13 @@ function calcularRankingStats(){
   const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
   const sessoes=sessoesRaw.filter(s=>!s.resumoDia&&!s.somado);
   const profit=sessoes.reduce((a,s)=>a+(Number(s.gold)||0),0);
-  let melhorHunt=0;
-  sessoes.forEach(s=>{melhorHunt=Math.max(melhorHunt,Number(s.gold)||0)});
+  let melhorHunt=0,melhorHuntNome="";
+  sessoes.forEach(s=>{const v=Number(s.gold)||0;if(v>melhorHunt){melhorHunt=v;melhorHuntNome=(s.hunt||"Hunt não informada").trim()||"Hunt não informada"}});
   sessoesRaw.filter(s=>s.resumoDia&&Array.isArray(s.huntsDetalhes)).forEach(s=>{
-    s.huntsDetalhes.forEach(h=>{melhorHunt=Math.max(melhorHunt,Number(h.gold)||0)});
+    s.huntsDetalhes.forEach(h=>{const v=Number(h.gold)||0;if(v>melhorHunt){melhorHunt=v;melhorHuntNome=(h.hunt||"Hunt não informada").trim()||"Hunt não informada"}});
   });
   const dates=[...new Set(sessoes.map(s=>s.data).filter(Boolean))];
-  return {nickname:(S.nickname||"").trim(),profit,melhorHunt,streak:rankingStreakFromDates(dates)};
+  return {nickname:(S.nickname||"").trim(),profit,melhorHunt,melhorHuntNome,streak:rankingStreakFromDates(dates)};
 }
 let rankingCache={farm:[],streak:[],hunts:[]},rankingAtual="farm";
 function abrirRanking(){
@@ -665,11 +665,13 @@ function renderRankingList(){
   const arr=rankingCache[rankingAtual]||[];
   if(!arr.length){box.innerHTML='<div class="ranking-empty">Nenhum usuário com nickname cadastrado ainda.</div>';return}
   if(status)status.textContent="Top 10 • atualizado agora";
-  const labels={farm:["💰","Profit total"," GP"],streak:["🔥","Dias seguidos"," dias"],hunts:["⚔️","Melhor hunt"," GP"]};
+  const labels={farm:["💰","Profit total"," GP"],streak:["🔥","Dias seguidos"," dias"],hunts:["⚔️","Melhor hunt",""]};
   const meta=labels[rankingAtual];
   box.innerHTML=arr.map((r,i)=>{
-    const v=rankingAtual==="farm"?Number(r.profit)||0:rankingAtual==="streak"?Number(r.streak)||0:Number(r.melhorHunt)||0;
-    const val=rankingAtual==="streak"?v.toLocaleString("pt-BR"):fmt(v);
+    let val;
+    if(rankingAtual==="farm")val=fmt(Number(r.profit)||0);
+    else if(rankingAtual==="streak")val=(Number(r.streak)||0).toLocaleString("pt-BR");
+    else val=esc(r.melhorHuntNome||"—");
     return '<div class="ranking-row"><div class="ranking-pos">'+(i+1)+'</div><div class="ranking-name">'+esc(r.nickname||"Jogador")+'</div><div class="ranking-value"><span>'+meta[0]+'</span>'+val+meta[2]+'</div></div>';
   }).join("");
 }
@@ -1087,6 +1089,7 @@ async function pushCloud(){
     nickname: stats.nickname,
     profit: stats.profit,
     melhorHunt: stats.melhorHunt,
+    melhorHuntNome: stats.melhorHuntNome,
     streak: stats.streak,
     updatedAt: new Date()
    });
