@@ -1539,7 +1539,7 @@ function removerMetaSemanal(){
     box.innerHTML=[
       ['💰 Maior profit',nf(byProfit.profit)+' ('+brData(dateKey(byProfit.date))+')'],
       ['📈 Maior profit/h',byPph?nf(byPph.pph)+'/h':'—'],
-      ['🗺️ Melhor hunt',melhor&&melhor.pph>0?melhor.hunt+' · '+nf(melhor.pph)+'/h':'—']
+      ['🗺️ Melhor hunt',melhor&&melhor.pph>0?melhor.hunt:'—']
     ].map(x=>'<div class="retention-record">'+x[0]+'<strong>'+x[1]+'</strong></div>').join('');
   }
 
