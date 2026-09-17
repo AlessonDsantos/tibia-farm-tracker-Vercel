@@ -61,6 +61,8 @@ button:disabled{opacity:.42;cursor:not-allowed;filter:none}
 button:focus-visible,.select:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .btn-green{border-color:#178d68;background:linear-gradient(180deg,#0f6b51,#0a4a38);color:#c9ffe9;font-weight:600}
 .btn-gold{border-color:#8a6a24;background:linear-gradient(180deg,#523a12,#2d200a);color:#ffe2a4}
+.red{border-color:#8a3a3f;background:linear-gradient(180deg,#43171c,#260c10);color:#ffb4ae}
+.blue{border-color:#2f6a8e;background:linear-gradient(180deg,#0e2f49,#081a2b);color:#bfe6ff}
 
 /* ---------- cards ---------- */
 .main{display:grid;grid-template-columns:minmax(0,1fr) 258px;gap:11px;align-items:start}
@@ -159,6 +161,8 @@ tr.total td:first-child{font-weight:700}
 .mini{padding:7px 11px;font-size:11.5px;border-radius:8px}
 .mini.icon{padding:7px 9px}
 .rowbtns{display:flex;gap:6px;justify-content:flex-end}
+.rowbtn{padding:6px 9px;font-size:12px;border-radius:7px}
+.rowbtn.danger{border-color:#8a3a3f;background:linear-gradient(180deg,#43171c,#260c10);color:#ffb4ae}
 
 /* modal */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;
@@ -214,6 +218,20 @@ tr.total td:first-child{font-weight:700}
 .inner-table{margin-top:7px;width:100%;font-size:11px;}
 .inner-table th,.inner-table td{padding:7px 6px;}
 </style>
+<style>
+.rank-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}
+.rank-tabs button{flex:1;min-width:150px}
+.rank-tabs button.on{border-color:#25c98c;background:rgba(37,201,140,.12);color:#dfffee}
+.ranking-status{font-size:11px;color:var(--muted);margin:8px 0}
+.ranking-list{display:grid;gap:7px;margin-top:10px}
+.ranking-row{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:10px;padding:11px 12px;border:1px solid rgba(127,127,127,.18);border-radius:10px;background:rgba(255,255,255,.025)}
+.ranking-pos{font-size:16px;font-weight:800;text-align:center;color:#8fd8ff}
+.ranking-name{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ranking-value{font-weight:800;color:#ffd978;text-align:right}
+.ranking-value span{margin-right:5px}
+.ranking-empty{padding:28px 12px;text-align:center;color:var(--muted);border:1px dashed rgba(127,127,127,.25);border-radius:10px}
+@media(max-width:600px){.ranking-row{grid-template-columns:34px 1fr}.ranking-value{grid-column:2;text-align:left}.rank-tabs button{min-width:0}}
+</style>
 </head>
 <body>
 <div class="page">
@@ -233,7 +251,7 @@ tr.total td:first-child{font-weight:700}
      <input id="tcPrice" type="number" min="1" step="1" style="padding:4px 8px;font-size:14px;margin-top:2px"></div>
     <button class="mini" onclick="salvarPreco()">Salvar</button>
    </div>
-   <button onclick="abrirConfig()">⚙ Configurações</button>
+   <button onclick="abrirRanking()">🏆 Ranking</button><button onclick="abrirConfig()">⚙ Configurações</button>
    <button id="btnAuth" class="btn-account" onclick="onAuthBtn()">👤 Entrar com Google</button>
   </div>
 
@@ -266,6 +284,14 @@ tr.total td:first-child{font-weight:700}
 <div class="modal" id="mCfg"><div class="box">
  <h3>Configurações</h3><p>Metas, dados e manutenção do tracker.</p>
  <div class="field" style="margin-bottom:14px">
+  <label>Nickname no Tibia</label>
+  <div style="display:flex;gap:7px">
+   <input id="cfgNickname" type="text" maxlength="30" placeholder="Ex.: SeuNick">
+   <button class="mini" style="flex:none" onclick="salvarNickname()">Salvar</button>
+  </div>
+  <p style="margin:7px 0 0;font-size:11px">Seu nickname será usado para identificar você nos rankings públicos de Farm, Constância e Hunts.</p>
+ </div>
+ <div class="field" style="margin-bottom:14px">
   <label>Preço de 25 Tibia Coins em R$ (opcional)</label>
   <div style="display:flex;gap:7px">
    <input id="cfgBRL25" type="number" min="0" step="0.01" placeholder="Ex.: 53,50">
@@ -297,6 +323,17 @@ tr.total td:first-child{font-weight:700}
   <button onclick="fechar('mAdd')">Cancelar</button></div>
 </div></div>
 
+<div class="modal" id="mEditFarm"><div class="box">
+ <h3>Editar hunt</h3><p id="editDate">—</p>
+ <div class="field"><label>Nome da Hunt</label><input id="editHunt" type="text" maxlength="80" placeholder="Ex.: Rotten Blood"></div>
+ <div class="grid2">
+  <div class="field"><label>Tempo de Hunt (minutos)</label><input id="editTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
+  <div class="field"><label>Valor em Gold</label><input id="editGold" type="number" min="1" placeholder="Ex.: 2000000"></div>
+ </div>
+ <div class="actions"><button class="btn-green" onclick="confirmarEdit()">Salvar alterações</button>
+  <button onclick="fechar('mEditFarm')">Cancelar</button></div>
+</div></div>
+
 <div class="modal" id="mShare"><div class="box" style="width:min(640px,100%)">
  <h3>Compartilhar progresso</h3><p>Uma imagem com o resumo da sua meta atual, pronta pra mandar no grupo.</p>
  <div style="border:1px solid #1e4460;border-radius:10px;overflow:hidden;background:#04121f;line-height:0">
@@ -312,8 +349,21 @@ tr.total td:first-child{font-weight:700}
 <div class="modal" id="mWeeklyGoal"><div class="box">
  <h3>🎯 Meta de profit semanal</h3><p>Defina quanto de profit você quer alcançar nesta semana.</p>
  <div class="field"><label>Meta em Gold</label><input id="weeklyGoalInput" type="number" min="1" step="1" placeholder="1000000"></div>
- <div class="actions"><button class="btn-green" onclick="salvarMetaSemanalModal()">Salvar meta</button><button onclick="fechar('mWeeklyGoal')">Cancelar</button></div>
+ <div class="actions"><button class="btn-green" onclick="salvarMetaSemanalModal()">Salvar meta</button><button class="red" onclick="removerMetaSemanal()">Remover meta</button><button onclick="fechar('mWeeklyGoal')">Cancelar</button></div>
 </div></div>
+
+<div class="modal" id="mRanking"><div class="box" style="width:min(760px,100%)">
+ <h3>🏆 Ranking do Tibia Farm Tracker</h3>
+ <p>Top 10 dos usuários que optaram por aparecer no ranking. Os dados são carregados diretamente do banco de dados.</p>
+ <div class="rank-tabs">
+  <button class="on" id="rankTabFarm" onclick="mostrarRanking('farm')">💰 Top Farm</button>
+  <button id="rankTabStreak" onclick="mostrarRanking('streak')">🔥 Top Constância</button>
+  <button id="rankTabHunts" onclick="mostrarRanking('hunts')">⚔️ Melhor Hunt</button>
+ </div>
+ <div id="rankingStatus" class="ranking-status">Carregando ranking...</div>
+ <div id="rankingList" class="ranking-list"></div>
+ <div class="actions"><button onclick="fechar('mRanking')">Fechar</button></div>
+ </div></div>
 
 <div class="toast" id="toast"></div>
 
@@ -392,7 +442,7 @@ async function buscarItens(termo){
 
 /* ================= estado + persistência ================= */
 const CK="tibiaFarm3_",CHUNK=3200;
-var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0},aba="hist",abaRel="semanal",abaHist="dia",histDateFilter="",addDate=null,tSugg=null,menuAberto=false;
+var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:""},aba="hist",abaRel="semanal",abaHist="dia",histDateFilter="",addDate=null,editId=null,tSugg=null,menuAberto=false;
 
 function serializar(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
 function salvar(){
@@ -413,7 +463,7 @@ function carregar(){
   const c=document.cookie.match(new RegExp("(?:^|; )"+CK+i+"=([^;]*)"));if(c)b+=c[1]}}
  if(!b){try{b=localStorage.getItem(CK+"data")||""}catch(e){}}
  if(!b)return;
- try{const o=JSON.parse(decodeURIComponent(escape(atob(b))));if(o&&o.metas)S=o}catch(e){}
+ try{const o=JSON.parse(decodeURIComponent(escape(atob(b))));if(o&&o.metas){S=o;if(typeof S.nickname!=="string")S.nickname=""}}catch(e){}
 }
 
 /* ================= helpers ================= */
@@ -501,6 +551,28 @@ function confirmarAdd(){
 function excluirFarm(id){
  const g=meta();if(!confirm("Excluir este registro?"))return;
  g.sessoes=g.sessoes.filter(s=>String(s.id)!==String(id));salvar();render()}
+function editarFarm(id){
+ const g=meta();if(!g)return;
+ const s=g.sessoes.find(x=>String(x.id)===String(id));
+ if(!s)return toast("Registro não encontrado.");
+ editId=id;
+ document.getElementById("editDate").textContent="Data: "+brData(s.data);
+ document.getElementById("editHunt").value=s.hunt||"";
+ document.getElementById("editTime").value=s.time||"";
+ document.getElementById("editGold").value=s.gold||"";
+ abrir("mEditFarm");setTimeout(()=>document.getElementById("editHunt").focus(),50)}
+function confirmarEdit(){
+ const g=meta();if(!g)return;
+ const s=g.sessoes.find(x=>String(x.id)===String(editId));
+ if(!s)return toast("Registro não encontrado.");
+ const hunt=(document.getElementById("editHunt").value||"").trim(),
+  tempo=Number(document.getElementById("editTime").value),
+  v=Number(document.getElementById("editGold").value);
+ if(!hunt)return toast("Informe o nome da Hunt.");
+ if(!(tempo>0))return toast("Informe o tempo da Hunt.");
+ if(!(v>0))return toast("Informe o valor em gold.");
+ s.hunt=hunt;s.time=tempo;s.gold=v;
+ checar(g);salvar();fechar("mEditFarm");render();toast("Hunt atualizada.")}
 function somarDia(d){
  const g=meta(),arr=doDia(g,d);
  if(arr.length<1)return toast("Não há farms registrados neste dia.");
@@ -540,11 +612,66 @@ function relMensal(){
  gerarMensal(g,false);abaRel="mensal";salvar();render();toast("Relatório mensal gerado.")}
 function limpar(){
  if(!confirm("Isso apaga TODOS os dados do Tibia Farm Tracker, inclusive o desempenho e a meta semanal. Continuar?"))return;
- S={metas:[],ativa:null,tcPrice:35000,tcBRL:0};
+ S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:""};
  try{localStorage.removeItem(CK+"data");localStorage.removeItem("tft_weekly_goal");}catch(e){}
  try{for(let i=0;i<40;i++)document.cookie=CK+i+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";document.cookie=CK+"n=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";}catch(e){}
  if(window.TibiaFarmRetention){window.TibiaFarmRetention.clearDate();window.TibiaFarmRetention.refresh();}
  render();toast("Todos os dados foram apagados.")
+}
+function rankingStreakFromDates(dates){
+  const set=new Set(dates);
+  let cur=new Date();cur.setHours(12,0,0,0);
+  let key=hoje();
+  if(!set.has(key)){cur.setDate(cur.getDate()-1);key=cur.getFullYear()+"-"+String(cur.getMonth()+1).padStart(2,"0")+"-"+String(cur.getDate()).padStart(2,"0");}
+  let n=0;
+  while(set.has(key)){
+    n++;
+    cur.setDate(cur.getDate()-1);
+    key=cur.getFullYear()+"-"+String(cur.getMonth()+1).padStart(2,"0")+"-"+String(cur.getDate()).padStart(2,"0");
+  }
+  return n;
+}
+function calcularRankingStats(){
+  const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
+  const sessoes=sessoesRaw.filter(s=>!s.resumoDia&&!s.somado);
+  const profit=sessoes.reduce((a,s)=>a+(Number(s.gold)||0),0);
+  let melhorHunt=0;
+  sessoes.forEach(s=>{melhorHunt=Math.max(melhorHunt,Number(s.gold)||0)});
+  sessoesRaw.filter(s=>s.resumoDia&&Array.isArray(s.huntsDetalhes)).forEach(s=>{
+    s.huntsDetalhes.forEach(h=>{melhorHunt=Math.max(melhorHunt,Number(h.gold)||0)});
+  });
+  const dates=[...new Set(sessoes.map(s=>s.data).filter(Boolean))];
+  return {nickname:(S.nickname||"").trim(),profit,melhorHunt,streak:rankingStreakFromDates(dates)};
+}
+let rankingCache={farm:[],streak:[],hunts:[]},rankingAtual="farm";
+function abrirRanking(){
+  abrir("mRanking");
+  const status=document.getElementById("rankingStatus");
+  if(status)status.textContent="Carregando ranking...";
+  if(window.carregarRanking)window.carregarRanking();
+  else if(status)status.textContent="O ranking ainda está inicializando. Tente novamente em alguns segundos.";
+}
+function mostrarRanking(tipo){
+  rankingAtual=tipo;
+  ["farm","streak","hunts"].forEach(t=>{
+    const b=document.getElementById("rankTab"+(t==="farm"?"Farm":t==="streak"?"Streak":"Hunts"));
+    if(b)b.classList.toggle("on",t===tipo);
+  });
+  renderRankingList();
+}
+function renderRankingList(){
+  const box=document.getElementById("rankingList"),status=document.getElementById("rankingStatus");
+  if(!box)return;
+  const arr=rankingCache[rankingAtual]||[];
+  if(!arr.length){box.innerHTML='<div class="ranking-empty">Nenhum usuário com nickname cadastrado ainda.</div>';return}
+  if(status)status.textContent="Top 10 • atualizado agora";
+  const labels={farm:["💰","Profit total"," GP"],streak:["🔥","Dias seguidos"," dias"],hunts:["⚔️","Melhor hunt"," GP"]};
+  const meta=labels[rankingAtual];
+  box.innerHTML=arr.map((r,i)=>{
+    const v=rankingAtual==="farm"?Number(r.profit)||0:rankingAtual==="streak"?Number(r.streak)||0:Number(r.melhorHunt)||0;
+    const val=rankingAtual==="streak"?v.toLocaleString("pt-BR"):fmt(v);
+    return '<div class="ranking-row"><div class="ranking-pos">'+(i+1)+'</div><div class="ranking-name">'+esc(r.nickname||"Jogador")+'</div><div class="ranking-value"><span>'+meta[0]+'</span>'+val+meta[2]+'</div></div>';
+  }).join("");
 }
 function exportar(){
  const a=document.createElement("a");
@@ -557,8 +684,13 @@ function importar(el){
  r.readAsText(f);el.value=""}
 
 function abrirConfig(){
+ document.getElementById("cfgNickname").value=S.nickname||"";
  document.getElementById("cfgBRL25").value=S.tcBRL>0?Math.round(S.tcBRL*25*100)/100:"";
  abrir("mCfg")}
+function salvarNickname(){
+ const v=(document.getElementById("cfgNickname").value||"").trim();
+ S.nickname=v;salvar();toast(v?"Nickname salvo.":"Nickname removido do ranking.");
+}
 function salvarCotacaoBRL(){
  const v=Number(document.getElementById("cfgBRL25").value);
  S.tcBRL=v>0?v/25:0;salvar();render();toast(S.tcBRL>0?"Cotação salva.":"Cotação em R$ removida.")}
@@ -726,8 +858,8 @@ function tabelaHist(g){
 function tabelaHistHunts(g,ds){
  const filtered=histDateFilter?ds.filter(d=>d===histDateFilter):ds;
  if(!filtered.length)return '<div class="empty"><b>Nenhuma hunt nesta data.</b></div>';
- let html='<div class="tablewrap"><table><thead><tr><th>Data</th><th>Hunt</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th></tr></thead><tbody>';
- filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+esc(s.hunt||'Hunt não informada')+'</b></td><td>'+mins+' min</td><td class="goldtxt">'+fmt(profit)+' GP</td><td>'+fmt(pph)+'/h</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td></tr>';});});
+ let html='<div class="tablewrap"><table><thead><tr><th>Data</th><th>Hunt</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th><th></th></tr></thead><tbody>';
+ filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+esc(s.hunt||'Hunt não informada')+'</b></td><td>'+mins+' min</td><td class="goldtxt">'+fmt(profit)+' GP</td><td>'+fmt(pph)+'/h</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns"><button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';});});
  return html+'</tbody></table></div>'}
 function tabelaRel(g,tipo){
  const arr=(tipo==="semanal"?g.semanais:g.mensais).slice().reverse();
@@ -914,7 +1046,7 @@ window.onAuthBtn=function(){
 };
 
 carregar();render();
-window.render=render;window.salvarLocal=salvar;
+window.render=render;window.salvarLocal=salvar;window.calcularRankingStats=calcularRankingStats;
 window.updateAuthUI();
 </script>
 
@@ -922,7 +1054,7 @@ window.updateAuthUI();
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
  from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc }
+import { getFirestore, doc, getDoc, setDoc, collection, query, orderBy, limit, getDocs }
  from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -944,8 +1076,22 @@ function refDoUsuario(uid){ return doc(db, "farmTrackers", uid); }
 async function pushCloud(){
  const u = window.currentUser;
  if(!u || !window.S) return;
- try{ await setDoc(refDoUsuario(u.uid), JSON.parse(JSON.stringify(window.S))); }
- catch(e){ console.error("Falha ao salvar na nuvem:", e); }
+ try{
+  await setDoc(refDoUsuario(u.uid), JSON.parse(JSON.stringify(window.S)));
+
+  // Publica somente as estatísticas necessárias para o ranking.
+  const stats = window.calcularRankingStats ? window.calcularRankingStats() : null;
+  const rankRef = doc(db, "rankings", u.uid);
+  if(stats && stats.nickname){
+   await setDoc(rankRef, {
+    nickname: stats.nickname,
+    profit: stats.profit,
+    melhorHunt: stats.melhorHunt,
+    streak: stats.streak,
+    updatedAt: new Date()
+   });
+  }
+ }catch(e){ console.error("Falha ao salvar na nuvem:", e); }
 }
 
 async function pullCloud(uid){
@@ -964,6 +1110,26 @@ async function pullCloud(uid){
  window.render && window.render();
  window.updateAuthUI && window.updateAuthUI();
 }
+
+window.carregarRanking = async function(){
+ try{
+  const base=collection(db,"rankings");
+  const [a,b,c]=await Promise.all([
+   getDocs(query(base,orderBy("profit","desc"),limit(10))),
+   getDocs(query(base,orderBy("streak","desc"),limit(10))),
+   getDocs(query(base,orderBy("melhorHunt","desc"),limit(10)))
+  ]);
+  const parse=snap=>snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.nickname||"").trim());
+  rankingCache.farm=parse(a);rankingCache.streak=parse(b);rankingCache.hunts=parse(c);
+  renderRankingList();
+ }catch(e){
+  console.error("Falha ao carregar ranking:",e);
+  const status=document.getElementById("rankingStatus");
+  const box=document.getElementById("rankingList");
+  if(status)status.textContent="Não foi possível carregar o ranking.";
+  if(box)box.innerHTML='<div class="ranking-empty">Verifique as regras do Firestore para a coleção <b>rankings</b>.</div>';
+ }
+};
 
 window.loginGoogle = async function(){
  try{ await signInWithPopup(auth, provider); }
@@ -1128,28 +1294,52 @@ onAuthStateChanged(auth, async (user)=>{
       <strong id="rtGoalPct">0%</strong>
     </div>
     <div class="retention-progress"><span id="rtGoalBar"></span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
 <button type="button" id="setWeeklyGoalBtn" class="secondary-btn" style="margin-top:10px">
   ⚙️ Definir meta semanal
 </button>
+<button type="button" id="removeWeeklyGoalBtn" class="secondary-btn red" style="margin-top:10px" hidden>
+  🗑️ Remover meta
+</button>
+</div>
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
   const b=document.getElementById('setWeeklyGoalBtn');
-  if(!b)return;
-  b.addEventListener('click',()=>{
+  const rm=document.getElementById('removeWeeklyGoalBtn');
+  atualizarBotaoMetaSemanal();
+  if(b)b.addEventListener('click',()=>{
     const input=document.getElementById('weeklyGoalInput');
     if(input) input.value=localStorage.getItem('tft_weekly_goal')||'1000000';
     const m=document.getElementById('mWeeklyGoal');
     if(m)m.classList.add('open');
     setTimeout(()=>input&&input.focus(),60);
   });
+  if(rm)rm.addEventListener('click',removerMetaSemanal);
 });
+function atualizarBotaoMetaSemanal(){
+  const b=document.getElementById('setWeeklyGoalBtn');
+  const rm=document.getElementById('removeWeeklyGoalBtn');
+  const existe=localStorage.getItem('tft_weekly_goal')!=null;
+  if(b)b.innerHTML=existe?'✏️ Editar meta semanal':'⚙️ Definir meta semanal';
+  if(rm)rm.hidden=!existe;
+}
 function salvarMetaSemanalModal(){
  const v=Number(document.getElementById('weeklyGoalInput').value);
  if(!(v>0))return toast('Informe uma meta válida.');
  localStorage.setItem('tft_weekly_goal',v);
  document.getElementById('mWeeklyGoal').classList.remove('open');
+ atualizarBotaoMetaSemanal();
  if(window.TibiaFarmRetention)window.TibiaFarmRetention.refresh();
  toast('Meta semanal salva.');
+}
+function removerMetaSemanal(){
+ if(localStorage.getItem('tft_weekly_goal')==null)return;
+ if(!confirm('Remover a meta de profit semanal?'))return;
+ localStorage.removeItem('tft_weekly_goal');
+ const m=document.getElementById('mWeeklyGoal');if(m)m.classList.remove('open');
+ atualizarBotaoMetaSemanal();
+ if(window.TibiaFarmRetention)window.TibiaFarmRetention.refresh();
+ toast('Meta semanal removida.');
 }
 </script>
 
@@ -1397,6 +1587,7 @@ function salvarMetaSemanalModal(){
     set('rtGoalCurrent',nf(weekProfit));
     set('rtGoalTarget','Meta: '+nf(goal));
     const bar=document.getElementById('rtGoalBar');if(bar)bar.style.width=pct+'%';
+    if(typeof window.atualizarBotaoMetaSemanal==='function')window.atualizarBotaoMetaSemanal();
 
     drawChart(chartPoints(farms,filtrando));
   }
