@@ -635,10 +635,20 @@ function calcularRankingStats(){
   const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
   const sessoes=sessoesRaw.filter(s=>!s.resumoDia&&!s.somado);
   const profit=sessoes.reduce((a,s)=>a+(Number(s.gold)||0),0);
-  let melhorHunt=0,melhorHuntNome="";
-  sessoes.forEach(s=>{const v=Number(s.gold)||0;if(v>melhorHunt){melhorHunt=v;melhorHuntNome=(s.hunt||"Hunt não informada").trim()||"Hunt não informada"}});
+  const porHunt={};
+  const addHunt=(nome,gold,time)=>{
+    const h=(nome||"Hunt não informada").trim()||"Hunt não informada";
+    if(!porHunt[h])porHunt[h]={gold:0,time:0};
+    porHunt[h].gold+=Number(gold)||0;porHunt[h].time+=Number(time)||0;
+  };
+  sessoes.forEach(s=>addHunt(s.hunt,s.gold,s.time));
   sessoesRaw.filter(s=>s.resumoDia&&Array.isArray(s.huntsDetalhes)).forEach(s=>{
-    s.huntsDetalhes.forEach(h=>{const v=Number(h.gold)||0;if(v>melhorHunt){melhorHunt=v;melhorHuntNome=(h.hunt||"Hunt não informada").trim()||"Hunt não informada"}});
+    s.huntsDetalhes.forEach(h=>addHunt(h.hunt,h.gold,h.time));
+  });
+  let melhorHunt=0,melhorHuntNome="";
+  Object.keys(porHunt).forEach(nome=>{
+    const v=porHunt[nome],pph=v.time>0?v.gold/(v.time/60):0;
+    if(pph>melhorHunt){melhorHunt=pph;melhorHuntNome=nome}
   });
   const dates=[...new Set(sessoes.map(s=>s.data).filter(Boolean))];
   return {nickname:(S.nickname||"").trim(),profit,melhorHunt,melhorHuntNome,streak:rankingStreakFromDates(dates)};
