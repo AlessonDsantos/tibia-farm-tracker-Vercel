@@ -266,6 +266,17 @@ tr.total td:first-child{font-weight:700}
  </div>
 </div>
 
+<div class="modal" id="mSetupAlert"><div class="box" style="width:min(500px,100%);text-align:center">
+ <div style="font-size:42px;margin-bottom:8px">⚙️</div>
+ <h3>Configure seu perfil</h3>
+ <p style="line-height:1.6">Sua meta foi criada com sucesso! Para aproveitar todos os recursos do Tibia Farm Tracker, vá em <b>Configurações</b> e defina seu <b>Nickname</b> e o <b>preço de 25 Tibia Coins em R$</b>.</p>
+ <p style="color:var(--muted);font-size:12px;margin-top:-2px">O nickname identifica você no ranking público e o preço em reais permite acompanhar o valor da sua meta em dinheiro.</p>
+ <div class="actions" style="justify-content:center">
+  <button class="btn-green" onclick="irParaConfiguracoes()">⚙️ Ir para Configurações</button>
+  <button onclick="fechar('mSetupAlert')">Agora não</button>
+ </div>
+</div></div>
+
 <div class="modal" id="mGoal"><div class="box">
  <h3>Nova meta</h3><p>O ícone do item é buscado na Tibia Wiki.</p>
  <div class="field"><label>Nome do item</label>
@@ -517,10 +528,26 @@ function criarMeta(){
  if(!n)return toast("Informe o nome do item.");
  if(!(g>0))return toast("Informe a meta em gold.");
  if(!(p>0))return toast("Informe o preço da Tibia Coin.");
+ // O nickname aleatório é criado somente quando a primeira meta é criada.
+ if(!String(S.nickname||"").trim()) S.nickname=(window.gerarNicknameAleatorio?window.gerarNicknameAleatorio():"Jogador"+Math.floor(1000+Math.random()*9000));
  S.tcPrice=p;
  S.metas.push({id:Date.now(),nome:n,img:gifDoItem(n),metaGold:g,criada:new Date().toISOString(),
   sessoes:[],semanais:[],mensais:[],cursor:0,concluida:null});
- S.ativa=S.metas[S.metas.length-1].id;salvar();fechar("mGoal");render();toast("Meta criada.")}
+ S.ativa=S.metas[S.metas.length-1].id;salvar();fechar("mGoal");render();toast("Meta criada.");
+ abrirAvisoConfiguracoes()}
+function abrirAvisoConfiguracoes(){
+ const m=document.getElementById("mSetupAlert");
+ if(m)m.classList.add("open");
+}
+function irParaConfiguracoes(){
+ const m=document.getElementById("mSetupAlert");
+ if(m)m.classList.remove("open");
+ abrirConfig();
+ setTimeout(()=>{
+  const el=document.getElementById("cfgNickname");
+  if(el)el.focus();
+ },80);
+}
 function excluirMeta(){
  const g=meta();if(!g)return toast("Nenhuma meta ativa.");
  if(!confirm('Excluir a meta "'+g.nome+'" e todo o histórico dela?'))return;
@@ -619,13 +646,29 @@ function relSemanal(){
 function relMensal(){
  const g=meta();if(!g.sessoes.length)return toast("Ainda não há farm registrado.");
  gerarMensal(g,false);abaRel="mensal";salvar();render();toast("Relatório mensal gerado.")}
-function limpar(){
- if(!confirm("Isso apaga TODOS os dados do Tibia Farm Tracker, inclusive o desempenho e a meta semanal. Continuar?"))return;
+function resetarDadosLocais(){
  S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:""};
  try{localStorage.removeItem(CK+"data");localStorage.removeItem("tft_weekly_goal");}catch(e){}
  try{for(let i=0;i<40;i++)document.cookie=CK+i+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";document.cookie=CK+"n=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";}catch(e){}
  if(window.TibiaFarmRetention){window.TibiaFarmRetention.clearDate();window.TibiaFarmRetention.refresh();}
- render();toast("Todos os dados foram apagados.")
+}
+window.resetarDadosLocais=resetarDadosLocais;
+async function limpar(){
+ if(!confirm("Isso apaga TODOS os dados do Tibia Farm Tracker, inclusive o desempenho, a meta semanal e o ranking público. Continuar?"))return;
+ resetarDadosLocais();
+ render();
+
+ // Se estiver conectado ao Google, apaga também os dados da nuvem e
+ // especificamente o documento público do ranking. O ranking NÃO é
+ // apagado ao apenas alterar o nickname ou fazer login.
+ if(window.limparDadosNuvem){
+  const ok=await window.limparDadosNuvem();
+  if(!ok){
+   toast("Dados locais apagados, mas houve erro ao limpar a nuvem.");
+   return;
+  }
+ }
+ toast("Todos os dados foram apagados.");
 }
 function rankingStreakFromDates(dates){
   const set=new Set(dates);
@@ -710,7 +753,13 @@ function abrirConfig(){
  abrir("mCfg")}
 function salvarNickname(){
  const v=(document.getElementById("cfgNickname").value||"").trim();
- S.nickname=v;salvar();toast(v?"Nickname salvo.":"Nickname removido do ranking.");
+ if(!v){
+  document.getElementById("cfgNickname").focus();
+  return toast("O nickname é obrigatório.");
+ }
+ S.nickname=v;
+ salvar();
+ toast("Nickname salvo.");
 }
 function salvarCotacaoBRL(){
  const v=Number(document.getElementById("cfgBRL25").value);
@@ -1089,7 +1138,7 @@ window.updateAuthUI();
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
  from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc, collection, query, orderBy, limit, getDocs }
+import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, query, orderBy, limit, getDocs }
  from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -1108,47 +1157,96 @@ const provider = new GoogleAuthProvider();
 
 function refDoUsuario(uid){ return doc(db, "farmTrackers", uid); }
 
-async function pushCloud(){
- const u = window.currentUser;
- if(!u || !window.S) return;
+async function syncRanking(){
+ const u=window.currentUser;
+ if(!u || !window.S || !window.calcularRankingStats)return true;
  try{
-  await setDoc(refDoUsuario(u.uid), JSON.parse(JSON.stringify(window.S)));
+  const stats=window.calcularRankingStats();
+  const rankRef=doc(db,"rankings",u.uid);
 
-  // Publica somente as estatísticas necessárias para o ranking.
-  const stats = window.calcularRankingStats ? window.calcularRankingStats() : null;
-  const rankRef = doc(db, "rankings", u.uid);
-  if(stats && stats.nickname){
-   await setDoc(rankRef, {
-    nickname: stats.nickname,
-    profit: stats.profit,
-    melhorHunt: stats.melhorHunt,
-    melhorHuntNome: stats.melhorHuntNome,
-    streak: stats.streak,
-    updatedAt: new Date()
-   });
-  }
- }catch(e){ console.error("Falha ao salvar na nuvem:", e); }
+  // O nickname aleatório NÃO é criado aqui. Ele só é criado no momento
+  // em que o usuário cria uma meta. Assim, após "Limpar dados", uma conta
+  // sem metas não volta automaticamente para o ranking.
+  if(!String(stats.nickname||"").trim()) return true;
+
+  await setDoc(rankRef,{
+   nickname:stats.nickname,
+   profit:stats.profit,
+   melhorHunt:stats.melhorHunt,
+   melhorHuntNome:stats.melhorHuntNome,
+   streak:stats.streak,
+   updatedAt:new Date()
+  });
+  return true;
+ }catch(e){
+  console.error("Falha ao sincronizar ranking:",e);
+  return false;
+ }
 }
+
+async function pushCloud(){
+ const u=window.currentUser;
+ if(!u || !window.S)return false;
+ try{
+  await setDoc(refDoUsuario(u.uid),JSON.parse(JSON.stringify(window.S)));
+  await syncRanking();
+  return true;
+ }catch(e){
+  console.error("Falha ao salvar na nuvem:",e);
+  return false;
+ }
+}
+
+function gerarNicknameAleatorio(){
+ return "Jogador"+Math.floor(1000+Math.random()*9000);
+}
+window.gerarNicknameAleatorio=gerarNicknameAleatorio;
 
 async function pullCloud(uid){
  try{
-  const snap = await getDoc(refDoUsuario(uid));
+  const snap=await getDoc(refDoUsuario(uid));
   if(snap.exists() && snap.data() && snap.data().metas){
-   window.S = snap.data();
-   window.salvarLocal && window.salvarLocal();
-  }else{
+   window.S=snap.data();
+   if(typeof window.S.nickname!=="string") window.S.nickname="";
+   window.salvarLocal&&window.salvarLocal();
    await pushCloud();
+  }else{
+   // Conta sem dados/metas: não cria nickname, não cria ranking e não
+   // recria dados automaticamente depois de "Limpar dados".
+   if(window.S && !Array.isArray(window.S.metas)) window.S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:""};
+   if(window.salvarLocal)window.salvarLocal();
   }
  }catch(e){
-  console.error("Falha ao carregar da nuvem:", e);
+  console.error("Falha ao carregar da nuvem:",e);
   alert("Não foi possível carregar seus dados da nuvem agora. Seus dados locais continuam intactos.");
  }
- window.render && window.render();
- window.updateAuthUI && window.updateAuthUI();
+ window.render&&window.render();
+ window.updateAuthUI&&window.updateAuthUI();
 }
+
+// Limpa os dados persistidos somente quando o usuário usa o botão
+// "Limpar dados". Alterar nickname, salvar farm ou entrar novamente
+// NÃO remove o documento do ranking.
+window.limparDadosNuvem=async function(){
+ const u=window.currentUser;
+ if(!u)return true;
+ try{
+  await Promise.all([
+   deleteDoc(refDoUsuario(u.uid)),
+   deleteDoc(doc(db,"rankings",u.uid))
+  ]);
+  return true;
+ }catch(e){
+  console.error("Falha ao limpar dados da nuvem:",e);
+  return false;
+ }
+};
+
+window.syncRanking=syncRanking;
 
 window.carregarRanking = async function(){
  try{
+  if(window.currentUser)await syncRanking();
   const base=collection(db,"rankings");
   const [a,b,c]=await Promise.all([
    getDocs(query(base,orderBy("profit","desc"),limit(10))),
@@ -1182,7 +1280,11 @@ window.cloudPush = pushCloud;
 onAuthStateChanged(auth, async (user)=>{
  window.currentUser = user;
  if(user){ await pullCloud(user.uid); }
- else{ window.updateAuthUI && window.updateAuthUI(); }
+ else{
+  if(window.resetarDadosLocais)window.resetarDadosLocais();
+  window.render && window.render();
+  window.updateAuthUI && window.updateAuthUI();
+ }
 });
 </script>
 
