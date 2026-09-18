@@ -211,7 +211,8 @@ tr.total td:first-child{font-weight:700}
 .retention-dashboard{background:transparent !important;}
 .retention-card,.retention-section{background:rgba(4,16,29,.52) !important;}
 .performance-filter{display:flex;align-items:end;gap:7px;flex-wrap:wrap;background:rgba(4,16,29,.42);border:1px solid rgba(44,97,136,.55);padding:8px;border-radius:10px;}
-.performance-filter label{display:block;font-size:10px;color:var(--muted);width:100%;margin-bottom:-3px;}
+.performance-filter .pf-field{display:flex;flex-direction:column;gap:2px}
+.performance-filter label{display:block;font-size:10px;color:var(--muted);margin-bottom:-3px;}
 .performance-filter input{background:#061829;color:#d9ecf9;border:1px solid #2c6188;border-radius:7px;padding:7px 9px;font:inherit;}
 .performance-filter button{padding:7px 10px;font-size:11px;}
 .weekly-hunts{margin:2px 0;padding:9px;border:1px solid #1a3b55;border-radius:9px;background:rgba(4,18,31,.5);}
@@ -273,7 +274,7 @@ tr.total td:first-child{font-weight:700}
  <div id="gPreview" class="preview" style="display:none"></div>
  <div class="grid2" style="margin-top:12px">
   <div><label style="display:block;color:var(--muted);font-size:11px;margin-bottom:6px">Meta em Gold</label>
-   <input id="gGold" type="number" min="1" placeholder="100000000"></div>
+   <input id="gGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 100kk ou 100000000" title="Use k para mil e kk para milhão"></div>
   <div><label style="display:block;color:var(--muted);font-size:11px;margin-bottom:6px">Preço da TC</label>
    <input id="gTc" type="number" min="1" placeholder="35000"></div>
  </div>
@@ -317,7 +318,7 @@ tr.total td:first-child{font-weight:700}
  <div class="field"><label>Nome da Hunt</label><input id="addHunt" type="text" maxlength="80" placeholder="Ex.: Rotten Blood"></div>
  <div class="grid2">
   <div class="field"><label>Tempo de Hunt (minutos)</label><input id="addTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
-  <div class="field"><label>Valor em Gold</label><input id="addGold" type="number" min="1" placeholder="Ex.: 2000000"></div>
+  <div class="field"><label>Valor em Gold</label><input id="addGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
  </div>
  <div class="actions"><button class="btn-green" onclick="confirmarAdd()">Registrar farm</button>
   <button onclick="fechar('mAdd')">Cancelar</button></div>
@@ -328,7 +329,7 @@ tr.total td:first-child{font-weight:700}
  <div class="field"><label>Nome da Hunt</label><input id="editHunt" type="text" maxlength="80" placeholder="Ex.: Rotten Blood"></div>
  <div class="grid2">
   <div class="field"><label>Tempo de Hunt (minutos)</label><input id="editTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
-  <div class="field"><label>Valor em Gold</label><input id="editGold" type="number" min="1" placeholder="Ex.: 2000000"></div>
+  <div class="field"><label>Valor em Gold</label><input id="editGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
  </div>
  <div class="actions"><button class="btn-green" onclick="confirmarEdit()">Salvar alterações</button>
   <button onclick="fechar('mEditFarm')">Cancelar</button></div>
@@ -348,7 +349,7 @@ tr.total td:first-child{font-weight:700}
 
 <div class="modal" id="mWeeklyGoal"><div class="box">
  <h3>🎯 Meta de profit semanal</h3><p>Defina quanto de profit você quer alcançar nesta semana.</p>
- <div class="field"><label>Meta em Gold</label><input id="weeklyGoalInput" type="number" min="1" step="1" placeholder="1000000"></div>
+ <div class="field"><label>Meta em Gold</label><input id="weeklyGoalInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 1kk ou 1000000" title="Use k para mil e kk para milhão"></div>
  <div class="actions"><button class="btn-green" onclick="salvarMetaSemanalModal()">Salvar meta</button><button class="red" onclick="removerMetaSemanal()">Remover meta</button><button onclick="fechar('mWeeklyGoal')">Cancelar</button></div>
 </div></div>
 
@@ -442,7 +443,7 @@ async function buscarItens(termo){
 
 /* ================= estado + persistência ================= */
 const CK="tibiaFarm3_",CHUNK=3200;
-var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:""},aba="hist",abaRel="semanal",abaHist="dia",histDateFilter="",addDate=null,editId=null,tSugg=null,menuAberto=false;
+var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:""},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,tSugg=null,menuAberto=false;
 
 function serializar(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
 function salvar(){
@@ -469,6 +470,14 @@ function carregar(){
 /* ================= helpers ================= */
 const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const fmt=n=>Math.round(Number(n)||0).toLocaleString("pt-BR");
+function parseGold(v){
+ const raw=String(v??"").trim().toLowerCase().replace(/\s+/g,"");
+ if(!raw)return NaN;
+ const m=raw.match(/^([0-9]+(?:[.,][0-9]+)?)(kk|k)?$/);
+ if(!m)return NaN;
+ const n=Number(m[1].replace(",",".")),mult=m[2]==="kk"?1000000:m[2]==="k"?1000:1;
+ return Number.isFinite(n)?Math.round(n*mult):NaN;
+}
 const fmt2=n=>(Number(n)||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
 const brl=n=>(Number(n)||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const hoje=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
@@ -504,7 +513,7 @@ function novaMeta(){
  setTimeout(()=>document.getElementById("gName").focus(),50)}
 function criarMeta(){
  const n=document.getElementById("gName").value.trim(),
-  g=Number(document.getElementById("gGold").value),p=Number(document.getElementById("gTc").value);
+  g=parseGold(document.getElementById("gGold").value),p=Number(document.getElementById("gTc").value);
  if(!n)return toast("Informe o nome do item.");
  if(!(g>0))return toast("Informe a meta em gold.");
  if(!(p>0))return toast("Informe o preço da Tibia Coin.");
@@ -524,7 +533,7 @@ function salvarPreco(){
  S.tcPrice=p;salvar();render();toast("Preço da Tibia Coin salvo.")}
 function registrarFarm(){
  const g=meta();if(!g)return;
- const v=Number(document.getElementById("farmGold").value);
+ const v=parseGold(document.getElementById("farmGold").value);
  if(!(v>0))return toast("Informe o valor farmado.");
  const d=new Date();
  const hunt=(document.getElementById("farmHunt")?.value||"").trim();
@@ -540,7 +549,7 @@ function addNoDia(d){
  document.getElementById("addHunt").value="";document.getElementById("addTime").value="";document.getElementById("addGold").value="";
  abrir("mAdd");setTimeout(()=>document.getElementById("addHunt").focus(),50)}
 function confirmarAdd(){
- const g=meta(),v=Number(document.getElementById("addGold").value),p=S.tcPrice,
+ const g=meta(),v=parseGold(document.getElementById("addGold").value),p=S.tcPrice,
   hunt=(document.getElementById("addHunt").value||"").trim(),tempo=Number(document.getElementById("addTime").value);
  if(!hunt)return toast("Informe o nome da Hunt.");
  if(!(tempo>0))return toast("Informe o tempo da Hunt.");
@@ -567,7 +576,7 @@ function confirmarEdit(){
  if(!s)return toast("Registro não encontrado.");
  const hunt=(document.getElementById("editHunt").value||"").trim(),
   tempo=Number(document.getElementById("editTime").value),
-  v=Number(document.getElementById("editGold").value);
+  v=parseGold(document.getElementById("editGold").value);
  if(!hunt)return toast("Informe o nome da Hunt.");
  if(!(tempo>0))return toast("Informe o tempo da Hunt.");
  if(!(v>0))return toast("Informe o valor em gold.");
@@ -709,7 +718,8 @@ function salvarCotacaoBRL(){
 function setAba(a){aba=a;render()}
 function setAbaRel(a){abaRel=a;render()}
 function setAbaHist(a){abaHist=a;render()}
-function limparFiltroHist(){histDateFilter="";render()}
+function limparFiltroHist(){histDateIni="";histDateFim="";render()}
+function histNoRange(d){if(histDateIni&&d<histDateIni)return false;if(histDateFim&&d>histDateFim)return false;return true}
 
 /* ================= busca de item no modal ================= */
 const inpName=document.getElementById("gName");
@@ -859,17 +869,17 @@ function resumoDia(g,d){return g.sessoes.find(s=>s.resumoDia&&s.data===d)||null}
 function tabelaHist(g){
  const ds=diasFarm(g).slice().reverse();
  if(!ds.length)return '<div class="empty"><b>Nenhum farm registrado ainda</b>Use “Registrar Farm” para lançar o primeiro valor do dia.</div>';
- let h='<div class="history-tools"><div class="tabs mini-history-tabs"><button class="'+(abaHist==='dia'?'on':'')+'" onclick="setAbaHist(\'dia\')">Resumo diário</button><button class="'+(abaHist==='hunts'?'on':'')+'" onclick="setAbaHist(\'hunts\')">Hunts feitas</button></div><div class="performance-filter history-date-filter"><label for="histDateFilter">Buscar dia</label><input id="histDateFilter" type="date" value="'+esc(histDateFilter)+'"><button type="button" onclick="limparFiltroHist()">Todos</button></div></div>';
+ let h='<div class="history-tools"><div class="tabs mini-history-tabs"><button class="'+(abaHist==='dia'?'on':'')+'" onclick="setAbaHist(\'dia\')">Resumo diário</button><button class="'+(abaHist==='hunts'?'on':'')+'" onclick="setAbaHist(\'hunts\')">Hunts feitas</button></div><div class="performance-filter history-date-filter"><div class="pf-field"><label for="histDateIni">De</label><input id="histDateIni" type="date" value="'+esc(histDateIni)+'"></div><div class="pf-field"><label for="histDateFim">Até</label><input id="histDateFim" type="date" value="'+esc(histDateFim)+'"></div><button type="button" onclick="limparFiltroHist()">Todos</button></div></div>';
  if(abaHist==='hunts')return h+tabelaHistHunts(g,ds);
- const filtered=histDateFilter?ds.filter(d=>d===histDateFilter):ds;
- if(!filtered.length)return h+'<div class="empty"><b>Nenhum registro nesta data.</b></div>';
+ const filtered=ds.filter(histNoRange);
+ if(!filtered.length)return h+'<div class="empty"><b>Nenhum registro neste período.</b></div>';
  let html=h+'<div class="tablewrap"><table><thead><tr><th>Data</th><th>Hunts</th><th>Tempo</th><th>Farm (Gold)</th><th>Profit/h</th><th>Tibia Coin</th><th></th></tr></thead><tbody>';
  filtered.forEach(d=>{const arr=doDia(g,d),r=resumoDia(g,d),count=[...new Set(arr.map(s=>(s.hunt||'Hunt não informada').trim()))].filter(Boolean).length,total=goldDia(g,d),time=arr.reduce((a,s)=>a+Number(s.time||0),0),pph=time>0?total/(time/60):0,huntsText=r&&r.hunt?r.hunt:(count+(count===1?' hunt':' hunts'));
   html+='<tr><td>'+brData(d)+(d===hoje()?' <span class="today-tag">(Hoje)</span>':'')+'</td><td><b>'+esc(huntsText)+'</b></td><td>'+(time?time+' min':'—')+'</td><td><div class="cell"><span class="coin">G</span>'+fmt(total)+'</div></td><td><div class="cell"><span class="coin">G</span>'+fmt(pph)+'/h</div></td><td><div class="cell"><span class="coin tc">TC</span>'+fmt2(tcDia(g,d))+'</div></td><td><div class="rowbtns"></div></td></tr>';});
  return html+'</tbody></table></div>'}
 function tabelaHistHunts(g,ds){
- const filtered=histDateFilter?ds.filter(d=>d===histDateFilter):ds;
- if(!filtered.length)return '<div class="empty"><b>Nenhuma hunt nesta data.</b></div>';
+ const filtered=ds.filter(histNoRange);
+ if(!filtered.length)return '<div class="empty"><b>Nenhuma hunt neste período.</b></div>';
  let html='<div class="tablewrap"><table><thead><tr><th>Data</th><th>Hunt</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th><th></th></tr></thead><tbody>';
  filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+esc(s.hunt||'Hunt não informada')+'</b></td><td>'+mins+' min</td><td class="goldtxt">'+fmt(profit)+' GP</td><td>'+fmt(pph)+'/h</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns"><button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';});});
  return html+'</tbody></table></div>'}
@@ -949,7 +959,7 @@ function render(){
     <div class="field"><label>Nome da Hunt</label><input id="farmHunt" type="text" maxlength="80" placeholder="Ex.: Rotten Blood"></div>
     <div class="grid2">
      <div class="field"><label>Tempo de Hunt (minutos)</label><input id="farmTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
-     <div class="field"><label>Valor em Gold</label><input id="farmGold" type="number" min="1" placeholder="Ex.: 2000000" onkeydown="if(event.key==='Enter')registrarFarm()"></div>
+     <div class="field"><label>Valor em Gold</label><input id="farmGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão" onkeydown="if(event.key==='Enter')registrarFarm()"></div>
     </div>
     <div class="actions"><button class="btn-green" onclick="registrarFarm()">Registrar Farm</button></div>
    </section>
@@ -1013,7 +1023,20 @@ function render(){
  </div>`;
 }
 
-document.addEventListener('change',e=>{if(e.target&&e.target.id==='histDateFilter'){histDateFilter=e.target.value||'';render()}});
+document.addEventListener('change',e=>{
+ if(!e.target)return;
+ if(e.target.id==='histDateIni'){
+  histDateIni=e.target.value||'';
+  if(histDateIni&&!histDateFim)histDateFim=histDateIni;
+  if(histDateFim&&histDateIni&&histDateFim<histDateIni)histDateFim=histDateIni;
+  render();
+ }else if(e.target.id==='histDateFim'){
+  histDateFim=e.target.value||'';
+  if(histDateFim&&!histDateIni)histDateIni=histDateFim;
+  if(histDateIni&&histDateFim&&histDateFim<histDateIni)histDateIni=histDateFim;
+  render();
+ }
+});
 /* dropdown de metas */
 document.getElementById("goalSelect").addEventListener("click",e=>{
  if(e.target.closest(".menu"))return;menuAberto=!menuAberto;
@@ -1252,7 +1275,7 @@ onAuthStateChanged(auth, async (user)=>{
       <h2 class="retention-title">📊 Seu desempenho</h2>
       <p class="retention-subtitle">Acompanhe sua evolução e descubra suas melhores hunts.</p>
     </div>
-    <div class="performance-filter"><label for="rtDateFilter">Data</label><input id="rtDateFilter" type="date"><button type="button" id="rtClearDate">Todas</button></div>
+    <div class="performance-filter"><div class="pf-field"><label for="rtDateIni">De</label><input id="rtDateIni" type="date"></div><div class="pf-field"><label for="rtDateFim">Até</label><input id="rtDateFim" type="date"></div><button type="button" id="rtClearDate">Todas</button></div>
   </div>
 
   <div class="retention-grid">
@@ -1337,7 +1360,7 @@ function atualizarBotaoMetaSemanal(){
   if(rm)rm.hidden=!existe;
 }
 function salvarMetaSemanalModal(){
- const v=Number(document.getElementById('weeklyGoalInput').value);
+ const v=parseGold(document.getElementById('weeklyGoalInput').value);
  if(!(v>0))return toast('Informe uma meta válida.');
  localStorage.setItem('tft_weekly_goal',v);
  document.getElementById('mWeeklyGoal').classList.remove('open');
@@ -1367,7 +1390,8 @@ function removerMetaSemanal(){
 /* === Tibia Farm Tracker V2: retention dashboard (corrigido) === */
 (function(){
   const CK='tibiaFarm3_';
-  let selectedDate='';
+  let selectedIni='';
+  let selectedFim='';
 
   function number(v){
     if(typeof v==='number'&&isFinite(v))return v;
@@ -1558,20 +1582,32 @@ function removerMetaSemanal(){
 
   function render(){
     const all=getFarms();
-    const input=document.getElementById('rtDateFilter');
-    if(input){
-      input.max=todayKey();
-      if(input.value!==selectedDate)input.value=selectedDate;
-    }
-    const filtrando=!!selectedDate;
-    const farms=filtrando?all.filter(x=>dateKey(x.date)===selectedDate):all;
+    const inIni=document.getElementById('rtDateIni'),inFim=document.getElementById('rtDateFim');
+    if(inIni){inIni.max=todayKey();if(inIni.value!==selectedIni)inIni.value=selectedIni;}
+    if(inFim){inFim.max=todayKey();if(inFim.value!==selectedFim)inFim.value=selectedFim;}
+    const filtrando=!!(selectedIni||selectedFim);
+    const singleDay=!!(selectedIni&&selectedFim&&selectedIni===selectedFim);
+    const farms=filtrando?all.filter(x=>{
+      const k=dateKey(x.date);
+      if(selectedIni&&k<selectedIni)return false;
+      if(selectedFim&&k>selectedFim)return false;
+      return true;
+    }):all;
 
     const sub=document.querySelector('.retention-subtitle');
     if(sub){
-      sub.textContent=filtrando
-        ?(farms.length?'Mostrando '+farms.length+(farms.length===1?' farm':' farms')+' de '+brData(selectedDate)+'.'
-                      :'Nenhum farm registrado em '+brData(selectedDate)+'.')
-        :'Acompanhe sua evolução e descubra suas melhores hunts.';
+      let texto;
+      if(singleDay){
+        texto=farms.length?'Mostrando '+farms.length+(farms.length===1?' farm':' farms')+' de '+brData(selectedIni)+'.'
+                          :'Nenhum farm registrado em '+brData(selectedIni)+'.';
+      }else if(filtrando){
+        const de=selectedIni?brData(selectedIni):'o início',ate=selectedFim?brData(selectedFim):'hoje';
+        texto=farms.length?'Mostrando '+farms.length+(farms.length===1?' farm':' farms')+' de '+de+' até '+ate+'.'
+                          :'Nenhum farm registrado nesse período.';
+      }else{
+        texto='Acompanhe sua evolução e descubra suas melhores hunts.';
+      }
+      sub.textContent=texto;
     }
 
     const totalProfit=farms.reduce((s,x)=>s+x.profit,0);
@@ -1602,13 +1638,14 @@ function removerMetaSemanal(){
     const bar=document.getElementById('rtGoalBar');if(bar)bar.style.width=pct+'%';
     if(typeof window.atualizarBotaoMetaSemanal==='function')window.atualizarBotaoMetaSemanal();
 
-    drawChart(chartPoints(farms,filtrando));
+    drawChart(chartPoints(farms,singleDay));
   }
 
   window.TibiaFarmRetention={
     refresh:render,
-    setDate:function(d){selectedDate=d||'';render()},
-    clearDate:function(){selectedDate='';render()},
+    setDate:function(d){selectedIni=d||'';selectedFim=d||'';render()},
+    setRange:function(ini,fim){selectedIni=ini||'';selectedFim=fim||'';render()},
+    clearDate:function(){selectedIni='';selectedFim='';render()},
     setWeeklyGoal:function(v){v=number(v);if(v>0){localStorage.setItem('tft_weekly_goal',v);render()}}
   };
 
@@ -1621,13 +1658,28 @@ function removerMetaSemanal(){
   }
 
   function start(){
-    const df=document.getElementById('rtDateFilter'),clear=document.getElementById('rtClearDate');
-    if(df){
-      const onChange=()=>{selectedDate=df.value||'';render()};
-      df.addEventListener('change',onChange);
-      df.addEventListener('input',onChange);
+    const dfIni=document.getElementById('rtDateIni'),dfFim=document.getElementById('rtDateFim'),clear=document.getElementById('rtClearDate');
+    if(dfIni){
+      const onChange=()=>{
+        selectedIni=dfIni.value||'';
+        if(selectedIni&&!selectedFim){selectedFim=selectedIni;if(dfFim)dfFim.value=selectedFim;}
+        if(selectedIni&&selectedFim&&selectedFim<selectedIni){selectedFim=selectedIni;if(dfFim)dfFim.value=selectedFim;}
+        render();
+      };
+      dfIni.addEventListener('change',onChange);
+      dfIni.addEventListener('input',onChange);
     }
-    if(clear)clear.addEventListener('click',()=>{selectedDate='';if(df)df.value='';render()});
+    if(dfFim){
+      const onChange=()=>{
+        selectedFim=dfFim.value||'';
+        if(selectedFim&&!selectedIni){selectedIni=selectedFim;if(dfIni)dfIni.value=selectedIni;}
+        if(selectedIni&&selectedFim&&selectedFim<selectedIni){selectedIni=selectedFim;if(dfIni)dfIni.value=selectedIni;}
+        render();
+      };
+      dfFim.addEventListener('change',onChange);
+      dfFim.addEventListener('input',onChange);
+    }
+    if(clear)clear.addEventListener('click',()=>{selectedIni='';selectedFim='';if(dfIni)dfIni.value='';if(dfFim)dfFim.value='';render()});
     hook('salvar');hook('render');
     window.addEventListener('storage',render);
     window.addEventListener('resize',()=>render());
