@@ -49,6 +49,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;
 .menu div:last-child{border-bottom:0}
 .menu div:hover{background:#0d2c46}
 .menu .add{color:var(--green)}
+.menu .goal-row{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0}
+.menu .goal-row span{flex:1;padding:10px 12px;cursor:pointer}
+.menu .goal-row button{flex:none;background:none;border:none;color:#ff9c9c;font-size:14px;padding:8px 12px;cursor:pointer;line-height:1}
+.menu .goal-row button:hover{color:#fff}
 input,select{background:#020a13;border:1px solid #2a5471;color:#eaf5fc;border-radius:8px;padding:9px 10px;
  outline:none;font:inherit;font-size:14px;width:100%;min-width:0}
 input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(76,194,241,.18)}
@@ -404,7 +408,7 @@ tr.total td:first-child{font-weight:700}
  <h3>🏆 Ranking do Tibia Farm Tracker</h3>
  <p>Top 10 dos usuários que optaram por aparecer no ranking. Os dados são carregados diretamente do banco de dados.</p>
  <div class="rank-tabs">
-  <button class="on" id="rankTabFarm" onclick="mostrarRanking('farm')">💰 Top Farm</button>
+  <button class="on" id="rankTabFarm" onclick="mostrarRanking('farm')">💰 Melhor Dia</button>
   <button id="rankTabStreak" onclick="mostrarRanking('streak')">🔥 Top Constância</button>
   <button id="rankTabHunts" onclick="mostrarRanking('hunts')">⚔️ Melhor Hunt</button>
  </div>
@@ -625,6 +629,13 @@ function excluirMeta(){
  if(!confirm('Excluir a meta "'+g.nome+'" e todo o histórico dela?'))return;
  S.metas=S.metas.filter(m=>m.id!==g.id);S.ativa=S.metas[0]?S.metas[0].id:null;
  salvar();fechar("mCfg");render();toast("Meta excluída.")}
+function excluirMetaPorId(id){
+ const m=S.metas.find(x=>x.id===id);
+ if(!m)return;
+ if(!confirm('Excluir a meta "'+m.nome+'" e todo o histórico dela?'))return;
+ S.metas=S.metas.filter(x=>x.id!==id);
+ if(S.ativa===id)S.ativa=S.metas[0]?S.metas[0].id:null;
+ menuAberto=false;salvar();render();toast("Meta excluída.")}
 function trocarMeta(id){S.ativa=id;menuAberto=false;salvar();render()}
 function salvarPreco(){
  const p=Number(document.getElementById("tcPrice").value);
@@ -955,7 +966,10 @@ function rankingStreakFromDates(dates){
 function calcularRankingStats(){
   const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
   const sessoes=sessoesRaw.filter(s=>!s.resumoDia&&!s.somado);
-  const profit=sessoes.reduce((a,s)=>a+(Number(s.gold)||0),0);
+  const porDia={};
+  sessoes.forEach(s=>{if(!s.data)return;porDia[s.data]=(porDia[s.data]||0)+(Number(s.gold)||0)});
+  let melhorDiaTotal=0;
+  Object.values(porDia).forEach(v=>{if(v>melhorDiaTotal)melhorDiaTotal=v});
   const porHunt={};
   const addHunt=(nome,gold,time)=>{
     const h=(nome||"Hunt não informada").trim()||"Hunt não informada";
@@ -972,7 +986,7 @@ function calcularRankingStats(){
     if(pph>melhorHunt){melhorHunt=pph;melhorHuntNome=nome}
   });
   const dates=[...new Set(sessoes.map(s=>s.data).filter(Boolean))];
-  return {nickname:(S.nickname||"").trim(),profit,melhorHunt,melhorHuntNome,streak:rankingStreakFromDates(dates)};
+  return {nickname:(S.nickname||"").trim(),profit:melhorDiaTotal,melhorHunt,melhorHuntNome,streak:rankingStreakFromDates(dates)};
 }
 let rankingCache={farm:[],streak:[],hunts:[]},rankingAtual="farm";
 function abrirRanking(){
@@ -996,7 +1010,7 @@ function renderRankingList(){
   const arr=rankingCache[rankingAtual]||[];
   if(!arr.length){box.innerHTML='<div class="ranking-empty">Nenhum usuário com nickname cadastrado ainda.</div>';return}
   if(status)status.textContent="Top 10 • atualizado agora";
-  const labels={farm:["💰","Profit total"," GP"],streak:["🔥","Dias seguidos"," dias"],hunts:["⚔️","Melhor hunt",""]};
+  const labels={farm:["💰","Melhor dia"," GP"],streak:["🔥","Dias seguidos"," dias"],hunts:["⚔️","Melhor hunt",""]};
   const meta=labels[rankingAtual];
   box.innerHTML=arr.map((r,i)=>{
     let val;
@@ -1222,7 +1236,7 @@ function render(){
  // dropdown de metas
  document.getElementById("goalLabel").textContent=g?g.nome:"Nenhuma meta";
  document.getElementById("goalMenu").innerHTML=
-  S.metas.map(m=>'<div onclick="trocarMeta('+m.id+')">'+esc(m.nome)+(m.id===S.ativa?' ✓':'')+'</div>').join("")+
+  S.metas.map(m=>'<div class="goal-row"><span onclick="trocarMeta('+m.id+')">'+esc(m.nome)+(m.id===S.ativa?' ✓':'')+'</span><button type="button" title="Excluir meta" onclick="event.stopPropagation();excluirMetaPorId('+m.id+')">🗑️</button></div>').join("")+
   '<div class="add" onclick="novaMeta()">+ Criar nova meta</div>';
  document.getElementById("goalMenu").classList.toggle("open",menuAberto);
 
@@ -1822,9 +1836,10 @@ function removerMetaSemanal(){
     const hours=minutes/60;
     const pph=hours>0?profit/hours:0;
     const hunt=String(o.hunt||o.local||o.nome||'Hunt não informada').trim()||'Hunt não informada';
+    const tipo=String(o.tipo||'hunt');
     const date=o.data||o.date||o.createdAt||null;
     if(!date)return null;
-    return {profit,time:hours,pph,hunt,date:String(date),hora:String(o.hora||''),id:String(o.id||'')};
+    return {profit,time:hours,pph,hunt,tipo,date:String(date),hora:String(o.hora||''),id:String(o.id||'')};
   }
 
   function getFarms(){
@@ -1944,15 +1959,16 @@ function removerMetaSemanal(){
     const byProfit=farms.reduce((a,b)=>b.profit>a.profit?b:a);
     const comTempo=farms.filter(f=>f.time>0);
     const byPph=comTempo.length?comTempo.reduce((a,b)=>b.pph>a.pph?b:a):null;
-    /* melhor hunt = maior profit/h somando todos os registros da mesma hunt */
+    /* melhor hunt = maior profit/h somando todos os registros da mesma hunt (bosses e outros ficam de fora) */
+    const soHunts=farms.filter(f=>f.tipo==="hunt");
     const porHunt=new Map();
-    farms.forEach(f=>{const c=porHunt.get(f.hunt)||{gold:0,time:0};c.gold+=f.profit;c.time+=f.time;porHunt.set(f.hunt,c)});
+    soHunts.forEach(f=>{const c=porHunt.get(f.hunt)||{gold:0,time:0};c.gold+=f.profit;c.time+=f.time;porHunt.set(f.hunt,c)});
     let melhor=null;
     porHunt.forEach((v,k)=>{const pph=v.time>0?v.gold/v.time:0;if(!melhor||pph>melhor.pph)melhor={hunt:k,pph}});
     box.innerHTML=[
       ['💰 Maior profit',nf(byProfit.profit)+' ('+brData(dateKey(byProfit.date))+')'],
       ['📈 Maior profit/h',byPph?nf(byPph.pph)+'/h':'—'],
-      ['🗺️ Melhor hunt',melhor&&melhor.pph>0?melhor.hunt:'—']
+      ['🗺️ Melhor hunt',melhor&&melhor.pph>0?melhor.hunt+' · '+nf(melhor.pph)+'/h':'—']
     ].map(x=>'<div class="retention-record">'+x[0]+'<strong>'+x[1]+'</strong></div>').join('');
   }
 
