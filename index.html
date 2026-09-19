@@ -288,13 +288,18 @@ tr.total td:first-child{font-weight:700}
 </div></div>
 
 <div class="modal" id="mGoal"><div class="box">
- <h3>Nova meta</h3><p>O ícone do item é buscado na Tibia Wiki.</p>
- <div class="field"><label>Nome do item</label>
+ <h3>Nova meta</h3>
+ <div class="tabs" style="margin-bottom:10px">
+  <button type="button" id="goalTabEspecifica" class="on" onclick="setModoMeta('especifica')">🎯 Meta específica</button>
+  <button type="button" id="goalTabInfinita" onclick="setModoMeta('infinita')">♾️ Farm livre</button>
+ </div>
+ <p id="goalHint">O ícone do item é buscado na Tibia Wiki.</p>
+ <div class="field"><label id="goalNameLabel">Nome do item</label>
   <div class="sugg"><input id="gName" autocomplete="off" placeholder="Ex.: Sanguine Razor">
    <div class="sugg-list" id="gSugg"></div></div></div>
  <div id="gPreview" class="preview" style="display:none"></div>
  <div class="grid2" style="margin-top:12px">
-  <div><label style="display:block;color:var(--muted);font-size:11px;margin-bottom:6px">Meta em Gold</label>
+  <div id="goalGoldField"><label style="display:block;color:var(--muted);font-size:11px;margin-bottom:6px">Meta em Gold</label>
    <input id="gGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 100kk ou 100000000" title="Use k para mil e kk para milhão"></div>
   <div><label style="display:block;color:var(--muted);font-size:11px;margin-bottom:6px">Preço da TC</label>
    <input id="gTc" type="number" min="1" placeholder="35000"></div>
@@ -336,9 +341,14 @@ tr.total td:first-child{font-weight:700}
 
 <div class="modal" id="mAdd"><div class="box">
  <h3>Adicionar farm</h3><p id="addDate">—</p>
- <div class="field"><label>Nome da Hunt</label><input id="addHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('add')" style="cursor:pointer"></div>
+ <div class="field"><label>Tipo de farm</label><div class="tabs" id="tipoTabsadd">
+  <button type="button" data-tipo="hunt" class="on" onclick="setTipoFarm('add','hunt')">⚔️ Hunt</button>
+  <button type="button" data-tipo="boss" onclick="setTipoFarm('add','boss')">☠️ Boss</button>
+  <button type="button" data-tipo="outro" onclick="setTipoFarm('add','outro')">✨ Outro</button>
+ </div></div>
+ <div class="field"><label id="addHuntLabel">Nome da Hunt</label><input id="addHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('add')" style="cursor:pointer"></div>
  <div class="grid2">
-  <div class="field"><label>Tempo de Hunt (minutos)</label><input id="addTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
+  <div class="field"><label id="addTimeLabel">Tempo de Hunt (minutos)</label><input id="addTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
   <div class="field"><label>Valor em Gold</label><input id="addGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
  </div>
  <div class="actions"><button class="btn-green" onclick="confirmarAdd()">Registrar farm</button>
@@ -346,10 +356,15 @@ tr.total td:first-child{font-weight:700}
 </div></div>
 
 <div class="modal" id="mEditFarm"><div class="box">
- <h3>Editar hunt</h3><p id="editDate">—</p>
- <div class="field"><label>Nome da Hunt</label><input id="editHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('edit')" style="cursor:pointer"></div>
+ <h3>Editar farm</h3><p id="editDate">—</p>
+ <div class="field"><label>Tipo de farm</label><div class="tabs" id="tipoTabsedit">
+  <button type="button" data-tipo="hunt" class="on" onclick="setTipoFarm('edit','hunt')">⚔️ Hunt</button>
+  <button type="button" data-tipo="boss" onclick="setTipoFarm('edit','boss')">☠️ Boss</button>
+  <button type="button" data-tipo="outro" onclick="setTipoFarm('edit','outro')">✨ Outro</button>
+ </div></div>
+ <div class="field"><label id="editHuntLabel">Nome da Hunt</label><input id="editHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('edit')" style="cursor:pointer"></div>
  <div class="grid2">
-  <div class="field"><label>Tempo de Hunt (minutos)</label><input id="editTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
+  <div class="field"><label id="editTimeLabel">Tempo de Hunt (minutos)</label><input id="editTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
   <div class="field"><label>Valor em Gold</label><input id="editGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
  </div>
  <div class="actions"><button class="btn-green" onclick="confirmarEdit()">Salvar alterações</button>
@@ -357,7 +372,7 @@ tr.total td:first-child{font-weight:700}
 </div></div>
 
 <div class="modal" id="mHuntPicker"><div class="box">
- <h3>Escolher hunt</h3>
+ <h3 id="huntPickerTitle">⚔️ Escolher hunt</h3>
  <div class="tabs" style="margin-bottom:8px">
   <button type="button" id="huntTabTodas" class="on" onclick="setHuntPickerFiltro('todas')">Todas</button>
   <button type="button" id="huntTabPersonalizadas" onclick="setHuntPickerFiltro('personalizadas')">🧩 Personalizadas</button>
@@ -485,7 +500,18 @@ const HUNTS_PADRAO=["Asura Palace","Azzilon Walls","Barkless Ab Cults","Bashmu",
 "Otherworld","Otherworld (Kazo)","Pirats","Podzilla Quara","Ravenous Lava Lurkers","Roshamuul Mines",
 "Summer Court","Warzone","Warzone 3","Warzone 4","Warzone 8","Werehyaenas","Werelions","Werelions -1",
 "Winter Court","Yalahar Grim Reapers","Yalahar Sunken Quarter"];
-var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerBusca="",huntPickerFiltro="todas";
+const BOSSES_SOLO=["Bakragore","Brain Head","Dragonking Zyrtarch","Faceless Bane","Ferumbras Mortal Shell",
+"Gaz'haragoth","Goshnar's Malice","Grand Master Oberon","Ghulosh","Irgix the Flimsy","Magma Bubble","Mearidion",
+"Morshabaal","Plagirath","Ravenous Hunger","Scarlett Etzel","Soul-Broken Harbinger","The Baron from Below",
+"The Count of the Core","The Duke of the Depths","The Primal Menace","Timira the Many-Headed",
+"Urmahlullu the Weakened","Yselda","Zarabustor"];
+const BOSSES_ROTACOES=[
+ {nome:"Mini Livraria",bosses:["Gorzindel","Grand Commander Soeren","Mazzinor","Sharpclaw"]},
+ {nome:"Rotacao GT",bosses:["Lady Tenebris","Lloyd","Melting Frozen Horror","Thorn Knight"]},
+ {nome:"Rotacao GD",bosses:["Count Vlarkorth","Duke Krule","Earl Osam","Lord Azaram","Sir Nictros"]}
+];
+var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[],bossesPersonalizados:[],bossesFavoritos:[],rotacoesPersonalizadas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerTipo="hunt",huntPickerBusca="",huntPickerFiltro="todas",metaModoInfinito=false;
+var tipoSel={farm:"hunt",add:"hunt",edit:"hunt"};
 
 function serializar(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
 function salvar(){
@@ -548,21 +574,36 @@ function janelaFarm(g){
  return Math.max(1,Math.round((Date.now()-primeiro.getTime())/86400000)+1)}
 
 /* ================= ações ================= */
+function setModoMeta(modo){
+ metaModoInfinito=modo==="infinita";
+ document.getElementById("goalTabEspecifica").classList.toggle("on",!metaModoInfinito);
+ document.getElementById("goalTabInfinita").classList.toggle("on",metaModoInfinito);
+ document.getElementById("goalGoldField").style.display=metaModoInfinito?"none":"";
+ document.getElementById("goalNameLabel").textContent=metaModoInfinito?"Nome do farm":"Nome do item";
+ document.getElementById("gName").placeholder=metaModoInfinito?"Ex.: Farm Geral":"Ex.: Sanguine Razor";
+ document.getElementById("goalHint").textContent=metaModoInfinito?"Farm livre: sem valor alvo, o ícone será ♾️.":"O ícone do item é buscado na Tibia Wiki.";
+ document.getElementById("gPreview").style.display="none";
+ document.getElementById("gSugg").classList.remove("open");
+}
 function novaMeta(){
  document.getElementById("gName").value="";document.getElementById("gGold").value="";
  document.getElementById("gTc").value=S.tcPrice;document.getElementById("gPreview").style.display="none";
- document.getElementById("gSugg").classList.remove("open");abrir("mGoal");
+ document.getElementById("gSugg").classList.remove("open");setModoMeta("especifica");abrir("mGoal");
  setTimeout(()=>document.getElementById("gName").focus(),50)}
 function criarMeta(){
  const n=document.getElementById("gName").value.trim(),
-  g=parseGold(document.getElementById("gGold").value),p=Number(document.getElementById("gTc").value);
- if(!n)return toast("Informe o nome do item.");
- if(!(g>0))return toast("Informe a meta em gold.");
+  p=Number(document.getElementById("gTc").value);
+ if(!n)return toast(metaModoInfinito?"Informe o nome do farm.":"Informe o nome do item.");
  if(!(p>0))return toast("Informe o preço da Tibia Coin.");
+ let g=0;
+ if(!metaModoInfinito){
+  g=parseGold(document.getElementById("gGold").value);
+  if(!(g>0))return toast("Informe a meta em gold.");
+ }
  // O nickname aleatório é criado somente quando a primeira meta é criada.
  if(!String(S.nickname||"").trim()) S.nickname=(window.gerarNicknameAleatorio?window.gerarNicknameAleatorio():"Jogador"+Math.floor(1000+Math.random()*9000));
  S.tcPrice=p;
- S.metas.push({id:Date.now(),nome:n,img:gifDoItem(n),metaGold:g,criada:new Date().toISOString(),
+ S.metas.push({id:Date.now(),nome:n,img:metaModoInfinito?"":gifDoItem(n),metaGold:g,infinita:metaModoInfinito,criada:new Date().toISOString(),
   sessoes:[],semanais:[],mensais:[],cursor:0,concluida:null});
  S.ativa=S.metas[S.metas.length-1].id;salvar();fechar("mGoal");render();toast("Meta criada.");
  abrirAvisoConfiguracoes()}
@@ -589,31 +630,91 @@ function salvarPreco(){
  const p=Number(document.getElementById("tcPrice").value);
  if(!(p>0))return toast("Preço inválido.");
  S.tcPrice=p;salvar();render();toast("Preço da Tibia Coin salvo.")}
+const ICONE_TIPO={hunt:"\u2694\ufe0f",boss:"\u2620\ufe0f",outro:"\u2728"};
+const LABEL_TIPO={hunt:"Hunt",boss:"Boss",outro:"Outro"};
+function tipoDe(s){const t=(s&&s.tipo)||"hunt";return ICONE_TIPO[t]?t:"hunt"}
+function iconeTipo(s){return ICONE_TIPO[tipoDe(s)]}
+function rotacoes(){return BOSSES_ROTACOES.concat(Array.isArray(S.rotacoesPersonalizadas)?S.rotacoesPersonalizadas:[])}
+function nomeRotacaoCompleta(n){return n+" (rota\u00e7\u00e3o completa)"}
+function todosBosses(){
+ const lista=[];
+ rotacoes().forEach(r=>{lista.push(nomeRotacaoCompleta(r.nome));(r.bosses||[]).forEach(b=>lista.push(b))});
+ BOSSES_SOLO.forEach(b=>lista.push(b));
+ customList("boss").forEach(b=>lista.push(b));
+ return [...new Set(lista)];
+}
+function todasHunts(){
+ const custom=customList("hunt");
+ return [...new Set([...HUNTS_PADRAO,...custom])].sort((a,b)=>a.localeCompare(b,"pt-BR"));
+}
+function catalogoTipo(tipo){return tipo==="boss"?todosBosses():todasHunts()}
+function customList(tipo){
+ if(tipo==="boss"){if(!Array.isArray(S.bossesPersonalizados))S.bossesPersonalizados=[];return S.bossesPersonalizados}
+ if(!Array.isArray(S.huntsPersonalizadas))S.huntsPersonalizadas=[];return S.huntsPersonalizadas;
+}
+function favList(tipo){
+ if(tipo==="boss"){if(!Array.isArray(S.bossesFavoritos))S.bossesFavoritos=[];return S.bossesFavoritos}
+ if(!Array.isArray(S.huntsFavoritas))S.huntsFavoritas=[];return S.huntsFavoritas;
+}
+function catalogoPadrao(tipo){return tipo==="boss"?todosBosses().filter(n=>!customList("boss").includes(n)):HUNTS_PADRAO}
+
+/* ---------- tipo de farm (hunt / boss / outro) ---------- */
+function rotuloNome(tipo){return tipo==="boss"?"Nome do Boss":tipo==="outro"?"Descri\u00e7\u00e3o do farm":"Nome da Hunt"}
+function placeholderNome(tipo){return tipo==="boss"?"Toque para escolher o boss":tipo==="outro"?"Ex.: Venda de itens, Quest, Evento":"Toque para escolher a hunt"}
+function idNome(escopo){return escopo==="farm"?"farmHunt":escopo==="add"?"addHunt":"editHunt"}
+function tipoTabsHTML(escopo){
+ return '<div class="field"><label>Tipo de farm</label><div class="tabs" id="tipoTabs'+escopo+'">'+
+  ["hunt","boss","outro"].map(t=>'<button type="button" data-tipo="'+t+'" class="'+(tipoSel[escopo]===t?"on":"")+'" onclick="setTipoFarm(\''+escopo+'\',\''+t+'\')">'+ICONE_TIPO[t]+' '+LABEL_TIPO[t]+'</button>').join("")+
+  '</div></div>';
+}
+function campoNomeHTML(escopo){
+ const id=idNome(escopo),t=tipoSel[escopo];
+ const attrs=t==="outro"?'':' readonly onclick="abrirHuntPicker(\''+escopo+'\')" style="cursor:pointer"';
+ return '<div class="field"><label id="'+id+'Label">'+rotuloNome(t)+'</label><input id="'+id+'" type="text" maxlength="80" placeholder="'+placeholderNome(t)+'"'+attrs+'></div>';
+}
+function setTipoFarm(escopo,tipo,manterValor){
+ tipoSel[escopo]=tipo;
+ const box=document.getElementById("tipoTabs"+escopo);
+ if(box)Array.prototype.forEach.call(box.querySelectorAll("button"),b=>b.classList.toggle("on",b.dataset.tipo===tipo));
+ const id=idNome(escopo),el=document.getElementById(id),lab=document.getElementById(id+"Label");
+ if(lab)lab.textContent=rotuloNome(tipo);
+ if(el){
+  el.placeholder=placeholderNome(tipo);
+  if(!manterValor)el.value="";
+  if(tipo==="outro"){el.removeAttribute("readonly");el.onclick=null;el.style.cursor="text"}
+  else{el.setAttribute("readonly","readonly");el.onclick=()=>abrirHuntPicker(escopo);el.style.cursor="pointer"}
+ }
+ const t=document.getElementById(escopo==="farm"?"farmTimeLabel":escopo==="add"?"addTimeLabel":"editTimeLabel");
+ if(t)t.textContent=tipo==="hunt"?"Tempo de Hunt (minutos)":"Tempo (minutos, opcional)";
+}
+function msgNomeVazio(tipo){return tipo==="boss"?"Informe o boss.":tipo==="outro"?"Descreva o farm.":"Informe o nome da Hunt."}
+
 function registrarFarm(){
  const g=meta();if(!g)return;
  const v=parseGold(document.getElementById("farmGold").value);
  if(!(v>0))return toast("Informe o valor farmado.");
- const d=new Date();
+ const d=new Date(),tipo=tipoSel.farm||"hunt";
  const hunt=(document.getElementById("farmHunt")?.value||"").trim();
- const tempo=Number(document.getElementById("farmTime")?.value);
- if(!hunt)return toast("Informe o nome da Hunt.");
- if(!(tempo>0))return toast("Informe o tempo da Hunt.");
+ const tempo=Number(document.getElementById("farmTime")?.value)||0;
+ if(!hunt)return toast(msgNomeVazio(tipo));
+ if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  g.sessoes.push({id:Date.now()+Math.random(),data:hoje(),
-  hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:S.tcPrice,hunt,time:tempo});
+  hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:S.tcPrice,hunt,time:tempo,tipo});
  document.getElementById("farmHunt").value="";document.getElementById("farmTime").value="";document.getElementById("farmGold").value="";
  checar(g);salvar();render();toast("Farm registrado.")}
 function addNoDia(d){
  addDate=d;document.getElementById("addDate").textContent="Data: "+brData(d);
+ setTipoFarm("add","hunt");
  document.getElementById("addHunt").value="";document.getElementById("addTime").value="";document.getElementById("addGold").value="";
  abrir("mAdd");setTimeout(()=>document.getElementById("addHunt").focus(),50)}
 function confirmarAdd(){
- const g=meta(),v=parseGold(document.getElementById("addGold").value),p=S.tcPrice,
-  hunt=(document.getElementById("addHunt").value||"").trim(),tempo=Number(document.getElementById("addTime").value);
- if(!hunt)return toast("Informe o nome da Hunt.");
- if(!(tempo>0))return toast("Informe o tempo da Hunt.");
+ const g=meta(),v=parseGold(document.getElementById("addGold").value),p=S.tcPrice,tipo=tipoSel.add||"hunt",
+  hunt=(document.getElementById("addHunt").value||"").trim(),tempo=Number(document.getElementById("addTime").value)||0;
+ if(!hunt)return toast(msgNomeVazio(tipo));
+ if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  if(!(v>0))return toast("Informe o valor em gold.");
  g.sessoes.push({id:Date.now()+Math.random(),data:addDate,
-  hora:new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:p,hunt,time:tempo});
+  hora:new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:p,hunt,time:tempo,tipo});
  checar(g);salvar();fechar("mAdd");render();toast("Farm adicionado.")}
 function excluirFarm(id){
  const g=meta();if(!confirm("Excluir este registro?"))return;
@@ -621,9 +722,10 @@ function excluirFarm(id){
 function editarFarm(id){
  const g=meta();if(!g)return;
  const s=g.sessoes.find(x=>String(x.id)===String(id));
- if(!s)return toast("Registro não encontrado.");
+ if(!s)return toast("Registro n\u00e3o encontrado.");
  editId=id;
  document.getElementById("editDate").textContent="Data: "+brData(s.data);
+ setTipoFarm("edit",tipoDe(s),true);
  document.getElementById("editHunt").value=s.hunt||"";
  document.getElementById("editTime").value=s.time||"";
  document.getElementById("editGold").value=s.gold||"";
@@ -631,24 +733,21 @@ function editarFarm(id){
 function confirmarEdit(){
  const g=meta();if(!g)return;
  const s=g.sessoes.find(x=>String(x.id)===String(editId));
- if(!s)return toast("Registro não encontrado.");
- const hunt=(document.getElementById("editHunt").value||"").trim(),
-  tempo=Number(document.getElementById("editTime").value),
+ if(!s)return toast("Registro n\u00e3o encontrado.");
+ const tipo=tipoSel.edit||"hunt",
+  hunt=(document.getElementById("editHunt").value||"").trim(),
+  tempo=Number(document.getElementById("editTime").value)||0,
   v=parseGold(document.getElementById("editGold").value);
- if(!hunt)return toast("Informe o nome da Hunt.");
- if(!(tempo>0))return toast("Informe o tempo da Hunt.");
+ if(!hunt)return toast(msgNomeVazio(tipo));
+ if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  if(!(v>0))return toast("Informe o valor em gold.");
- s.hunt=hunt;s.time=tempo;s.gold=v;
- checar(g);salvar();fechar("mEditFarm");render();toast("Hunt atualizada.")}
+ s.hunt=hunt;s.time=tempo;s.gold=v;s.tipo=tipo;
+ checar(g);salvar();fechar("mEditFarm");render();toast("Farm atualizado.")}
 
-function todasHunts(){
- const custom=Array.isArray(S.huntsPersonalizadas)?S.huntsPersonalizadas:[];
- return [...new Set([...HUNTS_PADRAO,...custom])].sort((a,b)=>a.localeCompare(b,"pt-BR"));
-}
-function huntsRecentes(limite){
+function recentesDoTipo(tipo,limite){
  limite=limite||3;
  const todas=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[])
-  .filter(s=>!s.resumoDia&&!s.somado&&s.hunt)
+  .filter(s=>!s.resumoDia&&!s.somado&&s.hunt&&tipoDe(s)===tipo)
   .sort((a,b)=>String(b.data||"")+String(b.hora||"")>String(a.data||"")+String(a.hora||"")?1:-1);
  const vistos=new Set(),out=[];
  for(const s of todas){
@@ -659,17 +758,20 @@ function huntsRecentes(limite){
  }
  return out;
 }
-function huntEhFavorita(nome){return (S.huntsFavoritas||[]).includes(nome)}
+function huntEhFavorita(nome){return favList(huntPickerTipo).includes(nome)}
 function toggleHuntFavorita(nome){
- if(!Array.isArray(S.huntsFavoritas))S.huntsFavoritas=[];
- const i=S.huntsFavoritas.indexOf(nome);
- if(i>=0)S.huntsFavoritas.splice(i,1);else S.huntsFavoritas.push(nome);
+ const lista=favList(huntPickerTipo);
+ const i=lista.indexOf(nome);
+ if(i>=0)lista.splice(i,1);else lista.push(nome);
  salvar();renderHuntPicker();
 }
 function abrirHuntPicker(alvo){
- huntPickerAlvo=alvo;huntPickerBusca="";huntPickerFiltro="todas";
+ huntPickerAlvo=alvo;huntPickerTipo=(tipoSel[alvo]==="boss")?"boss":"hunt";
+ huntPickerBusca="";huntPickerFiltro="todas";
  const busca=document.getElementById("huntPickerSearch");
- if(busca)busca.value="";
+ if(busca){busca.value="";busca.placeholder=huntPickerTipo==="boss"?"Pesquisar boss...":"Pesquisar hunt..."}
+ const titulo=document.getElementById("huntPickerTitle");
+ if(titulo)titulo.textContent=huntPickerTipo==="boss"?"\u2620\ufe0f Escolher boss":"\u2694\ufe0f Escolher hunt";
  atualizarAbasHuntPicker();
  renderHuntPicker();
  abrir("mHuntPicker");
@@ -683,67 +785,93 @@ function setHuntPickerFiltro(f){
 function atualizarAbasHuntPicker(){
  const t=document.getElementById("huntTabTodas"),p=document.getElementById("huntTabPersonalizadas");
  if(t)t.classList.toggle("on",huntPickerFiltro==="todas");
- if(p)p.classList.toggle("on",huntPickerFiltro==="personalizadas");
+ if(p){p.classList.toggle("on",huntPickerFiltro==="personalizadas");
+  p.textContent=huntPickerTipo==="boss"?"\ud83e\udde9 Meus bosses":"\ud83e\udde9 Personalizadas"}
 }
 function renderHuntPicker(){
  const box=document.getElementById("huntPickerResults");
  if(!box)return;
+ const tipo=huntPickerTipo==="boss"?"boss":"hunt";
  const q=(huntPickerBusca||"").trim().toLowerCase();
- const todas=todasHunts();
- const custom=Array.isArray(S.huntsPersonalizadas)?S.huntsPersonalizadas:[];
+ const todas=catalogoTipo(tipo);
+ const custom=customList(tipo);
  const somentePersonalizadas=huntPickerFiltro==="personalizadas";
  const base=somentePersonalizadas?custom.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")):todas;
  const filtradas=q?base.filter(h=>h.toLowerCase().includes(q)):base;
- const favoritas=(S.huntsFavoritas||[]).filter(h=>base.includes(h));
- const recentes=huntsRecentes(3).filter(h=>base.includes(h));
+ const favoritos=favList(tipo).filter(h=>base.includes(h));
+ const recs=recentesDoTipo(tipo,3).filter(h=>base.includes(h));
  const linha=nome=>{
   const fav=huntEhFavorita(nome),safe=nome.replace(/'/g,"\\'").replace(/"/g,"&quot;"),ehCustom=custom.includes(nome);
-  const btnEditar=ehCustom?'<button type="button" class="hunt-pick-edit" title="Renomear" onclick="editarHuntPersonalizada(\''+safe+'\')">✏️</button>':'';
+  const btnEditar=ehCustom?'<button type="button" class="hunt-pick-edit" title="Renomear" onclick="editarHuntPersonalizada(\''+safe+'\')">\u270f\ufe0f</button>':'';
   return '<div class="hunt-pick-row"><button type="button" class="hunt-pick-name" onclick="selecionarHunt(\''+safe+'\')">'+esc(nome)+'</button>'+btnEditar+
-   '<button type="button" class="hunt-pick-star" title="Favoritar" onclick="toggleHuntFavorita(\''+safe+'\')">'+(fav?'★':'☆')+'</button></div>';
+   '<button type="button" class="hunt-pick-star" title="Favoritar" onclick="toggleHuntFavorita(\''+safe+'\')">'+(fav?'\u2605':'\u2606')+'</button></div>';
  };
  let html="";
  if(somentePersonalizadas){
-  html+=filtradas.length?filtradas.map(linha).join(""):'<div class="empty" style="padding:14px"><b>Você ainda não tem hunts personalizadas.</b></div>';
+  html+=filtradas.length?filtradas.map(linha).join(""):'<div class="empty" style="padding:14px"><b>Voc\u00ea ainda n\u00e3o cadastrou nada aqui.</b></div>';
  }else if(!q){
-  if(favoritas.length)html+='<div class="hunt-pick-section">⭐ Favoritas</div>'+favoritas.map(linha).join("");
-  if(recentes.length)html+='<div class="hunt-pick-section">🕒 Recentes</div>'+recentes.map(linha).join("");
-  html+='<div class="hunt-pick-section">📖 Todas as hunts</div>'+filtradas.map(linha).join("");
+  if(favoritos.length)html+='<div class="hunt-pick-section">\u2b50 Favoritas</div>'+favoritos.map(linha).join("");
+  if(recs.length)html+='<div class="hunt-pick-section">\ud83d\udd52 Recentes</div>'+recs.map(linha).join("");
+  if(tipo==="boss"){
+   rotacoes().forEach(r=>{
+    const itens=[nomeRotacaoCompleta(r.nome)].concat(r.bosses||[]);
+    html+='<div class="hunt-pick-section">\ud83d\udd01 '+esc(r.nome)+' ('+(r.bosses||[]).length+' bosses)</div>'+itens.map(linha).join("");
+   });
+   html+='<div class="hunt-pick-section">\u2620\ufe0f Bosses solo</div>'+BOSSES_SOLO.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")).map(linha).join("");
+   if(custom.length)html+='<div class="hunt-pick-section">\ud83e\udde9 Meus bosses</div>'+custom.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")).map(linha).join("");
+  }else{
+   html+='<div class="hunt-pick-section">\ud83d\udcd6 Todas as hunts</div>'+filtradas.map(linha).join("");
+  }
  }else{
   html+=filtradas.map(linha).join("");
  }
  if(q&&!todas.some(h=>h.toLowerCase()===q)){
-  html+='<div class="hunt-pick-custom"><button type="button" class="mini" onclick="cadastrarHuntPersonalizada()">+ Cadastrar "'+esc(huntPickerBusca.trim())+'" como hunt personalizada</button></div>';
+  html+='<div class="hunt-pick-custom"><button type="button" class="mini" onclick="cadastrarHuntPersonalizada()">+ Cadastrar "'+esc(huntPickerBusca.trim())+'" como '+(tipo==="boss"?"boss":"hunt")+' personalizado</button></div>';
  }
- if(!html)html='<div class="empty" style="padding:14px"><b>Nenhuma hunt encontrada.</b></div>';
+ if(tipo==="boss"&&!somentePersonalizadas){
+  html+='<div class="hunt-pick-custom"><button type="button" class="mini" onclick="criarRotacaoPersonalizada()">+ Criar rota\u00e7\u00e3o personalizada</button></div>';
+ }
+ if(!html)html='<div class="empty" style="padding:14px"><b>Nada encontrado.</b></div>';
  box.innerHTML=html;
+}
+function criarRotacaoPersonalizada(){
+ const nome=(prompt("Nome da rota\u00e7\u00e3o (ex.: Rota\u00e7\u00e3o GT):")||"").trim();
+ if(!nome)return;
+ const lista=(prompt("Bosses dessa rota\u00e7\u00e3o, separados por v\u00edrgula:")||"").split(",").map(x=>x.trim()).filter(Boolean);
+ if(!lista.length)return toast("Informe pelo menos um boss.");
+ if(!Array.isArray(S.rotacoesPersonalizadas))S.rotacoesPersonalizadas=[];
+ const existente=S.rotacoesPersonalizadas.find(r=>r.nome.toLowerCase()===nome.toLowerCase());
+ if(existente)existente.bosses=lista;else S.rotacoesPersonalizadas.push({nome,bosses:lista});
+ salvar();renderHuntPicker();toast('Rota\u00e7\u00e3o "'+nome+'" salva.');
 }
 function cadastrarHuntPersonalizada(){
  const nome=(huntPickerBusca||"").trim();
  if(!nome)return;
- if(!Array.isArray(S.huntsPersonalizadas))S.huntsPersonalizadas=[];
- if(!S.huntsPersonalizadas.some(h=>h.toLowerCase()===nome.toLowerCase())&&!HUNTS_PADRAO.some(h=>h.toLowerCase()===nome.toLowerCase())){
-  S.huntsPersonalizadas.push(nome);salvar();
+ const tipo=huntPickerTipo==="boss"?"boss":"hunt";
+ const custom=customList(tipo),padrao=catalogoPadrao(tipo);
+ if(!custom.some(h=>h.toLowerCase()===nome.toLowerCase())&&!padrao.some(h=>h.toLowerCase()===nome.toLowerCase())){
+  custom.push(nome);salvar();
  }
  selecionarHunt(nome);
 }
 function editarHuntPersonalizada(nomeAntigo){
- if(!Array.isArray(S.huntsPersonalizadas)||!S.huntsPersonalizadas.includes(nomeAntigo))return;
- const novo=(prompt("Novo nome para a hunt:",nomeAntigo)||"").trim();
+ const tipo=huntPickerTipo==="boss"?"boss":"hunt";
+ const custom=customList(tipo);
+ if(!custom.includes(nomeAntigo))return;
+ const novo=(prompt("Novo nome:",nomeAntigo)||"").trim();
  if(!novo||novo===nomeAntigo)return;
- if(HUNTS_PADRAO.some(h=>h.toLowerCase()===novo.toLowerCase())){toast("Esse nome já existe no catálogo padrão.");return}
- if(S.huntsPersonalizadas.some(h=>h.toLowerCase()===novo.toLowerCase()&&h!==nomeAntigo)){toast("Você já tem uma hunt personalizada com esse nome.");return}
- S.huntsPersonalizadas=S.huntsPersonalizadas.map(h=>h===nomeAntigo?novo:h);
- if(Array.isArray(S.huntsFavoritas))S.huntsFavoritas=S.huntsFavoritas.map(h=>h===nomeAntigo?novo:h);
+ if(catalogoPadrao(tipo).some(h=>h.toLowerCase()===novo.toLowerCase())){toast("Esse nome j\u00e1 existe no cat\u00e1logo padr\u00e3o.");return}
+ if(custom.some(h=>h.toLowerCase()===novo.toLowerCase()&&h!==nomeAntigo)){toast("Voc\u00ea j\u00e1 tem um registro com esse nome.");return}
+ const idx=custom.indexOf(nomeAntigo);custom[idx]=novo;
+ const favs=favList(tipo);const fi=favs.indexOf(nomeAntigo);if(fi>=0)favs[fi]=novo;
  (S.metas||[]).forEach(m=>(m.sessoes||[]).forEach(s=>{
   if(s.hunt===nomeAntigo)s.hunt=novo;
   if(s.resumoDia&&Array.isArray(s.huntsDetalhes))s.huntsDetalhes.forEach(h=>{if(h.hunt===nomeAntigo)h.hunt=novo});
  }));
- salvar();renderHuntPicker();render();toast('Hunt renomeada para "'+novo+'".');
+ salvar();renderHuntPicker();render();toast('Renomeado para "'+novo+'".');
 }
 function selecionarHunt(nome){
- const id=huntPickerAlvo==="edit"?"editHunt":huntPickerAlvo==="farm"?"farmHunt":"addHunt";
- const el=document.getElementById(id);
+ const el=document.getElementById(idNome(huntPickerAlvo));
  if(el)el.value=nome;
  fechar("mHuntPicker");
 }
@@ -754,11 +882,11 @@ function somarDia(d){
  const g=meta(),arr=doDia(g,d);
  if(arr.length<1)return toast("Não há farms registrados neste dia.");
  const total=arr.reduce((a,s)=>a+Number(s.gold),0),totalTime=arr.reduce((a,s)=>a+Number(s.time||0),0),totalTc=arr.reduce((a,s)=>a+Number(s.gold)/Number(s.tcPrice||S.tcPrice),0);
- const hunts=[...new Set(arr.map(s=>(s.hunt||"Hunt não informada").trim()).filter(Boolean))];
+ const hunts=[...new Set(arr.map(s=>(s.hunt||"Farm não informado").trim()).filter(Boolean))];
  const huntsDetalhes={};
- arr.forEach(s=>{const h=(s.hunt||"Hunt não informada").trim()||"Hunt não informada";if(!huntsDetalhes[h])huntsDetalhes[h]={hunt:h,gold:0,time:0,tc:0,farms:0};huntsDetalhes[h].gold+=Number(s.gold)||0;huntsDetalhes[h].time+=Number(s.time||0);huntsDetalhes[h].tc+=Number(s.gold)/Number(s.tcPrice||S.tcPrice);huntsDetalhes[h].farms++;});
- g.sessoes.push({id:Date.now()+Math.random(),data:d,hora:arr[arr.length-1].hora,gold:total,tcPrice:totalTc>0?total/totalTc:S.tcPrice,time:totalTime,hunt:hunts.length+" hunts",juntado:arr.length,resumoDia:true,huntsDetalhes:Object.values(huntsDetalhes),somado:false});
- salvar();render();toast("Dia somado: "+hunts.length+" hunts.");
+ arr.forEach(s=>{const t=tipoDe(s),h=(s.hunt||"Farm não informado").trim()||"Farm não informado",k=t+"|"+h;if(!huntsDetalhes[k])huntsDetalhes[k]={hunt:h,tipo:t,gold:0,time:0,tc:0,farms:0};huntsDetalhes[k].gold+=Number(s.gold)||0;huntsDetalhes[k].time+=Number(s.time||0);huntsDetalhes[k].tc+=Number(s.gold)/Number(s.tcPrice||S.tcPrice);huntsDetalhes[k].farms++;});
+ g.sessoes.push({id:Date.now()+Math.random(),data:d,hora:arr[arr.length-1].hora,gold:total,tcPrice:totalTc>0?total/totalTc:S.tcPrice,time:totalTime,hunt:hunts.length+(hunts.length===1?" farm":" farms"),juntado:arr.length,resumoDia:true,huntsDetalhes:Object.values(huntsDetalhes),somado:false});
+ salvar();render();toast("Dia somado: "+hunts.length+" farms.");
  if(d===hoje()){const box=document.getElementById("todayBox");if(box){box.classList.add("flash");setTimeout(()=>box.classList.remove("flash"),1300)}}}
 
 function checar(g){
@@ -767,12 +895,12 @@ function checar(g){
   if(ds.length<7)break;
   gerarSemanal(g,ds.slice(0,7),false)}
  if(diasDesde(g)>=30&&!g.mensais.some(m=>m.auto))gerarMensal(g,true);
- if(!g.concluida&&gold(g)>=g.metaGold)g.concluida=new Date().toISOString()}
+ if(!g.infinita&&!g.concluida&&gold(g)>=g.metaGold)g.concluida=new Date().toISOString()}
 function gerarSemanal(g,ds,manual){
  const fonte=g.sessoes.filter(s=>ds.includes(s.data)&&!s.somado&&!s.resumoDia);
  const resumos=g.sessoes.filter(s=>ds.includes(s.data)&&s.resumoDia);
  const ss=fonte.length?fonte:resumos; const hunts={};
- ss.forEach(s=>{if(s.resumoDia&&Array.isArray(s.huntsDetalhes)){s.huntsDetalhes.forEach(h=>{if(!hunts[h.hunt])hunts[h.hunt]={hunt:h.hunt,gold:0,time:0,tc:0,farms:0};hunts[h.hunt].gold+=h.gold;hunts[h.hunt].time+=h.time;hunts[h.hunt].tc+=h.tc;hunts[h.hunt].farms+=h.farms;});return;}const h=(s.hunt||"Hunt não informada").trim()||"Hunt não informada";if(!hunts[h])hunts[h]={hunt:h,gold:0,time:0,tc:0,farms:0};hunts[h].gold+=Number(s.gold)||0;hunts[h].time+=Number(s.time)||0;hunts[h].tc+=(Number(s.gold)||0)/Number(s.tcPrice||S.tcPrice);hunts[h].farms++;});
+ ss.forEach(s=>{if(s.resumoDia&&Array.isArray(s.huntsDetalhes)){s.huntsDetalhes.forEach(h=>{const t=h.tipo||"hunt",k=t+"|"+h.hunt;if(!hunts[k])hunts[k]={hunt:h.hunt,tipo:t,gold:0,time:0,tc:0,farms:0};hunts[k].gold+=h.gold;hunts[k].time+=h.time;hunts[k].tc+=h.tc;hunts[k].farms+=h.farms;});return;}const t=tipoDe(s),h=(s.hunt||"Farm não informado").trim()||"Farm não informado",k=t+"|"+h;if(!hunts[k])hunts[k]={hunt:h,tipo:t,gold:0,time:0,tc:0,farms:0};hunts[k].gold+=Number(s.gold)||0;hunts[k].time+=Number(s.time)||0;hunts[k].tc+=(Number(s.gold)||0)/Number(s.tcPrice||S.tcPrice);hunts[k].farms++;});
  const hs=Object.values(hunts).map(h=>({...h,pph:h.time>0?h.gold/(h.time/60):0}));
  const totalGold=ss.reduce((a,s)=>a+Number(s.gold),0),totalTc=ss.reduce((a,s)=>a+(Number(s.tcPrice)?Number(s.gold)/Number(s.tcPrice):0),0),totalTime=ss.reduce((a,s)=>a+Number(s.time||0),0);
  g.semanais.push({n:g.semanais.length+1,de:ds[0],ate:ds[ds.length-1],dias:ds.length,gold:totalGold,tc:totalTc,time:totalTime,hunts:hs,manual:!!manual,em:new Date().toISOString()});g.cursor+=ds.length}
@@ -788,7 +916,7 @@ function relMensal(){
  const g=meta();if(!g.sessoes.length)return toast("Ainda não há farm registrado.");
  gerarMensal(g,false);abaRel="mensal";salvar();render();toast("Relatório mensal gerado.")}
 function resetarDadosLocais(){
- S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[]};
+ S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[],bossesPersonalizados:[],bossesFavoritos:[],rotacoesPersonalizadas:[]};
  try{localStorage.removeItem(CK+"data");localStorage.removeItem("tft_weekly_goal");}catch(e){}
  try{for(let i=0;i<40;i++)document.cookie=CK+i+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";document.cookie=CK+"n=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";}catch(e){}
  if(window.TibiaFarmRetention){window.TibiaFarmRetention.clearDate();window.TibiaFarmRetention.refresh();}
@@ -834,9 +962,9 @@ function calcularRankingStats(){
     if(!porHunt[h])porHunt[h]={gold:0,time:0};
     porHunt[h].gold+=Number(gold)||0;porHunt[h].time+=Number(time)||0;
   };
-  sessoes.forEach(s=>addHunt(s.hunt,s.gold,s.time));
+  sessoes.filter(s=>tipoDe(s)==="hunt").forEach(s=>addHunt(s.hunt,s.gold,s.time));
   sessoesRaw.filter(s=>s.resumoDia&&Array.isArray(s.huntsDetalhes)).forEach(s=>{
-    s.huntsDetalhes.forEach(h=>addHunt(h.hunt,h.gold,h.time));
+    s.huntsDetalhes.filter(h=>(h.tipo||"hunt")==="hunt").forEach(h=>addHunt(h.hunt,h.gold,h.time));
   });
   let melhorHunt=0,melhorHuntNome="";
   Object.keys(porHunt).forEach(nome=>{
@@ -914,6 +1042,7 @@ function histNoRange(d){if(histDateIni&&d<histDateIni)return false;if(histDateFi
 /* ================= busca de item no modal ================= */
 const inpName=document.getElementById("gName");
 inpName.addEventListener("input",e=>{
+ if(metaModoInfinito)return;
  clearTimeout(tSugg);const v=e.target.value.trim();
  previewItem(v);
  if(v.length<2){document.getElementById("gSugg").classList.remove("open");return}
@@ -969,7 +1098,14 @@ async function desenharCard(canvas,g,tentarIcone){
  ctx.fillText(g.nome.toUpperCase(),W/2,138);
 
  let iconDrawn=false;
- if(tentarIcone&&g.img){
+ if(g.infinita){
+  const s=88,cy=200;
+  ctx.save();ctx.beginPath();ctx.arc(W/2,cy,s/2+11,0,Math.PI*2);
+  ctx.fillStyle="#05121f";ctx.fill();ctx.strokeStyle="#2a5a7d";ctx.lineWidth=2;ctx.stroke();ctx.restore();
+  ctx.textAlign="center";ctx.fillStyle="#7fd6ff";ctx.font="700 46px Arial";
+  ctx.fillText("♾️",W/2,cy+16);
+  iconDrawn=true;
+ }else if(tentarIcone&&g.img){
   try{
    const img=await carregarImagemCORS(g.img),s=88,cy=200;
    ctx.save();ctx.beginPath();ctx.arc(W/2,cy,s/2+11,0,Math.PI*2);
@@ -979,7 +1115,7 @@ async function desenharCard(canvas,g,tentarIcone){
   }catch(e){}
  }
 
- const tot=gold(g),falta=Math.max(0,g.metaGold-tot),pct=Math.min(100,g.metaGold?tot/g.metaGold*100:0);
+ const tot=gold(g),falta=g.infinita?0:Math.max(0,g.metaGold-tot),pct=g.infinita?100:Math.min(100,g.metaGold?tot/g.metaGold*100:0);
  const barY=iconDrawn?272:224,barX=150,barW=W-300,barH=28;
  ctx.fillStyle="#02070d";roundRect(ctx,barX,barY,barW,barH,14);ctx.fill();
  ctx.strokeStyle="#2b5170";ctx.lineWidth=1.5;roundRect(ctx,barX,barY,barW,barH,14);ctx.stroke();
@@ -990,10 +1126,10 @@ async function desenharCard(canvas,g,tentarIcone){
   ctx.fillStyle=bg2;roundRect(ctx,barX+2,barY+2,fillW,barH-4,12);ctx.fill();
  }
  ctx.fillStyle="#e9f6ff";ctx.font="700 22px Arial";ctx.textAlign="left";
- ctx.fillText(Math.round(pct)+"%",barX+barW+16,barY+barH-6);
+ ctx.fillText(g.infinita?"♾️":Math.round(pct)+"%",barX+barW+16,barY+barH-6);
 
  const statY=barY+68,falBRL=S.tcBRL>0?falta/S.tcPrice*S.tcBRL:0;
- const cols=[["ACUMULADO",fmt(tot)+" GP"],["FALTA",fmt(falta)+" GP"],["META",fmt(g.metaGold)+" GP"]];
+ const cols=g.infinita?[["ACUMULADO",fmt(tot)+" GP"],["FALTA","♾️"],["META","♾️"]]:[["ACUMULADO",fmt(tot)+" GP"],["FALTA",fmt(falta)+" GP"],["META",fmt(g.metaGold)+" GP"]];
  const colW=(W-200)/3;
  ctx.textAlign="center";
  cols.forEach((c,i)=>{
@@ -1059,26 +1195,26 @@ function resumoDia(g,d){return g.sessoes.find(s=>s.resumoDia&&s.data===d)||null}
 function tabelaHist(g){
  const ds=diasFarm(g).slice().reverse();
  if(!ds.length)return '<div class="empty"><b>Nenhum farm registrado ainda</b>Use “Registrar Farm” para lançar o primeiro valor do dia.</div>';
- let h='<div class="history-tools"><div class="tabs mini-history-tabs"><button class="'+(abaHist==='dia'?'on':'')+'" onclick="setAbaHist(\'dia\')">Resumo diário</button><button class="'+(abaHist==='hunts'?'on':'')+'" onclick="setAbaHist(\'hunts\')">Hunts feitas</button></div><div class="performance-filter history-date-filter"><div class="pf-field"><label for="histDateIni">De</label><input id="histDateIni" type="date" value="'+esc(histDateIni)+'"></div><div class="pf-field"><label for="histDateFim">Até</label><input id="histDateFim" type="date" value="'+esc(histDateFim)+'"></div><button type="button" onclick="limparFiltroHist()">Todos</button></div></div>';
+ let h='<div class="history-tools"><div class="tabs mini-history-tabs"><button class="'+(abaHist==='dia'?'on':'')+'" onclick="setAbaHist(\'dia\')">Resumo diário</button><button class="'+(abaHist==='hunts'?'on':'')+'" onclick="setAbaHist(\'hunts\')">Farms feitos</button></div><div class="performance-filter history-date-filter"><div class="pf-field"><label for="histDateIni">De</label><input id="histDateIni" type="date" value="'+esc(histDateIni)+'"></div><div class="pf-field"><label for="histDateFim">Até</label><input id="histDateFim" type="date" value="'+esc(histDateFim)+'"></div><button type="button" onclick="limparFiltroHist()">Todos</button></div></div>';
  if(abaHist==='hunts')return h+tabelaHistHunts(g,ds);
  const filtered=ds.filter(histNoRange);
  if(!filtered.length)return h+'<div class="empty"><b>Nenhum registro neste período.</b></div>';
- let html=h+'<div class="tablewrap"><table><thead><tr><th>Data</th><th>Hunts</th><th>Tempo</th><th>Farm (Gold)</th><th>Profit/h</th><th>Tibia Coin</th><th></th></tr></thead><tbody>';
- filtered.forEach(d=>{const arr=doDia(g,d),r=resumoDia(g,d),count=[...new Set(arr.map(s=>(s.hunt||'Hunt não informada').trim()))].filter(Boolean).length,total=goldDia(g,d),time=arr.reduce((a,s)=>a+Number(s.time||0),0),pph=time>0?total/(time/60):0,huntsText=r&&r.hunt?r.hunt:(count+(count===1?' hunt':' hunts'));
+ let html=h+'<div class="tablewrap"><table><thead><tr><th>Data</th><th>Farms</th><th>Tempo</th><th>Farm (Gold)</th><th>Profit/h</th><th>Tibia Coin</th><th></th></tr></thead><tbody>';
+ filtered.forEach(d=>{const arr=doDia(g,d),r=resumoDia(g,d),count=[...new Set(arr.map(s=>(s.hunt||'Farm não informado').trim()))].filter(Boolean).length,total=goldDia(g,d),time=arr.reduce((a,s)=>a+Number(s.time||0),0),pph=time>0?total/(time/60):0,huntsText=r&&r.hunt?r.hunt:(count+(count===1?' farm':' farms'));
   html+='<tr><td>'+brData(d)+(d===hoje()?' <span class="today-tag">(Hoje)</span>':'')+'</td><td><b>'+esc(huntsText)+'</b></td><td>'+(time?time+' min':'—')+'</td><td><div class="cell"><span class="coin">G</span>'+fmt(total)+'</div></td><td><div class="cell"><span class="coin">G</span>'+fmt(pph)+'/h</div></td><td><div class="cell"><span class="coin tc">TC</span>'+fmt2(tcDia(g,d))+'</div></td><td><div class="rowbtns"></div></td></tr>';});
  return html+'</tbody></table></div>'}
 function tabelaHistHunts(g,ds){
  const filtered=ds.filter(histNoRange);
- if(!filtered.length)return '<div class="empty"><b>Nenhuma hunt neste período.</b></div>';
- let html='<div class="tablewrap"><table><thead><tr><th>Data</th><th>Hunt</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th><th></th></tr></thead><tbody>';
- filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+esc(s.hunt||'Hunt não informada')+'</b></td><td>'+mins+' min</td><td class="goldtxt">'+fmt(profit)+' GP</td><td>'+fmt(pph)+'/h</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns"><button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';});});
+ if(!filtered.length)return '<div class="empty"><b>Nenhum farm neste período.</b></div>';
+ let html='<div class="tablewrap"><table><thead><tr><th>Data</th><th>Farm</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th><th></th></tr></thead><tbody>';
+ filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(s.hunt||'Farm não informado')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP</td><td>'+(mins?fmt(pph)+'/h':'—')+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns"><button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';});});
  return html+'</tbody></table></div>'}
 function tabelaRel(g,tipo){
  const arr=(tipo==="semanal"?g.semanais:g.mensais).slice().reverse();
  if(!arr.length)return '<div class="empty"><b>Nenhum relatório '+tipo+' ainda</b>'+(tipo==="semanal"?'Gere um manualmente com 3+ dias ou espere fechar 7 dias de farm.':'O primeiro é criado automaticamente 30 dias após a criação da meta.')+'</div>';
  let html='<div class="tablewrap"><table><thead><tr><th>#</th><th>Período</th><th>Dias</th><th>Gold</th><th>TC</th><th>Tempo</th><th>Tipo</th></tr></thead><tbody>';
  arr.forEach(r=>{html+='<tr><td>'+r.n+'</td><td>'+brData(r.de)+' — '+brData(r.ate)+'</td><td>'+r.dias+'</td><td><div class="cell"><span class="coin">G</span>'+fmt(r.gold)+'</div></td><td><div class="cell"><span class="coin tc">TC</span>'+fmt2(r.tc)+'</div></td><td>'+((r.time||0)?Math.floor(r.time/60)+'h'+((r.time%60)?String(r.time%60).padStart(2,'0')+'m':''):'—')+'</td><td>'+(r.manual||(!r.auto&&tipo==="mensal")?"Manual":"Automático")+'</td></tr>';
-  if(tipo==="semanal"&&Array.isArray(r.hunts)&&r.hunts.length){html+='<tr><td></td><td colspan="6"><div class="weekly-hunts"><b>Valores por Hunt</b><table class="inner-table"><thead><tr><th>Hunt</th><th>Farms</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th></tr></thead><tbody>'+r.hunts.slice().sort((a,b)=>b.gold-a.gold).map(h=>'<tr><td>⚔️ '+esc(h.hunt)+'</td><td>'+h.farms+'</td><td>'+h.time+' min</td><td class="goldtxt">'+fmt(h.gold)+' GP</td><td>'+fmt(h.pph)+'/h</td><td class="cyantxt">'+fmt2(h.tc)+' TC</td></tr>').join('')+'</tbody></table></div></td></tr>';}});
+  if(tipo==="semanal"&&Array.isArray(r.hunts)&&r.hunts.length){html+='<tr><td></td><td colspan="6"><div class="weekly-hunts"><b>Valores por Hunt</b><table class="inner-table"><thead><tr><th>Hunt</th><th>Farms</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th></tr></thead><tbody>'+r.hunts.slice().sort((a,b)=>b.gold-a.gold).map(h=>'<tr><td>'+(ICONE_TIPO[h.tipo||"hunt"]||"⚔️")+' '+esc(h.hunt)+'</td><td>'+h.farms+'</td><td>'+h.time+' min</td><td class="goldtxt">'+fmt(h.gold)+' GP</td><td>'+fmt(h.pph)+'/h</td><td class="cyantxt">'+fmt2(h.tc)+' TC</td></tr>').join('')+'</tbody></table></div></td></tr>';}});
  html+='</tbody></table></div>';return html}
 function render(){
  const app=document.getElementById("app"),g=meta();
@@ -1098,16 +1234,17 @@ function render(){
   '<button class="btn-green" onclick="novaMeta()">Criar minha primeira meta</button></div>';return}
 
  checar(g);
- const tot=gold(g),ttc=tc(g),falta=Math.max(0,g.metaGold-tot),
-  pct=Math.min(100,g.metaGold?tot/g.metaGold*100:0),
-  metaTc=g.metaGold/S.tcPrice,faltaTc=falta/S.tcPrice,d=hoje(),
+ const tot=gold(g),ttc=tc(g),
+  falta=g.infinita?0:Math.max(0,g.metaGold-tot),
+  pct=g.infinita?100:Math.min(100,g.metaGold?tot/g.metaGold*100:0),
+  metaTc=g.infinita?0:g.metaGold/S.tcPrice,faltaTc=g.infinita?0:falta/S.tcPrice,d=hoje(),
   diasComFarm=diasFarm(g).length,
   diasCorridos=janelaFarm(g),
   mediaDia=diasComFarm>0?tot/diasComFarm:0,
   freqSemana=diasComFarm>0?Math.round(diasComFarm/diasCorridos*7*10)/10:0,
-  farmDiasNecessarios=mediaDia>0?Math.ceil(falta/mediaDia):null,
-  diasRestantes=g.concluida?0:(farmDiasNecessarios!=null&&freqSemana>0?Math.ceil(farmDiasNecessarios/(freqSemana/7)):null),
-  dataPrevista=(diasRestantes!=null&&!g.concluida)?new Date(Date.now()+diasRestantes*86400000).toLocaleDateString("pt-BR"):null,
+  farmDiasNecessarios=(!g.infinita&&mediaDia>0)?Math.ceil(falta/mediaDia):null,
+  diasRestantes=(g.infinita||g.concluida)?null:(farmDiasNecessarios!=null&&freqSemana>0?Math.ceil(farmDiasNecessarios/(freqSemana/7)):null),
+  dataPrevista=(!g.infinita&&diasRestantes!=null&&!g.concluida)?new Date(Date.now()+diasRestantes*86400000).toLocaleDateString("pt-BR"):null,
   recorde=melhorDia(g);
 
  app.innerHTML=`
@@ -1115,12 +1252,11 @@ function render(){
   <div class="left">
    <section class="card">
     <div class="item">
-     <div class="item-img"><img src="${esc(g.img||"")}" alt="${esc(g.nome)}" data-nome="${esc(g.nome)}"
-       onerror="fallbackGif(this)"></div>
+     <div class="item-img">${g.infinita?'<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:46px">♾️</div>':'<img src="'+esc(g.img||"")+'" alt="'+esc(g.nome)+'" data-nome="'+esc(g.nome)+'" onerror="fallbackGif(this)">'}</div>
      <div style="flex:1;min-width:0">
       <div class="item-name">${esc(g.nome)}</div>
-      <div class="item-goal">Meta: ${fmt(g.metaGold)} GP</div>
-      <div class="bar-row"><div class="bar"><i style="width:${pct}%"></i></div><div class="pct">${Math.round(pct)}%</div></div>
+      <div class="item-goal">Meta: ${g.infinita?'♾️ Farm livre':fmt(g.metaGold)+' GP'}</div>
+      <div class="bar-row"><div class="bar"><i style="width:${pct}%"></i></div><div class="pct">${g.infinita?'♾️':Math.round(pct)+'%'}</div></div>
      </div>
     </div>
     <div class="stats">
@@ -1129,13 +1265,9 @@ function render(){
       <div class="val tc"><span class="coin tc">TC</span>${fmt2(ttc)} <small>TC</small></div>
       ${S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(ttc*S.tcBRL)+'</div>':''}</div>
      <div><small>Falta</small>
-      <div class="val goldtxt"><span class="coin">G</span>${fmt(falta)} <small>GP</small></div>
-      <div class="val tc"><span class="coin tc">TC</span>${fmt2(faltaTc)} <small>TC</small></div>
-      ${S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(faltaTc*S.tcBRL)+'</div>':''}</div>
+      ${g.infinita?'<div class="val goldtxt">♾️</div>':'<div class="val goldtxt"><span class="coin">G</span>'+fmt(falta)+' <small>GP</small></div><div class="val tc"><span class="coin tc">TC</span>'+fmt2(faltaTc)+' <small>TC</small></div>'+(S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(faltaTc*S.tcBRL)+'</div>':'')}</div>
      <div><small>Total da Meta</small>
-      <div class="val goldtxt"><span class="coin">G</span>${fmt(g.metaGold)} <small>GP</small></div>
-      <div class="val tc"><span class="coin tc">TC</span>${fmt2(metaTc)} <small>TC</small></div>
-      ${S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(metaTc*S.tcBRL)+'</div>':''}</div>
+      ${g.infinita?'<div class="val goldtxt">♾️</div>':'<div class="val goldtxt"><span class="coin">G</span>'+fmt(g.metaGold)+' <small>GP</small></div><div class="val tc"><span class="coin tc">TC</span>'+fmt2(metaTc)+' <small>TC</small></div>'+(S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(metaTc*S.tcBRL)+'</div>':'')}</div>
     </div>
     ${g.concluida?'<div class="empty greentxt" style="padding:12px 0 0">✓ Meta atingida em '+new Date(g.concluida).toLocaleDateString("pt-BR")+'</div>':''}
    </section>
@@ -1146,9 +1278,10 @@ function render(){
      <div class="val goldtxt"><span class="coin">G</span>${fmt(goldDia(g,d))} <small>GP</small></div>
      <div class="val tc"><span class="coin tc">TC</span>${fmt2(tcDia(g,d))} <small>TC</small></div>
     </div>
-    <div class="field"><label>Nome da Hunt</label><input id="farmHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('farm')" style="cursor:pointer"></div>
+    ${tipoTabsHTML('farm')}
+    ${campoNomeHTML('farm')}
     <div class="grid2">
-     <div class="field"><label>Tempo de Hunt (minutos)</label><input id="farmTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
+     <div class="field"><label id="farmTimeLabel">${tipoSel.farm==='hunt'?'Tempo de Hunt (minutos)':'Tempo (minutos, opcional)'}</label><input id="farmTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
      <div class="field"><label>Valor em Gold</label><input id="farmGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão" onkeydown="if(event.key==='Enter')registrarFarm()"></div>
     </div>
     <div class="actions"><button class="btn-green" onclick="registrarFarm()">Registrar Farm</button></div>
@@ -1175,11 +1308,11 @@ function render(){
       ${recorde?'<b class="goldtxt">'+fmt(recorde.gold)+' GP</b><div class="muted" style="font-size:10.5px;margin-top:2px">em '+brData(recorde.data)+'</div>':'<b class="goldtxt">—</b>'}
      </div></div>
      <div class="line"><span class="coin days">⏳</span><div><small>Estimativa para a Meta</small>
-      <b class="goldtxt">${g.concluida?"Meta concluída":diasRestantes==null?"Sem farm ainda":diasRestantes===0?"Hoje!":diasRestantes+(diasRestantes===1?" dia":" dias")}</b>
-      ${(!g.concluida&&diasRestantes!=null)?'<b class="cyantxt" style="font-size:12px">até '+dataPrevista+'</b>':''}
+      <b class="goldtxt">${g.infinita?"♾️ Farm contínuo":g.concluida?"Meta concluída":diasRestantes==null?"Sem farm ainda":diasRestantes===0?"Hoje!":diasRestantes+(diasRestantes===1?" dia":" dias")}</b>
+      ${(!g.infinita&&!g.concluida&&diasRestantes!=null)?'<b class="cyantxt" style="font-size:12px">até '+dataPrevista+'</b>':''}
       ${(!g.concluida&&mediaDia>0)?'<div class="muted" style="font-size:10.5px;margin-top:2px">'+fmt(mediaDia)+' GP por dia farmado • ritmo de '+freqSemana+'x/semana</div>':''}
      </div></div>
-     <div class="ring">${ringSVG(pct)}<span>${g.concluida?"Meta concluída":"Meta em andamento"}</span></div>
+     <div class="ring">${ringSVG(pct)}<span>${g.infinita?"Farm livre":g.concluida?"Meta concluída":"Meta em andamento"}</span></div>
     </div>
    </section>
 
