@@ -331,7 +331,7 @@ tr.total td:first-child{font-weight:700}
   <p style="margin:7px 0 0;font-size:11px">Confira o preço de hoje no
    <a href="https://www.moedaz.com/tibia" target="_blank" rel="noopener" style="color:#8fd8ff">Moedaz</a> ou
    <a href="https://www.reidoscoins.com.br/Tibia-Coins" target="_blank" rel="noopener" style="color:#8fd8ff">Rei dos Coins</a>
-   — eles vendem em blocos de 25 TC, então cole aqui o preço desse bloco (ex.: 25 TC por R$ 5,30).</p>
+   — eles vendem em blocos de 25 TC, então cole aqui o preço desse bloco (ex.: 25 TC por R$ 53,50).</p>
  </div>
  <div class="rep">
   <button class="blue" onclick="fechar('mCfg');novaMeta()"><b>+ Criar nova meta</b><small>Você pode alternar entre várias metas</small></button>
@@ -406,11 +406,11 @@ tr.total td:first-child{font-weight:700}
 
 <div class="modal" id="mRanking"><div class="box" style="width:min(760px,100%)">
  <h3>🏆 Ranking do Tibia Farm Tracker</h3>
- <p>Top 10 dos usuários que optaram por aparecer no ranking.</p>
+ <p>Top 10 dos usuários que optaram por aparecer no ranking. Os dados são carregados diretamente do banco de dados.</p>
  <div class="rank-tabs">
-  <button class="on" id="rankTabFarm" onclick="mostrarRanking('farm')">💰 Top Farm</button>
+  <button class="on" id="rankTabFarm" onclick="mostrarRanking('farm')">💰 Melhor Dia</button>
   <button id="rankTabStreak" onclick="mostrarRanking('streak')">🔥 Top Constância</button>
-  <button id="rankTabHunts" onclick="mostrarRanking('hunts')">⚔️ Top Hunt</button>
+  <button id="rankTabHunts" onclick="mostrarRanking('hunts')">⚔️ Melhor Hunt</button>
  </div>
  <div id="rankingStatus" class="ranking-status">Carregando ranking...</div>
  <div id="rankingList" class="ranking-list"></div>
@@ -1615,11 +1615,29 @@ onAuthStateChanged(auth, async (user)=>{
   background:var(--card-bg,rgba(127,127,127,.06));
 }
 .retention-section h3{margin:0 0 14px;font-size:1rem}
-.retention-chart-wrap{height:220px;position:relative}
+.retention-chart-section{overflow:hidden}
+.retention-chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:4px}
+.retention-chart-note{margin:-7px 0 12px;font-size:.78rem;opacity:.62}
+.retention-chart-summary{display:flex;align-items:center;gap:8px;white-space:nowrap;padding:8px 11px;border:1px solid rgba(127,127,127,.16);border-radius:10px;background:rgba(127,127,127,.06);font-size:.76rem}
+.retention-chart-summary strong{font-size:.88rem}
+.retention-chart-summary .up{font-weight:800}
+.retention-chart-summary .down{font-weight:800}
+.retention-chart-wrap{height:285px;position:relative;touch-action:pan-y}
 .retention-chart{
   width:100%;height:100%;
   display:block;
+  cursor:crosshair;
 }
+.retention-chart-tooltip{position:absolute;z-index:5;pointer-events:none;min-width:155px;max-width:220px;padding:10px 12px;border:1px solid rgba(127,127,127,.22);border-radius:11px;background:var(--card-bg,rgba(20,20,20,.96));box-shadow:0 10px 28px rgba(0,0,0,.18);backdrop-filter:blur(8px);font-size:.78rem;line-height:1.35;transform:translate(-50%,-112%)}
+.retention-chart-tooltip .tt-date{opacity:.62;font-size:.7rem;margin-bottom:3px}
+.retention-chart-tooltip .tt-value{font-size:1rem;font-weight:800}
+.retention-chart-tooltip .tt-hunt{margin-top:3px;opacity:.72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:650px){
+  .retention-chart-head{display:block}
+  .retention-chart-summary{display:inline-flex;margin-bottom:6px}
+  .retention-chart-wrap{height:245px}
+}
+
 .retention-empty{
   min-height:140px;display:grid;place-items:center;
   text-align:center;opacity:.65;padding:20px;
@@ -1696,11 +1714,18 @@ onAuthStateChanged(auth, async (user)=>{
     </div>
   </div>
 
-  <div class="retention-section">
-    <h3>📈 Evolução do Profit/h</h3>
+  <div class="retention-section retention-chart-section">
+    <div class="retention-chart-head">
+      <div>
+        <h3>📈 Evolução do Profit/h</h3>
+        <p class="retention-chart-note">Veja como seu rendimento por hora está evoluindo ao longo dos farms.</p>
+      </div>
+      <div id="rtChartSummary" class="retention-chart-summary" hidden></div>
+    </div>
     <div id="rtChartEmpty" class="retention-empty">Registre alguns farms para começar a visualizar sua evolução.</div>
     <div id="rtChartWrap" class="retention-chart-wrap" hidden>
       <canvas id="rtProfitChart" class="retention-chart"></canvas>
+      <div id="rtChartTooltip" class="retention-chart-tooltip" hidden></div>
     </div>
   </div>
 
@@ -1886,7 +1911,7 @@ function removerMetaSemanal(){
   /* pontos do gráfico: por dia (visão geral) ou por hunt (data filtrada) */
   function chartPoints(farms,filtered){
     if(filtered){
-      return farms.map(f=>({label:f.hora||f.hunt,value:f.pph}));
+      return farms.map(f=>({label:f.hora||f.hunt,value:f.pph,date:f.date,hunt:f.hunt}));
     }
     const byDay=new Map();
     farms.forEach(f=>{
@@ -1895,60 +1920,177 @@ function removerMetaSemanal(){
       cur.gold+=f.profit;cur.time+=f.time;byDay.set(k,cur);
     });
     return [...byDay.entries()].sort((a,b)=>a[0].localeCompare(b[0]))
-      .map(([k,v])=>({label:brData(k).slice(0,5),value:v.time>0?v.gold/v.time:0}));
+      .map(([k,v])=>({label:brData(k).slice(0,5),value:v.time>0?v.gold/v.time:0,date:k}));
+  }
+
+  let rtChartState={points:[],coords:[],padding:null,raf:0};
+
+  function chartNumber(v){
+    v=Number(v)||0;
+    const abs=Math.abs(v);
+    if(abs>=1000000)return (v/1000000).toFixed(abs>=10000000?0:1).replace('.0','')+'kk';
+    if(abs>=1000)return (v/1000).toFixed(abs>=10000?0:1).replace('.0','')+'k';
+    return nf(Math.round(v));
+  }
+
+  function chartDateLabel(p){
+    if(p.date)return brData(dateKey(p.date));
+    return p.label||'';
   }
 
   function drawChart(points){
     const wrap=document.getElementById('rtChartWrap');
     const empty=document.getElementById('rtChartEmpty');
     const canvas=document.getElementById('rtProfitChart');
+    const tooltip=document.getElementById('rtChartTooltip');
+    const summary=document.getElementById('rtChartSummary');
     if(!canvas||!wrap||!empty)return;
-    const show=(el,v)=>{el.hidden=!v;el.style.display=v?'':'none'};
+    const show=(el,v)=>{if(!el)return;el.hidden=!v;el.style.display=v?'':'none'};
     if(points.length<2){
-      show(wrap,false);show(empty,true);
+      show(wrap,false);show(empty,true);show(summary,false);
+      if(tooltip)tooltip.hidden=true;
+      rtChartState.points=[];rtChartState.coords=[];
       empty.textContent=points.length===1
         ?'Registre mais um farm para começar a comparar sua evolução.'
         :'Nenhum farm encontrado para exibir no gráfico.';
       return;
     }
     show(wrap,true);show(empty,false);
+
     const ctx=canvas.getContext('2d');
     const dpr=window.devicePixelRatio||1;
     const rect=canvas.getBoundingClientRect();
     if(!rect.width||!rect.height)return;
-    canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;
+    canvas.width=Math.round(rect.width*dpr);canvas.height=Math.round(rect.height*dpr);
     ctx.setTransform(dpr,0,0,dpr,0,0);
     const w=rect.width,h=rect.height;
     ctx.clearRect(0,0,w,h);
-    /* usa a cor de texto do tema para a linha e os rótulos ficarem legíveis */
-    const cor=getComputedStyle(canvas).color||'#7ee0c0';
-    ctx.strokeStyle=cor;ctx.fillStyle=cor;
-    const vals=points.map(p=>p.value);
+
+    const root=getComputedStyle(canvas);
+    const fg=root.color||getComputedStyle(document.body).color||'#7ee0c0';
+    const muted=fg;
+    const vals=points.map(p=>Number(p.value)||0);
     let max=Math.max(...vals),min=Math.min(...vals);
     if(!isFinite(max))max=1;if(!isFinite(min))min=0;
-    if(max===min){max=max||1;min=0}
-    const pad={l:58,r:16,t:18,b:30};
-    const iw=w-pad.l-pad.r,ih=h-pad.t-pad.b;
-    ctx.font='12px system-ui, sans-serif';
-    ctx.globalAlpha=.45;
-    for(let i=0;i<4;i++){
-      const y=pad.t+ih*i/3;
-      ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();
-      ctx.fillText(nf(max-(max-min)*i/3),4,y+4);
-    }
+    const spread=Math.max(1,max-min);
+    const extra=spread*.16;
+    max+=extra;
+    min=Math.max(0,min-extra);
+    if(max===min)max=min+1;
+
+    const pad={l:64,r:18,t:20,b:42};
+    const iw=Math.max(1,w-pad.l-pad.r),ih=Math.max(1,h-pad.t-pad.b);
     const xAt=i=>pad.l+(vals.length===1?iw/2:iw*i/(vals.length-1));
-    const yAt=v=>pad.t+ih-(v-min)/(max-min||1)*ih;
-    ctx.textAlign='center';
+    const yAt=v=>pad.t+ih-(v-min)/(max-min)*ih;
+
+    ctx.font='11px system-ui, sans-serif';
+    ctx.lineWidth=1;
+    ctx.textAlign='right';
+    ctx.textBaseline='middle';
+    ctx.strokeStyle=muted;
+    ctx.fillStyle=muted;
+    ctx.globalAlpha=.13;
+    for(let i=0;i<5;i++){
+      const ratio=i/4,y=pad.t+ih*ratio;
+      ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();
+      ctx.globalAlpha=.62;ctx.fillText(chartNumber(max-(max-min)*ratio),pad.l-10,y);ctx.globalAlpha=.13;
+    }
+
+    /* eixo X */
+    ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.globalAlpha=.55;
+    const step=Math.max(1,Math.ceil(points.length/7));
     points.forEach((p,i)=>{
-      if(points.length>8&&i%Math.ceil(points.length/8)!==0)return;
-      ctx.fillText(String(p.label||''),xAt(i),h-10);
+      if(i!==points.length-1 && i%step!==0)return;
+      const x=xAt(i);
+      ctx.fillText(String(p.label||''),x,h-14);
     });
-    ctx.textAlign='left';
-    ctx.globalAlpha=1;
+
+    /* área preenchida */
+    const linePoints=vals.map((v,i)=>[xAt(i),yAt(v)]);
+    const gradient=ctx.createLinearGradient(0,pad.t,0,pad.t+ih);
+    gradient.addColorStop(0,'rgba(126,224,192,.28)');
+    gradient.addColorStop(1,'rgba(126,224,192,0)');
     ctx.beginPath();
-    vals.forEach((v,i)=>{const x=xAt(i),y=yAt(v);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});
-    ctx.lineWidth=2.5;ctx.stroke();
-    vals.forEach((v,i)=>{ctx.beginPath();ctx.arc(xAt(i),yAt(v),3.5,0,Math.PI*2);ctx.fill()});
+    linePoints.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+    ctx.lineTo(linePoints[linePoints.length-1][0],pad.t+ih);
+    ctx.lineTo(linePoints[0][0],pad.t+ih);
+    ctx.closePath();
+    ctx.fillStyle=gradient;ctx.globalAlpha=1;ctx.fill();
+
+    /* linha principal */
+    ctx.beginPath();
+    linePoints.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));
+    ctx.strokeStyle=fg;ctx.lineWidth=3;ctx.lineJoin='round';ctx.lineCap='round';ctx.globalAlpha=1;ctx.stroke();
+
+    /* pontos */
+    linePoints.forEach(([x,y],i)=>{
+      ctx.beginPath();ctx.arc(x,y,4.5,0,Math.PI*2);ctx.fillStyle=fg;ctx.globalAlpha=1;ctx.fill();
+      ctx.beginPath();ctx.arc(x,y,2,0,Math.PI*2);ctx.fillStyle=getComputedStyle(document.body).backgroundColor||'#fff';ctx.fill();
+    });
+
+    rtChartState={points,coords:linePoints,padding:pad,raf:0};
+
+    /* resumo: último ponto vs primeiro ponto */
+    if(summary){
+      const first=vals[0],last=vals[vals.length-1];
+      const delta=first?((last-first)/Math.abs(first))*100:0;
+      const sign=delta>0?'▲':delta<0?'▼':'•';
+      const cls=delta>0?'up':delta<0?'down':'';
+      summary.innerHTML='<span>Atual</span><strong>'+chartNumber(last)+'/h</strong><span class="'+cls+'">'+sign+' '+Math.abs(delta).toFixed(0)+'%</span>';
+      summary.hidden=false;summary.style.display='flex';
+    }
+  }
+
+  function positionChartTooltip(index){
+    const canvas=document.getElementById('rtProfitChart');
+    const tooltip=document.getElementById('rtChartTooltip');
+    if(!canvas||!tooltip||!rtChartState.coords[index])return;
+    const p=rtChartState.points[index],pos=rtChartState.coords[index];
+    tooltip.innerHTML='<div class="tt-date">'+chartDateLabel(p)+'</div><div class="tt-value">'+chartNumber(p.value)+'/h</div>'+(p.hunt?'<div class="tt-hunt">🗺️ '+String(p.hunt).replace(/</g,'&lt;')+'</div>':'');
+    tooltip.hidden=false;tooltip.style.display='block';
+    const tw=tooltip.offsetWidth,th=tooltip.offsetHeight;
+    let left=pos[0],top=pos[1]-10;
+    const half=tw/2;
+    left=Math.max(half+4,Math.min(canvas.clientWidth-half-4,left));
+    if(top-th<4)top=pos[1]+th+20;
+    tooltip.style.left=left+'px';tooltip.style.top=top+'px';
+  }
+
+  function setupChartInteractions(){
+    const canvas=document.getElementById('rtProfitChart');
+    if(!canvas||canvas.__rtInteractive)return;
+    canvas.__rtInteractive=true;
+    canvas.addEventListener('mousemove',e=>{
+      if(!rtChartState.coords.length)return;
+      const rect=canvas.getBoundingClientRect();
+      const mx=e.clientX-rect.left,my=e.clientY-rect.top;
+      let best=-1,dist=Infinity;
+      rtChartState.coords.forEach((p,i)=>{const d=Math.hypot(mx-p[0],my-p[1]);if(d<dist){dist=d;best=i}});
+      const threshold=Math.max(24,canvas.clientWidth/18);
+      if(best<0||dist>threshold){const t=document.getElementById('rtChartTooltip');if(t)t.hidden=true;return;}
+      const ctx=canvas.getContext('2d');
+      if(rtChartState.raf)cancelAnimationFrame(rtChartState.raf);
+      rtChartState.raf=requestAnimationFrame(()=>{
+        drawChart(rtChartState.points);
+        const p=rtChartState.coords[best];
+        ctx.save();
+        ctx.setTransform(window.devicePixelRatio||1,0,0,window.devicePixelRatio||1,0,0);
+        const w=canvas.clientWidth,h=canvas.clientHeight,pad=rtChartState.padding;
+        ctx.strokeStyle=getComputedStyle(canvas).color;ctx.globalAlpha=.18;ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(p[0],pad.t);ctx.lineTo(p[0],h-pad.b);ctx.stroke();
+        ctx.beginPath();ctx.arc(p[0],p[1],7,0,Math.PI*2);ctx.strokeStyle=getComputedStyle(canvas).color;ctx.globalAlpha=.35;ctx.stroke();
+        ctx.restore();
+        positionChartTooltip(best);
+      });
+    });
+    canvas.addEventListener('mouseleave',()=>{const t=document.getElementById('rtChartTooltip');if(t)t.hidden=true;});
+    canvas.addEventListener('touchstart',e=>{
+      if(!rtChartState.coords.length)return;
+      const touch=e.touches[0],rect=canvas.getBoundingClientRect(),mx=touch.clientX-rect.left;
+      let best=0,dist=Infinity;
+      rtChartState.coords.forEach((p,i)=>{const d=Math.abs(mx-p[0]);if(d<dist){dist=d;best=i}});
+      positionChartTooltip(best);
+    },{passive:true});
   }
 
   function setRecords(farms){
@@ -2031,6 +2173,7 @@ function removerMetaSemanal(){
     if(typeof window.atualizarBotaoMetaSemanal==='function')window.atualizarBotaoMetaSemanal();
 
     drawChart(chartPoints(farms,singleDay));
+    setupChartInteractions();
   }
 
   window.TibiaFarmRetention={
