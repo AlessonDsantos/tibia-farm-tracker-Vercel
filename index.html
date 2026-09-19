@@ -215,6 +215,16 @@ tr.total td:first-child{font-weight:700}
 .performance-filter label{display:block;font-size:10px;color:var(--muted);margin-bottom:-3px;}
 .performance-filter input{background:#061829;color:#d9ecf9;border:1px solid #2c6188;border-radius:7px;padding:7px 9px;font:inherit;}
 .performance-filter button{padding:7px 10px;font-size:11px;}
+.hunt-pick-list{max-height:340px;overflow-y:auto;margin-top:8px}
+.hunt-pick-section{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:14px 2px 4px;}
+.hunt-pick-section:first-child{margin-top:4px}
+.hunt-pick-row{display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(255,255,255,.06)}
+.hunt-pick-name{flex:1;text-align:left;background:none;border:none;color:#d9ecf9;font:inherit;padding:9px 4px;cursor:pointer}
+.hunt-pick-name:hover,.hunt-pick-name:active{color:#fff}
+.hunt-pick-star{background:none;border:none;color:#ffd76a;font-size:17px;cursor:pointer;padding:6px 8px;line-height:1}
+.hunt-pick-edit{background:none;border:none;color:#9cbdd4;font-size:15px;cursor:pointer;padding:6px 6px;line-height:1}
+.hunt-pick-edit:hover{color:#fff}
+.hunt-pick-custom{margin-top:12px;text-align:center}
 .weekly-hunts{margin:2px 0;padding:9px;border:1px solid #1a3b55;border-radius:9px;background:rgba(4,18,31,.5);}
 .inner-table{margin-top:7px;width:100%;font-size:11px;}
 .inner-table th,.inner-table td{padding:7px 6px;}
@@ -326,7 +336,7 @@ tr.total td:first-child{font-weight:700}
 
 <div class="modal" id="mAdd"><div class="box">
  <h3>Adicionar farm</h3><p id="addDate">—</p>
- <div class="field"><label>Nome da Hunt</label><input id="addHunt" type="text" maxlength="80" placeholder="Ex.: Rotten Blood"></div>
+ <div class="field"><label>Nome da Hunt</label><input id="addHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('add')" style="cursor:pointer"></div>
  <div class="grid2">
   <div class="field"><label>Tempo de Hunt (minutos)</label><input id="addTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
   <div class="field"><label>Valor em Gold</label><input id="addGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
@@ -337,13 +347,24 @@ tr.total td:first-child{font-weight:700}
 
 <div class="modal" id="mEditFarm"><div class="box">
  <h3>Editar hunt</h3><p id="editDate">—</p>
- <div class="field"><label>Nome da Hunt</label><input id="editHunt" type="text" maxlength="80" placeholder="Ex.: Rotten Blood"></div>
+ <div class="field"><label>Nome da Hunt</label><input id="editHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('edit')" style="cursor:pointer"></div>
  <div class="grid2">
   <div class="field"><label>Tempo de Hunt (minutos)</label><input id="editTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
   <div class="field"><label>Valor em Gold</label><input id="editGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
  </div>
  <div class="actions"><button class="btn-green" onclick="confirmarEdit()">Salvar alterações</button>
   <button onclick="fechar('mEditFarm')">Cancelar</button></div>
+</div></div>
+
+<div class="modal" id="mHuntPicker"><div class="box">
+ <h3>Escolher hunt</h3>
+ <div class="tabs" style="margin-bottom:8px">
+  <button type="button" id="huntTabTodas" class="on" onclick="setHuntPickerFiltro('todas')">Todas</button>
+  <button type="button" id="huntTabPersonalizadas" onclick="setHuntPickerFiltro('personalizadas')">🧩 Personalizadas</button>
+ </div>
+ <div class="field"><input id="huntPickerSearch" type="text" maxlength="80" placeholder="Pesquisar hunt..." autocomplete="off"></div>
+ <div id="huntPickerResults" class="hunt-pick-list"></div>
+ <div class="actions"><button onclick="fechar('mHuntPicker')">Fechar</button></div>
 </div></div>
 
 <div class="modal" id="mShare"><div class="box" style="width:min(640px,100%)">
@@ -454,7 +475,17 @@ async function buscarItens(termo){
 
 /* ================= estado + persistência ================= */
 const CK="tibiaFarm3_",CHUNK=3200;
-var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:""},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,tSugg=null,menuAberto=false;
+const HUNTS_PADRAO=["Asura Palace","Azzilon Walls","Barkless Ab Cults","Bashmu","Brimstone Bugs WOTE","Bulltaur Lair -2",
+"Carnivoras","Cobra Bastion","Deathlings","Deeper Banuta -6","Deeper Banuta (Bottom Floor)","Deeplings Library",
+"Draken Walls","Drefia Wyrm's Lair","East Bounac","Edron Heroes -3","Edron South Werecreatures","Elder Wyrms Drefia",
+"Exotic Cave","Feyrist","Fire Library","Gazer","Glooth Bandits East","Glooth Tower","Green Valley",
+"Haunted Temple","Iksupan","Infernatil Seal","Kazordoon Mini Otherworld","Lower Rosh","Lower Spike",
+"Marapur Nagas","Marapur Turtles","Medusa Tower","Nimmersatt's Breeding Ground","Oramond Minos",
+"Oramond West","Oramond Wildlife Raid","Oskayaat Weretigers","Oskayaat Weretigers -2","Oskayaat Werecrocodiles",
+"Otherworld","Otherworld (Kazo)","Pirats","Podzilla Quara","Ravenous Lava Lurkers","Roshamuul Mines",
+"Summer Court","Warzone","Warzone 3","Warzone 4","Warzone 8","Werehyaenas","Werelions","Werelions -1",
+"Winter Court","Yalahar Grim Reapers","Yalahar Sunken Quarter"];
+var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerBusca="",huntPickerFiltro="todas";
 
 function serializar(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
 function salvar(){
@@ -609,6 +640,116 @@ function confirmarEdit(){
  if(!(v>0))return toast("Informe o valor em gold.");
  s.hunt=hunt;s.time=tempo;s.gold=v;
  checar(g);salvar();fechar("mEditFarm");render();toast("Hunt atualizada.")}
+
+function todasHunts(){
+ const custom=Array.isArray(S.huntsPersonalizadas)?S.huntsPersonalizadas:[];
+ return [...new Set([...HUNTS_PADRAO,...custom])].sort((a,b)=>a.localeCompare(b,"pt-BR"));
+}
+function huntsRecentes(limite){
+ limite=limite||3;
+ const todas=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[])
+  .filter(s=>!s.resumoDia&&!s.somado&&s.hunt)
+  .sort((a,b)=>String(b.data||"")+String(b.hora||"")>String(a.data||"")+String(a.hora||"")?1:-1);
+ const vistos=new Set(),out=[];
+ for(const s of todas){
+  const h=(s.hunt||"").trim();
+  if(!h||vistos.has(h))continue;
+  vistos.add(h);out.push(h);
+  if(out.length>=limite)break;
+ }
+ return out;
+}
+function huntEhFavorita(nome){return (S.huntsFavoritas||[]).includes(nome)}
+function toggleHuntFavorita(nome){
+ if(!Array.isArray(S.huntsFavoritas))S.huntsFavoritas=[];
+ const i=S.huntsFavoritas.indexOf(nome);
+ if(i>=0)S.huntsFavoritas.splice(i,1);else S.huntsFavoritas.push(nome);
+ salvar();renderHuntPicker();
+}
+function abrirHuntPicker(alvo){
+ huntPickerAlvo=alvo;huntPickerBusca="";huntPickerFiltro="todas";
+ const busca=document.getElementById("huntPickerSearch");
+ if(busca)busca.value="";
+ atualizarAbasHuntPicker();
+ renderHuntPicker();
+ abrir("mHuntPicker");
+ setTimeout(()=>busca&&busca.focus(),50);
+}
+function setHuntPickerFiltro(f){
+ huntPickerFiltro=f;
+ atualizarAbasHuntPicker();
+ renderHuntPicker();
+}
+function atualizarAbasHuntPicker(){
+ const t=document.getElementById("huntTabTodas"),p=document.getElementById("huntTabPersonalizadas");
+ if(t)t.classList.toggle("on",huntPickerFiltro==="todas");
+ if(p)p.classList.toggle("on",huntPickerFiltro==="personalizadas");
+}
+function renderHuntPicker(){
+ const box=document.getElementById("huntPickerResults");
+ if(!box)return;
+ const q=(huntPickerBusca||"").trim().toLowerCase();
+ const todas=todasHunts();
+ const custom=Array.isArray(S.huntsPersonalizadas)?S.huntsPersonalizadas:[];
+ const somentePersonalizadas=huntPickerFiltro==="personalizadas";
+ const base=somentePersonalizadas?custom.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")):todas;
+ const filtradas=q?base.filter(h=>h.toLowerCase().includes(q)):base;
+ const favoritas=(S.huntsFavoritas||[]).filter(h=>base.includes(h));
+ const recentes=huntsRecentes(3).filter(h=>base.includes(h));
+ const linha=nome=>{
+  const fav=huntEhFavorita(nome),safe=nome.replace(/'/g,"\\'").replace(/"/g,"&quot;"),ehCustom=custom.includes(nome);
+  const btnEditar=ehCustom?'<button type="button" class="hunt-pick-edit" title="Renomear" onclick="editarHuntPersonalizada(\''+safe+'\')">✏️</button>':'';
+  return '<div class="hunt-pick-row"><button type="button" class="hunt-pick-name" onclick="selecionarHunt(\''+safe+'\')">'+esc(nome)+'</button>'+btnEditar+
+   '<button type="button" class="hunt-pick-star" title="Favoritar" onclick="toggleHuntFavorita(\''+safe+'\')">'+(fav?'★':'☆')+'</button></div>';
+ };
+ let html="";
+ if(somentePersonalizadas){
+  html+=filtradas.length?filtradas.map(linha).join(""):'<div class="empty" style="padding:14px"><b>Você ainda não tem hunts personalizadas.</b></div>';
+ }else if(!q){
+  if(favoritas.length)html+='<div class="hunt-pick-section">⭐ Favoritas</div>'+favoritas.map(linha).join("");
+  if(recentes.length)html+='<div class="hunt-pick-section">🕒 Recentes</div>'+recentes.map(linha).join("");
+  html+='<div class="hunt-pick-section">📖 Todas as hunts</div>'+filtradas.map(linha).join("");
+ }else{
+  html+=filtradas.map(linha).join("");
+ }
+ if(q&&!todas.some(h=>h.toLowerCase()===q)){
+  html+='<div class="hunt-pick-custom"><button type="button" class="mini" onclick="cadastrarHuntPersonalizada()">+ Cadastrar "'+esc(huntPickerBusca.trim())+'" como hunt personalizada</button></div>';
+ }
+ if(!html)html='<div class="empty" style="padding:14px"><b>Nenhuma hunt encontrada.</b></div>';
+ box.innerHTML=html;
+}
+function cadastrarHuntPersonalizada(){
+ const nome=(huntPickerBusca||"").trim();
+ if(!nome)return;
+ if(!Array.isArray(S.huntsPersonalizadas))S.huntsPersonalizadas=[];
+ if(!S.huntsPersonalizadas.some(h=>h.toLowerCase()===nome.toLowerCase())&&!HUNTS_PADRAO.some(h=>h.toLowerCase()===nome.toLowerCase())){
+  S.huntsPersonalizadas.push(nome);salvar();
+ }
+ selecionarHunt(nome);
+}
+function editarHuntPersonalizada(nomeAntigo){
+ if(!Array.isArray(S.huntsPersonalizadas)||!S.huntsPersonalizadas.includes(nomeAntigo))return;
+ const novo=(prompt("Novo nome para a hunt:",nomeAntigo)||"").trim();
+ if(!novo||novo===nomeAntigo)return;
+ if(HUNTS_PADRAO.some(h=>h.toLowerCase()===novo.toLowerCase())){toast("Esse nome já existe no catálogo padrão.");return}
+ if(S.huntsPersonalizadas.some(h=>h.toLowerCase()===novo.toLowerCase()&&h!==nomeAntigo)){toast("Você já tem uma hunt personalizada com esse nome.");return}
+ S.huntsPersonalizadas=S.huntsPersonalizadas.map(h=>h===nomeAntigo?novo:h);
+ if(Array.isArray(S.huntsFavoritas))S.huntsFavoritas=S.huntsFavoritas.map(h=>h===nomeAntigo?novo:h);
+ (S.metas||[]).forEach(m=>(m.sessoes||[]).forEach(s=>{
+  if(s.hunt===nomeAntigo)s.hunt=novo;
+  if(s.resumoDia&&Array.isArray(s.huntsDetalhes))s.huntsDetalhes.forEach(h=>{if(h.hunt===nomeAntigo)h.hunt=novo});
+ }));
+ salvar();renderHuntPicker();render();toast('Hunt renomeada para "'+novo+'".');
+}
+function selecionarHunt(nome){
+ const id=huntPickerAlvo==="edit"?"editHunt":huntPickerAlvo==="farm"?"farmHunt":"addHunt";
+ const el=document.getElementById(id);
+ if(el)el.value=nome;
+ fechar("mHuntPicker");
+}
+document.addEventListener("input",e=>{
+ if(e.target&&e.target.id==="huntPickerSearch"){huntPickerBusca=e.target.value||"";renderHuntPicker();}
+});
 function somarDia(d){
  const g=meta(),arr=doDia(g,d);
  if(arr.length<1)return toast("Não há farms registrados neste dia.");
@@ -647,7 +788,7 @@ function relMensal(){
  const g=meta();if(!g.sessoes.length)return toast("Ainda não há farm registrado.");
  gerarMensal(g,false);abaRel="mensal";salvar();render();toast("Relatório mensal gerado.")}
 function resetarDadosLocais(){
- S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:""};
+ S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[]};
  try{localStorage.removeItem(CK+"data");localStorage.removeItem("tft_weekly_goal");}catch(e){}
  try{for(let i=0;i<40;i++)document.cookie=CK+i+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";document.cookie=CK+"n=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";}catch(e){}
  if(window.TibiaFarmRetention){window.TibiaFarmRetention.clearDate();window.TibiaFarmRetention.refresh();}
@@ -1005,7 +1146,7 @@ function render(){
      <div class="val goldtxt"><span class="coin">G</span>${fmt(goldDia(g,d))} <small>GP</small></div>
      <div class="val tc"><span class="coin tc">TC</span>${fmt2(tcDia(g,d))} <small>TC</small></div>
     </div>
-    <div class="field"><label>Nome da Hunt</label><input id="farmHunt" type="text" maxlength="80" placeholder="Ex.: Rotten Blood"></div>
+    <div class="field"><label>Nome da Hunt</label><input id="farmHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('farm')" style="cursor:pointer"></div>
     <div class="grid2">
      <div class="field"><label>Tempo de Hunt (minutos)</label><input id="farmTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
      <div class="field"><label>Valor em Gold</label><input id="farmGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão" onkeydown="if(event.key==='Enter')registrarFarm()"></div>
