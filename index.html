@@ -219,6 +219,7 @@ tr.total td:first-child{font-weight:700}
 .retention-dashboard{background:transparent !important;}
 .retention-card,.retention-section{background:rgba(4,16,29,.52) !important;}
 .performance-filter{display:flex;align-items:end;gap:7px;flex-wrap:wrap;background:rgba(4,16,29,.42);border:1px solid rgba(44,97,136,.55);padding:8px;border-radius:10px;}
+.aviso-callout{background:rgba(4,16,29,.55);border:1px solid rgba(63,146,214,.55);border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.55;color:#cfe8fb;margin:12px 0}
 .performance-filter .pf-field{display:flex;flex-direction:column;gap:2px}
 .performance-filter label{display:block;font-size:10px;color:var(--muted);margin-bottom:-3px;}
 .performance-filter input{background:#061829;color:#d9ecf9;border:1px solid #2c6188;border-radius:7px;padding:7px 9px;font:inherit;}
@@ -393,7 +394,7 @@ tr.total td:first-child{font-weight:700}
 <div class="modal" id="mAvisoSuspeito"><div class="box">
  <h3>⚠️ Farm muito acima do padrão</h3>
  <p id="avisoSuspeitoTexto">—</p>
- <p style="color:var(--muted);font-size:12.5px">Se esse resultado estiver correto, você pode continuar e registrar o farm.</p>
+ <div class="aviso-callout">Se esse resultado estiver correto, você pode registrar normalmente. O registro poderá ficar temporariamente fora do ranking até o sistema identificar consistência em dias consecutivos.</div>
  <div class="actions"><button class="btn-green" onclick="confirmarFarmSuspeito()">Registrar mesmo assim</button>
   <button onclick="cancelarFarmSuspeito()">Voltar e revisar</button></div>
 </div></div>
