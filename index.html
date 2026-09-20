@@ -979,10 +979,10 @@ function rankingStreakFromDates(dates){
 function calcularRankingStats(){
   const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
   const sessoes=sessoesRaw.filter(s=>!s.resumoDia&&!s.somado);
-  const porDia={};
-  sessoes.forEach(s=>{if(!s.data)return;porDia[s.data]=(porDia[s.data]||0)+(Number(s.gold)||0)});
+  const porDiaHunt={};
+  sessoes.filter(s=>tipoDe(s)==="hunt").forEach(s=>{if(!s.data)return;porDiaHunt[s.data]=(porDiaHunt[s.data]||0)+(Number(s.gold)||0)});
   let melhorDiaTotal=0;
-  Object.values(porDia).forEach(v=>{if(v>melhorDiaTotal)melhorDiaTotal=v});
+  Object.values(porDiaHunt).forEach(v=>{if(v>melhorDiaTotal)melhorDiaTotal=v});
   const porHunt={};
   const addHunt=(nome,gold,time)=>{
     const h=(nome||"Hunt não informada").trim()||"Hunt não informada";
@@ -1002,11 +1002,12 @@ function calcularRankingStats(){
   return {nickname:(S.nickname||"").trim(),profit:melhorDiaTotal,melhorHunt,melhorHuntNome,streak:rankingStreakFromDates(dates)};
 }
 let rankingCache={farm:[],streak:[],hunts:[]},rankingAtual="farm";
-function abrirRanking(){
+async function abrirRanking(){
   abrir("mRanking");
   const status=document.getElementById("rankingStatus");
   if(status)status.textContent="Carregando ranking...";
-  if(window.carregarRanking)window.carregarRanking();
+  if(window.syncRanking){ try{ await window.syncRanking(); }catch(e){} }
+  if(window.carregarRanking) await window.carregarRanking();
   else if(status)status.textContent="O ranking ainda está inicializando. Tente novamente em alguns segundos.";
 }
 function mostrarRanking(tipo){
