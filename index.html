@@ -570,14 +570,23 @@ const tc=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)).reduce((a,s)=>a+Number(
 const diasFarm=g=>[...new Set(g.sessoes.filter(s=>!isResumo(s)).map(s=>s.data))].sort();
 const doDia=(g,d)=>g.sessoes.filter(s=>s.data===d&&!s.somado&&!isResumo(s)).sort((a,b)=>String(a.hora||"").localeCompare(String(b.hora||"")));
 const goldDia=(g,d)=>doDia(g,d).reduce((a,s)=>a+Number(s.gold),0);
+/* "somente hunt": usado nos recordes/estimativas de desempenho, que não devem
+   ser influenciados por farm de boss/outros (não são um ritmo confiável/repetível) */
+const diasFarmHunt=g=>[...new Set(g.sessoes.filter(s=>!isResumo(s)&&tipoDe(s)==="hunt").map(s=>s.data))].sort();
+const goldHunt=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&tipoDe(s)==="hunt").reduce((a,s)=>a+Number(s.gold),0);
+const goldDiaHunt=(g,d)=>doDia(g,d).filter(s=>tipoDe(s)==="hunt").reduce((a,s)=>a+Number(s.gold),0);
 function melhorDia(g){
  let best=null;
- diasFarm(g).forEach(d=>{const v=goldDia(g,d);if(!best||v>best.gold)best={data:d,gold:v}});
+ diasFarmHunt(g).forEach(d=>{const v=goldDiaHunt(g,d);if(v>0&&(!best||v>best.gold))best={data:d,gold:v}});
  return best}
 const tcDia=(g,d)=>doDia(g,d).reduce((a,s)=>a+Number(s.gold)/Number(s.tcPrice||S.tcPrice),0);
 const diasDesde=g=>Math.floor((Date.now()-new Date(g.criada).getTime())/86400000);
 function janelaFarm(g){
  const ds=diasFarm(g);if(!ds.length)return 0;
+ const primeiro=new Date(ds[0]+"T12:00:00");
+ return Math.max(1,Math.round((Date.now()-primeiro.getTime())/86400000)+1)}
+function janelaFarmHunt(g){
+ const ds=diasFarmHunt(g);if(!ds.length)return 0;
  const primeiro=new Date(ds[0]+"T12:00:00");
  return Math.max(1,Math.round((Date.now()-primeiro.getTime())/86400000)+1)}
 
@@ -1159,9 +1168,9 @@ async function desenharCard(canvas,g,tentarIcone){
  let footY=statY+76;
  const rec=melhorDia(g);
  ctx.font="500 18px Arial";
- if(rec){ctx.fillStyle="#bfe6ff";ctx.fillText("🏆 Melhor dia: "+fmt(rec.gold)+" GP em "+brData(rec.data),W/2,footY);footY+=32}
- const diasComFarm=diasFarm(g).length,mediaDia=diasComFarm>0?tot/diasComFarm:0,
-  freqSemana=diasComFarm>0?Math.round(diasComFarm/janelaFarm(g)*7*10)/10:0,
+ if(rec){ctx.fillStyle="#bfe6ff";ctx.fillText("🏆 Melhor dia de hunt: "+fmt(rec.gold)+" GP em "+brData(rec.data),W/2,footY);footY+=32}
+ const diasComFarm=diasFarmHunt(g).length,mediaDia=diasComFarm>0?goldHunt(g)/diasComFarm:0,
+  freqSemana=diasComFarm>0?Math.round(diasComFarm/janelaFarmHunt(g)*7*10)/10:0,
   farmNec=mediaDia>0?Math.ceil(falta/mediaDia):null,
   diasRest=g.concluida?0:(farmNec!=null&&freqSemana>0?Math.ceil(farmNec/(freqSemana/7)):null);
  if(g.concluida){ctx.fillStyle="#7fe6b8";ctx.fillText("✓ Meta concluída!",W/2,footY)}
@@ -1256,9 +1265,9 @@ function render(){
   falta=g.infinita?0:Math.max(0,g.metaGold-tot),
   pct=g.infinita?100:Math.min(100,g.metaGold?tot/g.metaGold*100:0),
   metaTc=g.infinita?0:g.metaGold/S.tcPrice,faltaTc=g.infinita?0:falta/S.tcPrice,d=hoje(),
-  diasComFarm=diasFarm(g).length,
-  diasCorridos=janelaFarm(g),
-  mediaDia=diasComFarm>0?tot/diasComFarm:0,
+  diasComFarm=diasFarmHunt(g).length,
+  diasCorridos=janelaFarmHunt(g),
+  mediaDia=diasComFarm>0?goldHunt(g)/diasComFarm:0,
   freqSemana=diasComFarm>0?Math.round(diasComFarm/diasCorridos*7*10)/10:0,
   farmDiasNecessarios=(!g.infinita&&mediaDia>0)?Math.ceil(falta/mediaDia):null,
   diasRestantes=(g.infinita||g.concluida)?null:(farmDiasNecessarios!=null&&freqSemana>0?Math.ceil(farmDiasNecessarios/(freqSemana/7)):null),
@@ -1322,13 +1331,13 @@ function render(){
     <div class="sum">
      <div class="line"><span class="coin">G</span><div><small>Gold Total</small><b class="goldtxt">${fmt(tot)} GP</b></div></div>
      <div class="line"><span class="coin tc">TC</span><div><small>Tibia Coin Total</small><b class="cyantxt">${fmt2(ttc)} TC</b></div></div>
-     <div class="line"><span class="coin record">🏆</span><div><small>Melhor Dia</small>
+     <div class="line"><span class="coin record">🏆</span><div><small>Melhor Dia de Hunt</small>
       ${recorde?'<b class="goldtxt">'+fmt(recorde.gold)+' GP</b><div class="muted" style="font-size:10.5px;margin-top:2px">em '+brData(recorde.data)+'</div>':'<b class="goldtxt">—</b>'}
      </div></div>
      <div class="line"><span class="coin days">⏳</span><div><small>Estimativa para a Meta</small>
       <b class="goldtxt">${g.infinita?"♾️ Farm contínuo":g.concluida?"Meta concluída":diasRestantes==null?"Sem farm ainda":diasRestantes===0?"Hoje!":diasRestantes+(diasRestantes===1?" dia":" dias")}</b>
       ${(!g.infinita&&!g.concluida&&diasRestantes!=null)?'<b class="cyantxt" style="font-size:12px">até '+dataPrevista+'</b>':''}
-      ${(!g.concluida&&mediaDia>0)?'<div class="muted" style="font-size:10.5px;margin-top:2px">'+fmt(mediaDia)+' GP por dia farmado • ritmo de '+freqSemana+'x/semana</div>':''}
+      ${(!g.concluida&&mediaDia>0)?'<div class="muted" style="font-size:10.5px;margin-top:2px">'+fmt(mediaDia)+' GP por dia de hunt • ritmo de '+freqSemana+'x/semana</div>':''}
      </div></div>
      <div class="ring">${ringSVG(pct)}<span>${g.infinita?"Farm livre":g.concluida?"Meta concluída":"Meta em andamento"}</span></div>
     </div>
@@ -1401,7 +1410,7 @@ window.updateAuthUI=function(){
  if(!btn)return;
  const u=window.currentUser;
  if(u){
-  btn.innerHTML=(u.photoURL?'<img src="'+u.photoURL+'" alt="">':'👤')+
+  btn.innerHTML=(u.photoURL?'<img src="'+esc(u.photoURL)+'" alt="">':'👤')+
    '<span>'+esc(u.displayName?u.displayName.split(" ")[0]:"Sair")+'</span>';
   btn.title="Conectado como "+(u.email||"")+" • clique para sair";
   if(dot)dot.classList.add("on");
@@ -1875,6 +1884,7 @@ function removerMetaSemanal(){
     const seen=new Set(),out=[];
     for(const s of rawSessions()){
       const n=normalize(s);if(!n)continue;
+      if(n.tipo!=="hunt")continue; // "Seu desempenho" só considera farm de hunt (boss/outros não são um ritmo confiável)
       const sig=n.id||[n.date,n.hora,n.profit,n.time,n.hunt].join('|');
       if(seen.has(sig))continue;seen.add(sig);out.push(n);
     }
@@ -2050,7 +2060,7 @@ function removerMetaSemanal(){
     const tooltip=document.getElementById('rtChartTooltip');
     if(!canvas||!tooltip||!rtChartState.coords[index])return;
     const p=rtChartState.points[index],pos=rtChartState.coords[index];
-    tooltip.innerHTML='<div class="tt-date">'+chartDateLabel(p)+'</div><div class="tt-value">'+chartNumber(p.value)+'/h</div>'+(p.hunt?'<div class="tt-hunt">🗺️ '+String(p.hunt).replace(/</g,'&lt;')+'</div>':'');
+    tooltip.innerHTML='<div class="tt-date">'+chartDateLabel(p)+'</div><div class="tt-value">'+chartNumber(p.value)+'/h</div>'+(p.hunt?'<div class="tt-hunt">🗺️ '+esc(p.hunt)+'</div>':'');
     tooltip.hidden=false;tooltip.style.display='block';
     const tw=tooltip.offsetWidth,th=tooltip.offsetHeight;
     let left=pos[0],top=pos[1]-10;
