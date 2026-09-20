@@ -390,6 +390,14 @@ tr.total td:first-child{font-weight:700}
  <div class="actions"><button onclick="fechar('mHuntPicker')">Fechar</button></div>
 </div></div>
 
+<div class="modal" id="mAvisoSuspeito"><div class="box">
+ <h3>⚠️ Farm muito acima do padrão</h3>
+ <p id="avisoSuspeitoTexto">—</p>
+ <p style="color:var(--muted);font-size:12.5px">Se esse resultado estiver correto, você pode continuar e registrar o farm.</p>
+ <div class="actions"><button class="btn-green" onclick="confirmarFarmSuspeito()">Registrar mesmo assim</button>
+  <button onclick="cancelarFarmSuspeito()">Voltar e revisar</button></div>
+</div></div>
+
 <div class="modal" id="mShare"><div class="box" style="width:min(640px,100%)">
  <h3>Compartilhar progresso</h3><p>Uma imagem com o resumo da sua meta atual, pronta pra mandar no grupo.</p>
  <div style="border:1px solid #1e4460;border-radius:10px;overflow:hidden;background:#04121f;line-height:0">
@@ -570,11 +578,47 @@ const tc=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)).reduce((a,s)=>a+Number(
 const diasFarm=g=>[...new Set(g.sessoes.filter(s=>!isResumo(s)).map(s=>s.data))].sort();
 const doDia=(g,d)=>g.sessoes.filter(s=>s.data===d&&!s.somado&&!isResumo(s)).sort((a,b)=>String(a.hora||"").localeCompare(String(b.hora||"")));
 const goldDia=(g,d)=>doDia(g,d).reduce((a,s)=>a+Number(s.gold),0);
+
+/* ================= detecção de farm suspeito (só Hunt) =================
+   Farms de Hunt com profit/h muito acima do comum ficam marcados como
+   "suspeito" e saem dos recordes/ranking/estimativas, mas continuam
+   normalmente no histórico e nos totais gerais (Acumulado, Farm do Dia).
+   Boss e Outros nunca entram nessa verificação. */
+const LIMITE_SUSPEITO=12000000; /* acima de 12kk/h já é considerado fora do padrão */
+function pphDe(gold,tempoMin){const h=Number(tempoMin||0)/60;return h>0?Number(gold)/h:0}
+function ehValorSuspeito(pph){return pph>LIMITE_SUSPEITO}
+function diaSeguinte(d){const dt=new Date(d+"T12:00:00");dt.setDate(dt.getDate()+1);return dt.toISOString().slice(0,10)}
+function reavaliarSuspeitos(g){
+ if(!g||!Array.isArray(g.sessoes))return;
+ const huntSessoes=g.sessoes.filter(s=>!isResumo(s)&&!s.somado&&tipoDe(s)==="hunt");
+ const porDia={};
+ huntSessoes.forEach(s=>{
+  const pph=pphDe(s.gold,s.time);
+  s.suspeito=ehValorSuspeito(pph);
+  s.validado=false;
+  if(s.suspeito)(porDia[s.data]=porDia[s.data]||[]).push(s);
+ });
+ /* regra dos 3 dias: se 3 dias consecutivos têm resultados suspeitos
+    parecidos entre si (não só "acima do limite", mas consistentes),
+    esses dias deixam de ser suspeitos e voltam a valer no ranking. */
+ Object.keys(porDia).sort().forEach(d1=>{
+  const d2=diaSeguinte(d1),d3=diaSeguinte(d2);
+  if(!porDia[d1]||!porDia[d2]||!porDia[d3])return;
+  const rep=arr=>Math.max(...arr.map(s=>pphDe(s.gold,s.time)));
+  const vals=[rep(porDia[d1]),rep(porDia[d2]),rep(porDia[d3])];
+  const mx=Math.max(...vals),mn=Math.min(...vals);
+  if(mn>0&&mx/mn<=1.5){
+   [porDia[d1],porDia[d2],porDia[d3]].forEach(arr=>arr.forEach(s=>{s.suspeito=false;s.validado=true}));
+  }
+ });
+}
+
 /* "somente hunt": usado nos recordes/estimativas de desempenho, que não devem
-   ser influenciados por farm de boss/outros (não são um ritmo confiável/repetível) */
-const diasFarmHunt=g=>[...new Set(g.sessoes.filter(s=>!isResumo(s)&&tipoDe(s)==="hunt").map(s=>s.data))].sort();
-const goldHunt=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&tipoDe(s)==="hunt").reduce((a,s)=>a+Number(s.gold),0);
-const goldDiaHunt=(g,d)=>doDia(g,d).filter(s=>tipoDe(s)==="hunt").reduce((a,s)=>a+Number(s.gold),0);
+   ser influenciados por farm de boss/outros (não são um ritmo confiável/repetível)
+   nem por farms de hunt marcados como suspeitos. */
+const diasFarmHunt=g=>[...new Set(g.sessoes.filter(s=>!isResumo(s)&&tipoDe(s)==="hunt"&&!s.suspeito).map(s=>s.data))].sort();
+const goldHunt=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&tipoDe(s)==="hunt"&&!s.suspeito).reduce((a,s)=>a+Number(s.gold),0);
+const goldDiaHunt=(g,d)=>doDia(g,d).filter(s=>tipoDe(s)==="hunt"&&!s.suspeito).reduce((a,s)=>a+Number(s.gold),0);
 function melhorDia(g){
  let best=null;
  diasFarmHunt(g).forEach(d=>{const v=goldDiaHunt(g,d);if(v>0&&(!best||v>best.gold))best={data:d,gold:v}});
@@ -713,6 +757,23 @@ function setTipoFarm(escopo,tipo,manterValor){
 }
 function msgNomeVazio(tipo){return tipo==="boss"?"Informe o boss.":tipo==="outro"?"Descreva o farm.":"Informe o nome da Hunt."}
 
+let pendingFarmConfirm=null;
+function abrirAvisoFarmSuspeito(pph,onConfirmar){
+ pendingFarmConfirm=onConfirmar;
+ const kk=(pph/1000000).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1});
+ const el=document.getElementById("avisoSuspeitoTexto");
+ if(el)el.textContent="O resultado informado corresponde a "+kk+"kk/h, um valor muito acima do comum para registros de Hunt.";
+ abrir("mAvisoSuspeito");
+}
+function confirmarFarmSuspeito(){
+ const fn=pendingFarmConfirm;pendingFarmConfirm=null;
+ fechar("mAvisoSuspeito");
+ if(typeof fn==="function")fn();
+}
+function cancelarFarmSuspeito(){
+ pendingFarmConfirm=null;
+ fechar("mAvisoSuspeito");
+}
 function registrarFarm(){
  const g=meta();if(!g)return;
  const v=parseGold(document.getElementById("farmGold").value);
@@ -722,10 +783,15 @@ function registrarFarm(){
  const tempo=Number(document.getElementById("farmTime")?.value)||0;
  if(!hunt)return toast(msgNomeVazio(tipo));
  if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
- g.sessoes.push({id:Date.now()+Math.random(),data:hoje(),
-  hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:S.tcPrice,hunt,time:tempo,tipo});
- document.getElementById("farmHunt").value="";document.getElementById("farmTime").value="";document.getElementById("farmGold").value="";
- checar(g);salvar();render();toast("Farm registrado.")}
+ const salvarAgora=()=>{
+  g.sessoes.push({id:Date.now()+Math.random(),data:hoje(),
+   hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:S.tcPrice,hunt,time:tempo,tipo});
+  document.getElementById("farmHunt").value="";document.getElementById("farmTime").value="";document.getElementById("farmGold").value="";
+  checar(g);salvar();render();toast("Farm registrado.")
+ };
+ if(tipo==="hunt"&&ehValorSuspeito(pphDe(v,tempo))){abrirAvisoFarmSuspeito(pphDe(v,tempo),salvarAgora);return}
+ salvarAgora();
+}
 function addNoDia(d){
  addDate=d;document.getElementById("addDate").textContent="Data: "+brData(d);
  setTipoFarm("add","hunt");
@@ -737,9 +803,14 @@ function confirmarAdd(){
  if(!hunt)return toast(msgNomeVazio(tipo));
  if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  if(!(v>0))return toast("Informe o valor em gold.");
- g.sessoes.push({id:Date.now()+Math.random(),data:addDate,
-  hora:new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:p,hunt,time:tempo,tipo});
- checar(g);salvar();fechar("mAdd");render();toast("Farm adicionado.")}
+ const salvarAgora=()=>{
+  g.sessoes.push({id:Date.now()+Math.random(),data:addDate,
+   hora:new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:p,hunt,time:tempo,tipo});
+  checar(g);salvar();fechar("mAdd");render();toast("Farm adicionado.")
+ };
+ if(tipo==="hunt"&&ehValorSuspeito(pphDe(v,tempo))){abrirAvisoFarmSuspeito(pphDe(v,tempo),salvarAgora);return}
+ salvarAgora();
+}
 function excluirFarm(id){
  const g=meta();if(!confirm("Excluir este registro?"))return;
  g.sessoes=g.sessoes.filter(s=>String(s.id)!==String(id));salvar();render()}
@@ -765,8 +836,13 @@ function confirmarEdit(){
  if(!hunt)return toast(msgNomeVazio(tipo));
  if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  if(!(v>0))return toast("Informe o valor em gold.");
- s.hunt=hunt;s.time=tempo;s.gold=v;s.tipo=tipo;
- checar(g);salvar();fechar("mEditFarm");render();toast("Farm atualizado.")}
+ const salvarAgora=()=>{
+  s.hunt=hunt;s.time=tempo;s.gold=v;s.tipo=tipo;
+  checar(g);salvar();fechar("mEditFarm");render();toast("Farm atualizado.")
+ };
+ if(tipo==="hunt"&&ehValorSuspeito(pphDe(v,tempo))){abrirAvisoFarmSuspeito(pphDe(v,tempo),salvarAgora);return}
+ salvarAgora();
+}
 
 function recentesDoTipo(tipo,limite){
  limite=limite||3;
@@ -909,11 +985,13 @@ function somarDia(d){
  const hunts=[...new Set(arr.map(s=>(s.hunt||"Farm não informado").trim()).filter(Boolean))];
  const huntsDetalhes={};
  arr.forEach(s=>{const t=tipoDe(s),h=(s.hunt||"Farm não informado").trim()||"Farm não informado",k=t+"|"+h;if(!huntsDetalhes[k])huntsDetalhes[k]={hunt:h,tipo:t,gold:0,time:0,tc:0,farms:0};huntsDetalhes[k].gold+=Number(s.gold)||0;huntsDetalhes[k].time+=Number(s.time||0);huntsDetalhes[k].tc+=Number(s.gold)/Number(s.tcPrice||S.tcPrice);huntsDetalhes[k].farms++;});
+ Object.values(huntsDetalhes).forEach(h=>{if(h.tipo==="hunt")h.suspeito=ehValorSuspeito(pphDe(h.gold,h.time))});
  g.sessoes.push({id:Date.now()+Math.random(),data:d,hora:arr[arr.length-1].hora,gold:total,tcPrice:totalTc>0?total/totalTc:S.tcPrice,time:totalTime,hunt:hunts.length+(hunts.length===1?" farm":" farms"),juntado:arr.length,resumoDia:true,huntsDetalhes:Object.values(huntsDetalhes),somado:false});
  salvar();render();toast("Dia somado: "+hunts.length+" farms.");
  if(d===hoje()){const box=document.getElementById("todayBox");if(box){box.classList.add("flash");setTimeout(()=>box.classList.remove("flash"),1300)}}}
 
 function checar(g){
+ reavaliarSuspeitos(g);
  while(true){
   const ds=diasFarm(g).slice(g.cursor);
   if(ds.length<7)break;
@@ -977,10 +1055,11 @@ function rankingStreakFromDates(dates){
   return n;
 }
 function calcularRankingStats(){
+  (S.metas||[]).forEach(m=>reavaliarSuspeitos(m));
   const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
   const sessoes=sessoesRaw.filter(s=>!s.resumoDia&&!s.somado);
   const porDiaHunt={};
-  sessoes.filter(s=>tipoDe(s)==="hunt").forEach(s=>{if(!s.data)return;porDiaHunt[s.data]=(porDiaHunt[s.data]||0)+(Number(s.gold)||0)});
+  sessoes.filter(s=>tipoDe(s)==="hunt"&&!s.suspeito).forEach(s=>{if(!s.data)return;porDiaHunt[s.data]=(porDiaHunt[s.data]||0)+(Number(s.gold)||0)});
   let melhorDiaTotal=0;
   Object.values(porDiaHunt).forEach(v=>{if(v>melhorDiaTotal)melhorDiaTotal=v});
   const porHunt={};
@@ -989,9 +1068,9 @@ function calcularRankingStats(){
     if(!porHunt[h])porHunt[h]={gold:0,time:0};
     porHunt[h].gold+=Number(gold)||0;porHunt[h].time+=Number(time)||0;
   };
-  sessoes.filter(s=>tipoDe(s)==="hunt").forEach(s=>addHunt(s.hunt,s.gold,s.time));
+  sessoes.filter(s=>tipoDe(s)==="hunt"&&!s.suspeito).forEach(s=>addHunt(s.hunt,s.gold,s.time));
   sessoesRaw.filter(s=>s.resumoDia&&Array.isArray(s.huntsDetalhes)).forEach(s=>{
-    s.huntsDetalhes.filter(h=>(h.tipo||"hunt")==="hunt").forEach(h=>addHunt(h.hunt,h.gold,h.time));
+    s.huntsDetalhes.filter(h=>(h.tipo||"hunt")==="hunt"&&!h.suspeito).forEach(h=>addHunt(h.hunt,h.gold,h.time));
   });
   let melhorHunt=0,melhorHuntNome="";
   Object.keys(porHunt).forEach(nome=>{
@@ -1876,9 +1955,10 @@ function removerMetaSemanal(){
     const pph=hours>0?profit/hours:0;
     const hunt=String(o.hunt||o.local||o.nome||'Hunt não informada').trim()||'Hunt não informada';
     const tipo=String(o.tipo||'hunt');
+    const suspeito=!!o.suspeito;
     const date=o.data||o.date||o.createdAt||null;
     if(!date)return null;
-    return {profit,time:hours,pph,hunt,tipo,date:String(date),hora:String(o.hora||''),id:String(o.id||'')};
+    return {profit,time:hours,pph,hunt,tipo,suspeito,date:String(date),hora:String(o.hora||''),id:String(o.id||'')};
   }
 
   function getFarms(){
@@ -2113,11 +2193,14 @@ function removerMetaSemanal(){
     if(!box)return;
     const vazio='<div class="retention-record">💰 Maior profit<strong>—</strong></div><div class="retention-record">📈 Maior profit/h<strong>—</strong></div><div class="retention-record">🗺️ Melhor hunt<strong>—</strong></div>';
     if(!farms.length){box.innerHTML=vazio;return}
-    const byProfit=farms.reduce((a,b)=>b.profit>a.profit?b:a);
-    const comTempo=farms.filter(f=>f.time>0);
+    /* recordes ignoram farms marcados como suspeitos (profit/h de Hunt fora do padrão) */
+    const validos=farms.filter(f=>!f.suspeito);
+    if(!validos.length){box.innerHTML=vazio;return}
+    const byProfit=validos.reduce((a,b)=>b.profit>a.profit?b:a);
+    const comTempo=validos.filter(f=>f.time>0);
     const byPph=comTempo.length?comTempo.reduce((a,b)=>b.pph>a.pph?b:a):null;
-    /* melhor hunt = maior profit/h somando todos os registros da mesma hunt (bosses e outros ficam de fora) */
-    const soHunts=farms.filter(f=>f.tipo==="hunt");
+    /* melhor hunt = maior profit/h somando todos os registros da mesma hunt (bosses, outros e farms suspeitos ficam de fora) */
+    const soHunts=validos.filter(f=>f.tipo==="hunt");
     const porHunt=new Map();
     soHunts.forEach(f=>{const c=porHunt.get(f.hunt)||{gold:0,time:0};c.gold+=f.profit;c.time+=f.time;porHunt.set(f.hunt,c)});
     let melhor=null;
