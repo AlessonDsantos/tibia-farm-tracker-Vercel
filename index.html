@@ -302,7 +302,7 @@ tr.total td:first-child{font-weight:700}
   <button type="button" id="goalTabEspecifica" class="on" onclick="setModoMeta('especifica')">🎯 Meta específica</button>
   <button type="button" id="goalTabInfinita" onclick="setModoMeta('infinita')">♾️ Farm livre</button>
  </div>
- <p id="goalHint">O ícone do item é buscado na Tibia Wiki.</p>
+ <p id="goalHint">O ícone do item aparecerá no seu objetivo.</p>
  <div class="field"><label id="goalNameLabel">Nome do item</label>
   <div class="sugg"><input id="gName" autocomplete="off" placeholder="Ex.: Sanguine Razor">
    <div class="sugg-list" id="gSugg"></div></div></div>
@@ -643,7 +643,7 @@ function setModoMeta(modo){
  document.getElementById("goalGoldField").style.display=metaModoInfinito?"none":"";
  document.getElementById("goalNameLabel").textContent=metaModoInfinito?"Nome do farm":"Nome do item";
  document.getElementById("gName").placeholder=metaModoInfinito?"Ex.: Farm Geral":"Ex.: Sanguine Razor";
- document.getElementById("goalHint").textContent=metaModoInfinito?"Farm livre: sem valor alvo, o ícone será ♾️.":"O ícone do item é buscado na Tibia Wiki.";
+ document.getElementById("goalHint").textContent=metaModoInfinito?"Farm livre: sem valor alvo, o ícone será ♾️.":"O ícone do item aparecerá no seu objetivo.";
  document.getElementById("gPreview").style.display="none";
  document.getElementById("gSugg").classList.remove("open");
 }
@@ -1175,8 +1175,8 @@ function previewItem(nome){
  if(!nome){p.style.display="none";return}
  p.style.display="flex";
  p.innerHTML='<img src="'+gifDoItem(nome)+'" alt="" onerror="this.style.display=\'none\';'+
-  'this.nextElementSibling.textContent=\'Gif não encontrado na Tibia Wiki — confira o nome exato do item.\'">'+
-  '<div>Ícone de <b>'+esc(nome)+'</b> carregado da Tibia Wiki.</div>'}
+  'this.nextElementSibling.textContent=\'Gif não encontrado — confira o nome exato do item.\'">'+
+  '<div>Ícone de <b>'+esc(nome)+'</b> carregado da Wiki.</div>'}
 
 /* ================= render ================= */
 /* ================= compartilhar progresso (canvas) ================= */
@@ -1344,7 +1344,7 @@ function render(){
   '<div class="item-name" style="justify-content:center">Comece pela sua meta</div>'+
   '<p style="color:var(--muted);font-size:13px;max-width:430px;margin:10px auto 18px">'+
   'Escolha o item que você quer conquistar, defina o valor em gold e registre o farm de cada dia. '+
-  'O ícone vem direto da Tibia Wiki.</p>'+
+  'O ícone vem direto da Wiki.</p>'+
   '<button class="btn-green" onclick="novaMeta()">Criar minha primeira meta</button></div>';return}
 
  checar(g);
