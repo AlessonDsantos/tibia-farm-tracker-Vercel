@@ -302,7 +302,7 @@ tr.total td:first-child{font-weight:700}
   <button type="button" id="goalTabEspecifica" class="on" onclick="setModoMeta('especifica')">🎯 Meta específica</button>
   <button type="button" id="goalTabInfinita" onclick="setModoMeta('infinita')">♾️ Farm livre</button>
  </div>
- <p id="goalHint">O ícone do item Será mostrado no seu objetivo.</p>
+ <p id="goalHint">O ícone do item é buscado na Tibia Wiki.</p>
  <div class="field"><label id="goalNameLabel">Nome do item</label>
   <div class="sugg"><input id="gName" autocomplete="off" placeholder="Ex.: Sanguine Razor">
    <div class="sugg-list" id="gSugg"></div></div></div>
@@ -336,7 +336,7 @@ tr.total td:first-child{font-weight:700}
   <p style="margin:7px 0 0;font-size:11px">Confira o preço de hoje no
    <a href="https://www.moedaz.com/tibia" target="_blank" rel="noopener" style="color:#8fd8ff">Moedaz</a> ou
    <a href="https://www.reidoscoins.com.br/Tibia-Coins" target="_blank" rel="noopener" style="color:#8fd8ff">Rei dos Coins</a>
-   — eles vendem em blocos de 25 TC, então cole aqui o preço desse bloco (ex.: 25 TC por R$ 5,35).</p>
+   — eles vendem em blocos de 25 TC, então cole aqui o preço desse bloco (ex.: 25 TC por R$ 53,50).</p>
  </div>
  <div class="rep">
   <button class="blue" onclick="fechar('mCfg');novaMeta()"><b>+ Criar nova meta</b><small>Você pode alternar entre várias metas</small></button>
@@ -419,7 +419,7 @@ tr.total td:first-child{font-weight:700}
 
 <div class="modal" id="mRanking"><div class="box" style="width:min(760px,100%)">
  <h3>🏆 Ranking do Tibia Farm Tracker</h3>
- <p> Apenas os 10 usuários que mais se esforçaram apareceram no ranking.</p>
+ <p>Top 10 dos usuários que optaram por aparecer no ranking. Os dados são carregados diretamente do banco de dados.</p>
  <div class="rank-tabs">
   <button class="on" id="rankTabFarm" onclick="mostrarRanking('farm')">💰 Melhor Dia</button>
   <button id="rankTabStreak" onclick="mostrarRanking('streak')">🔥 Top Constância</button>
@@ -643,7 +643,7 @@ function setModoMeta(modo){
  document.getElementById("goalGoldField").style.display=metaModoInfinito?"none":"";
  document.getElementById("goalNameLabel").textContent=metaModoInfinito?"Nome do farm":"Nome do item";
  document.getElementById("gName").placeholder=metaModoInfinito?"Ex.: Farm Geral":"Ex.: Sanguine Razor";
- document.getElementById("goalHint").textContent=metaModoInfinito?"Farm livre: sem valor alvo, o ícone será ♾️.":"O ícone do item será mostrado no seu objetivo.";
+ document.getElementById("goalHint").textContent=metaModoInfinito?"Farm livre: sem valor alvo, o ícone será ♾️.":"O ícone do item é buscado na Tibia Wiki.";
  document.getElementById("gPreview").style.display="none";
  document.getElementById("gSugg").classList.remove("open");
 }
@@ -1044,14 +1044,20 @@ async function limpar(){
 }
 function rankingStreakFromDates(dates){
   const set=new Set(dates);
+  const keyOf=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
   let cur=new Date();cur.setHours(12,0,0,0);
-  let key=hoje();
-  if(!set.has(key)){cur.setDate(cur.getDate()-1);key=cur.getFullYear()+"-"+String(cur.getMonth()+1).padStart(2,"0")+"-"+String(cur.getDate()).padStart(2,"0");}
+  let key=keyOf(cur);
+  if(!set.has(key)){cur.setDate(cur.getDate()-1);key=keyOf(cur);} // hoje ainda sem farm: começa a contagem de ontem
   let n=0;
-  while(set.has(key)){
-    n++;
+  while(true){
+    if(set.has(key)){
+      n++;
+    }else if(cur.getDay()!==0){
+      break; // dia sem farm que não é domingo quebra a sequência
+    }
+    // domingo sem farm: dia de descanso, não conta mas também não quebra
     cur.setDate(cur.getDate()-1);
-    key=cur.getFullYear()+"-"+String(cur.getMonth()+1).padStart(2,"0")+"-"+String(cur.getDate()).padStart(2,"0");
+    key=keyOf(cur);
   }
   return n;
 }
@@ -1078,7 +1084,7 @@ function calcularRankingStats(){
     const v=porHunt[nome],pph=v.time>0?v.gold/(v.time/60):0;
     if(pph>melhorHunt){melhorHunt=pph;melhorHuntNome=nome}
   });
-  const dates=[...new Set(sessoes.map(s=>s.data).filter(Boolean))];
+  const dates=[...new Set(sessoes.filter(s=>tipoDe(s)==="hunt"||tipoDe(s)==="boss").map(s=>s.data).filter(Boolean))];
   return {nickname:(S.nickname||"").trim(),profit:melhorDiaTotal,melhorHunt,melhorHuntNome,streak:rankingStreakFromDates(dates)};
 }
 let rankingCache={farm:[],streak:[],hunts:[]},rankingAtual="farm";
@@ -1338,7 +1344,7 @@ function render(){
   '<div class="item-name" style="justify-content:center">Comece pela sua meta</div>'+
   '<p style="color:var(--muted);font-size:13px;max-width:430px;margin:10px auto 18px">'+
   'Escolha o item que você quer conquistar, defina o valor em gold e registre o farm de cada dia. '+
-  'O ícone no item aparecerá no seu objetivo.</p>'+
+  'O ícone vem direto da Tibia Wiki.</p>'+
   '<button class="btn-green" onclick="novaMeta()">Criar minha primeira meta</button></div>';return}
 
  checar(g);
@@ -1973,6 +1979,18 @@ function removerMetaSemanal(){
     return out.sort((a,b)=>a.date===b.date?String(a.hora).localeCompare(String(b.hora)):a.date.localeCompare(b.date));
   }
 
+  /* constância: considera hunt + boss (outros não contam pra manter a sequência) */
+  function getFarmsStreak(){
+    const seen=new Set(),out=[];
+    for(const s of rawSessions()){
+      const n=normalize(s);if(!n)continue;
+      if(n.tipo!=="hunt"&&n.tipo!=="boss")continue;
+      const sig=n.id||[n.date,n.hora,n.profit,n.time,n.hunt].join('|');
+      if(seen.has(sig))continue;seen.add(sig);out.push(n);
+    }
+    return out;
+  }
+
   function dateObj(v){
     const m=String(v).match(/^(\d{4})-(\d{2})-(\d{2})/);
     if(m)return new Date(Number(m[1]),Number(m[2])-1,Number(m[3]),12,0,0);
@@ -1993,14 +2011,22 @@ function removerMetaSemanal(){
   }
   function brData(k){return k?k.split('-').reverse().join('/'):''}
 
-  /* sequência: conta a partir de hoje ou de ontem (o dia de hoje ainda pode ser farmado) */
+  /* sequência: conta a partir de hoje ou de ontem (o dia de hoje ainda pode ser farmado).
+     domingo sem farm é dia de descanso: não conta, mas também não quebra a sequência. */
   function streak(farms){
     const days=new Set(farms.map(x=>dateKey(x.date)).filter(Boolean));
     if(!days.size)return 0;
     let d=new Date();d.setHours(12,0,0,0);
     if(!days.has(dateKey(d)))d.setDate(d.getDate()-1);
     let count=0;
-    while(days.has(dateKey(d))){count++;d.setDate(d.getDate()-1)}
+    while(true){
+      if(days.has(dateKey(d))){
+        count++;
+      }else if(d.getDay()!==0){
+        break;
+      }
+      d.setDate(d.getDate()-1);
+    }
     return count;
   }
 
@@ -2254,7 +2280,7 @@ function removerMetaSemanal(){
     set('rtAvgProfit',nf(avgProfit));
     set('rtTotalTime',formatHours(totalTime));
     set('rtAvgProfitHour',nf(avgPph));
-    set('rtStreak',streak(all));
+    set('rtStreak',streak(getFarmsStreak()));
 
     setRecords(farms);
 
