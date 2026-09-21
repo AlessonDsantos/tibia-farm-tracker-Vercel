@@ -302,7 +302,7 @@ tr.total td:first-child{font-weight:700}
   <button type="button" id="goalTabEspecifica" class="on" onclick="setModoMeta('especifica')">🎯 Meta específica</button>
   <button type="button" id="goalTabInfinita" onclick="setModoMeta('infinita')">♾️ Farm livre</button>
  </div>
- <p id="goalHint">O ícone do item aparecerá no seu objetivo.</p>
+ <p id="goalHint">O ícone do item é buscado na Tibia Wiki.</p>
  <div class="field"><label id="goalNameLabel">Nome do item</label>
   <div class="sugg"><input id="gName" autocomplete="off" placeholder="Ex.: Sanguine Razor">
    <div class="sugg-list" id="gSugg"></div></div></div>
@@ -419,7 +419,7 @@ tr.total td:first-child{font-weight:700}
 
 <div class="modal" id="mRanking"><div class="box" style="width:min(760px,100%)">
  <h3>🏆 Ranking do Tibia Farm Tracker</h3>
- <p>Apenas os 10 usuários que mais se esforçaram serão dignos de aparecer no ranking.</p>
+ <p>Top 10 dos usuários que optaram por aparecer no ranking. Os dados são carregados diretamente do banco de dados.</p>
  <div class="rank-tabs">
   <button class="on" id="rankTabFarm" onclick="mostrarRanking('farm')">💰 Melhor Dia</button>
   <button id="rankTabStreak" onclick="mostrarRanking('streak')">🔥 Top Constância</button>
@@ -643,7 +643,7 @@ function setModoMeta(modo){
  document.getElementById("goalGoldField").style.display=metaModoInfinito?"none":"";
  document.getElementById("goalNameLabel").textContent=metaModoInfinito?"Nome do farm":"Nome do item";
  document.getElementById("gName").placeholder=metaModoInfinito?"Ex.: Farm Geral":"Ex.: Sanguine Razor";
- document.getElementById("goalHint").textContent=metaModoInfinito?"Farm livre: sem valor alvo, o ícone será ♾️.":"O ícone do item aparecerá no seu objetivo.";
+ document.getElementById("goalHint").textContent=metaModoInfinito?"Farm livre: sem valor alvo, o ícone será ♾️.":"O ícone do item é buscado na Tibia Wiki.";
  document.getElementById("gPreview").style.display="none";
  document.getElementById("gSugg").classList.remove("open");
 }
@@ -1104,10 +1104,27 @@ function mostrarRanking(tipo){
   });
   renderRankingList();
 }
+function streakAindaValida(updatedAt){
+  if(!updatedAt)return false;
+  let ultimo;
+  try{ ultimo = updatedAt.toDate ? updatedAt.toDate() : new Date(updatedAt); }catch(e){ return false; }
+  if(isNaN(ultimo))return false;
+  ultimo.setHours(12,0,0,0);
+  let cur=new Date();cur.setHours(12,0,0,0);
+  cur.setDate(cur.getDate()-1); // "ontem": hoje ainda pode ser farmado
+  while(cur.getTime()>ultimo.getTime()){
+    if(cur.getDay()!==0)return false; // dia normal (não domingo) sem atualização: sequência quebrada
+    cur.setDate(cur.getDate()-1);
+  }
+  return true;
+}
 function renderRankingList(){
   const box=document.getElementById("rankingList"),status=document.getElementById("rankingStatus");
   if(!box)return;
-  const arr=rankingCache[rankingAtual]||[];
+  const arr=rankingAtual==="streak"
+    ?(rankingCache.streak||[]).map(r=>({...r,_efetivo:streakAindaValida(r.updatedAt)?(Number(r.streak)||0):0}))
+      .sort((a,b)=>b._efetivo-a._efetivo).slice(0,10)
+    :(rankingCache[rankingAtual]||[]);
   if(!arr.length){box.innerHTML='<div class="ranking-empty">Nenhum usuário com nickname cadastrado ainda.</div>';return}
   if(status)status.textContent="Top 10 • atualizado agora";
   const labels={farm:["💰","Melhor dia"," GP"],streak:["🔥","Dias seguidos"," dias"],hunts:["⚔️","Melhor hunt",""]};
@@ -1115,7 +1132,7 @@ function renderRankingList(){
   box.innerHTML=arr.map((r,i)=>{
     let val;
     if(rankingAtual==="farm")val=fmt(Number(r.profit)||0);
-    else if(rankingAtual==="streak")val=(Number(r.streak)||0).toLocaleString("pt-BR");
+    else if(rankingAtual==="streak")val=r._efetivo.toLocaleString("pt-BR");
     else val=esc(r.melhorHuntNome||"—");
     return '<div class="ranking-row"><div class="ranking-pos">'+(i+1)+'</div><div class="ranking-name">'+esc(r.nickname||"Jogador")+'</div><div class="ranking-value"><span>'+meta[0]+'</span>'+val+meta[2]+'</div></div>';
   }).join("");
@@ -1175,8 +1192,8 @@ function previewItem(nome){
  if(!nome){p.style.display="none";return}
  p.style.display="flex";
  p.innerHTML='<img src="'+gifDoItem(nome)+'" alt="" onerror="this.style.display=\'none\';'+
-  'this.nextElementSibling.textContent=\'Gif não encontrado — confira o nome exato do item.\'">'+
-  '<div>Ícone de <b>'+esc(nome)+'</b> carregado da Wiki.</div>'}
+  'this.nextElementSibling.textContent=\'Gif não encontrado na Tibia Wiki — confira o nome exato do item.\'">'+
+  '<div>Ícone de <b>'+esc(nome)+'</b> carregado da Tibia Wiki.</div>'}
 
 /* ================= render ================= */
 /* ================= compartilhar progresso (canvas) ================= */
@@ -1344,7 +1361,7 @@ function render(){
   '<div class="item-name" style="justify-content:center">Comece pela sua meta</div>'+
   '<p style="color:var(--muted);font-size:13px;max-width:430px;margin:10px auto 18px">'+
   'Escolha o item que você quer conquistar, defina o valor em gold e registre o farm de cada dia. '+
-  'O ícone vem direto da Wiki.</p>'+
+  'O ícone vem direto da Tibia Wiki.</p>'+
   '<button class="btn-green" onclick="novaMeta()">Criar minha primeira meta</button></div>';return}
 
  checar(g);
@@ -1391,6 +1408,7 @@ function render(){
     <div class="today" id="todayBox">
      <div class="val goldtxt"><span class="coin">G</span>${fmt(goldDia(g,d))} <small>GP</small></div>
      <div class="val tc"><span class="coin tc">TC</span>${fmt2(tcDia(g,d))} <small>TC</small></div>
+     ${S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(tcDia(g,d)*S.tcBRL)+'</div>':''}
     </div>
     ${tipoTabsHTML('farm')}
     ${campoNomeHTML('farm')}
@@ -1638,7 +1656,7 @@ window.carregarRanking = async function(){
   const base=collection(db,"rankings");
   const [a,b,c]=await Promise.all([
    getDocs(query(base,orderBy("profit","desc"),limit(10))),
-   getDocs(query(base,orderBy("streak","desc"),limit(10))),
+   getDocs(query(base,orderBy("streak","desc"),limit(30))),
    getDocs(query(base,orderBy("melhorHunt","desc"),limit(10)))
   ]);
   const parse=snap=>snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.nickname||"").trim());
