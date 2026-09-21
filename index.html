@@ -399,6 +399,15 @@ tr.total td:first-child{font-weight:700}
   <button onclick="cancelarFarmSuspeito()">Voltar e revisar</button></div>
 </div></div>
 
+<div class="modal" id="mGasto"><div class="box">
+ <h3 id="gastoTitulo">💸 Registrar gasto</h3>
+ <p style="color:var(--muted);font-size:12.5px">Isso desconta do seu Saldo Atual (a meta "recua"), mas não mexe no seu total farmado nem nos seus recordes.</p>
+ <div class="field"><label>Valor em Gold</label><input id="gastoValor" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
+ <div class="field"><label>Descrição (opcional)</label><input id="gastoDescricao" type="text" maxlength="80" placeholder="Ex.: Comprei set, emprestei..."></div>
+ <div class="actions"><button class="btn-green" onclick="confirmarGasto()">Salvar</button>
+  <button onclick="fechar('mGasto')">Cancelar</button></div>
+</div></div>
+
 <div class="modal" id="mShare"><div class="box" style="width:min(640px,100%)">
  <h3>Compartilhar progresso</h3><p>Uma imagem com o resumo da sua meta atual, pronta pra mandar no grupo.</p>
  <div style="border:1px solid #1e4460;border-radius:10px;overflow:hidden;background:#04121f;line-height:0">
@@ -527,7 +536,7 @@ const BOSSES_ROTACOES=[
  {nome:"Rotacao GT",bosses:["Lady Tenebris","Lloyd","Melting Frozen Horror","Thorn Knight"]},
  {nome:"Rotacao GD",bosses:["Count Vlarkorth","Duke Krule","Earl Osam","Lord Azaram","Sir Nictros"]}
 ];
-var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[],bossesPersonalizados:[],bossesFavoritos:[],rotacoesPersonalizadas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerTipo="hunt",huntPickerBusca="",huntPickerFiltro="todas",metaModoInfinito=false;
+var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[],bossesPersonalizados:[],bossesFavoritos:[],rotacoesPersonalizadas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,editGastoId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerTipo="hunt",huntPickerBusca="",huntPickerFiltro="todas",metaModoInfinito=false;
 var tipoSel={farm:"hunt",add:"hunt",edit:"hunt"};
 
 function serializar(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
@@ -576,6 +585,12 @@ function abrir(id){document.getElementById(id).classList.add("open")}
 const isResumo=s=>!!s.resumoDia;
 const gold=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)).reduce((a,s)=>a+Number(s.gold),0);
 const tc=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)).reduce((a,s)=>a+Number(s.gold)/Number(s.tcPrice||S.tcPrice),0);
+/* gastos: quanto do que foi farmado numa meta já foi usado. O Acumulado (gold(g))
+   continua sendo o total farmado (histórico/recordes); o Saldo é o que "sobra"
+   pra essa meta depois de descontar os gastos, e é isso que decide a barra de
+   progresso, o "Falta" e a estimativa. */
+const totalGasto=g=>(Array.isArray(g.gastos)?g.gastos:[]).reduce((a,x)=>a+Number(x.valor||0),0);
+const saldo=g=>gold(g)-totalGasto(g);
 const diasFarm=g=>[...new Set(g.sessoes.filter(s=>!isResumo(s)).map(s=>s.data))].sort();
 const doDia=(g,d)=>g.sessoes.filter(s=>s.data===d&&!s.somado&&!isResumo(s)).sort((a,b)=>String(a.hora||"").localeCompare(String(b.hora||"")));
 const goldDia=(g,d)=>doDia(g,d).reduce((a,s)=>a+Number(s.gold),0);
@@ -666,7 +681,7 @@ function criarMeta(){
  if(!String(S.nickname||"").trim()) S.nickname=(window.gerarNicknameAleatorio?window.gerarNicknameAleatorio():"Jogador"+Math.floor(1000+Math.random()*9000));
  S.tcPrice=p;
  S.metas.push({id:Date.now(),nome:n,img:metaModoInfinito?"":gifDoItem(n),metaGold:g,infinita:metaModoInfinito,criada:new Date().toISOString(),
-  sessoes:[],semanais:[],mensais:[],cursor:0,concluida:null});
+  sessoes:[],gastos:[],semanais:[],mensais:[],cursor:0,concluida:null});
  S.ativa=S.metas[S.metas.length-1].id;salvar();fechar("mGoal");render();toast("Meta criada.");
  abrirAvisoConfiguracoes()}
 function abrirAvisoConfiguracoes(){
@@ -815,6 +830,40 @@ function confirmarAdd(){
 function excluirFarm(id){
  const g=meta();if(!confirm("Excluir este registro?"))return;
  g.sessoes=g.sessoes.filter(s=>String(s.id)!==String(id));salvar();render()}
+function abrirGasto(){
+ const g=meta();if(!g)return;
+ editGastoId=null;
+ document.getElementById("gastoTitulo").textContent="💸 Registrar gasto";
+ document.getElementById("gastoValor").value="";
+ document.getElementById("gastoDescricao").value="";
+ abrir("mGasto");setTimeout(()=>document.getElementById("gastoValor").focus(),50)}
+function editarGasto(id){
+ const g=meta();if(!g)return;
+ const x=(g.gastos||[]).find(x=>String(x.id)===String(id));
+ if(!x)return toast("Registro não encontrado.");
+ editGastoId=id;
+ document.getElementById("gastoTitulo").textContent="💸 Editar gasto";
+ document.getElementById("gastoValor").value=x.valor||"";
+ document.getElementById("gastoDescricao").value=x.descricao||"";
+ abrir("mGasto");setTimeout(()=>document.getElementById("gastoValor").focus(),50)}
+function confirmarGasto(){
+ const g=meta();if(!g)return;
+ const v=parseGold(document.getElementById("gastoValor").value);
+ const desc=(document.getElementById("gastoDescricao").value||"").trim();
+ if(!(v>0))return toast("Informe o valor do gasto.");
+ if(!Array.isArray(g.gastos))g.gastos=[];
+ if(editGastoId){
+  const x=g.gastos.find(x=>String(x.id)===String(editGastoId));
+  if(x){x.valor=v;x.descricao=desc}
+ }else{
+  g.gastos.push({id:Date.now()+Math.random(),data:hoje(),valor:v,descricao:desc});
+ }
+ checar(g);salvar();fechar("mGasto");render();toast("Gasto salvo.")}
+function excluirGasto(id){
+ const g=meta();if(!g)return;
+ if(!confirm("Excluir este gasto?"))return;
+ g.gastos=(g.gastos||[]).filter(x=>String(x.id)!==String(id));
+ checar(g);salvar();render()}
 function editarFarm(id){
  const g=meta();if(!g)return;
  const s=g.sessoes.find(x=>String(x.id)===String(id));
@@ -998,7 +1047,7 @@ function checar(g){
   if(ds.length<7)break;
   gerarSemanal(g,ds.slice(0,7),false)}
  if(diasDesde(g)>=30&&!g.mensais.some(m=>m.auto))gerarMensal(g,true);
- if(!g.infinita&&!g.concluida&&gold(g)>=g.metaGold)g.concluida=new Date().toISOString()}
+ if(!g.infinita&&!g.concluida&&saldo(g)>=g.metaGold)g.concluida=new Date().toISOString()}
 function gerarSemanal(g,ds,manual){
  const fonte=g.sessoes.filter(s=>ds.includes(s.data)&&!s.somado&&!s.resumoDia);
  const resumos=g.sessoes.filter(s=>ds.includes(s.data)&&s.resumoDia);
@@ -1246,7 +1295,7 @@ async function desenharCard(canvas,g,tentarIcone){
   }catch(e){}
  }
 
- const tot=gold(g),falta=g.infinita?0:Math.max(0,g.metaGold-tot),pct=g.infinita?100:Math.min(100,g.metaGold?tot/g.metaGold*100:0);
+ const tot=gold(g),saldoP=Math.max(0,saldo(g)),falta=g.infinita?0:Math.max(0,g.metaGold-saldoP),pct=g.infinita?100:Math.min(100,g.metaGold?saldoP/g.metaGold*100:0);
  const barY=iconDrawn?272:224,barX=150,barW=W-300,barH=28;
  ctx.fillStyle="#02070d";roundRect(ctx,barX,barY,barW,barH,14);ctx.fill();
  ctx.strokeStyle="#2b5170";ctx.lineWidth=1.5;roundRect(ctx,barX,barY,barW,barH,14);ctx.stroke();
@@ -1260,7 +1309,7 @@ async function desenharCard(canvas,g,tentarIcone){
  ctx.fillText(g.infinita?"♾️":Math.round(pct)+"%",barX+barW+16,barY+barH-6);
 
  const statY=barY+68,falBRL=S.tcBRL>0?falta/S.tcPrice*S.tcBRL:0;
- const cols=g.infinita?[["ACUMULADO",fmt(tot)+" GP"],["FALTA","♾️"],["META","♾️"]]:[["ACUMULADO",fmt(tot)+" GP"],["FALTA",fmt(falta)+" GP"],["META",fmt(g.metaGold)+" GP"]];
+ const cols=g.infinita?[["SALDO",fmt(saldoP)+" GP"],["FALTA","♾️"],["META","♾️"]]:[["SALDO",fmt(saldoP)+" GP"],["FALTA",fmt(falta)+" GP"],["META",fmt(g.metaGold)+" GP"]];
  const colW=(W-200)/3;
  ctx.textAlign="center";
  cols.forEach((c,i)=>{
@@ -1325,14 +1374,24 @@ function ringSVG(p){
 function resumoDia(g,d){return g.sessoes.find(s=>s.resumoDia&&s.data===d)||null}
 function tabelaHist(g){
  const ds=diasFarm(g).slice().reverse();
- if(!ds.length)return '<div class="empty"><b>Nenhum farm registrado ainda</b>Use “Registrar Farm” para lançar o primeiro valor do dia.</div>';
- let h='<div class="history-tools"><div class="tabs mini-history-tabs"><button class="'+(abaHist==='dia'?'on':'')+'" onclick="setAbaHist(\'dia\')">Resumo diário</button><button class="'+(abaHist==='hunts'?'on':'')+'" onclick="setAbaHist(\'hunts\')">Farms feitos</button></div><div class="performance-filter history-date-filter"><div class="pf-field"><label for="histDateIni">De</label><input id="histDateIni" type="date" value="'+esc(histDateIni)+'"></div><div class="pf-field"><label for="histDateFim">Até</label><input id="histDateFim" type="date" value="'+esc(histDateFim)+'"></div><button type="button" onclick="limparFiltroHist()">Todos</button></div></div>';
+ const temGastos=Array.isArray(g.gastos)&&g.gastos.length>0;
+ if(!ds.length&&!temGastos)return '<div class="empty"><b>Nenhum farm registrado ainda</b>Use “Registrar Farm” para lançar o primeiro valor do dia.</div>';
+ let h='<div class="history-tools"><div class="tabs mini-history-tabs"><button class="'+(abaHist==='dia'?'on':'')+'" onclick="setAbaHist(\'dia\')">Resumo diário</button><button class="'+(abaHist==='hunts'?'on':'')+'" onclick="setAbaHist(\'hunts\')">Farms feitos</button><button class="'+(abaHist==='gastos'?'on':'')+'" onclick="setAbaHist(\'gastos\')">💸 Gastos</button></div><div class="performance-filter history-date-filter"><div class="pf-field"><label for="histDateIni">De</label><input id="histDateIni" type="date" value="'+esc(histDateIni)+'"></div><div class="pf-field"><label for="histDateFim">Até</label><input id="histDateFim" type="date" value="'+esc(histDateFim)+'"></div><button type="button" onclick="limparFiltroHist()">Todos</button></div></div>';
  if(abaHist==='hunts')return h+tabelaHistHunts(g,ds);
+ if(abaHist==='gastos')return h+tabelaHistGastos(g);
+ if(!ds.length)return h+'<div class="empty"><b>Nenhum farm registrado ainda.</b></div>';
  const filtered=ds.filter(histNoRange);
  if(!filtered.length)return h+'<div class="empty"><b>Nenhum registro neste período.</b></div>';
  let html=h+'<div class="tablewrap"><table><thead><tr><th>Data</th><th>Farms</th><th>Tempo</th><th>Farm (Gold)</th><th>Profit/h</th><th>Tibia Coin</th><th></th></tr></thead><tbody>';
  filtered.forEach(d=>{const arr=doDia(g,d),r=resumoDia(g,d),count=[...new Set(arr.map(s=>(s.hunt||'Farm não informado').trim()))].filter(Boolean).length,total=goldDia(g,d),time=arr.reduce((a,s)=>a+Number(s.time||0),0),pph=time>0?total/(time/60):0,huntsText=r&&r.hunt?r.hunt:(count+(count===1?' farm':' farms'));
   html+='<tr><td>'+brData(d)+(d===hoje()?' <span class="today-tag">(Hoje)</span>':'')+'</td><td><b>'+esc(huntsText)+'</b></td><td>'+(time?time+' min':'—')+'</td><td><div class="cell"><span class="coin">G</span>'+fmt(total)+'</div></td><td><div class="cell"><span class="coin">G</span>'+fmt(pph)+'/h</div></td><td><div class="cell"><span class="coin tc">TC</span>'+fmt2(tcDia(g,d))+'</div></td><td><div class="rowbtns"></div></td></tr>';});
+ return html+'</tbody></table></div>'}
+function tabelaHistGastos(g){
+ const gastos=(g.gastos||[]).slice().sort((a,b)=>b.id-a.id);
+ const filtered=gastos.filter(x=>histNoRange(x.data));
+ if(!filtered.length)return '<div class="empty"><b>Nenhum gasto registrado neste período.</b></div>';
+ let html='<div class="tablewrap"><table><thead><tr><th>Data</th><th>Descrição</th><th>Valor</th><th></th></tr></thead><tbody>';
+ filtered.forEach(x=>{html+='<tr><td>'+brData(x.data)+'</td><td>'+esc(x.descricao||'—')+'</td><td class="goldtxt">-'+fmt(x.valor)+' GP</td><td><div class="rowbtns"><button class="rowbtn" title="Editar" onclick="editarGasto(\''+x.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirGasto(\''+x.id+'\')">🗑️</button></div></td></tr>';});
  return html+'</tbody></table></div>'}
 function tabelaHistHunts(g,ds){
  const filtered=ds.filter(histNoRange);
@@ -1365,9 +1424,9 @@ function render(){
   '<button class="btn-green" onclick="novaMeta()">Criar minha primeira meta</button></div>';return}
 
  checar(g);
- const tot=gold(g),ttc=tc(g),
-  falta=g.infinita?0:Math.max(0,g.metaGold-tot),
-  pct=g.infinita?100:Math.min(100,g.metaGold?tot/g.metaGold*100:0),
+ const tot=gold(g),ttc=tc(g),gastoTotal=totalGasto(g),saldoAtual=saldo(g),saldoP=Math.max(0,saldoAtual),
+  falta=g.infinita?0:Math.max(0,g.metaGold-saldoP),
+  pct=g.infinita?100:Math.min(100,g.metaGold?saldoP/g.metaGold*100:0),
   metaTc=g.infinita?0:g.metaGold/S.tcPrice,faltaTc=g.infinita?0:falta/S.tcPrice,d=hoje(),
   diasComFarm=diasFarmHunt(g).length,
   diasCorridos=janelaFarmHunt(g),
@@ -1391,15 +1450,17 @@ function render(){
      </div>
     </div>
     <div class="stats">
-     <div><small>Acumulado</small>
-      <div class="val goldtxt"><span class="coin">G</span>${fmt(tot)} <small>GP</small></div>
-      <div class="val tc"><span class="coin tc">TC</span>${fmt2(ttc)} <small>TC</small></div>
-      ${S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(ttc*S.tcBRL)+'</div>':''}</div>
+     <div><small>Saldo Atual</small>
+      <div class="val goldtxt"><span class="coin">G</span>${fmt(saldoP)} <small>GP</small></div>
+      <div class="val tc"><span class="coin tc">TC</span>${fmt2(saldoP/S.tcPrice)} <small>TC</small></div>
+      ${S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(saldoP/S.tcPrice*S.tcBRL)+'</div>':''}
+      ${gastoTotal>0?'<div class="muted" style="font-size:10.5px;margin-top:4px">Farmado: '+fmt(tot)+' GP • Gasto: '+fmt(gastoTotal)+' GP</div>':''}</div>
      <div><small>Falta</small>
       ${g.infinita?'<div class="val goldtxt">♾️</div>':'<div class="val goldtxt"><span class="coin">G</span>'+fmt(falta)+' <small>GP</small></div><div class="val tc"><span class="coin tc">TC</span>'+fmt2(faltaTc)+' <small>TC</small></div>'+(S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(faltaTc*S.tcBRL)+'</div>':'')}</div>
      <div><small>Total da Meta</small>
       ${g.infinita?'<div class="val goldtxt">♾️</div>':'<div class="val goldtxt"><span class="coin">G</span>'+fmt(g.metaGold)+' <small>GP</small></div><div class="val tc"><span class="coin tc">TC</span>'+fmt2(metaTc)+' <small>TC</small></div>'+(S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(metaTc*S.tcBRL)+'</div>':'')}</div>
     </div>
+    <div class="actions" style="margin-top:12px"><button onclick="abrirGasto()">💸 Registrar Gasto</button></div>
     ${g.concluida?'<div class="empty greentxt" style="padding:12px 0 0">✓ Meta atingida em '+new Date(g.concluida).toLocaleDateString("pt-BR")+'</div>':''}
    </section>
 
