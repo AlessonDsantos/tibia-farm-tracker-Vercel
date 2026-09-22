@@ -1744,15 +1744,27 @@ window.logoutGoogle = async function(){
 };
 window.cloudPush = pushCloud;
 
+let usuarioAnteriorResolvido=undefined;
 onAuthStateChanged(auth, async (user)=>{
+ const eraLogado=!!usuarioAnteriorResolvido;
  window.currentUser = user;
  if(user){ await pullCloud(user.uid); }
  else{
-  if(window.resetarDadosLocais)window.resetarDadosLocais();
+  if(eraLogado && window.resetarDadosLocais)window.resetarDadosLocais();
   window.render && window.render();
   window.updateAuthUI && window.updateAuthUI();
  }
+ usuarioAnteriorResolvido=user;
+ window.verificarAvisoNickname && window.verificarAvisoNickname();
 });
+</script>
+<script>
+window.verificarAvisoNickname=function(){
+ const nick=String((window.S&&window.S.nickname)||"").trim();
+ if(/^Jogador\d{4}$/.test(nick)&&window.abrirAvisoConfiguracoes){
+  setTimeout(()=>window.abrirAvisoConfiguracoes(),300);
+ }
+};
 </script>
 
 <style>
