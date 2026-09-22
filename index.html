@@ -53,10 +53,11 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;
 .menu div:last-child{border-bottom:0}
 .menu div:hover{background:#0d2c46}
 .menu .add{color:var(--green)}
-.menu .goal-row{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0}
+.menu .goal-row{display:flex;align-items:center;justify-content:space-between;gap:2px;padding:0}
 .menu .goal-row span{flex:1;padding:10px 12px;cursor:pointer}
-.menu .goal-row button{flex:none;background:none;border:none;color:#ff9c9c;font-size:14px;padding:8px 12px;cursor:pointer;line-height:1}
+.menu .goal-row button{flex:none;background:none;border:none;font-size:14px;padding:8px 10px;cursor:pointer;line-height:1;color:#9cbdd4}
 .menu .goal-row button:hover{color:#fff}
+.menu .goal-row button.del{color:#ff9c9c}
 input,select{background:#020a13;border:1px solid #2a5471;color:#eaf5fc;border-radius:8px;padding:9px 10px;
  outline:none;font:inherit;font-size:14px;width:100%;min-width:0}
 input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(76,194,241,.18)}
@@ -297,7 +298,7 @@ tr.total td:first-child{font-weight:700}
 </div></div>
 
 <div class="modal" id="mGoal"><div class="box">
- <h3>Nova meta</h3>
+ <h3 id="mGoalTitulo">Nova meta</h3>
  <div class="tabs" style="margin-bottom:10px">
   <button type="button" id="goalTabEspecifica" class="on" onclick="setModoMeta('especifica')">🎯 Meta específica</button>
   <button type="button" id="goalTabInfinita" onclick="setModoMeta('infinita')">♾️ Farm livre</button>
@@ -313,7 +314,7 @@ tr.total td:first-child{font-weight:700}
   <div><label style="display:block;color:var(--muted);font-size:11px;margin-bottom:6px">Preço da TC</label>
    <input id="gTc" type="number" min="1" placeholder="35000"></div>
  </div>
- <div class="actions"><button class="btn-green" onclick="criarMeta()">Criar meta</button>
+ <div class="actions"><button class="btn-green" id="mGoalBtn" onclick="criarMeta()">Criar meta</button>
   <button onclick="fechar('mGoal')">Cancelar</button></div>
 </div></div>
 
@@ -536,7 +537,7 @@ const BOSSES_ROTACOES=[
  {nome:"Rotacao GT",bosses:["Lady Tenebris","Lloyd","Melting Frozen Horror","Thorn Knight"]},
  {nome:"Rotacao GD",bosses:["Count Vlarkorth","Duke Krule","Earl Osam","Lord Azaram","Sir Nictros"]}
 ];
-var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[],bossesPersonalizados:[],bossesFavoritos:[],rotacoesPersonalizadas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,editGastoId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerTipo="hunt",huntPickerBusca="",huntPickerFiltro="todas",metaModoInfinito=false;
+var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[],bossesPersonalizados:[],bossesFavoritos:[],rotacoesPersonalizadas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,editGastoId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerTipo="hunt",huntPickerBusca="",huntPickerFiltro="todas",metaModoInfinito=false,metaEditandoId=null;
 var tipoSel={farm:"hunt",add:"hunt",edit:"hunt"};
 
 function serializar(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
@@ -663,9 +664,40 @@ function setModoMeta(modo){
  document.getElementById("gSugg").classList.remove("open");
 }
 function novaMeta(){
+ metaEditandoId=null;
+ document.getElementById("mGoalTitulo").textContent="Nova meta";
+ document.getElementById("mGoalBtn").textContent="Criar meta";
  document.getElementById("gName").value="";document.getElementById("gGold").value="";
  document.getElementById("gTc").value=S.tcPrice;document.getElementById("gPreview").style.display="none";
  document.getElementById("gSugg").classList.remove("open");setModoMeta("especifica");abrir("mGoal");
+ setTimeout(()=>document.getElementById("gName").focus(),50)}
+function abrirEditarMeta(id){
+ const g=S.metas.find(m=>m.id===id);
+ if(!g)return toast("Meta não encontrada.");
+ metaEditandoId=id;
+ document.getElementById("mGoalTitulo").textContent="Editar meta";
+ document.getElementById("mGoalBtn").textContent="Salvar alterações";
+ document.getElementById("gName").value=g.nome||"";
+ document.getElementById("gGold").value=g.infinita?"":(g.metaGold||"");
+ document.getElementById("gTc").value=S.tcPrice;
+ document.getElementById("gPreview").style.display="none";
+ document.getElementById("gSugg").classList.remove("open");
+ setModoMeta(g.infinita?"infinita":"especifica");
+ menuAberto=false;const gm=document.getElementById("goalMenu");if(gm)gm.classList.remove("open");
+ abrir("mGoal");
+ setTimeout(()=>document.getElementById("gName").focus(),50)}
+function abrirNovaMetaAposConclusao(){
+ const g=meta();if(!g)return;
+ metaEditandoId=g.id;
+ document.getElementById("mGoalTitulo").textContent="Definir nova meta";
+ document.getElementById("mGoalBtn").textContent="Salvar nova meta";
+ document.getElementById("gName").value="";
+ document.getElementById("gGold").value="";
+ document.getElementById("gTc").value=S.tcPrice;
+ document.getElementById("gPreview").style.display="none";
+ document.getElementById("gSugg").classList.remove("open");
+ setModoMeta("especifica");
+ abrir("mGoal");
  setTimeout(()=>document.getElementById("gName").focus(),50)}
 function criarMeta(){
  const n=document.getElementById("gName").value.trim(),
@@ -677,9 +709,18 @@ function criarMeta(){
   g=parseGold(document.getElementById("gGold").value);
   if(!(g>0))return toast("Informe a meta em gold.");
  }
+ S.tcPrice=p;
+ if(metaEditandoId){
+  const alvo=S.metas.find(m=>m.id===metaEditandoId);
+  if(!alvo)return toast("Meta não encontrada.");
+  if(alvo.nome!==n)alvo.img=metaModoInfinito?"":gifDoItem(n);
+  alvo.nome=n;alvo.metaGold=g;alvo.infinita=metaModoInfinito;alvo.concluida=null;
+  metaEditandoId=null;
+  salvar();fechar("mGoal");render();toast("Meta atualizada. Farms e desempenho continuam intactos.");
+  return;
+ }
  // O nickname aleatório é criado somente quando a primeira meta é criada.
  if(!String(S.nickname||"").trim()) S.nickname=(window.gerarNicknameAleatorio?window.gerarNicknameAleatorio():"Jogador"+Math.floor(1000+Math.random()*9000));
- S.tcPrice=p;
  S.metas.push({id:Date.now(),nome:n,img:metaModoInfinito?"":gifDoItem(n),metaGold:g,infinita:metaModoInfinito,criada:new Date().toISOString(),
   sessoes:[],gastos:[],semanais:[],mensais:[],cursor:0,concluida:null});
  S.ativa=S.metas[S.metas.length-1].id;salvar();fechar("mGoal");render();toast("Meta criada.");
@@ -1412,7 +1453,7 @@ function render(){
  // dropdown de metas
  document.getElementById("goalLabel").textContent=g?g.nome:"Nenhuma meta";
  document.getElementById("goalMenu").innerHTML=
-  S.metas.map(m=>'<div class="goal-row"><span onclick="trocarMeta('+m.id+')">'+esc(m.nome)+(m.id===S.ativa?' ✓':'')+'</span><button type="button" title="Excluir meta" onclick="event.stopPropagation();excluirMetaPorId('+m.id+')">🗑️</button></div>').join("")+
+  S.metas.map(m=>'<div class="goal-row"><span onclick="trocarMeta('+m.id+')">'+esc(m.nome)+(m.id===S.ativa?' ✓':'')+'</span><button type="button" title="Editar meta" onclick="event.stopPropagation();abrirEditarMeta('+m.id+')">✏️</button><button type="button" class="del" title="Excluir meta" onclick="event.stopPropagation();excluirMetaPorId('+m.id+')">🗑️</button></div>').join("")+
   '<div class="add" onclick="novaMeta()">+ Criar nova meta</div>';
  document.getElementById("goalMenu").classList.toggle("open",menuAberto);
 
@@ -1461,7 +1502,7 @@ function render(){
       ${g.infinita?'<div class="val goldtxt">♾️</div>':'<div class="val goldtxt"><span class="coin">G</span>'+fmt(g.metaGold)+' <small>GP</small></div><div class="val tc"><span class="coin tc">TC</span>'+fmt2(metaTc)+' <small>TC</small></div>'+(S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(metaTc*S.tcBRL)+'</div>':'')}</div>
     </div>
     <div class="actions" style="margin-top:12px"><button onclick="abrirGasto()">💸 Registrar Gasto</button></div>
-    ${g.concluida?'<div class="empty greentxt" style="padding:12px 0 0">✓ Meta atingida em '+new Date(g.concluida).toLocaleDateString("pt-BR")+'</div>':''}
+    ${g.concluida?'<div class="empty greentxt" style="padding:12px 0 0">✓ Meta atingida em '+new Date(g.concluida).toLocaleDateString("pt-BR")+'</div><div class="actions" style="margin-top:10px"><button class="btn-green" onclick="abrirNovaMetaAposConclusao()">🎯 Definir nova meta</button></div>':''}
    </section>
 
    <section class="card">
