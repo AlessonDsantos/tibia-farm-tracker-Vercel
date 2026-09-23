@@ -410,7 +410,12 @@ tr.total td:first-child{font-weight:700}
 </div></div>
 
 <div class="modal" id="mShare"><div class="box" style="width:min(640px,100%)">
- <h3>Compartilhar progresso</h3><p>Uma imagem com o resumo da sua meta atual, pronta pra mandar no grupo.</p>
+ <h3 id="shareTitulo">Compartilhar progresso</h3>
+ <div class="tabs" style="margin-bottom:8px">
+  <button type="button" id="shareTabProgresso" class="on" onclick="setShareModo('progresso')">📊 Progresso da Meta</button>
+  <button type="button" id="shareTabRecordes" onclick="setShareModo('recordes')">🏆 Meus Recordes</button>
+ </div>
+ <p id="shareDescricao">Uma imagem com o resumo da sua meta atual, pronta pra mandar no grupo.</p>
  <div style="border:1px solid #1e4460;border-radius:10px;overflow:hidden;background:#04121f;line-height:0">
   <canvas id="shareCanvas" width="1200" height="630" style="width:100%;height:auto;display:block"></canvas>
  </div>
@@ -1375,32 +1380,96 @@ async function desenharCard(canvas,g,tentarIcone){
  ctx.fillStyle="#5c7690";ctx.font="13px Arial";
  ctx.fillText("Gerado em "+new Date().toLocaleDateString("pt-BR"),W/2,H-22);
 }
+async function desenharCardRecordes(canvas){
+ const ctx=canvas.getContext("2d"),W=canvas.width,H=canvas.height;
+ ctx.clearRect(0,0,W,H);
+ const grad=ctx.createLinearGradient(0,0,W,H);
+ grad.addColorStop(0,"#0d2c46");grad.addColorStop(.55,"#071627");grad.addColorStop(1,"#020810");
+ ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+ const rg=ctx.createRadialGradient(W*.5,H*.08,10,W*.5,H*.08,W*.62);
+ rg.addColorStop(0,"rgba(76,194,241,.20)");rg.addColorStop(1,"rgba(76,194,241,0)");
+ ctx.fillStyle=rg;ctx.fillRect(0,0,W,H);
+ ctx.strokeStyle="rgba(76,194,241,.4)";ctx.lineWidth=3;
+ roundRect(ctx,11,11,W-22,H-22,22);ctx.stroke();
+
+ ctx.textAlign="center";
+ ctx.fillStyle="#7fd6ff";ctx.font="700 21px Arial";
+ ctx.fillText("T I B I A   F A R M   T R A C K E R",W/2,56);
+
+ const tg=ctx.createLinearGradient(0,78,0,138);
+ tg.addColorStop(0,"#fff3c4");tg.addColorStop(1,"#e6a92f");
+ ctx.fillStyle=tg;ctx.font="700 46px Georgia";
+ ctx.fillText("MEUS RECORDES",W/2,138);
+
+ const rec=window.TibiaFarmRetention&&window.TibiaFarmRetention.getRecords?window.TibiaFarmRetention.getRecords():null;
+ const itens=[
+  ["💰","MAIOR PROFIT",rec&&rec.byProfit?fmt(rec.byProfit.profit)+" GP":"—",rec&&rec.byProfit?"em "+brData(rec.byProfit.date):""],
+  ["📈","MAIOR PROFIT/H",rec&&rec.byPph?fmt(rec.byPph.pph)+" GP/h":"—",""],
+  ["⚔️","MELHOR HUNT",rec&&rec.melhor?rec.melhor.hunt:"—",rec&&rec.melhor?fmt(rec.melhor.pph)+" GP/h de média":""]
+ ];
+ const cardY=210,cardH=110,cardGap=26,cardX=110,cardW=W-220;
+ itens.forEach((it,i)=>{
+  const y=cardY+i*(cardH+cardGap);
+  ctx.fillStyle="#02070d";roundRect(ctx,cardX,y,cardW,cardH,16);ctx.fill();
+  ctx.strokeStyle="#2b5170";ctx.lineWidth=1.5;roundRect(ctx,cardX,y,cardW,cardH,16);ctx.stroke();
+  ctx.textAlign="left";
+  ctx.font="40px Arial";ctx.fillStyle="#e9f6ff";
+  ctx.fillText(it[0],cardX+26,y+cardH/2+14);
+  ctx.font="600 16px Arial";ctx.fillStyle="#8aa5bb";
+  ctx.fillText(it[1],cardX+90,y+38);
+  ctx.font="700 28px Arial";ctx.fillStyle="#ffd978";
+  ctx.fillText(it[2],cardX+90,y+72);
+  if(it[3]){ctx.font="500 14px Arial";ctx.fillStyle="#7fd6ff";ctx.fillText(it[3],cardX+90,y+94)}
+ });
+
+ ctx.textAlign="center";
+ ctx.fillStyle="#5c7690";ctx.font="13px Arial";
+ ctx.fillText("Gerado em "+new Date().toLocaleDateString("pt-BR"),W/2,H-22);
+}
+let shareModo="progresso";
+async function redesenharShare(){
+ const canvas=document.getElementById("shareCanvas");
+ if(shareModo==="recordes")await desenharCardRecordes(canvas);
+ else{const g=meta();if(g)await desenharCard(canvas,g,true)}
+}
+async function setShareModo(modo){
+ shareModo=modo;
+ document.getElementById("shareTabProgresso").classList.toggle("on",modo==="progresso");
+ document.getElementById("shareTabRecordes").classList.toggle("on",modo==="recordes");
+ document.getElementById("shareTitulo").textContent=modo==="progresso"?"Compartilhar progresso":"Compartilhar recordes";
+ document.getElementById("shareDescricao").textContent=modo==="progresso"?"Uma imagem com o resumo da sua meta atual, pronta pra mandar no grupo.":"Uma imagem com seus melhores resultados de farm (Hunt), pronta pra mandar no grupo.";
+ await redesenharShare();
+}
 async function abrirCompartilhar(){
  const g=meta();if(!g)return toast("Crie uma meta primeiro.");
  abrir("mShare");
- const canvas=document.getElementById("shareCanvas");
- await desenharCard(canvas,g,true);
+ await setShareModo("progresso");
 }
 async function exportarCardBlob(){
- const canvas=document.getElementById("shareCanvas"),g=meta();if(!g)return null;
+ const canvas=document.getElementById("shareCanvas");
  let blob=await new Promise(res=>{try{canvas.toBlob(b=>res(b),"image/png")}catch(e){res(null)}});
- if(!blob){await desenharCard(canvas,g,false);
+ if(!blob){
+  if(shareModo==="recordes")await desenharCardRecordes(canvas);
+  else{const g=meta();if(g)await desenharCard(canvas,g,false)}
   blob=await new Promise(res=>{try{canvas.toBlob(b=>res(b),"image/png")}catch(e){res(null)}})}
  return blob}
 async function baixarCard(){
  const blob=await exportarCardBlob();
  if(!blob)return toast("Não foi possível gerar a imagem.");
- const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="tibia-farm-tracker.png";a.click();
+ const nome=shareModo==="recordes"?"tibia-farm-tracker-recordes.png":"tibia-farm-tracker.png";
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=nome;a.click();
  setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast("Imagem baixada.")}
 async function compartilharCard(){
  const blob=await exportarCardBlob();
  if(!blob)return toast("Não foi possível gerar a imagem.");
- const file=new File([blob],"tibia-farm-tracker.png",{type:"image/png"});
+ const nome=shareModo==="recordes"?"tibia-farm-tracker-recordes.png":"tibia-farm-tracker.png";
+ const texto=shareModo==="recordes"?"Meus recordes de farm!":"Meu progresso na meta!";
+ const file=new File([blob],nome,{type:"image/png"});
  if(navigator.canShare&&navigator.canShare({files:[file]})){
-  try{await navigator.share({files:[file],title:"Tibia Farm Tracker",text:"Meu progresso na meta!"})}
+  try{await navigator.share({files:[file],title:"Tibia Farm Tracker",text:texto})}
   catch(e){/* usuário cancelou */}
  }else{
-  const a=document.createElement("a");a.href=URL.createObjectURL(file);a.download="tibia-farm-tracker.png";a.click();
+  const a=document.createElement("a");a.href=URL.createObjectURL(file);a.download=nome;a.click();
   setTimeout(()=>URL.revokeObjectURL(a.href),4000);
   toast("Seu navegador não suporta compartilhar direto — imagem baixada, é só anexar.");
  }}
@@ -2347,14 +2416,11 @@ function removerMetaSemanal(){
     },{passive:true});
   }
 
-  function setRecords(farms){
-    const box=document.getElementById('rtRecords');
-    if(!box)return;
-    const vazio='<div class="retention-record">💰 Maior profit<strong>—</strong></div><div class="retention-record">📈 Maior profit/h<strong>—</strong></div><div class="retention-record">🗺️ Melhor hunt<strong>—</strong></div>';
-    if(!farms.length){box.innerHTML=vazio;return}
+  function computeRecords(farms){
+    if(!farms.length)return null;
     /* recordes ignoram farms marcados como suspeitos (profit/h de Hunt fora do padrão) */
     const validos=farms.filter(f=>!f.suspeito);
-    if(!validos.length){box.innerHTML=vazio;return}
+    if(!validos.length)return null;
     const byProfit=validos.reduce((a,b)=>b.profit>a.profit?b:a);
     const comTempo=validos.filter(f=>f.time>0);
     const byPph=comTempo.length?comTempo.reduce((a,b)=>b.pph>a.pph?b:a):null;
@@ -2364,10 +2430,18 @@ function removerMetaSemanal(){
     soHunts.forEach(f=>{const c=porHunt.get(f.hunt)||{gold:0,time:0};c.gold+=f.profit;c.time+=f.time;porHunt.set(f.hunt,c)});
     let melhor=null;
     porHunt.forEach((v,k)=>{const pph=v.time>0?v.gold/v.time:0;if(!melhor||pph>melhor.pph)melhor={hunt:k,pph}});
+    return {byProfit,byPph,melhor};
+  }
+  function setRecords(farms){
+    const box=document.getElementById('rtRecords');
+    if(!box)return;
+    const vazio='<div class="retention-record">💰 Maior profit<strong>—</strong></div><div class="retention-record">📈 Maior profit/h<strong>—</strong></div><div class="retention-record">🗺️ Melhor hunt<strong>—</strong></div>';
+    const r=computeRecords(farms);
+    if(!r){box.innerHTML=vazio;return}
     box.innerHTML=[
-      ['💰 Maior profit',nf(byProfit.profit)+' ('+brData(dateKey(byProfit.date))+')'],
-      ['📈 Maior profit/h',byPph?nf(byPph.pph)+'/h':'—'],
-      ['🗺️ Melhor hunt',melhor&&melhor.pph>0?melhor.hunt+' · '+nf(melhor.pph)+'/h':'—']
+      ['💰 Maior profit',nf(r.byProfit.profit)+' ('+brData(dateKey(r.byProfit.date))+')'],
+      ['📈 Maior profit/h',r.byPph?nf(r.byPph.pph)+'/h':'—'],
+      ['🗺️ Melhor hunt',r.melhor&&r.melhor.pph>0?r.melhor.hunt+' · '+nf(r.melhor.pph)+'/h':'—']
     ].map(x=>'<div class="retention-record">'+x[0]+'<strong>'+x[1]+'</strong></div>').join('');
   }
 
@@ -2438,7 +2512,8 @@ function removerMetaSemanal(){
     setDate:function(d){selectedIni=d||'';selectedFim=d||'';render()},
     setRange:function(ini,fim){selectedIni=ini||'';selectedFim=fim||'';render()},
     clearDate:function(){selectedIni='';selectedFim='';render()},
-    setWeeklyGoal:function(v){v=number(v);if(v>0){localStorage.setItem('tft_weekly_goal',v);render()}}
+    setWeeklyGoal:function(v){v=number(v);if(v>0){localStorage.setItem('tft_weekly_goal',v);render()}},
+    getRecords:function(){return computeRecords(getFarms())}
   };
 
   /* atualiza sempre que o app salvar ou re-renderizar */
