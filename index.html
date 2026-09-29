@@ -263,7 +263,27 @@ tr.total td:first-child{font-weight:700}
 <style>
 .retention-header{background:transparent !important;}
 .retention-dashboard{background:transparent !important;}
-.retention-card,.retention-section{background:rgba(4,16,29,.52) !important;}
+.retention-card,.retention-section{background:linear-gradient(180deg,rgba(7,22,38,.94),rgba(4,12,23,.96)) !important;border:1px solid var(--line2) !important;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+
+/* === Etapa 2: páginas separadas (mostra 1 seção por vez, reaproveitando a mesma sidebar) === */
+.tft-shell[data-tft-page="farm"] #retentionDashboard,
+.tft-shell[data-tft-page="historico"] #retentionDashboard,
+.tft-shell[data-tft-page="metas"] #retentionDashboard{display:none}
+.tft-shell[data-tft-page="desempenho"] #app{display:none}
+.tft-shell[data-tft-page="desempenho"] #retentionDashboard{margin-top:2px}
+.tft-shell[data-tft-page="farm"] #secaoHistorico,
+.tft-shell[data-tft-page="farm"] #cardResumoGeral,
+.tft-shell[data-tft-page="farm"] #cardRelatorios,
+.tft-shell[data-tft-page="farm"] #cardHistoricoRelatorios{display:none}
+.tft-shell[data-tft-page="historico"] #secaoMetas,
+.tft-shell[data-tft-page="historico"] #secaoFarm,
+.tft-shell[data-tft-page="historico"] #cardResumoGeral,
+.tft-shell[data-tft-page="historico"] #cardRelatorios,
+.tft-shell[data-tft-page="historico"] #cardHistoricoRelatorios{display:none}
+.tft-shell[data-tft-page="metas"] #secaoFarm,
+.tft-shell[data-tft-page="metas"] #secaoHistorico,
+.tft-shell[data-tft-page="metas"] #cardRelatorios,
+.tft-shell[data-tft-page="metas"] #cardHistoricoRelatorios{display:none}
 .performance-filter{display:flex;align-items:end;gap:7px;flex-wrap:wrap;background:rgba(4,16,29,.42);border:1px solid rgba(44,97,136,.55);padding:8px;border-radius:10px;}
 .aviso-callout{background:rgba(4,16,29,.55);border:1px solid rgba(63,146,214,.55);border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.55;color:#cfe8fb;margin:12px 0}
 .performance-filter .pf-field{display:flex;flex-direction:column;gap:2px}
@@ -1730,7 +1750,7 @@ function render(){
   </div>
 
   <div class="side">
-   <section class="card">
+   <section class="card" id="cardResumoGeral">
     <h2>👤 Resumo Geral</h2>
     <div class="sum">
      <div class="line"><span class="coin">G</span><div><small>Gold Total</small><b class="goldtxt">${fmt(tot)} GP</b></div></div>
@@ -1747,7 +1767,7 @@ function render(){
     </div>
    </section>
 
-   <section class="card">
+   <section class="card" id="cardRelatorios">
     <h2>🗂 Relatórios</h2>
     <div class="rep">
      <button class="blue" onclick="abrirCompartilhar()"><b>📤 Compartilhar Progresso</b><small>Gera uma imagem para enviar no grupo ou guild</small></button>
@@ -1757,7 +1777,7 @@ function render(){
     </div>
    </section>
 
-   <section class="card">
+   <section class="card" id="cardHistoricoRelatorios">
     <h2>🕘 Histórico de Relatórios</h2>
     <div class="minitabs">
      <button class="${abaRel==="semanal"?"on":""}" onclick="setAbaRel('semanal')">Semanal</button>
@@ -2730,16 +2750,24 @@ function tftAbrirMenu(){var s=document.getElementById("tftSidebar"),o=document.g
 function tftFecharMenu(){var s=document.getElementById("tftSidebar"),o=document.getElementById("tftOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open")}
 function tftMarcarNav(k){document.querySelectorAll("#tftNav button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-nav")===k)})}
 function tftScrollTo(id){var el=document.getElementById(id);if(!el)return false;el.scrollIntoView({behavior:"smooth",block:"start"});return true}
+var TFT_PAGES=["inicio","farm","desempenho","historico","metas"];
+function tftDefinirPagina(k){
+ var shell=document.querySelector(".tft-shell");
+ if(!shell)return;
+ if(TFT_PAGES.indexOf(k)===-1)k="inicio";
+ if(k==="inicio")shell.removeAttribute("data-tft-page");
+ else shell.setAttribute("data-tft-page",k);
+}
 function tftNav(k){
  tftFecharMenu();
  if(k==="rankings"){if(typeof abrirRanking==="function")abrirRanking();return}
  if(k==="config"){if(typeof abrirConfig==="function")abrirConfig();return}
  tftMarcarNav(k);
- if(k==="inicio"){window.scrollTo({top:0,behavior:"smooth"});return}
- var alvo={farm:"secaoFarm",desempenho:"retentionDashboard",historico:"secaoHistorico",metas:"secaoMetas"}[k];
- if(alvo&&!tftScrollTo(alvo)){
-  /* sem meta ainda: os cards do app não existem, então leva o usuário a criar uma */
-  if(k!=="desempenho"&&typeof novaMeta==="function")novaMeta();
+ tftDefinirPagina(k);
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(k==="farm"||k==="metas"){
+  /* sem meta ainda: os cards do app não existem nessa página, leva o usuário a criar uma */
+  if(!document.getElementById("secaoMetas")&&typeof novaMeta==="function")novaMeta();
  }
 }
 function tftAtualizarHero(){
@@ -2760,12 +2788,7 @@ function tftAtualizarHero(){
   w.__tftHero=true;window.render=w;
  }
  tftAtualizarHero();
- window.addEventListener("scroll",function(){
-  var ids=[["inicio",null],["metas","secaoMetas"],["farm","secaoFarm"],["historico","secaoHistorico"],["desempenho","retentionDashboard"]];
-  var atual="inicio";
-  ids.forEach(function(p){if(!p[1])return;var el=document.getElementById(p[1]);if(el&&el.getBoundingClientRect().top<=160)atual=p[0]});
-  tftMarcarNav(atual);
- },{passive:true});
+ tftMarcarNav("inicio");
 })();
 </script>
 
