@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "catalog_name": "Tibia Farm Tracker - Loot Seller Catalog",
+  "created_at": "2026-09-29",
+  "language": "pt-BR",
+  "currency": "gp",
+  "notes": [
+    "Base inicial de protótipo, não um catálogo completo do Tibia.",
+    "Itens com status needs_verification não devem ser tratados como preço zero nem como não vendáveis.",
+    "Valores de venda a NPC são distintos de preços do Market."
+  ],
+  "items": [
+    {
+      "name": "Great Mana Potion",
+      "aliases": [],
+      "sample_quantity": 33,
+      "status": "verified",
+      "unit_sell_price_gp": 158,
+      "buyers": [
+        {
+          "npc": "Asima",
+          "location": "Darashia"
+        },
+        {
+          "npc": "Chuckles",
+          "location": "Yalahar"
+        },
+        {
+          "npc": "Digger",
+          "location": "Venore"
+        },
+        {
+          "npc": "Frederik",
+          "location": "Liberty Bay"
+        },
+        {
+          "npc": "Mehkesh",
+          "location": "Ankrahmun"
+        },
+        {
+          "npc": "Nelly",
+          "location": "Svargrond"
+        },
+        {
+          "npc": "Rachel",
+          "location": "Carlin"
+        },
+        {
+          "npc": "Shiriel",
+          "location": "Ab'Dendriel"
+        },
+        {
+          "npc": "Sandra",
+          "location": "Edron"
+        }
+      ],
+      "wiki_url": "https://www.tibiawiki.com.br/wiki/Great_Mana_Potion",
+      "source_note": "Preço e lista de compradores verificados em resultados da TibiaWiki; algumas versões de página mostram listas parciais."
+    },
+    {
+      "name": "Great Health Potion",
+      "aliases": [],
+      "sample_quantity": 90,
+      "status": "verified_partial",
+      "unit_sell_price_gp": 225,
+      "buyers": [
+        {
+          "npc": "Digger",
+          "location": "Venore"
+        },
+        {
+          "npc": "Mehkesh",
+          "location": "Ankrahmun"
+        }
+      ],
+      "wiki_url": "https://www.tibiawiki.com.br/wiki/Great_Health_Potion",
+      "source_note": "Preço de 225 gp confirmado nas páginas dos NPCs; lista de compradores ainda não exaustiva."
+    },
+    {
+      "name": "Terra Boots",
+      "aliases": [],
+      "sample_quantity": 18,
+      "status": "verified",
+      "unit_sell_price_gp": 2500,
+      "buyers": [
+        {
+          "npc": "Rashid",
+          "location": "itinerante; consultar localização diária"
+        }
+      ],
+      "wiki_url": "https://www.tibiawiki.com.br/wiki/Terra_Boots",
+      "source_note": "TibiaWiki lista Rashid por 2.500 gp."
+    },
+    {
+      "name": "Carnisylvan Finger",
+      "aliases": [],
+      "sample_quantity": 154,
+      "status": "verified",
+      "unit_sell_price_gp": 250,
+      "buyers": [
+        {
+          "npc": "Augustin",
+          "location": "Bounac"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin, Liberty Bay ou Ankrahmun"
+        }
+      ],
+      "wiki_url": "https://www.tibiawiki.com.br/wiki/Carnisylvan_Finger",
+      "source_note": "TibiaWiki lista Augustin e Yasir por 250 gp."
+    },
+    {
+      "name": "Carnisylvan Bark",
+      "aliases": [],
+      "sample_quantity": 232,
+      "status": "verified",
+      "unit_sell_price_gp": 230,
+      "buyers": [
+        {
+          "npc": "Augustin",
+          "location": "Bounac"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin, Liberty Bay ou Ankrahmun"
+        }
+      ],
+      "wiki_url": "https://www.tibiawiki.com.br/wiki/Carnisylvan_Bark",
+      "source_note": "TibiaWiki lista Augustin e Yasir por 230 gp."
+    }
+  ],
+  "pending_items_from_sample_hunt": [
+    "Giant Shimmering Pearl",
+    "Terra Hood",
+    "Lightning Headband",
+    "Terra Rod",
+    "Hailstorm Rod",
+    "War Hammer",
+    "Guardian Halberd",
+    "Knight Axe",
+    "Epee",
+    "Diamond Sceptre",
+    "Dragonbone Staff",
+    "Spellbook of Warding",
+    "Underworld Rod",
+    "Springsprout Rod",
+    "Wand of Starstorm",
+    "Sacred Tree Amulet",
+    "Collar of Blue Plasma",
+    "Gemmed Figurine",
+    "Butterfly Ring",
+    "Human Teeth",
+    "Gold Coin",
+    "Platinum Coin"
+  ],
+  "parser_notes": [
+    "O texto do Hunt Analyzer pode usar nomes localizados ou quantidades com separadores; normalização de nomes deve ser implementada na ferramenta.",
+    "Vendedores alternativos são opções, não devem ser somados entre si para calcular um total único de venda."
+  ]
+}
