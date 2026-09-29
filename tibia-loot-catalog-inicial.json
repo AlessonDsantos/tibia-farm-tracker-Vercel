@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "game": "Tibia",
+  "currency": "gp",
+  "description": "Catálogo inicial importável para o Guia de Venda de Loot. Preços e compradores devem ser revisados conforme updates do jogo.",
+  "items": {
+    "great mana potion": {
+      "name": "Great Mana Potion",
+      "price": 158,
+      "buyers": [
+        { "npc": "Asima", "location": "Darashia" },
+        { "npc": "Chuckles", "location": "Yalahar" },
+        { "npc": "Digger", "location": "Venore" },
+        { "npc": "Frederik", "location": "Liberty Bay" },
+        { "npc": "Mehkesh", "location": "Ankrahmun" },
+        { "npc": "Nelly", "location": "Svargrond" },
+        { "npc": "Rachel", "location": "Carlin" },
+        { "npc": "Shiriel", "location": "Ab'Dendriel" },
+        { "npc": "Sandra", "location": "Edron" }
+      ],
+      "source": "Catálogo já presente na versão atual do site",
+      "verified": false
+    },
+    "great health potion": {
+      "name": "Great Health Potion",
+      "price": 225,
+      "buyers": [
+        { "npc": "Digger", "location": "Venore" },
+        { "npc": "Mehkesh", "location": "Ankrahmun" }
+      ],
+      "source": "Catálogo já presente na versão atual do site",
+      "verified": false
+    },
+    "terra boots": {
+      "name": "Terra Boots",
+      "price": 2500,
+      "buyers": [{ "npc": "Rashid", "location": "Itinerante" }],
+      "source": "Catálogo já presente na versão atual do site",
+      "verified": false
+    },
+    "carnisylvan finger": {
+      "name": "Carnisylvan Finger",
+      "price": 250,
+      "buyers": [
+        { "npc": "Augustin", "location": "Bounac" },
+        { "npc": "Yasir", "location": "Carlin / Liberty Bay / Ankrahmun" }
+      ],
+      "source": "Catálogo já presente na versão atual do site",
+      "verified": false
+    },
+    "carnisylvan bark": {
+      "name": "Carnisylvan Bark",
+      "price": 230,
+      "buyers": [
+        { "npc": "Augustin", "location": "Bounac" },
+        { "npc": "Yasir", "location": "Carlin / Liberty Bay / Ankrahmun" }
+      ],
+      "source": "Catálogo já presente na versão atual do site",
+      "verified": false
+    },
+    "boar man hoof": {
+      "name": "Boar Man Hoof",
+      "price": 600,
+      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
+      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
+      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "verified": true
+    },
+    "carnivostrich feather": {
+      "name": "Carnivostrich Feather",
+      "price": 630,
+      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
+      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
+      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "verified": true
+    },
+    "crab man claws": {
+      "name": "Crab Man Claws",
+      "price": 550,
+      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
+      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
+      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "verified": true
+    },
+    "harpy feathers": {
+      "name": "Harpy Feathers",
+      "price": 730,
+      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
+      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
+      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "verified": true
+    },
+    "liodile fang": {
+      "name": "Liodile Fang",
+      "price": 480,
+      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
+      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
+      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "verified": true
+    },
+    "rhindeer antlers": {
+      "name": "Rhindeer Antlers",
+      "price": 68,
+      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
+      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
+      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "verified": true
+    }
+  }
+}
