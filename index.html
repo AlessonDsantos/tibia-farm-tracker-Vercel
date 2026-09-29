@@ -231,6 +231,10 @@ tr.total td:first-child{font-weight:700}
 .tft-nav button{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:10px;border:1px solid transparent;
  background:none;color:#9cbdd4;font-size:12.8px;cursor:pointer;text-align:left;font-family:inherit;width:100%}
 .tft-nav button .ic{font-size:15px;width:17px;text-align:center;flex:none}
+.tft-nav .tft-subnav{display:none;flex-direction:column;gap:3px;margin:0 0 4px 16px;padding-left:10px;border-left:1px solid rgba(233,196,106,.25)}
+.tft-nav .tft-subnav.open{display:flex}
+.tft-nav .tft-subnav button{font-size:13px;padding:8px 10px;color:#b8c8d5}
+.tft-nav .tft-subnav button.on{color:#f0d58c;background:rgba(233,196,106,.10)}
 .tft-nav button:hover{background:rgba(233,196,106,.07);color:#e7f1fa}
 .tft-nav button.on{background:linear-gradient(90deg,rgba(233,196,106,.16),rgba(233,196,106,.02));
  border-color:rgba(233,196,106,.25);color:#ffd978;font-weight:600}
@@ -318,6 +322,12 @@ tr.total td:first-child{font-weight:700}
 .ranking-empty{padding:28px 12px;text-align:center;color:var(--muted);border:1px dashed rgba(127,127,127,.25);border-radius:10px}
 @media(max-width:600px){.ranking-row{grid-template-columns:34px 1fr}.ranking-value{grid-column:2;text-align:left}.rank-tabs button{min-width:0}}
 </style>
+<style>
+#tftLootModal{display:none;position:fixed;inset:0;z-index:10050;background:rgba(0,0,0,.78);padding:18px;overflow:auto;align-items:center;justify-content:center}
+#tftLootModal.open{display:flex}#tftLootModal .loot-box{width:min(1050px,100%);max-height:92vh;overflow:auto;background:#081a2b;color:#dcecf8;border:1px solid #31516b;border-radius:14px;padding:20px;box-shadow:0 20px 70px #000b}
+.loot-box h2{margin:0 0 6px;color:#f1f8ff}.loot-muted{color:#9cb6ca;font-size:13px;line-height:1.5}#tftLootText{width:100%;min-height:150px;resize:vertical;background:#04111e;color:#e4f2ff;border:1px solid #31516b;border-radius:9px;padding:12px;font:13px/1.5 ui-monospace,monospace;box-sizing:border-box}
+.loot-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.loot-actions button{border:1px solid #38617e;border-radius:8px;padding:9px 13px;background:#12324b;color:#eaf6ff;cursor:pointer}.loot-actions .primary{background:#176747;border-color:#278c64}.loot-group{border:1px solid #25445c;border-radius:10px;margin:12px 0;overflow:hidden}.loot-group h3{margin:0;padding:11px 13px;background:#102b41;font-size:15px}.loot-group h3 small{float:right;color:#9fe5c4;font-weight:700}.loot-table{width:100%;border-collapse:collapse;font-size:13px}.loot-table th,.loot-table td{text-align:left;padding:8px 10px;border-top:1px solid #1d394f}.loot-table th{color:#9cb6ca;font-size:11px}.loot-table td.num,.loot-table th.num{text-align:right;white-space:nowrap}.loot-table a{color:#8fd8ff}.loot-total{padding:10px 13px;text-align:right;font-weight:800;color:#b7f4d5;background:#0b2437}.loot-unknown{border:1px dashed #8b7040;border-radius:10px;padding:12px;margin-top:14px}.loot-unknown h3{margin:0 0 8px;color:#ffd98c}.loot-unknown ul{margin:0;padding-left:20px}.loot-close{float:right;background:transparent!important;border:0!important;font-size:22px;padding:0 5px!important}@media(max-width:650px){#tftLootModal{padding:7px}.loot-box{padding:13px!important}.loot-table{font-size:11px}.loot-table th,.loot-table td{padding:7px 5px}}
+</style>
 </head>
 <body>
 <div class="tft-shell">
@@ -330,6 +340,10 @@ tr.total td:first-child{font-weight:700}
   <button type="button" data-nav="historico" onclick="tftNav('historico')"><span class="ic">🕒</span>Histórico</button>
   <button type="button" data-nav="rankings" onclick="tftNav('rankings')"><span class="ic">🏆</span>Rankings</button>
   <button type="button" data-nav="metas" onclick="tftNav('metas')"><span class="ic">🎯</span>Metas</button>
+  <button type="button" data-nav="ferramentas" aria-expanded="false" aria-controls="tftSubnavFerramentas" onclick="tftToggleFerramentas()"><span class="ic">🧰</span>Ferramentas <span class="tft-chevron" aria-hidden="true" style="margin-left:auto">▾</span></button>
+  <div class="tft-subnav" id="tftSubnavFerramentas" aria-label="Submenu Ferramentas">
+   <button type="button" data-nav="loot" onclick="tftAbrirGuiaLoot()"><span class="ic">💰</span>Guia de Venda de Loot</button>
+  </div>
   <button type="button" data-nav="config" onclick="tftNav('config')"><span class="ic">⚙️</span>Configurações</button>
  </nav>
  <div class="tft-sidebar-bottom">
@@ -2748,7 +2762,7 @@ function removerMetaSemanal(){
 /* === Etapa 1 do redesign: navegação da sidebar + saudação do hero (não altera a lógica do app) === */
 function tftAbrirMenu(){var s=document.getElementById("tftSidebar"),o=document.getElementById("tftOverlay");if(s)s.classList.add("open");if(o)o.classList.add("open")}
 function tftFecharMenu(){var s=document.getElementById("tftSidebar"),o=document.getElementById("tftOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open")}
-function tftMarcarNav(k){document.querySelectorAll("#tftNav button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-nav")===k)})}
+function tftMarcarNav(k){document.querySelectorAll("#tftNav button").forEach(function(b){var n=b.getAttribute("data-nav");b.classList.toggle("on",n===k||(k==="loot"&&n==="ferramentas"))})}
 function tftScrollTo(id){var el=document.getElementById(id);if(!el)return false;el.scrollIntoView({behavior:"smooth",block:"start"});return true}
 var TFT_PAGES=["inicio","farm","desempenho","historico","metas"];
 function tftDefinirPagina(k){
@@ -2792,5 +2806,47 @@ function tftAtualizarHero(){
 })();
 </script>
 
+<div id="tftLootModal" role="dialog" aria-modal="true" aria-labelledby="tftLootTitle" onclick="if(event.target===this)tftFecharGuiaLoot()">
+<section class="loot-box"><button class="loot-close" onclick="tftFecharGuiaLoot()" aria-label="Fechar">✕</button><h2 id="tftLootTitle">🧰 Ferramentas — Guia de Venda de Loot</h2>
+<p class="loot-muted">Cole o texto completo do Hunt Analyzer. Apenas a seção “Looted Items” será considerada; experiência, dano, cura e demais seções serão ignorados. Os resultados são agrupados por NPC; cada alternativa de comprador é apresentada separadamente, sem somar o mesmo item entre NPCs diferentes. O catálogo local inicial é parcial; confira os preços antes de usar como referência de venda.</p>
+<p id="tftLootCatalogStatus" class="loot-muted" role="status">Carregando catálogo de itens…</p><textarea id="tftLootText" placeholder="Ex.:&#10;33 great mana potion&#10;90 great health potion&#10;18 terra boots"></textarea>
+<div class="loot-actions"><button class="primary" onclick="tftProcessarLoot()">Calcular venda</button><button onclick="document.getElementById('tftLootText').value='';document.getElementById('tftLootResults').innerHTML=''">Limpar</button><button onclick="tftFecharGuiaLoot()">Fechar</button></div><div id="tftLootResults" aria-live="polite"></div></section></div>
+<script>
+let TFT_LOOT_CATALOG={};
+let TFT_LOOT_CATALOG_READY=false;
+async function tftCarregarCatalogoLoot(){
+ const status=document.getElementById('tftLootCatalogStatus');
+ try{
+  const response=await fetch('./tibia-loot-catalogo-inicial.json',{cache:'no-store'});
+  if(!response.ok)throw new Error('HTTP '+response.status);
+  const json=await response.json();
+  if(!json||!json.items||typeof json.items!=='object')throw new Error('Formato JSON inválido: campo items ausente.');
+  const catalog={};
+  for(const [key,item] of Object.entries(json.items)){
+   if(!item||!Number.isFinite(Number(item.price))||Number(item.price)<0)continue;
+   catalog[tftNormLoot(key)]={name:item.name||key,price:Number(item.price),buyers:Array.isArray(item.buyers)?item.buyers.map(b=>[String(b.npc||''),String(b.location||'')]).filter(b=>b[0]):[]};
+  }
+  TFT_LOOT_CATALOG=catalog;TFT_LOOT_CATALOG_READY=true;
+  if(status)status.textContent='Catálogo carregado: '+Object.keys(catalog).length+' itens.';
+ }catch(error){
+  TFT_LOOT_CATALOG_READY=false;
+  if(status)status.textContent='Não foi possível carregar tibia-loot-catalogo-inicial.json. Coloque o JSON na mesma pasta do HTML e abra o site por um servidor (ex.: Vercel).';
+  console.error('Erro ao carregar catálogo de loot:',error);
+ }
+}
+function tftToggleFerramentas(){var sub=document.getElementById('tftSubnavFerramentas'),btn=document.querySelector('#tftNav button[data-nav="ferramentas"]');if(!sub)return;var open=!sub.classList.contains('open');sub.classList.toggle('open',open);if(btn){btn.setAttribute('aria-expanded',String(open));var ch=btn.querySelector('.tft-chevron');if(ch)ch.textContent=open?'▴':'▾'}tftMarcarNav('ferramentas');tftFecharMenu()}
+function tftAbrirFerramentas(){var sub=document.getElementById('tftSubnavFerramentas');if(sub&&!sub.classList.contains('open'))tftToggleFerramentas()}
+function tftAbrirGuiaLoot(){tftFecharMenu();var sub=document.getElementById('tftSubnavFerramentas');if(sub&&!sub.classList.contains('open')){sub.classList.add('open');var b=document.querySelector('#tftNav button[data-nav="ferramentas"]');if(b){b.setAttribute('aria-expanded','true');var ch=b.querySelector('.tft-chevron');if(ch)ch.textContent='▴'}}document.getElementById('tftLootModal').classList.add('open');tftMarcarNav('loot')}
+function tftFecharGuiaLoot(){document.getElementById('tftLootModal').classList.remove('open');tftMarcarNav('loot')}
+function tftNormLoot(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim()}
+function tftParseLoot(raw){let out={};for(let line of raw.split(/\r?\n/)){line=line.trim();if(!line)continue;let m=line.match(/^([\d,.]+)\s*[x×]?\s+(.+?)\s*$/);let qty,name;if(m){qty=Number(m[1].replace(/[,.]/g,''));name=m[2]}else{m=line.match(/^(.+?)\s+[x×]?([\d,.]+)$/);if(!m)continue;name=m[1];qty=Number(m[2].replace(/[,.]/g,''))}if(!Number.isFinite(qty)||qty<=0||!name)continue;let key=tftNormLoot(name);if(!out[key])out[key]={name:name,qty:0};out[key].qty+=qty}return out}
+function tftGp(n){return Number(n).toLocaleString('pt-BR')+' gp'}
+function tftEscapeLoot(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function tftExtrairLootAnalyzer(raw){let text=String(raw||'');let start=text.search(/(?:^|\n)\s*Looted Items\s*:?\s*(?:\n|$)/i);if(start<0){/* Permite também colar somente as linhas de loot, sem o relatório completo. */if(/(?:^|\n)\s*(?:Session data|XP Gain|Damage|Healing|Supplies|Balance)\s*:/i.test(text))return '';return text;}let header=text.match(/(?:^|\n)\s*Looted Items\s*:?\s*(?:\n|$)/i);let body=text.slice(start+header[0].length);let end=body.search(/(?:^|\n)\s*(?:Supplies|Damage|Healing|XP Gain|Session data|Balance|Loot Statistics|Hunt Analysis)\s*:?/i);return end>=0?body.slice(0,end):body}
+function tftProcessarLoot(){if(!TFT_LOOT_CATALOG_READY){document.getElementById('tftLootResults').innerHTML='<p class=\"loot-muted\">O catálogo JSON ainda não foi carregado. Confira se o arquivo está junto do HTML e se o site está sendo servido por HTTP/HTTPS.</p>';return}let raw=document.getElementById('tftLootText').value;let lootOnly=tftExtrairLootAnalyzer(raw);let items=tftParseLoot(lootOnly),groups={},unknown=[],grandTotal=0;for(let [key,it] of Object.entries(items)){let data=TFT_LOOT_CATALOG[key];if(!data){unknown.push(it);continue}grandTotal+=it.qty*data.price;for(let [buyer,location] of data.buyers){let id=buyer+'|'+location;if(!groups[id])groups[id]={buyer,location,rows:[],total:0};let subtotal=it.qty*data.price;groups[id].rows.push({...it,price:data.price,subtotal});groups[id].total+=subtotal}}let html='';for(let g of Object.values(groups).sort((a,b)=>b.total-a.total)){html+='<section class="loot-group"><h3>'+tftEscapeLoot(g.buyer)+' <span class="loot-muted">— '+tftEscapeLoot(g.location)+'</span><small>'+tftGp(g.total)+'</small></h3><table class="loot-table"><thead><tr><th>Item</th><th class="num">Qtd.</th><th class="num">Unitário</th><th class="num">Subtotal</th></tr></thead><tbody>'+g.rows.map(r=>'<tr><td><a href="https://tibia.fandom.com/wiki/'+encodeURIComponent(r.name.replace(/ /g,'_'))+'" target="_blank" rel="noopener">'+tftEscapeLoot(r.name)+'</a></td><td class="num">'+r.qty.toLocaleString('pt-BR')+'</td><td class="num">'+tftGp(r.price)+'</td><td class="num">'+tftGp(r.subtotal)+'</td></tr>').join('')+'</tbody></table><div class="loot-total">Total estimado neste NPC: '+tftGp(g.total)+'</div></section>'}if(unknown.length)html+='<section class="loot-unknown"><h3>Itens sem cadastro de preço/comprador</h3><ul>'+unknown.map(x=>'<li>'+x.qty.toLocaleString('pt-BR')+' × '+tftEscapeLoot(x.name)+'</li>').join('')+'</ul><p class="loot-muted">Esses itens não entram nos totais até serem cadastrados no catálogo.</p></section>';if(!html)html='<p class="loot-muted">'+(String(document.getElementById('tftLootText').value).trim()&&!lootOnly?'Não encontrei a seção “Looted Items” no relatório.':'Nenhum item reconhecido no catálogo local ou nenhuma linha no formato quantidade + nome.')+'</p>';else html+='<div class="loot-total" style="margin-top:16px;border:1px solid #3b765f;border-radius:10px;font-size:16px">Total estimado da venda (cada item contado uma vez): '+tftGp(grandTotal)+'</div>';document.getElementById('tftLootResults').innerHTML=html}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')tftFecharGuiaLoot()});
+tftCarregarCatalogoLoot();
+tftCarregarCatalogoLoot();
+</script>
 </body>
 </html>
