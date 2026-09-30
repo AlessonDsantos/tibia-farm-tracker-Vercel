@@ -2817,7 +2817,7 @@ let TFT_LOOT_CATALOG_READY=false;
 async function tftCarregarCatalogoLoot(){
  const status=document.getElementById('tftLootCatalogStatus');
  try{
-  const response=await fetch('./tibia-loot-catalog-inicial.json',{cache:'no-store'});
+  const response=await fetch('./tibia-loot-catalogo-inicial.json',{cache:'no-store'});
   if(!response.ok)throw new Error('HTTP '+response.status);
   const json=await response.json();
   if(!json||!json.items||typeof json.items!=='object')throw new Error('Formato JSON inválido: campo items ausente.');
@@ -2838,7 +2838,7 @@ function tftToggleFerramentas(){var sub=document.getElementById('tftSubnavFerram
 function tftAbrirFerramentas(){var sub=document.getElementById('tftSubnavFerramentas');if(sub&&!sub.classList.contains('open'))tftToggleFerramentas()}
 function tftAbrirGuiaLoot(){tftFecharMenu();var sub=document.getElementById('tftSubnavFerramentas');if(sub&&!sub.classList.contains('open')){sub.classList.add('open');var b=document.querySelector('#tftNav button[data-nav="ferramentas"]');if(b){b.setAttribute('aria-expanded','true');var ch=b.querySelector('.tft-chevron');if(ch)ch.textContent='▴'}}document.getElementById('tftLootModal').classList.add('open');tftMarcarNav('loot')}
 function tftFecharGuiaLoot(){document.getElementById('tftLootModal').classList.remove('open');tftMarcarNav('loot')}
-function tftNormLoot(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim()}
+function tftNormLoot(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/^\s*(?:an?|uma?)\s+/,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim()}
 function tftParseLoot(raw){let out={};for(let line of raw.split(/\r?\n/)){line=line.trim();if(!line)continue;let m=line.match(/^([\d,.]+)\s*[x×]?\s+(.+?)\s*$/);let qty,name;if(m){qty=Number(m[1].replace(/[,.]/g,''));name=m[2]}else{m=line.match(/^(.+?)\s+[x×]?([\d,.]+)$/);if(!m)continue;name=m[1];qty=Number(m[2].replace(/[,.]/g,''))}if(!Number.isFinite(qty)||qty<=0||!name)continue;let key=tftNormLoot(name);if(!out[key])out[key]={name:name,qty:0};out[key].qty+=qty}return out}
 function tftGp(n){return Number(n).toLocaleString('pt-BR')+' gp'}
 function tftEscapeLoot(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
