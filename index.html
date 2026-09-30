@@ -343,6 +343,7 @@ tr.total td:first-child{font-weight:700}
   <button type="button" data-nav="ferramentas" aria-expanded="false" aria-controls="tftSubnavFerramentas" onclick="tftToggleFerramentas()"><span class="ic">🧰</span>Ferramentas <span class="tft-chevron" aria-hidden="true" style="margin-left:auto">▾</span></button>
   <div class="tft-subnav" id="tftSubnavFerramentas" aria-label="Submenu Ferramentas">
    <button type="button" data-nav="loot" onclick="tftAbrirGuiaLoot()"><span class="ic">💰</span>Guia de Venda de Loot</button>
+   <button type="button" onclick="abrirCalculadoraRecursos()"><span class="ic">⏱️</span>Calculadora de Imbuements / Tokens</button>
   </div>
   <button type="button" data-nav="config" onclick="tftNav('config')"><span class="ic">⚙️</span>Configurações</button>
  </nav>
@@ -938,6 +939,16 @@ function cancelarFarmSuspeito(){
  pendingFarmConfirm=null;
  fechar("mAvisoSuspeito");
 }
+function abrirCalculadoraRecursos(){const g=meta();if(!g)return;if(!Array.isArray(g.recursosFarm))g.recursosFarm=[];document.getElementById("crResultado").style.display="none";document.getElementById("crAssociarArea").style.display="none";document.getElementById("crTipo").value="imbuement";document.getElementById("crNome").value="";document.getElementById("crValor").value="";document.getElementById("crQtd").value="";document.getElementById("crPreco").value="";document.getElementById("crDuracao").value="";atualizarCamposRecurso();renderRecursosAtivos();abrir("mCalcRecursos")}
+function atualizarCamposRecurso(){const token=document.getElementById("crTipo").value==="token";document.getElementById("crGoldFields").style.display=token?"none":"block";document.getElementById("crTokenFields").style.display=token?"block":"none"}
+document.addEventListener("change",e=>{if(e.target&&e.target.id==="crTipo")atualizarCamposRecurso()});
+function calcularRecurso(){const token=document.getElementById("crTipo").value==="token",nome=document.getElementById("crNome").value.trim()||(token?"Silver Token":"Imbuement"),dur=Number(document.getElementById("crDuracao").value),qtd=token?Number(document.getElementById("crQtd").value):0,preco=token?parseGold(document.getElementById("crPreco").value):0,valor=token?qtd*preco:parseGold(document.getElementById("crValor").value);if(!(dur>0)||!(valor>=0)|| (token&&(!(qtd>0)||!(preco>=0))))return toast("Preencha quantidade/valor e duração válidos.");if(valor/dur>5000000&&!confirm("Atenção: este recurso vai custar "+Math.round(valor/dur).toLocaleString("pt-BR")+" gp por hora de hunt. Confira o valor e a duração (em horas). Continuar?"))return;window.crCalculado={tipo:token?"token":"imbuement",nome,valor,durMin:dur*60,qtd,preco,custoHora:valor/dur};const box=document.getElementById("crResultado");box.style.display="block";box.innerHTML="<b>Resultado: "+nome+"</b><br>Custo total: "+Math.round(valor).toLocaleString("pt-BR")+" gp<br>Duração: "+dur+" h<br><b>Custo por hora: "+(valor/dur).toLocaleString("pt-BR",{maximumFractionDigits:2})+" gp/h</b>"+(token?"<br>Tokens por hora: "+(qtd/dur).toLocaleString("pt-BR",{maximumFractionDigits:2}):"");document.getElementById("crAssociarArea").style.display="block"}
+function associarRecurso(){const g=meta(),r=window.crCalculado;if(!g||!r)return;if(!Array.isArray(g.recursosFarm))g.recursosFarm=[];g.recursosFarm.push({...r,id:Date.now()+Math.random(),restanteMin:r.durMin,ativo:true,criadoEm:new Date().toISOString()});salvar();renderRecursosAtivos();toast("Recurso associado às próximas hunts.");document.getElementById("crResultado").style.display="none";document.getElementById("crAssociarArea").style.display="none"}
+function escHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","\'":"&#39;"}[c]));}
+function renderRecursosAtivos(){const g=meta(),el=document.getElementById("crAtivos");if(!el)return;const rs=(g&&g.recursosFarm)||[];el.innerHTML="<b>Recursos associados</b>"+(rs.length?rs.map(r=>`<div style="border:1px solid #31516b;border-radius:8px;padding:9px;margin-top:7px;font-size:12px"><b>${escHtml(r.nome)}</b> — ${r.ativo&&r.restanteMin>0?"Ativo":"Expirado"}<br>Restante: ${(Math.max(0,r.restanteMin)/60).toFixed(2)} h · Custo/h: ${Number(r.custoHora).toLocaleString("pt-BR",{maximumFractionDigits:2})} gp/h <button onclick="removerRecurso('${r.id}')" style="float:right">Remover</button></div>`).join(""):"<p style='font-size:12px;color:var(--muted)'>Nenhum recurso associado.</p>")}
+function removerRecurso(id){const g=meta();if(!g)return;g.recursosFarm=(g.recursosFarm||[]).filter(r=>String(r.id)!==String(id));salvar();renderRecursosAtivos()}
+function consumirRecursosFarm(g,minutos){let custo=0;minutos=Number(minutos)||0;if(!(minutos>0))return 0;(g.recursosFarm||[]).forEach(r=>{const dur=Number(r.durMin)||0;let rest=Number(r.restanteMin);if(!Number.isFinite(rest))rest=dur;const ch=Number(r.custoHora)||(dur>0?(Number(r.valor)||0)/(dur/60):0);if(r.ativo===false||rest<=0){r.restanteMin=Math.max(0,rest);r.ativo=false;return}const usados=Math.min(minutos,rest);custo+=ch*(usados/60);r.custoHora=ch;r.restanteMin=Math.max(0,rest-usados);r.ativo=r.restanteMin>0});return Math.round(custo)}
+function montarSessaoFarm(g,base,v,tipo,tempo){const custo=tipo==="hunt"?consumirRecursosFarm(g,tempo):0;return Object.assign(base,{gold:Math.round(v-custo),goldBruto:Math.round(v),custoRecursos:custo,time:tempo,tipo})}
 function registrarFarm(){
  const g=meta();if(!g)return;
  const v=parseGold(document.getElementById("farmGold").value);
@@ -948,10 +959,10 @@ function registrarFarm(){
  if(!hunt)return toast(msgNomeVazio(tipo));
  if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  const salvarAgora=()=>{
-  g.sessoes.push({id:Date.now()+Math.random(),data:hoje(),
-   hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:S.tcPrice,hunt,time:tempo,tipo});
-  document.getElementById("farmHunt").value="";document.getElementById("farmTime").value="";document.getElementById("farmGold").value="";
-  checar(g);salvar();render();toast("Farm registrado.")
+  const ses=montarSessaoFarm(g,{id:Date.now()+Math.random(),data:hoje(),hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),tcPrice:S.tcPrice,hunt},v,tipo,tempo);g.sessoes.push(ses);
+  checar(g);salvar();render();
+  ["farmHunt","farmTime","farmGold"].forEach(id=>{const e=document.getElementById(id);if(e)e.value=""});
+  toast(ses.custoRecursos>0?"Farm registrado: "+fmt(ses.gold)+" GP (bruto "+fmt(ses.goldBruto)+" − recursos "+fmt(ses.custoRecursos)+")":"Farm registrado: "+fmt(ses.gold)+" GP")
  };
  if(tipo==="hunt"&&ehValorSuspeito(pphDe(v,tempo))){abrirAvisoFarmSuspeito(pphDe(v,tempo),salvarAgora);return}
  salvarAgora();
@@ -968,9 +979,8 @@ function confirmarAdd(){
  if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  if(!(v>0))return toast("Informe o valor em gold.");
  const salvarAgora=()=>{
-  g.sessoes.push({id:Date.now()+Math.random(),data:addDate,
-   hora:new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),gold:v,tcPrice:p,hunt,time:tempo,tipo});
-  checar(g);salvar();fechar("mAdd");render();toast("Farm adicionado.")
+  const ses=montarSessaoFarm(g,{id:Date.now()+Math.random(),data:addDate,hora:new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),tcPrice:p,hunt},v,tipo,tempo);g.sessoes.push(ses);
+  checar(g);salvar();fechar("mAdd");render();toast(ses.custoRecursos>0?"Farm adicionado: "+fmt(ses.gold)+" GP (recursos −"+fmt(ses.custoRecursos)+")":"Farm adicionado: "+fmt(ses.gold)+" GP")
  };
  if(tipo==="hunt"&&ehValorSuspeito(pphDe(v,tempo))){abrirAvisoFarmSuspeito(pphDe(v,tempo),salvarAgora);return}
  salvarAgora();
@@ -1021,7 +1031,7 @@ function editarFarm(id){
  setTipoFarm("edit",tipoDe(s),true);
  document.getElementById("editHunt").value=s.hunt||"";
  document.getElementById("editTime").value=s.time||"";
- document.getElementById("editGold").value=s.gold||"";
+ document.getElementById("editGold").value=(s.goldBruto!=null?s.goldBruto:s.gold)||"";
  abrir("mEditFarm");setTimeout(()=>document.getElementById("editHunt").focus(),50)}
 function confirmarEdit(){
  const g=meta();if(!g)return;
@@ -1035,7 +1045,7 @@ function confirmarEdit(){
  if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  if(!(v>0))return toast("Informe o valor em gold.");
  const salvarAgora=()=>{
-  s.hunt=hunt;s.time=tempo;s.gold=v;s.tipo=tipo;
+  const cr=tipo==="hunt"?(Number(s.custoRecursos)||0):0;s.hunt=hunt;s.time=tempo;s.goldBruto=Math.round(v);s.custoRecursos=cr;s.gold=Math.round(v-cr);s.tipo=tipo;
   checar(g);salvar();fechar("mEditFarm");render();toast("Farm atualizado.")
  };
  if(tipo==="hunt"&&ehValorSuspeito(pphDe(v,tempo))){abrirAvisoFarmSuspeito(pphDe(v,tempo),salvarAgora);return}
@@ -1669,7 +1679,7 @@ function tabelaHistHunts(g,ds){
  const filtered=ds.filter(histNoRange);
  if(!filtered.length)return '<div class="empty"><b>Nenhum farm neste período.</b></div>';
  let html='<div class="tablewrap"><table><thead><tr><th>Data</th><th>Farm</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th><th></th></tr></thead><tbody>';
- filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(s.hunt||'Farm não informado')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP</td><td>'+(mins?fmt(pph)+'/h':'—')+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns"><button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';});});
+ filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(s.hunt||'Farm não informado')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP'+(Number(s.custoRecursos)>0?'<div style="font-size:10.5px;color:var(--muted)">bruto '+fmt(s.goldBruto)+' − recursos '+fmt(s.custoRecursos)+'</div>':'')+'</td><td>'+(mins?fmt(pph)+'/h':'—')+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns"><button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';});});
  return html+'</tbody></table></div>'}
 function tabelaRel(g,tipo){
  const arr=(tipo==="semanal"?g.semanais:g.mensais).slice().reverse();
@@ -2848,5 +2858,20 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')tftFecharGuiaLoot()}
 tftCarregarCatalogoLoot();
 tftCarregarCatalogoLoot();
 </script>
+
+<div class="modal" id="mCalcRecursos"><div class="box" style="width:min(620px,100%)">
+ <h3>⏱️ Calculadora de Imbuements e Silver Tokens</h3>
+ <p style="color:var(--muted);font-size:12px">Cadastre recursos consumidos por tempo. A associação afeta somente novas hunts.</p>
+ <div class="field"><label>Tipo de recurso</label><select id="crTipo"><option value="imbuement">Imbuement</option><option value="token">Silver Token / item carregado</option></select></div>
+ <div class="field"><label>Nome do item / recurso</label><input id="crNome" placeholder="Ex.: Spiritthorn Ring"></div>
+ <div id="crGoldFields"><div class="field"><label>Valor total gasto (gold)</label><input id="crValor" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 60k ou 60000"></div></div>
+ <div id="crTokenFields" style="display:none"><div class="field"><label>Quantidade de Silver Tokens</label><input id="crQtd" type="number" min="1" step="1" placeholder="Ex.: 5"></div><div class="field"><label>Preço de cada token (gold)</label><input id="crPreco" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 10k ou 10000"></div></div>
+ <div class="field"><label>Duração total (horas)</label><input id="crDuracao" type="number" min="0.01" step="0.01" placeholder="Ex.: 3"></div>
+ <div id="crResultado" class="aviso-callout" style="display:none"></div>
+ <div class="actions"><button class="btn-green" onclick="calcularRecurso()">Calcular</button><button onclick="fechar('mCalcRecursos')">Fechar</button></div>
+ <div id="crAssociarArea" style="display:none"><div class="actions"><button class="btn-green" onclick="associarRecurso()">Associar automaticamente às hunts</button></div></div>
+ <div id="crAtivos" style="margin-top:12px"></div>
+</div></div>
+
 </body>
 </html>
