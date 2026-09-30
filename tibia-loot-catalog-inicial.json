@@ -267,7 +267,8 @@
       "buyers": [
         {
           "npc": "Rock In A Hard Place",
-          "location": "Gray Beach"
+          "location": "Gray Beach",
+          "price": 340
         },
         {
           "npc": "Malunga",
@@ -279,7 +280,7 @@
           "price": 340
         }
       ],
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Spitter_Nose",
       "verified": true
     },
@@ -293,7 +294,8 @@
         },
         {
           "npc": "Rock In A Hard Place",
-          "location": "Gray Beach"
+          "location": "Gray Beach",
+          "price": 290
         },
         {
           "npc": "Yasir",
@@ -301,7 +303,7 @@
           "price": 290
         }
       ],
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Deeptags",
       "verified": true
     },
@@ -1029,10 +1031,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 1000
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 1000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Itens_do_Djinn",
       "price": 4000
     },
@@ -1214,10 +1221,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 240
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 240
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Itens_do_Djinn",
       "price": 1000
     },
@@ -1249,10 +1261,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 470
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 470
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Itens_do_Djinn",
       "price": 1200
     },
@@ -1764,12 +1781,17 @@
           "npc": "Haroun",
           "location": "Fortaleza do Djinn Azul (Blue Djinn Fortress)",
           "price": 50
+        },
+        {
+          "npc": "Alexander",
+          "location": "Edron",
+          "price": 85
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Haroun).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alexander).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Itens_do_Djinn",
-      "price": 50
+      "price": 85
     },
     "magic light wand": {
       "name": "Magic Light Wand",
@@ -1794,12 +1816,17 @@
           "npc": "Haroun",
           "location": "Fortaleza do Djinn Azul (Blue Djinn Fortress)",
           "price": 100
+        },
+        {
+          "npc": "Alexander",
+          "location": "Edron",
+          "price": 170
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Haroun).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alexander).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Itens_do_Djinn",
-      "price": 100
+      "price": 170
     },
     "orb": {
       "name": "Orb",
@@ -4679,10 +4706,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 7
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 7
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 7
     },
@@ -4694,10 +4726,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 80
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 80
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 80
     },
@@ -4709,10 +4746,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 120
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 120
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 120
     },
@@ -4724,10 +4766,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 95
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 95
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 95
     },
@@ -4739,10 +4786,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 5
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 5
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 5
     },
@@ -4754,10 +4806,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 20
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 20
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 20
     },
@@ -4769,10 +4826,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 150
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 150
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 150
     },
@@ -4784,10 +4846,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 30
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 30
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 30
     },
@@ -4799,10 +4866,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 49
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 49
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 49
     },
@@ -4814,10 +4886,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 25
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 25
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 25
     },
@@ -4829,10 +4906,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 118
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 118
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 118
     },
@@ -4844,10 +4926,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 70
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 70
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 70
     },
@@ -4859,10 +4946,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 17
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 17
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 17
     },
@@ -4874,10 +4966,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 25
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 25
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 25
     },
@@ -4889,10 +4986,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 1
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 1
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 1
     },
@@ -4904,10 +5006,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 1
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 1
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 1
     },
@@ -4919,10 +5026,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 50
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 50
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 50
     },
@@ -4934,10 +5046,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 50
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 50
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 50
     },
@@ -4949,10 +5066,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 2
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 2
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 2
     },
@@ -4964,10 +5086,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 260
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 260
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 260
     },
@@ -4979,10 +5106,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 3
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 3
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 3
     },
@@ -4994,10 +5126,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 100
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 100
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 100
     },
@@ -5009,10 +5146,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 400
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 400
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 400
     },
@@ -5024,10 +5166,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 4
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 4
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 4
     },
@@ -5039,10 +5186,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 25
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 25
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 25
     },
@@ -5054,10 +5206,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 150
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 150
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 150
     },
@@ -5069,10 +5226,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 1
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 1
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 1
     },
@@ -5084,10 +5246,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 35
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 35
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 35
     },
@@ -5099,10 +5266,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 135
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 135
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 135
     },
@@ -5114,10 +5286,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 12
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 12
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 12
     },
@@ -5129,10 +5306,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 2
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 2
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 2
     },
@@ -5144,10 +5326,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 4
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 4
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 4
     },
@@ -5159,10 +5346,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 9
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 9
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 9
     },
@@ -5174,10 +5366,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 22
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 22
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 22
     },
@@ -5189,10 +5386,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 51
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 51
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 51
     },
@@ -5204,10 +5406,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 30
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 30
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 30
     },
@@ -5219,10 +5426,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 100
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 100
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 100
     },
@@ -5234,10 +5446,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 350
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 350
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 350
     },
@@ -5249,10 +5466,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 90
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 90
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 90
     },
@@ -5264,10 +5486,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 400
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 400
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 400
     },
@@ -5294,10 +5521,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 45
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 45
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 45
     },
@@ -5309,10 +5541,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 5
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 5
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 5
     },
@@ -5324,10 +5561,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 12
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 12
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 12
     },
@@ -5339,10 +5581,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 180
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 180
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 180
     },
@@ -5354,10 +5601,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 75
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 75
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 75
     },
@@ -5369,10 +5621,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 10
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 10
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 10
     },
@@ -5384,10 +5641,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 3
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 3
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 3
     },
@@ -5399,10 +5661,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 5
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 5
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 5
     },
@@ -5414,10 +5681,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 16
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 16
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 16
     },
@@ -5429,10 +5701,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 293
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 293
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 293
     },
@@ -5444,10 +5721,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 80
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 80
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 80
     },
@@ -5459,10 +5741,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 25
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 25
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 25
     },
@@ -5474,10 +5761,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 10
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 10
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 10
     },
@@ -5489,10 +5781,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 20
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 20
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 20
     },
@@ -5519,10 +5816,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 16
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 16
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 16
     },
@@ -5534,10 +5836,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 40
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 40
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 40
     },
@@ -5549,10 +5856,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 25
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 25
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 25
     },
@@ -5564,10 +5876,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 2
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 2
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 2
     },
@@ -5579,10 +5896,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 450
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 450
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 450
     },
@@ -5594,10 +5916,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 66
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 66
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 66
     },
@@ -5609,10 +5936,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 85
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 85
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 85
     },
@@ -5624,10 +5956,15 @@
           "npc": "Esrik",
           "location": "Farmine",
           "price": 5
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 5
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Esrik).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Esrik",
       "price": 5
     },
@@ -8079,10 +8416,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 150
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 150
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 150
     },
@@ -8234,10 +8576,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 210
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 210
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 210
     },
@@ -8729,10 +9076,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 90
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 90
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 90
     },
@@ -8744,10 +9096,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 430
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 430
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 430
     },
@@ -8759,10 +9116,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 230
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 230
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 230
     },
@@ -8774,10 +9136,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 360
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 360
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 360
     },
@@ -8789,10 +9156,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 80
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 80
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 80
     },
@@ -8804,10 +9176,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 180
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 180
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 180
     },
@@ -9194,10 +9571,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 130
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 130
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 130
     },
@@ -9429,10 +9811,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 150
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 150
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 150
     },
@@ -11374,10 +11761,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 330
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 330
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 330
     },
@@ -11389,10 +11781,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 420
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 420
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 420
     },
@@ -14669,10 +15066,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 280
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 280
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 280
     },
@@ -14744,10 +15146,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 450
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 450
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 450
     },
@@ -15119,10 +15526,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 130
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 130
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 130
     },
@@ -15994,10 +16406,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 320
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 320
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 320
     },
@@ -16009,10 +16426,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 190
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 190
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 190
     },
@@ -16804,10 +17226,20 @@
           "npc": "Valindara",
           "location": "Feyrist",
           "price": 5
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 5
+        },
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 5
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
       "price": 5
     },
@@ -16819,10 +17251,20 @@
           "npc": "Valindara",
           "location": "Feyrist",
           "price": 5
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 5
+        },
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 5
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
       "price": 5
     },
@@ -16834,10 +17276,20 @@
           "npc": "Valindara",
           "location": "Feyrist",
           "price": 5
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 5
+        },
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 5
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
       "price": 5
     },
@@ -17454,10 +17906,20 @@
           "npc": "Valindara",
           "location": "Feyrist",
           "price": 5
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 5
+        },
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 5
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
       "price": 5
     },
@@ -18115,6 +18577,951 @@
       "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
       "price": 1000
+    },
+    "crystal ball": {
+      "name": "Crystal Ball",
+      "category": "magic_item",
+      "buyers": [
+        {
+          "npc": "Alexander",
+          "location": "Edron",
+          "price": 190
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alexander).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alexander",
+      "price": 190
+    },
+    "spellbook of enlightenment": {
+      "name": "Spellbook of Enlightenment",
+      "category": "magic_item",
+      "buyers": [
+        {
+          "npc": "Alexander",
+          "location": "Edron",
+          "price": 4000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alexander).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alexander",
+      "price": 4000
+    },
+    "spellbook of warding": {
+      "name": "Spellbook of Warding",
+      "category": "magic_item",
+      "buyers": [
+        {
+          "npc": "Alexander",
+          "location": "Edron",
+          "price": 8000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alexander).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alexander",
+      "price": 8000
+    },
+    "spellbook of mind control": {
+      "name": "Spellbook of Mind Control",
+      "category": "magic_item",
+      "buyers": [
+        {
+          "npc": "Alexander",
+          "location": "Edron",
+          "price": 13000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alexander).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alexander",
+      "price": 13000
+    },
+    "spellbook of lost souls": {
+      "name": "Spellbook of Lost Souls",
+      "category": "magic_item",
+      "buyers": [
+        {
+          "npc": "Alexander",
+          "location": "Edron",
+          "price": 19000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alexander).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alexander",
+      "price": 19000
+    },
+    "spellwand": {
+      "name": "Spellwand",
+      "category": "magic_item",
+      "buyers": [
+        {
+          "npc": "Alexander",
+          "location": "Edron",
+          "price": 299
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alexander).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alexander",
+      "price": 299
+    },
+    "batwing hat": {
+      "name": "Batwing Hat",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Lailene",
+          "location": "Edron",
+          "price": 8000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Lailene).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lailene",
+      "price": 8000
+    },
+    "ethno coat": {
+      "name": "Ethno Coat",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Lailene",
+          "location": "Edron",
+          "price": 200
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Lailene).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lailene",
+      "price": 200
+    },
+    "focus cape": {
+      "name": "Focus Cape",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Lailene",
+          "location": "Edron",
+          "price": 6000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Lailene).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lailene",
+      "price": 6000
+    },
+    "jade hat": {
+      "name": "Jade Hat",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Lailene",
+          "location": "Edron",
+          "price": 9000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Lailene).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lailene",
+      "price": 9000
+    },
+    "spellweaver's robe": {
+      "name": "Spellweaver's Robe",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Lailene",
+          "location": "Edron",
+          "price": 12000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Lailene).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lailene",
+      "price": 12000
+    },
+    "spirit cloak": {
+      "name": "Spirit Cloak",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Lailene",
+          "location": "Edron",
+          "price": 350
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Lailene).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lailene",
+      "price": 350
+    },
+    "zaoan robe": {
+      "name": "Zaoan Robe",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Lailene",
+          "location": "Edron",
+          "price": 12000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Lailene).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lailene",
+      "price": 12000
+    },
+    "calopteryx cape": {
+      "name": "Calopteryx Cape",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 15000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 15000
+    },
+    "carapace shield": {
+      "name": "Carapace Shield",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 32000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 32000
+    },
+    "closed trap": {
+      "name": "Closed Trap",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 75
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 75
+    },
+    "deepling axe": {
+      "name": "Deepling Axe",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 40000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 40000
+    },
+    "deepling squelcher": {
+      "name": "Deepling Squelcher",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 7000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 7000
+    },
+    "deepling staff": {
+      "name": "Deepling Staff",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 4000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 4000
+    },
+    "depth calcei": {
+      "name": "Depth Calcei",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 25000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 25000
+    },
+    "depth galea": {
+      "name": "Depth Galea",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 35000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 35000
+    },
+    "depth lorica": {
+      "name": "Depth Lorica",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 30000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 30000
+    },
+    "depth ocrea": {
+      "name": "Depth Ocrea",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 16000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 16000
+    },
+    "depth scutum": {
+      "name": "Depth Scutum",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 36000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 36000
+    },
+    "fishing rod": {
+      "name": "Fishing Rod",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 40
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 40
+    },
+    "grasshopper legs": {
+      "name": "Grasshopper Legs",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 15000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 15000
+    },
+    "guardian axe": {
+      "name": "Guardian Axe",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 9000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 9000
+    },
+    "hive bow": {
+      "name": "Hive Bow",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 28000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 28000
+    },
+    "hive scythe": {
+      "name": "Hive Scythe",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 17000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 17000
+    },
+    "machete": {
+      "name": "Machete",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 6
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 6
+    },
+    "necklace of the deep": {
+      "name": "Necklace of the Deep",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 3000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 3000
+    },
+    "ornate chestplate": {
+      "name": "Ornate Chestplate",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 60000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 60000
+    },
+    "ornate crossbow": {
+      "name": "Ornate Crossbow",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 12000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 12000
+    },
+    "ornate legs": {
+      "name": "Ornate Legs",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 40000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 40000
+    },
+    "ornate mace": {
+      "name": "Ornate Mace",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 42000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 42000
+    },
+    "ornate shield": {
+      "name": "Ornate Shield",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 42000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 42000
+    },
+    "pick": {
+      "name": "Pick",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 15
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 15
+    },
+    "rope": {
+      "name": "Rope",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 15
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 15
+    },
+    "scythe": {
+      "name": "Scythe",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 10
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 10
+    },
+    "shovel": {
+      "name": "Shovel",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 8
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 8
+    },
+    "warrior's axe": {
+      "name": "Warrior's Axe",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 11000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 11000
+    },
+    "warrior's shield": {
+      "name": "Warrior's Shield",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 9000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 9000
+    },
+    "watch": {
+      "name": "Watch",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 6
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 6
+    },
+    "wooden hammer": {
+      "name": "Wooden Hammer",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 15
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 15
+    },
+    "bow": {
+      "name": "Bow",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 100
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 100
+    },
+    "crossbow": {
+      "name": "Crossbow",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 120
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 120
+    },
+    "spear": {
+      "name": "Spear",
+      "category": "equipment",
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach",
+          "price": 3
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rock In A Hard Place).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rock_In_A_Hard_Place",
+      "price": 3
+    },
+    "cowbell": {
+      "name": "Cowbell",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 210
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 210
+    },
+    "execowtioner mask": {
+      "name": "Execowtioner Mask",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 240
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 240
+    },
+    "giant pacifier": {
+      "name": "Giant Pacifier",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 170
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 170
+    },
+    "glob of glooth": {
+      "name": "Glob of Glooth",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 125
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 125
+    },
+    "glooth injection tube": {
+      "name": "Glooth Injection Tube",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 350
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 350
+    },
+    "metal jaw": {
+      "name": "Metal Jaw",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 260
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 260
+    },
+    "metal toe": {
+      "name": "Metal Toe",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 430
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 430
+    },
+    "mooh'tah shell": {
+      "name": "Mooh'tah Shell",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 110
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 110
+    },
+    "moohtant horn": {
+      "name": "Moohtant Horn",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 140
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 140
+    },
+    "necromantic rust": {
+      "name": "Necromantic Rust",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 390
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 390
+    },
+    "poisoned fang": {
+      "name": "Poisoned Fang",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 130
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 130
+    },
+    "seacrest hair": {
+      "name": "Seacrest Hair",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 260
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 260
+    },
+    "seacrest pearl": {
+      "name": "Seacrest Pearl",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 400
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 400
+    },
+    "seacrest scale": {
+      "name": "Seacrest Scale",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 150
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 150
+    },
+    "slime heart": {
+      "name": "Slime Heart",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 160
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 160
+    },
+    "slimy leaf tentacle": {
+      "name": "Slimy Leaf Tentacle",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Alaistar",
+          "location": "Oramond",
+          "price": 320
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Alaistar).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Alaistar",
+      "price": 320
     }
   }
 }
