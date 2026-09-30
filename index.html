@@ -2817,7 +2817,7 @@ let TFT_LOOT_CATALOG_READY=false;
 async function tftCarregarCatalogoLoot(){
  const status=document.getElementById('tftLootCatalogStatus');
  try{
-  const response=await fetch('./tibia-loot-catalogo-inicial.json',{cache:'no-store'});
+  const response=await fetch('./tibia-loot-catalog-inicial.json',{cache:'no-store'});
   if(!response.ok)throw new Error('HTTP '+response.status);
   const json=await response.json();
   if(!json||!json.items||typeof json.items!=='object')throw new Error('Formato JSON inválido: campo items ausente.');
