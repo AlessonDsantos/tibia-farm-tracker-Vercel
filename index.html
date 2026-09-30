@@ -2808,7 +2808,7 @@ function tftAtualizarHero(){
 
 <div id="tftLootModal" role="dialog" aria-modal="true" aria-labelledby="tftLootTitle" onclick="if(event.target===this)tftFecharGuiaLoot()">
 <section class="loot-box"><button class="loot-close" onclick="tftFecharGuiaLoot()" aria-label="Fechar">✕</button><h2 id="tftLootTitle">🧰 Guia de Venda de Loot</h2>
-<p class="loot-muted">Cole o texto completo do Hunt Analyzer. Apenas a seção “Looted Items” será considerada; experiência, dano, cura e demais seções serão ignorados. Os resultados são agrupados por NPC; cada alternativa de comprador é apresentada separadamente, sem somar o mesmo item entre NPCs diferentes. O catálogo local inicial é parcial; confira os preços antes de usar como referência de venda.</p>
+<p class="loot-muted">Cole o texto completo do Hunt Analyzer. Apenas a seção “Looted Items” será considerada. Os resultados são agrupados por NPC; cada alternativa de comprador é apresentada separadamente, sem somar o mesmo item entre NPCs diferentes. O catálogo local inicial é parcial; confira os preços antes de usar como referência de venda.</p>
 <p id="tftLootCatalogStatus" class="loot-muted" role="status">Carregando catálogo de itens…</p><textarea id="tftLootText" placeholder="Ex.:&#10;33 great mana potion&#10;90 great health potion&#10;18 terra boots"></textarea>
 <div class="loot-actions"><button class="primary" onclick="tftProcessarLoot()">Calcular venda</button><button onclick="document.getElementById('tftLootText').value='';document.getElementById('tftLootResults').innerHTML=''">Limpar</button><button onclick="tftFecharGuiaLoot()">Fechar</button></div><div id="tftLootResults" aria-live="polite"></div></section></div>
 <script>
