@@ -90,6 +90,11 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 250
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 250
         }
       ],
       "lootFrom": [
@@ -97,7 +102,7 @@
         "Hulking Carnisylvan",
         "Poisonous Carnisylvan"
       ],
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Carnisylvan_Finger",
       "verified": true
     },
@@ -113,6 +118,11 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 230
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 230
         }
       ],
       "lootFrom": [
@@ -121,7 +131,7 @@
         "Hulking Carnisylvan",
         "Poisonous Carnisylvan"
       ],
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Carnisylvan_Bark",
       "verified": true
     },
@@ -456,6 +466,11 @@
         {
           "npc": "Augustin",
           "location": "Bounac"
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 650
         }
       ],
       "lootFrom": [
@@ -464,7 +479,7 @@
         "Cobra Vizier",
         "Guard Captain Quaid"
       ],
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Cobra_Crest",
       "verified": true
     },
@@ -526,6 +541,11 @@
         {
           "npc": "Augustin",
           "location": "Bounac"
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 650
         }
       ],
       "lootFrom": [
@@ -533,7 +553,7 @@
         "Falcon Knight",
         "Grand Commander Soeren"
       ],
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Falcon_Crest",
       "verified": true
     },
@@ -622,13 +642,18 @@
         {
           "npc": "Odemara",
           "location": "Venore"
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 10000
         }
       ],
       "lootFrom": [
         "Werelion",
         "Werelioness"
       ],
-      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lion_Figurine",
       "verified": true
     },
@@ -654,7 +679,8 @@
       "buyers": [
         {
           "npc": "Augustin",
-          "location": "Bounac"
+          "location": "Bounac",
+          "price": 1000
         },
         {
           "npc": "The Bone Master",
@@ -669,7 +695,7 @@
         "Dawnfire Asura",
         "Midnight Asura"
       ],
-      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Augustin).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Demonic_Essence",
       "verified": true
     },
@@ -2488,10 +2514,15 @@
           "npc": "Rashid",
           "location": "Itinerante",
           "price": 3000
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 3000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Rashid).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Rashid",
       "price": 3000
     },
@@ -6118,10 +6149,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 270000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 270000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 270000
     },
@@ -6148,10 +6184,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 28000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 28000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 28000
     },
@@ -6163,10 +6204,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 36000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 36000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 36000
     },
@@ -6403,10 +6449,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 630000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 630000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 630000
     },
@@ -7318,10 +7369,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 130
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 130
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 130
     },
@@ -7378,10 +7434,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 4000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 4000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 4000
     },
@@ -7423,10 +7484,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 1900
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 1900
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 1900
     },
@@ -7978,10 +8044,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 250
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 250
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 250
     },
@@ -8023,10 +8094,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 260
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 260
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 260
     },
@@ -8233,10 +8309,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 250
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 250
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 250
     },
@@ -8263,10 +8344,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 400
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 400
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 400
     },
@@ -8338,10 +8424,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 430
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 430
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 430
     },
@@ -8398,10 +8489,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 280
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 280
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 280
     },
@@ -8458,10 +8554,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 200
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 200
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 200
     },
@@ -8473,10 +8574,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 300
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 300
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 300
     },
@@ -9238,10 +9344,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 300
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 300
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 300
     },
@@ -9253,10 +9364,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 270
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 270
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 270
     },
@@ -9418,10 +9534,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 200
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 200
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 200
     },
@@ -9433,10 +9554,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 20
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 20
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 20
     },
@@ -9733,10 +9859,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 270
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 270
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 270
     },
@@ -9748,10 +9879,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 200
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 200
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 200
     },
@@ -9928,10 +10064,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 250
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 250
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 250
     },
@@ -10213,10 +10354,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 950
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 950
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 950
     },
@@ -10258,10 +10404,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 180
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 180
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 180
     },
@@ -10813,10 +10964,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 2000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 2000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 2000
     },
@@ -11008,10 +11164,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 300
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 300
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 300
     },
@@ -11068,10 +11229,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 180000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 180000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 180000
     },
@@ -11083,10 +11249,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 225000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 225000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 225000
     },
@@ -11398,10 +11569,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 190
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 190
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 190
     },
@@ -11413,10 +11589,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 270
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 270
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 270
     },
@@ -11428,10 +11609,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 210
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 210
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 210
     },
@@ -11443,10 +11629,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 500
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 500
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 500
     },
@@ -11758,10 +11949,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 240000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 240000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 240000
     },
@@ -11863,10 +12059,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 500000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 500000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 500000
     },
@@ -12403,10 +12604,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 410
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 410
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 410
     },
@@ -12913,10 +13119,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 280000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 280000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 280000
     },
@@ -12928,10 +13139,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 250
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 250
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 250
     },
@@ -12943,10 +13159,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 270
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 270
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 270
     },
@@ -12988,10 +13209,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 50
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 50
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 50
     },
@@ -13063,10 +13289,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 10
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 10
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 10
     },
@@ -13528,10 +13759,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 74000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 74000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 74000
     },
@@ -13843,10 +14079,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 150
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 150
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 150
     },
@@ -13858,10 +14099,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 3000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 3000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 3000
     },
@@ -13978,10 +14224,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 1000
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 1000
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 1000
     },
@@ -14083,10 +14334,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 250
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 250
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 250
     },
@@ -14218,10 +14474,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 310
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 310
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 310
     },
@@ -14263,10 +14524,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 350
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 350
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 350
     },
@@ -14278,10 +14544,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 290
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 290
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 290
     },
@@ -14293,10 +14564,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 310
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 310
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 310
     },
@@ -14308,10 +14584,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 280
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 280
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 280
     },
@@ -14323,10 +14604,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 300
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 300
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 300
     },
@@ -14593,10 +14879,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 15
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 15
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 15
     },
@@ -14623,10 +14914,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 20
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 20
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 20
     },
@@ -14683,10 +14979,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 300
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 300
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 300
     },
@@ -15628,10 +15929,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 300
+        },
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 300
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 300
     },
@@ -15973,10 +16279,15 @@
           "npc": "Yasir",
           "location": "Carlin / Liberty Bay / Ankrahmun",
           "price": 120
+        },
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 120
         }
       ],
       "verified": true,
-      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 120
     },
@@ -16279,6 +16590,1531 @@
       "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Yasir).",
       "sourceUrl": "https://www.tibiawiki.com.br/wiki/Yasir",
       "price": 600
+    },
+    "crunor idol": {
+      "name": "Crunor Idol",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 30000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 30000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 30000
+    },
+    "ancient coin": {
+      "name": "Ancient Coin",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 350
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 350
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 350
+    },
+    "black pearl": {
+      "name": "Black Pearl",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 280
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 280
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 280
+    },
+    "blue crystal shard": {
+      "name": "Blue Crystal Shard",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 1500
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 1500
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 1500
+    },
+    "blue crystal splinter": {
+      "name": "Blue Crystal Splinter",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 400
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 400
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 400
+    },
+    "blue rose": {
+      "name": "Blue Rose",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 200
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 200
+    },
+    "brown crystal splinter": {
+      "name": "Brown Crystal Splinter",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 400
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 400
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 400
+    },
+    "butterfly ring": {
+      "name": "Butterfly Ring",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 2000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 2000
+    },
+    "coral brooch": {
+      "name": "Coral Brooch",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 750
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 750
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 750
+    },
+    "cyan crystal fragment": {
+      "name": "Cyan Crystal Fragment",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 800
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 800
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 800
+    },
+    "dream blossom staff": {
+      "name": "Dream Blossom Staff",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 5000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5000
+    },
+    "empty potion flask (small)": {
+      "name": "Empty Potion Flask (Small)",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 5
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5
+    },
+    "empty potion flask (medium)": {
+      "name": "Empty Potion Flask (Medium)",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 5
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5
+    },
+    "empty potion flask (large)": {
+      "name": "Empty Potion Flask (Large)",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 5
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5
+    },
+    "gemmed figurine": {
+      "name": "Gemmed Figurine",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 3500
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 3500
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 3500
+    },
+    "giant shimmering pearl": {
+      "name": "Giant Shimmering Pearl",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 3000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 3000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 3000
+    },
+    "goat grass": {
+      "name": "Goat Grass",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 50
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 50
+    },
+    "gold ingot": {
+      "name": "Gold Ingot",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 5000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 5000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5000
+    },
+    "gold nugget": {
+      "name": "Gold Nugget",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 850
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 850
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 850
+    },
+    "golden figurine": {
+      "name": "Golden Figurine",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 3000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 3000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 3000
+    },
+    "green crystal fragment": {
+      "name": "Green Crystal Fragment",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 800
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 800
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 800
+    },
+    "green crystal shard": {
+      "name": "Green Crystal Shard",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 1500
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 1500
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 1500
+    },
+    "green crystal splinter": {
+      "name": "Green Crystal Splinter",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 400
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 400
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 400
+    },
+    "hexagonal ruby": {
+      "name": "Hexagonal Ruby",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 30000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 30000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 30000
+    },
+    "leaf star": {
+      "name": "Leaf Star",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 50
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 50
+    },
+    "mandrake": {
+      "name": "Mandrake",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 5000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5000
+    },
+    "onyx chip": {
+      "name": "Onyx Chip",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 500
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 500
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 500
+    },
+    "opal": {
+      "name": "Opal",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 500
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 500
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 500
+    },
+    "panpipes": {
+      "name": "Panpipes",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 150
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 150
+    },
+    "prismatic quartz": {
+      "name": "Prismatic Quartz",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 450
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 450
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 450
+    },
+    "rainbow quartz": {
+      "name": "Rainbow Quartz",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 500
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 500
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 500
+    },
+    "red crystal fragment": {
+      "name": "Red Crystal Fragment",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 800
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 800
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 800
+    },
+    "red rose": {
+      "name": "Red Rose",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 10
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 10
+    },
+    "sling herb": {
+      "name": "Sling Herb",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 10
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 10
+    },
+    "small amethyst": {
+      "name": "Small Amethyst",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 200
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 200
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 200
+    },
+    "small diamond": {
+      "name": "Small Diamond",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 300
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 300
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 300
+    },
+    "small emerald": {
+      "name": "Small Emerald",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 250
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 250
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 250
+    },
+    "small enchanted amethyst": {
+      "name": "Small Enchanted Amethyst",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 200
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 200
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 200
+    },
+    "small enchanted emerald": {
+      "name": "Small Enchanted Emerald",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 250
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 250
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 250
+    },
+    "small enchanted ruby": {
+      "name": "Small Enchanted Ruby",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 250
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 250
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 250
+    },
+    "small enchanted sapphire": {
+      "name": "Small Enchanted Sapphire",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 250
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 250
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 250
+    },
+    "small ruby": {
+      "name": "Small Ruby",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 250
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 250
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 250
+    },
+    "small sapphire": {
+      "name": "Small Sapphire",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 250
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 250
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 250
+    },
+    "small topaz": {
+      "name": "Small Topaz",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 200
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 200
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 200
+    },
+    "summer dress": {
+      "name": "Summer Dress",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 1500
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 1500
+    },
+    "tiger eye": {
+      "name": "Tiger Eye",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 350
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 350
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 350
+    },
+    "vial": {
+      "name": "Vial",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 5
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5
+    },
+    "violet crystal shard": {
+      "name": "Violet Crystal Shard",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 1500
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 1500
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 1500
+    },
+    "watermelon tourmaline (fatia)": {
+      "name": "Watermelon Tourmaline (Fatia)",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 30000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 30000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 30000
+    },
+    "watermelon tourmaline (lapidada)": {
+      "name": "Watermelon Tourmaline (Lapidada)",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 230000
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 230000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 230000
+    },
+    "wedding ring": {
+      "name": "Wedding Ring",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 100
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 100
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 100
+    },
+    "white pearl": {
+      "name": "White Pearl",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 160
+        },
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 160
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 160
+    },
+    "wood cape": {
+      "name": "Wood Cape",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Valindara",
+          "location": "Feyrist",
+          "price": 5000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Valindara).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5000
+    },
+    "collar of blue plasma": {
+      "name": "Collar of Blue Plasma",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 6000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 6000
+    },
+    "collar of green plasma": {
+      "name": "Collar of Green Plasma",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 6000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 6000
+    },
+    "collar of orange plasma": {
+      "name": "Collar of Orange Plasma",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 6000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 6000
+    },
+    "collar of red plasma": {
+      "name": "Collar of Red Plasma",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 6000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 6000
+    },
+    "ring of blue plasma": {
+      "name": "Ring of Blue Plasma",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 8000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 8000
+    },
+    "ring of green plasma": {
+      "name": "Ring of Green Plasma",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 8000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 8000
+    },
+    "ring of orange plasma": {
+      "name": "Ring of Orange Plasma",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 8000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 8000
+    },
+    "ring of red plasma": {
+      "name": "Ring of Red Plasma",
+      "category": "creature_product",
+      "buyers": [
+        {
+          "npc": "Fadil",
+          "location": "Darashia",
+          "price": 8000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fadil).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 8000
+    },
+    "soul orb": {
+      "name": "Soul Orb",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Augustin",
+          "location": "Bounac",
+          "price": 25
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Augustin).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 25
+    },
+    "golden sickle": {
+      "name": "Golden Sickle",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Augustin",
+          "location": "Bounac",
+          "price": 1000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Augustin).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 1000
+    },
+    "orichalcum pearl": {
+      "name": "Orichalcum Pearl",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Augustin",
+          "location": "Bounac",
+          "price": 40
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Augustin).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 40
+    },
+    "purple tome": {
+      "name": "Purple Tome",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Augustin",
+          "location": "Bounac",
+          "price": 2000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Augustin).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 2000
+    },
+    "amber (item)": {
+      "name": "Amber (Item)",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 20000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 20000
+    },
+    "amber with a bug": {
+      "name": "Amber with a Bug",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 41000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 41000
+    },
+    "amber with a dragonfly": {
+      "name": "Amber with a Dragonfly",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 56000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 56000
+    },
+    "bar of gold": {
+      "name": "Bar of Gold",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 10000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 10000
+    },
+    "blue gem": {
+      "name": "Blue Gem",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 5000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5000
+    },
+    "diamond": {
+      "name": "Diamond",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 15000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 15000
+    },
+    "dragon figurine": {
+      "name": "Dragon Figurine",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 45000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 45000
+    },
+    "eldritch crystal": {
+      "name": "Eldritch Crystal",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 48000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 48000
+    },
+    "giant amethyst": {
+      "name": "Giant Amethyst",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 60000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 60000
+    },
+    "giant emerald": {
+      "name": "Giant Emerald",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 90000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 90000
+    },
+    "giant ruby": {
+      "name": "Giant Ruby",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 70000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 70000
+    },
+    "giant sapphire": {
+      "name": "Giant Sapphire",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 50000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 50000
+    },
+    "giant topaz": {
+      "name": "Giant Topaz",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 80000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 80000
+    },
+    "green gem": {
+      "name": "Green Gem",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 5000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 5000
+    },
+    "moonstone": {
+      "name": "Moonstone",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 13000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 13000
+    },
+    "ornate locket": {
+      "name": "Ornate Locket",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 18000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 18000
+    },
+    "red gem": {
+      "name": "Red Gem",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 1000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 1000
+    },
+    "skull coin": {
+      "name": "Skull Coin",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 12000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 12000
+    },
+    "talon": {
+      "name": "Talon",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 320
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 320
+    },
+    "unicorn figurine": {
+      "name": "Unicorn Figurine",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 50000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 50000
+    },
+    "violet gem": {
+      "name": "Violet Gem",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 10000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 10000
+    },
+    "white gem": {
+      "name": "White Gem",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 12000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 12000
+    },
+    "white silk flower": {
+      "name": "White Silk Flower",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 9000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 9000
+    },
+    "yellow gem": {
+      "name": "Yellow Gem",
+      "category": "misc",
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron",
+          "price": 1000
+        }
+      ],
+      "verified": true,
+      "source": "Conteúdo fornecido pelo usuário, copiado diretamente da página da TibiaWiki BR (NPC: Fiona).",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Fiona",
+      "price": 1000
     }
   }
 }
