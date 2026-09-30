@@ -2,108 +2,646 @@
   "schemaVersion": 1,
   "game": "Tibia",
   "currency": "gp",
-  "description": "Catálogo inicial importável para o Guia de Venda de Loot. Preços e compradores devem ser revisados conforme updates do jogo.",
+  "description": "Catálogo expandido para o Guia de Venda de Loot. Registros com verified=true possuem fonte TibiaWiki BR no campo sourceUrl. Confira requisitos de quests e atualizações.",
   "items": {
     "great mana potion": {
       "name": "Great Mana Potion",
       "price": 158,
       "buyers": [
-        { "npc": "Asima", "location": "Darashia" },
-        { "npc": "Chuckles", "location": "Yalahar" },
-        { "npc": "Digger", "location": "Venore" },
-        { "npc": "Frederik", "location": "Liberty Bay" },
-        { "npc": "Mehkesh", "location": "Ankrahmun" },
-        { "npc": "Nelly", "location": "Svargrond" },
-        { "npc": "Rachel", "location": "Carlin" },
-        { "npc": "Shiriel", "location": "Ab'Dendriel" },
-        { "npc": "Sandra", "location": "Edron" }
+        {
+          "npc": "Asima",
+          "location": "Darashia"
+        },
+        {
+          "npc": "Chuckles",
+          "location": "Yalahar"
+        },
+        {
+          "npc": "Digger",
+          "location": "Venore"
+        },
+        {
+          "npc": "Frederik",
+          "location": "Liberty Bay"
+        },
+        {
+          "npc": "Mehkesh",
+          "location": "Ankrahmun"
+        },
+        {
+          "npc": "Nelly",
+          "location": "Svargrond"
+        },
+        {
+          "npc": "Rachel",
+          "location": "Carlin"
+        },
+        {
+          "npc": "Shiriel",
+          "location": "Ab'Dendriel"
+        },
+        {
+          "npc": "Sandra",
+          "location": "Edron"
+        }
       ],
-      "source": "Catálogo já presente na versão atual do site",
+      "source": "Catálogo anterior do site; pendente de revalidação",
       "verified": false
     },
     "great health potion": {
       "name": "Great Health Potion",
       "price": 225,
       "buyers": [
-        { "npc": "Digger", "location": "Venore" },
-        { "npc": "Mehkesh", "location": "Ankrahmun" }
+        {
+          "npc": "Digger",
+          "location": "Venore"
+        },
+        {
+          "npc": "Mehkesh",
+          "location": "Ankrahmun"
+        }
       ],
-      "source": "Catálogo já presente na versão atual do site",
+      "source": "Catálogo anterior do site; pendente de revalidação",
       "verified": false
     },
     "terra boots": {
       "name": "Terra Boots",
       "price": 2500,
-      "buyers": [{ "npc": "Rashid", "location": "Itinerante" }],
-      "source": "Catálogo já presente na versão atual do site",
+      "buyers": [
+        {
+          "npc": "Rashid",
+          "location": "Itinerante"
+        }
+      ],
+      "source": "Catálogo anterior do site; pendente de revalidação",
       "verified": false
     },
     "carnisylvan finger": {
       "name": "Carnisylvan Finger",
       "price": 250,
       "buyers": [
-        { "npc": "Augustin", "location": "Bounac" },
-        { "npc": "Yasir", "location": "Carlin / Liberty Bay / Ankrahmun" }
+        {
+          "npc": "Augustin",
+          "location": "Bounac"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
       ],
-      "source": "Catálogo já presente na versão atual do site",
-      "verified": false
+      "lootFrom": [
+        "Dark Carnisylvan",
+        "Hulking Carnisylvan",
+        "Poisonous Carnisylvan"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Carnisylvan_Finger",
+      "verified": true
     },
     "carnisylvan bark": {
       "name": "Carnisylvan Bark",
       "price": 230,
       "buyers": [
-        { "npc": "Augustin", "location": "Bounac" },
-        { "npc": "Yasir", "location": "Carlin / Liberty Bay / Ankrahmun" }
+        {
+          "npc": "Augustin",
+          "location": "Bounac"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
       ],
-      "source": "Catálogo já presente na versão atual do site",
-      "verified": false
+      "lootFrom": [
+        "Carnisylvan Sapling",
+        "Dark Carnisylvan",
+        "Hulking Carnisylvan",
+        "Poisonous Carnisylvan"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Carnisylvan_Bark",
+      "verified": true
     },
     "boar man hoof": {
       "name": "Boar Man Hoof",
       "price": 600,
-      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
-      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
-      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "buyers": [
+        {
+          "npc": "Avan",
+          "location": "Ingol"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item; preço e compradores conferidos",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Boar_Man_Hoof",
       "verified": true
     },
     "carnivostrich feather": {
       "name": "Carnivostrich Feather",
       "price": 630,
-      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
-      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
-      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "buyers": [
+        {
+          "npc": "Avan",
+          "location": "Ingol"
+        }
+      ],
+      "source": "TibiaWiki BR — página do NPC Avan",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Avan",
       "verified": true
     },
     "crab man claws": {
       "name": "Crab Man Claws",
       "price": 550,
-      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
-      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
-      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "buyers": [
+        {
+          "npc": "Avan",
+          "location": "Ingol"
+        }
+      ],
+      "source": "TibiaWiki BR — página do NPC Avan",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Avan",
       "verified": true
     },
     "harpy feathers": {
       "name": "Harpy Feathers",
       "price": 730,
-      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
-      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
-      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "buyers": [
+        {
+          "npc": "Avan",
+          "location": "Ingol"
+        }
+      ],
+      "source": "TibiaWiki BR — página do NPC Avan",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Avan",
       "verified": true
     },
     "liodile fang": {
       "name": "Liodile Fang",
       "price": 480,
-      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
-      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
-      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "buyers": [
+        {
+          "npc": "Avan",
+          "location": "Ingol"
+        }
+      ],
+      "source": "TibiaWiki BR — página do NPC Avan",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Avan",
       "verified": true
     },
     "rhindeer antlers": {
       "name": "Rhindeer Antlers",
       "price": 68,
-      "buyers": [{ "npc": "Avan", "location": "Ingol" }],
-      "source": "TibiaWiki BR — página do NPC Avan; preço listado na seção de itens comprados",
-      "sourceUrl": "https://tibiawiki.com.br/wiki/Avan",
+      "buyers": [
+        {
+          "npc": "Avan",
+          "location": "Ingol"
+        }
+      ],
+      "source": "TibiaWiki BR — página do NPC Avan",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Avan",
+      "verified": true
+    },
+    "goanna claw": {
+      "name": "Goanna Claw",
+      "price": 260,
+      "buyers": [
+        {
+          "npc": "Khanna",
+          "location": "Issavi"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Goanna_Claw",
+      "verified": true
+    },
+    "spitter nose": {
+      "name": "Spitter Nose",
+      "price": 340,
+      "buyers": [
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach"
+        },
+        {
+          "npc": "Malunga",
+          "location": "Liberty Bay"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Spitter_Nose",
+      "verified": true
+    },
+    "deeptags": {
+      "name": "Deeptags",
+      "price": 290,
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron"
+        },
+        {
+          "npc": "Rock In A Hard Place",
+          "location": "Gray Beach"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Deeptags",
+      "verified": true
+    },
+    "prehemoth horns": {
+      "name": "Prehemoth Horns",
+      "price": 3000,
+      "buyers": [
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Prehemoth_Horns",
+      "verified": true
+    },
+    "quara tentacle": {
+      "name": "Quara Tentacle",
+      "price": 140,
+      "buyers": [
+        {
+          "npc": "Grizzly Adams",
+          "location": "Port Hope"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item; Grizzly Adams exige rank Huntsman na Killing in the Name of... Quest",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Quara_Tentacle",
+      "verified": true
+    },
+    "scarab pincers": {
+      "name": "Scarab Pincers",
+      "price": 280,
+      "buyers": [
+        {
+          "npc": "Grizzly Adams",
+          "location": "Port Hope"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item; Grizzly Adams exige rank Huntsman na Killing in the Name of... Quest",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Scarab_Pincers",
+      "verified": true
+    },
+    "antlers": {
+      "name": "Antlers",
+      "price": 50,
+      "buyers": [
+        {
+          "npc": "Inigo",
+          "location": "Dawnport"
+        },
+        {
+          "npc": "Grizzly Adams",
+          "location": "Port Hope"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — preço de 50 gp para os compradores listados; Tom em Rookgaard paga 5 gp e foi omitido por diferença de preço",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Antlers",
+      "verified": true
+    },
+    "sabretooth": {
+      "name": "Sabretooth",
+      "price": 400,
+      "buyers": [
+        {
+          "npc": "Grizzly Adams",
+          "location": "Port Hope"
+        },
+        {
+          "npc": "Tarun",
+          "location": "Tiquanda"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item; Grizzly Adams exige rank Huntsman na Killing in the Name of... Quest",
+      "sourceUrl": "https://www.tibiawiki.com.br/index.php?stableid=210323&title=Sabretooth_%28Item%29",
+      "verified": true
+    },
+    "abomination's tail": {
+      "name": "Abomination's Tail",
+      "price": 700000,
+      "buyers": [
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "source": "TibiaWiki BR — página do item",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Abomination%27s_Tail",
+      "verified": true
+    },
+    "bashmu fang": {
+      "name": "Bashmu Fang",
+      "price": 600,
+      "buyers": [
+        {
+          "npc": "Khanna",
+          "location": "Issavi"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "lootFrom": [
+        "Bashmu",
+        "Juvenile Bashmu"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Bashmu_Fang",
+      "verified": true
+    },
+    "bashmu tongue": {
+      "name": "Bashmu Tongue",
+      "price": 400,
+      "buyers": [
+        {
+          "npc": "Khanna",
+          "location": "Issavi"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "lootFrom": [
+        "Bashmu",
+        "Juvenile Bashmu"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Bashmu_Tongue",
+      "verified": true
+    },
+    "cobra crest": {
+      "name": "Cobra Crest",
+      "price": 650,
+      "buyers": [
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        },
+        {
+          "npc": "Augustin",
+          "location": "Bounac"
+        }
+      ],
+      "lootFrom": [
+        "Cobra Assassin",
+        "Cobra Scout",
+        "Cobra Vizier",
+        "Guard Captain Quaid"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Cobra_Crest",
+      "verified": true
+    },
+    "draken wristbands": {
+      "name": "Draken Wristbands",
+      "price": 430,
+      "buyers": [
+        {
+          "npc": "Esrik",
+          "location": "Farmine"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "lootFrom": [
+        "Draken Elite",
+        "Paiz the Pauperizer"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Draken_Wristbands",
+      "verified": true
+    },
+    "draken sulphur": {
+      "name": "Draken Sulphur",
+      "price": 550,
+      "buyers": [
+        {
+          "npc": "Fiona",
+          "location": "Edron"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "lootFrom": [
+        "Draken Elite",
+        "Draken Spellweaver",
+        "Paiz the Pauperizer"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Draken_Sulphur",
+      "verified": true
+    },
+    "falcon crest": {
+      "name": "Falcon Crest",
+      "price": 650,
+      "buyers": [
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        },
+        {
+          "npc": "Augustin",
+          "location": "Bounac"
+        }
+      ],
+      "lootFrom": [
+        "Falcon Paladin",
+        "Falcon Knight",
+        "Grand Commander Soeren"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Falcon_Crest",
+      "verified": true
+    },
+    "peacock feather fan": {
+      "name": "Peacock Feather Fan",
+      "price": 350,
+      "buyers": [
+        {
+          "npc": "Tarun",
+          "location": "Tiquanda"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "lootFrom": [
+        "Dawnfire Asura",
+        "Midnight Asura",
+        "Asura bosses"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Peacock_Feather_Fan",
+      "verified": true
+    },
+    "lion's mane": {
+      "name": "Lion's Mane",
+      "price": 60,
+      "buyers": [
+        {
+          "npc": "Domizian",
+          "location": "Darashia"
+        },
+        {
+          "npc": "Irmana",
+          "location": "Venore"
+        },
+        {
+          "npc": "Yasir",
+          "location": "Carlin / Liberty Bay / Ankrahmun"
+        }
+      ],
+      "lootFrom": [
+        "Werelion",
+        "Werelioness",
+        "White Lion"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lion%27s_Mane",
+      "verified": true
+    },
+    "lion figurine": {
+      "name": "Lion Figurine",
+      "price": 10000,
+      "buyers": [
+        {
+          "npc": "Augustin",
+          "location": "Bounac"
+        },
+        {
+          "npc": "Tesha",
+          "location": "Ankrahmun"
+        },
+        {
+          "npc": "Ishina",
+          "location": "Darashia"
+        },
+        {
+          "npc": "Iwan",
+          "location": "Edron"
+        },
+        {
+          "npc": "Chantalle",
+          "location": "Liberty Bay"
+        },
+        {
+          "npc": "Gail",
+          "location": "Port Hope"
+        },
+        {
+          "npc": "Hanna",
+          "location": "Thais"
+        },
+        {
+          "npc": "Odemara",
+          "location": "Venore"
+        }
+      ],
+      "lootFrom": [
+        "Werelion",
+        "Werelioness"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Lion_Figurine",
+      "verified": true
+    },
+    "weretiger trophy": {
+      "name": "Weretiger Trophy",
+      "price": 15000,
+      "buyers": [
+        {
+          "npc": "Grizzly Adams",
+          "location": "Port Hope"
+        }
+      ],
+      "lootFrom": [
+        "Weretiger"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Weretiger_Trophy",
+      "verified": true
+    },
+    "demonic essence": {
+      "name": "Demonic Essence",
+      "price": 1000,
+      "buyers": [
+        {
+          "npc": "Augustin",
+          "location": "Bounac"
+        },
+        {
+          "npc": "The Bone Master",
+          "location": "Dream Realm"
+        },
+        {
+          "npc": "The Dream Master",
+          "location": "Dream Realm"
+        }
+      ],
+      "lootFrom": [
+        "Dawnfire Asura",
+        "Midnight Asura"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Demonic_Essence",
+      "verified": true
+    },
+    "furry club": {
+      "name": "Furry Club",
+      "price": 1000,
+      "buyers": [
+        {
+          "npc": "Rashid",
+          "location": "Itinerante"
+        }
+      ],
+      "lootFrom": [
+        "Weretiger"
+      ],
+      "source": "TibiaWiki BR — página do item; lista de loot e compradores/preço conferidos.",
+      "sourceUrl": "https://www.tibiawiki.com.br/wiki/Furry_Club",
       "verified": true
     }
   }
