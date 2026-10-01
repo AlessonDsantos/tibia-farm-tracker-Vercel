@@ -448,6 +448,14 @@ tr.total td:first-child{font-weight:700}
 #retentionDashboard .retention-record strong,#retentionDashboard .retention-record b{color:var(--gold2)}
 #retentionDashboard .retention-section h3+*{font-size:12px}
 #retentionDashboard button{font-size:12px}
+ .menu-icon-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
 </style>
 </head>
 <body>
@@ -464,7 +472,10 @@ tr.total td:first-child{font-weight:700}
   <button type="button" data-nav="ferramentas" aria-expanded="false" aria-controls="tftSubnavFerramentas" onclick="tftToggleFerramentas()"><span class="ic">🧰</span>Ferramentas <span class="tft-chevron" aria-hidden="true" style="margin-left:auto">▾</span></button>
   <div class="tft-subnav" id="tftSubnavFerramentas" aria-label="Submenu Ferramentas">
    <button type="button" data-nav="loot" onclick="tftAbrirGuiaLoot()"><span class="ic">💰</span>Onde vender o loot?</button>
-   <button type="button" onclick="abrirCalculadoraRecursos()"><span class="ic">⏱️</span>Custos de Hunt</button>
+   <button type="button" onclick="abrirCalculadoraRecursos()">
+  <img class="menu-icon-img" src="./custos-hunt.png" alt="">
+  Custos de Hunt
+</button>
   </div>
   <button type="button" data-nav="config" onclick="tftNav('config')"><span class="ic">⚙️</span>Configurações</button>
  </nav>
