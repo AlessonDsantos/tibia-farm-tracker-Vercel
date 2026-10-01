@@ -457,6 +457,44 @@ tr.total td:first-child{font-weight:700}
   flex-shrink: 0;
 }
 </style>
+<style id="tft-cmp-css">
+#tftCmpModal{display:none;position:fixed;inset:0;z-index:10060;background:rgba(0,0,0,.78);padding:18px;overflow:auto;align-items:flex-start;justify-content:center}
+#tftCmpModal.open{display:flex}
+#tftCmpModal .cmp-box{position:relative;width:min(1100px,100%);background:#081a2b;color:#dcecf8;border:1px solid #38617e;border-radius:14px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#tftCmpModal h2{margin:0 0 4px;font-size:18px;color:#ffdf9f}#tftCmpModal h3{margin:22px 0 10px;font-size:14px;color:#cfe4f2;padding-bottom:8px;border-bottom:1px solid #12314a}
+.cmp-x{position:absolute;top:12px;right:14px;background:none;border:0;color:#9db7c9;font-size:18px;cursor:pointer}
+.cmp-muted{color:var(--muted);font-size:12px;margin:0 0 12px;line-height:1.5}
+.cmp-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cmp-inputs label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.cmp-inputs input,.cmp-inputs textarea{width:100%;box-sizing:border-box;background:#05121f;color:#dcecf8;border:1px solid #23506f;border-radius:8px;padding:8px 10px;font:12px/1.4 ui-monospace,Menlo,monospace}
+.cmp-inputs input{margin-bottom:6px;font-family:inherit;font-size:13px}.cmp-inputs textarea{height:150px;resize:vertical}
+.cmp-act{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.cmp-act button{border:1px solid #38617e;border-radius:8px;padding:9px 13px;background:#0b2135;color:#dcecf8;cursor:pointer;font-weight:600}
+.cmp-act button.primary{background:linear-gradient(100deg,#e2b149,#c8902c);color:#1a1204;border-color:#e8b957}
+.cmp-err{color:var(--red);font-size:12.5px;margin:6px 0}
+.cmp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cmp-card{background:#05121f;border:1px solid #16354c;border-radius:10px;padding:11px}
+.cmp-card .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.cmp-card .r{display:flex;justify-content:space-between;gap:6px;font-size:12.5px;padding:2px 0;color:#9db7c9}
+.cmp-card .r b{font-weight:700}.cmp-card .r.w b{color:var(--gold2)}.cmp-card .r.w{color:#dcecf8}
+.cmp-card .p{margin-top:6px;font-size:12px;font-weight:700}
+.cmp-up{color:#5ff0b4}.cmp-down{color:var(--red)}.cmp-eq{color:var(--muted)}
+.cmp-wrap{overflow-x:auto}
+.cmp-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:560px}
+.cmp-table th,.cmp-table td{padding:8px 10px;border-bottom:1px solid #12314a;text-align:right;white-space:nowrap}
+.cmp-table th:first-child,.cmp-table td:first-child{text-align:left}
+.cmp-table th{color:var(--muted);font-size:11px;text-transform:uppercase}
+.cmp-table tr.sec td{background:#0b2135;color:var(--gold2);font-weight:700;text-align:left}
+.cmp-table td.w{color:var(--gold2);font-weight:700}
+.cmp-imp{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.cmp-i{background:#05121f;border:1px solid #16354c;border-radius:10px;padding:12px}
+.cmp-i .t{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.cmp-i .pc{font-size:24px;font-weight:800;margin:4px 0 0}.cmp-i .ab{font-size:12px;color:#9db7c9}.cmp-i .tx{font-size:12px;margin-top:6px;line-height:1.45}
+.cmp-sum{background:linear-gradient(180deg,#0b2135,#071727);border:1px solid #38617e;border-radius:10px;padding:14px;font-size:13px;line-height:1.6}
+.cmp-sum p{margin:0 0 8px}.cmp-sum p:last-child{margin:0;color:var(--muted);font-size:12px}
+@media(max-width:680px){.cmp-inputs{grid-template-columns:1fr}}
+</style>
+
 </head>
 <body>
 <div class="tft-shell">
@@ -472,6 +510,7 @@ tr.total td:first-child{font-weight:700}
   <button type="button" data-nav="ferramentas" aria-expanded="false" aria-controls="tftSubnavFerramentas" onclick="tftToggleFerramentas()"><span class="ic">🧰</span>Ferramentas <span class="tft-chevron" aria-hidden="true" style="margin-left:auto">▾</span></button>
   <div class="tft-subnav" id="tftSubnavFerramentas" aria-label="Submenu Ferramentas">
    <button type="button" data-nav="loot" onclick="tftAbrirGuiaLoot()"><span class="ic">💰</span>Onde vender o loot?</button>
+   <button type="button" data-nav="comparar" onclick="tftAbrirComparador()"><span class="ic">⚖️</span>Comparar Hunts</button>
    <button type="button" onclick="abrirCalculadoraRecursos()">
   <img class="menu-icon-img" src="./custo-hunt2.png" alt="">
   Custos de Hunt
@@ -3032,6 +3071,99 @@ tftCarregarCatalogoLoot();
  <div id="crAssociarArea" style="display:none"><div class="actions"><button class="btn-green" onclick="associarRecurso()">Associar automaticamente às hunts</button></div></div>
  <div id="crAtivos" style="margin-top:12px"></div>
 </div></div>
+
+<div id="tftCmpModal" role="dialog" aria-modal="true" aria-labelledby="tftCmpTitle" onclick="if(event.target===this)tftFecharComparador()">
+<section class="cmp-box"><button class="cmp-x" onclick="tftFecharComparador()" aria-label="Fechar">✕</button>
+<h2 id="tftCmpTitle">⚖️ Comparador de Hunts</h2>
+<p class="cmp-muted">Cole o texto completo do Hunt Analyzer de duas sessões. O foco é a rentabilidade (Balance); XP, dano e criaturas ajudam a dar contexto. As relações mostradas são observações dos dados, não prova de causa.</p>
+<div class="cmp-inputs">
+<div><label for="cmpNameA">Hunt A</label><input id="cmpNameA" maxlength="40" placeholder="Nome (opcional)"><textarea id="cmpTextA" placeholder="Cole aqui os dados da Hunt A"></textarea></div>
+<div><label for="cmpNameB">Hunt B</label><input id="cmpNameB" maxlength="40" placeholder="Nome (opcional)"><textarea id="cmpTextB" placeholder="Cole aqui os dados da Hunt B"></textarea></div>
+</div>
+<div class="cmp-act"><button class="primary" onclick="tftComparar()">Comparar</button><button onclick="tftCmpLimpar()">Limpar</button><button onclick="tftFecharComparador()">Fechar</button></div>
+<div id="cmpErr" class="cmp-err" role="alert"></div><div id="cmpOut" aria-live="polite"></div></section></div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var fmt=function(n){return n==null?'—':Number(Math.round(n)).toLocaleString('pt-BR')};
+var toN=function(s){var v=parseInt(String(s).replace(/[^\d]/g,''),10);return isNaN(v)?null:(/^\s*-/.test(s)?-v:v)};
+function parse(t){
+ if(!t||!t.trim())return null;
+ var g=function(l){var m=t.match(new RegExp('^\\s*'+l+'\\s*:\\s*(-?[\\d,.]+)','im'));return m?toN(m[1]):null};
+ var sm=t.match(/^\s*Session\s*:\s*(\d+):(\d+)/im),mins=sm?(+sm[1])*60+(+sm[2]):null;
+ var dm=t.match(/From\s+(\d{4})-(\d\d)-(\d\d)/i);
+ var kb=t.split(/Killed Monsters\s*:/i)[1],mon={},kills=0;
+ if(kb){kb=kb.split(/Looted Items\s*:/i)[0];kb.split(/\r?\n/).forEach(function(l){var m=l.trim().match(/^([\d,.]+)\s*x\s+(.+)$/i);if(m){var q=toN(m[1]);mon[m[2].trim()]=(mon[m[2].trim()]||0)+q;kills+=q}})}
+ var h=mins?mins/60:null,d={mins:mins,h:h,date:dm?dm[3]+'/'+dm[2]+'/'+dm[1]:'',mon:mon,
+  rawxp:g('Raw XP Gain'),xp:g('XP Gain'),loot:g('Loot'),sup:g('Supplies'),bal:g('Balance'),dmg:g('Damage'),kills:kills||null};
+ if(d.bal==null&&d.loot!=null&&d.sup!=null)d.bal=d.loot-d.sup;
+ var ph=function(k,pk){var v=g(pk);return v!=null?v:(d[k]!=null&&h?d[k]/h:null)};
+ d.rawxph=ph('rawxp','Raw XP/h');d.xph=ph('xp','XP/h');d.dmgh=ph('dmg','Damage/h');
+ d.looth=h&&d.loot!=null?d.loot/h:null;d.suph=h&&d.sup!=null?d.sup/h:null;d.balh=h&&d.bal!=null?d.bal/h:null;d.killh=h&&d.kills?d.kills/h:null;
+ var pc=function(k){return d.kills&&d[k]!=null?d[k]/d.kills:null};
+ d.dpc=pc('dmg');d.lpc=pc('loot');d.bpc=pc('bal');
+ return d}
+function pct(a,b){if(a==null||b==null||b===0)return null;return(a-b)/Math.abs(b)*100}
+function pTxt(p){if(p==null)return'Sem base para comparação';if(Math.abs(p)<0.5)return'Praticamente igual';return Math.abs(p).toLocaleString('pt-BR',{maximumFractionDigits:1})+'% '+(p>0?'mais':'menos')}
+function pCls(p,low){if(p==null||Math.abs(p)<0.5)return'cmp-eq';return((p>0)!==!!low)?'cmp-up':'cmp-down'}
+/* [chave, rótulo, unidade, menor_é_melhor] */
+var SECS=[['💰 Rentabilidade',[['bal','Balance','gp'],['balh','Balance/h','gp'],['loot','Loot','gp'],['looth','Loot/h','gp'],['sup','Supplies','gp',1],['suph','Supplies/h','gp',1]]],
+['⚔️ Combate e produtividade',[['dmg','Damage',''],['dmgh','Damage/h',''],['kills','Monsters Killed',''],['killh','Monsters Killed/h','']]],
+['✨ Experiência',[['rawxp','Raw XP Gain',''],['rawxph','Raw XP/h',''],['xp','XP Gain',''],['xph','XP/h','']]],
+['🧮 Indicadores derivados',[['lpc','Loot por criatura','gp'],['bpc','Balance por criatura','gp'],['dpc','Dano por criatura','']]]];
+var LBL={};SECS.forEach(function(s){s[1].forEach(function(m){LBL[m[0]]=m})});
+var CARDS=['bal','balh','loot','xph','dmgh','kills'];
+var IMP=['killh','dmgh','looth','suph','balh','xph','lpc','bpc','dpc','kills','dmg','loot','sup','bal'];
+function best(a,b,low){if(a==null||b==null||a===b)return 0;return((a>b)!==!!low)?1:2}
+function cardHtml(k,A,B,nA,nB){var m=LBL[k],w=best(A[k],B[k],m[3]),p=pct(A[k],B[k]);
+ return'<div class="cmp-card"><div class="l">'+m[1]+'</div><div class="r'+(w==1?' w':'')+'"><span>'+esc(nA)+'</span><b>'+fmt(A[k])+'</b></div><div class="r'+(w==2?' w':'')+'"><span>'+esc(nB)+'</span><b>'+fmt(B[k])+'</b></div><div class="p '+pCls(p,m[3])+'">'+pTxt(p)+'</div></div>'}
+function tableHtml(A,B,nA,nB){var h='<div class="cmp-wrap"><table class="cmp-table"><thead><tr><th>Indicador</th><th>'+esc(nA)+'</th><th>'+esc(nB)+'</th><th>Diferença</th><th>Diferença %</th></tr></thead><tbody>';
+ SECS.forEach(function(s){h+='<tr class="sec"><td colspan="5">'+s[0]+'</td></tr>';s[1].forEach(function(m){var k=m[0],a=A[k],b=B[k],w=best(a,b,m[3]),p=pct(a,b);
+  h+='<tr><td>'+m[1]+'</td><td class="'+(w==1?'w':'')+'">'+fmt(a)+'</td><td class="'+(w==2?'w':'')+'">'+fmt(b)+'</td><td>'+(a!=null&&b!=null?(a-b>0?'+':'')+fmt(a-b):'—')+'</td><td class="'+pCls(p,m[3])+'">'+(p==null?'—':(p>0?'+':'')+p.toLocaleString('pt-BR',{maximumFractionDigits:1})+'%')+'</td></tr>'})});
+ return h+'</tbody></table></div>'}
+function impHtml(A,B,nA,nB){return'<div class="cmp-imp">'+IMP.map(function(k){var m=LBL[k],p=pct(A[k],B[k]);if(A[k]==null||B[k]==null)return'';
+ var d=A[k]-B[k],tx=p==null?'Sem base para comparação.':(Math.abs(p)<0.5?esc(nA)+' e '+esc(nB)+' ficaram praticamente iguais.':esc(nA)+' teve '+pTxt(p)+' em '+m[1]+' que '+esc(nB)+'.');
+ return'<div class="cmp-i"><div class="t">'+m[1]+'</div><div class="pc '+pCls(p,m[3])+'">'+(p==null?'—':(p>0?'+':'')+p.toLocaleString('pt-BR',{maximumFractionDigits:1})+'%')+'</div><div class="ab">'+(d>0?'+':'')+fmt(d)+(m[2]?' '+m[2]:'')+'</div><div class="tx">'+tx+'</div></div>'}).join('')+'</div>'}
+function narrative(A,B,nA,nB){
+ var k=A.balh!=null&&B.balh!=null?'balh':'bal',pb=pct(A[k],B[k]);
+ if(pb==null||Math.abs(pb)<0.5)return['Os dois resultados de '+(k==='balh'?'Balance/h':'Balance')+' ficaram praticamente iguais.'];
+ var wA=pb>0,W=wA?A:B,L=wA?B:A,nW=wA?nA:nB,nL=wA?nB:nA,pw=Math.abs(pb),out=[];
+ out.push('<b>'+esc(nW)+'</b> teve '+(k==='balh'?'Balance/h':'Balance')+' <b>'+pTxt(pb<0?-pb:pb).replace(/^(\S+)/,'$1')+'</b> que '+esc(nL)+'.');
+ var parts=[],worse=[];
+ [['killh','criaturas/h'],['dmgh','dano/h'],['looth','loot/h'],['lpc','loot por criatura'],['suph','supplies/h',1]].forEach(function(m){var p=pct(W[m[0]],L[m[0]]);if(p==null||Math.abs(p)<0.5)return;
+  var s=pTxt(p)+' '+m[1];parts.push(s);if(m[0]!=='suph'&&p<0)worse.push(m[1])});
+ if(parts.length)out.push('Em '+esc(nW)+' observamos: '+parts.join(', ')+'.');
+ if(worse.length)out.push('Apesar de '+esc(nW)+' ter ficado abaixo em '+worse.join(' e ')+', o lucro por hora foi maior. A diferença pode estar relacionada ao valor dos itens obtidos e aos gastos com supplies.');
+ var pl=pct(W.lpc,L.lpc),pk=pct(W.killh,L.killh);
+ if(pl!=null&&pk!=null&&pl>pk+5)out.push('A diferença de loot por criatura ('+pTxt(pl)+') foi maior que a de ritmo de abate ('+pTxt(pk)+'), sugerindo que o valor médio por criatura pesou mais que a velocidade.');
+ var ps=pct(L.suph,W.suph);
+ if(L.suph!=null&&W.suph!=null&&pct(W.suph,L.suph)>5)out.push('Os supplies/h de '+esc(nW)+' foram maiores, mas o loot compensou.');
+ if(A.mins&&B.mins&&Math.abs(pct(A.mins,B.mins))>10)out.push('As sessões têm durações diferentes ('+A.mins+' min vs '+B.mins+' min); por isso os indicadores por hora são a melhor base de comparação.');
+ out.push('Esta comparação mostra relações observadas nos registros e não prova que mais mortes ou mais dano causaram o lucro maior. Tipo de criatura, drops e variação de sorte também influenciam.');
+ return out}
+function monHtml(A,B,nA,nB){var names={};Object.keys(A.mon).concat(Object.keys(B.mon)).forEach(function(n){names[n]=1});var ks=Object.keys(names);if(!ks.length)return'';
+ ks.sort(function(x,y){return((B.mon[y]||0)+(A.mon[y]||0))-((B.mon[x]||0)+(A.mon[x]||0))});
+ var h='<h3>🐲 Criaturas eliminadas</h3><div class="cmp-wrap"><table class="cmp-table"><thead><tr><th>Criatura</th><th>'+esc(nA)+'</th><th>'+esc(nB)+'</th><th>Diferença % (por hora)</th></tr></thead><tbody>';
+ ks.forEach(function(n){var a=A.mon[n]||0,b=B.mon[n]||0,p=A.h&&B.h?pct(a/A.h,b/B.h):pct(a,b);
+  h+='<tr><td>'+esc(n)+'</td><td>'+fmt(a)+(A.h?' <small>('+fmt(a/A.h)+'/h)</small>':'')+'</td><td>'+fmt(b)+(B.h?' <small>('+fmt(b/B.h)+'/h)</small>':'')+'</td><td class="'+pCls(p)+'">'+(b===0?'Sem base para comparação':pTxt(p))+'</td></tr>'});
+ return h+'</tbody></table></div>'}
+window.tftAbrirComparador=function(){tftFecharMenu();$('tftCmpModal').classList.add('open');tftMarcarNav('loot')};
+window.tftFecharComparador=function(){$('tftCmpModal').classList.remove('open')};
+window.tftCmpLimpar=function(){['cmpTextA','cmpTextB','cmpNameA','cmpNameB'].forEach(function(i){$(i).value=''});$('cmpOut').innerHTML='';$('cmpErr').textContent=''};
+window.tftComparar=function(){
+ var A=parse($('cmpTextA').value),B=parse($('cmpTextB').value),e=$('cmpErr'),o=$('cmpOut');e.textContent='';o.innerHTML='';
+ var ok=function(d){return d&&d.bal!=null&&d.loot!=null};
+ if(!ok(A)||!ok(B)){e.textContent='Cole os dados completos das duas hunts (precisam conter ao menos Loot e Balance).';return}
+ var nA=$('cmpNameA').value.trim()||'Hunt A',nB=$('cmpNameB').value.trim()||'Hunt B';
+ var sub=function(d){return d.date||d.mins?'<small style="color:var(--muted)">'+(d.date||'')+(d.mins?' · '+Math.floor(d.mins/60)+'h'+String(d.mins%60).padStart(2,'0')+'min':'')+'</small>':''};
+ o.innerHTML='<p class="cmp-muted">'+esc(nA)+' '+sub(A)+' &nbsp;vs&nbsp; '+esc(nB)+' '+sub(B)+' — percentuais relativos à '+esc(nB)+': (A − B) ÷ B × 100.</p>'
+ +'<h3>📌 Resumo comparativo</h3><div class="cmp-cards">'+CARDS.map(function(k){return cardHtml(k,A,B,nA,nB)}).join('')+'</div>'
+ +'<h3>📊 Análise de impacto</h3><div class="cmp-sum">'+narrative(A,B,nA,nB).map(function(t){return'<p>'+t+'</p>'}).join('')+'</div><div style="height:10px"></div>'+impHtml(A,B,nA,nB)
+ +'<h3>📋 Comparação detalhada</h3>'+tableHtml(A,B,nA,nB)+monHtml(A,B,nA,nB)};
+window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
+})();
+</script>
 
 </body>
 </html>
