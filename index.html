@@ -828,13 +828,17 @@ function fechar(id){document.getElementById(id).classList.remove("open")}
 function abrir(id){document.getElementById(id).classList.add("open")}
 
 const isResumo=s=>!!s.resumoDia;
-const gold=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)).reduce((a,s)=>a+Number(s.gold),0);
-const tc=g=>g.sessoes.filter(s=>!s.somado&&!isResumo(s)).reduce((a,s)=>a+Number(s.gold)/Number(s.tcPrice||S.tcPrice),0);
+/* reinicioData: quando a meta infinita foi "zerada" pela última vez (reiniciarAcumulado()).
+   Sessões/gastos anteriores a essa data continuam no Histórico e no Desempenho,
+   só saem da conta do Gold Total / Saldo a partir daqui. */
+const reinicioData=g=>g.resetEm?g.resetEm.slice(0,10):null;
+const gold=g=>{const rd=reinicioData(g);return g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&(!rd||s.data>=rd)).reduce((a,s)=>a+Number(s.gold),0)};
+const tc=g=>{const rd=reinicioData(g);return g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&(!rd||s.data>=rd)).reduce((a,s)=>a+Number(s.gold)/Number(s.tcPrice||S.tcPrice),0)};
 /* gastos: quanto do que foi farmado numa meta já foi usado. O Acumulado (gold(g))
    continua sendo o total farmado (histórico/recordes); o Saldo é o que "sobra"
    pra essa meta depois de descontar os gastos, e é isso que decide a barra de
    progresso, o "Falta" e a estimativa. */
-const totalGasto=g=>(Array.isArray(g.gastos)?g.gastos:[]).reduce((a,x)=>a+Number(x.valor||0),0);
+const totalGasto=g=>{const rd=reinicioData(g);return (Array.isArray(g.gastos)?g.gastos:[]).filter(x=>!rd||!x.data||x.data>=rd).reduce((a,x)=>a+Number(x.valor||0),0)};
 const saldo=g=>gold(g)-totalGasto(g);
 const diasFarm=g=>[...new Set(g.sessoes.filter(s=>!isResumo(s)).map(s=>s.data))].sort();
 const doDia=(g,d)=>g.sessoes.filter(s=>s.data===d&&!s.somado&&!isResumo(s)).sort((a,b)=>String(a.hora||"").localeCompare(String(b.hora||"")));
@@ -1124,6 +1128,16 @@ function confirmarAdd(){
 function excluirFarm(id){
  const g=meta();if(!confirm("Excluir este registro?"))return;
  g.sessoes=g.sessoes.filter(s=>String(s.id)!==String(id));salvar();render()}
+function reiniciarAcumulado(){
+ const g=meta();if(!g||!g.infinita)return;
+ const totalAtual=gold(g),gastoAtual=totalGasto(g),saldoAtual=saldo(g);
+ if(!confirm("Isso vai zerar o Gold Total e o Saldo desta meta (hoje: "+fmt(totalAtual)+" GP farmado, saldo "+fmt(saldoAtual)+" GP).\n\nOs farms já registrados continuam no Histórico e no Desempenho, só o contador de Gold Total/Saldo volta a 0 a partir de agora. Farms de hoje que você já registrou antes de clicar aqui também somem do contador. Continuar?"))return;
+ if(!Array.isArray(g.ciclosAcumulado))g.ciclosAcumulado=[];
+ g.ciclosAcumulado.push({de:g.resetEm||g.criada,ate:new Date().toISOString(),gold:totalAtual,gasto:gastoAtual,saldo:saldoAtual});
+ g.resetEm=new Date().toISOString();
+ salvar();render();toast("Acumulado reiniciado. Começando do zero!");
+}
+window.reiniciarAcumulado=reiniciarAcumulado;
 function abrirGasto(){
  const g=meta();if(!g)return;
  editGastoId=null;
@@ -1878,7 +1892,7 @@ function render(){
      <div><small>Total da Meta</small>
       ${g.infinita?'<div class="val goldtxt">♾️</div>':'<div class="val goldtxt"><span class="coin">G</span>'+fmt(g.metaGold)+' <small>GP</small></div><div class="val tc"><span class="coin tc">TC</span>'+fmt2(metaTc)+' <small>TC</small></div>'+(S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(metaTc*S.tcBRL)+'</div>':'')}</div>
     </div>
-    <div class="actions" style="margin-top:12px"><button onclick="abrirGasto()">💸 Registrar Gasto</button></div>
+    <div class="actions" style="margin-top:12px"><button onclick="abrirGasto()">💸 Registrar Gasto</button>${g.infinita?'<button onclick="reiniciarAcumulado()" title="Zera o Gold Total e o Saldo desta meta; farms antigos continuam no Histórico e no Desempenho">🔄 Reiniciar acumulado</button>':''}</div>
     ${g.concluida?'<div class="empty greentxt" style="padding:12px 0 0">✓ Meta atingida em '+new Date(g.concluida).toLocaleDateString("pt-BR")+'</div><div class="actions" style="margin-top:10px"><button class="btn-green" onclick="abrirNovaMetaAposConclusao()">🎯 Definir nova meta</button></div>':''}
    </section>
 
