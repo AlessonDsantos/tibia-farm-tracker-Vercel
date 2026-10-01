@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/ferramentas/onde-vender-loot", "destination": "/index.html" },
+    { "source": "/ferramentas/comparar-hunts", "destination": "/index.html" },
+    { "source": "/ferramentas/custos-de-hunts", "destination": "/index.html" }
+  ]
+}
