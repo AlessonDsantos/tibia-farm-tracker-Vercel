@@ -531,6 +531,13 @@ tr.total td:first-child{font-weight:700}
 .tft-nav .tft-subnav a:hover{background:rgba(113,178,213,.105);border-color:rgba(144,194,222,.16);transform:translateX(2px)}
 .tft-nav .tft-subnav a.on{background:rgba(226,177,73,.13)!important;border-color:rgba(235,194,103,.18)!important;color:#ffe3a0!important;box-shadow:none}
 .tft-nav .tft-subnav a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* Páginas institucionais */
+.tft-legal-page{display:none;max-width:900px;margin:24px auto;padding:28px;background:rgba(7,24,39,.92);border:1px solid rgba(126,174,205,.22);border-radius:14px;color:#d8e8f4;line-height:1.75}
+.tft-legal-page h1{color:#f2d28a;margin-top:0}.tft-legal-page h2{color:#f2d28a;font-size:1.12rem;margin:24px 0 6px}.tft-legal-page a{color:#8fd4ff}
+.tft-footer{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;padding:22px 12px;color:#a9bfd0;font-size:13px}.tft-footer a{color:#c9ddeb;text-decoration:none}.tft-footer a:hover{text-decoration:underline}
+.tft-shell[data-tft-page^="legal-"] .page > :not(#tftLegalPage):not(.tft-footer){display:none!important}
+.tft-shell[data-tft-page^="legal-"] #tftLegalPage{display:block}
 </style>
 </head>
 <body>
@@ -3060,7 +3067,7 @@ function tftFecharMenu(){var s=document.getElementById("tftSidebar"),o=document.
 var TFT_TOOL_KEYS=["loot","comparar","custos"];
 function tftMarcarNav(k){document.querySelectorAll("#tftNav button,#tftNav a").forEach(function(b){var n=b.getAttribute("data-nav");b.classList.toggle("on",n===k||(n==="ferramentas"&&TFT_TOOL_KEYS.indexOf(k)!==-1));if(b.tagName==="A"){if(n===k)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")}})}
 function tftScrollTo(id){var el=document.getElementById(id);if(!el)return false;el.scrollIntoView({behavior:"smooth",block:"start"});return true}
-var TFT_PAGES=["inicio","farm","desempenho","historico","metas","loot","comparar","custos"];
+var TFT_PAGES=["inicio","farm","desempenho","historico","metas","loot","comparar","custos","legal-privacidade","legal-termos","legal-contato"];
 function tftDefinirPagina(k){
  var shell=document.querySelector(".tft-shell");
  if(!shell)return;
@@ -3248,7 +3255,10 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
    desc:"Compare duas hunts do Tibia colando o Hunt Analyzer: Balance, loot, supplies, XP/h e dano por hora lado a lado, com análise das diferenças."},
   custos:{path:"/ferramentas/custos-de-hunts",
    title:"Custos de hunt: imbuements e Silver Tokens | Tibia Farm Tracker",
-   desc:"Calcule o custo por hora de imbuements e Silver Tokens no Tibia e associe automaticamente às próximas hunts para ver o lucro real."}
+   desc:"Calcule o custo por hora de imbuements e Silver Tokens no Tibia e associe automaticamente às próximas hunts para ver o lucro real."},
+  privacidade:{path:"/politica-de-privacidade",title:"Política de Privacidade | Tibia Farm Tracker",desc:"Saiba como o Tibia Farm Tracker trata informações e dados utilizados nas ferramentas de acompanhamento de hunts."},
+  termos:{path:"/termos-de-uso",title:"Termos de Uso | Tibia Farm Tracker",desc:"Consulte os termos de uso do Tibia Farm Tracker e as condições para utilizar suas ferramentas."},
+  contato:{path:"/contato",title:"Contato | Tibia Farm Tracker",desc:"Entre em contato com o Tibia Farm Tracker pelo e-mail tibiafarmtracker@gmail.com."}
  };
  var HOME={title:"Tibia Farm Tracker",desc:"Tibia Farm Tracker: registre suas hunts, acompanhe lucro, metas e desempenho e use ferramentas como guia de venda de loot, comparador de hunts e custos de hunt."};
  var ultimaPagina="inicio";
@@ -3266,9 +3276,20 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
   var sub=document.getElementById("tftSubnavFerramentas"),b=document.querySelector('#tftNav button[data-nav="ferramentas"]');
   if(sub&&!sub.classList.contains("open")){sub.classList.add("open");if(b){b.setAttribute("aria-expanded","true");var ch=b.querySelector(".tft-chevron");if(ch)ch.textContent="▴"}}
  }
+ function renderLegal(k){
+  var page=document.querySelector(".page");if(!page)return;
+  var el=document.getElementById("tftLegalPage");if(!el){el=document.createElement("section");el.id="tftLegalPage";el.className="tft-legal-page";page.appendChild(el);}
+  var html={
+   privacidade:'<h1>Política de Privacidade</h1><p>Última atualização: 2 de outubro de 2026.</p><p>O Tibia Farm Tracker é uma ferramenta independente para ajudar jogadores a registrar e acompanhar resultados de hunts no Tibia. Esta política descreve, de forma simples, como as informações podem ser tratadas durante o uso do site.</p><h2>Informações utilizadas</h2><p>As informações inseridas nas ferramentas, como dados de hunts, loot, custos e metas, são utilizadas para apresentar cálculos, históricos e comparações. Conforme os recursos ativados no site, algumas informações podem ser armazenadas no próprio navegador ou sincronizadas por serviços de terceiros escolhidos pelo usuário.</p><h2>Armazenamento e serviços externos</h2><p>O site pode utilizar armazenamento local do navegador e serviços externos de autenticação, hospedagem, análise ou publicidade caso sejam habilitados. Esses serviços podem tratar dados conforme suas próprias políticas. Não informe senhas, dados financeiros sensíveis ou informações pessoais desnecessárias nas ferramentas.</p><h2>Cookies e tecnologias semelhantes</h2><p>Recursos técnicos essenciais podem utilizar armazenamento local ou tecnologias semelhantes para manter preferências e funcionamento. Se forem ativadas ferramentas de análise ou anúncios que utilizem cookies, esta política deverá ser atualizada para identificá-los e explicar suas finalidades.</p><h2>Compartilhamento e segurança</h2><p>Não comercializamos os dados pessoais inseridos nas ferramentas. O site adota medidas razoáveis para proteger seu funcionamento e as informações tratadas, mas nenhum serviço conectado à internet pode garantir segurança absoluta.</p><h2>Seus direitos e contato</h2><p>Para dúvidas ou solicitações relacionadas à privacidade, escreva para <a href="mailto:tibiafarmtracker@gmail.com">tibiafarmtracker@gmail.com</a>. Se dados pessoais forem tratados, solicitações serão avaliadas conforme a legislação aplicável.</p><h2>Atualizações</h2><p>Esta política pode ser atualizada quando funcionalidades ou serviços forem alterados. A versão vigente ficará disponível nesta página.</p>',
+   termos:'<h1>Termos de Uso</h1><p>Última atualização: 2 de outubro de 2026.</p><p>Ao acessar o Tibia Farm Tracker, você concorda com estes termos. O site oferece ferramentas auxiliares para registrar, organizar e estimar resultados de hunts no jogo Tibia.</p><h2>Uso das ferramentas</h2><p>Você é responsável pelos dados informados e por conferir os resultados calculados. Valores de loot, custos, lucro, desempenho e estimativas podem depender das informações inseridas e não constituem garantia de ganhos ou resultados dentro do jogo.</p><h2>Dados e disponibilidade</h2><p>As ferramentas são fornecidas para uso informativo e podem ser modificadas, ficar temporariamente indisponíveis ou apresentar erros. Recomendamos manter cópias dos dados importantes quando houver essa opção. Não garantimos disponibilidade ininterrupta nem recuperação de informações perdidas por falhas do navegador, dispositivo ou serviços externos.</p><h2>Uso permitido</h2><p>Não utilize o site para atividades ilegais, tentativas de comprometer sua segurança, interferir no funcionamento ou prejudicar outros usuários. Você deve respeitar os termos e regras da CipSoft e de quaisquer serviços de terceiros que utilizar.</p><h2>Propriedade intelectual e relação com Tibia</h2><p>Tibia e seus elementos relacionados pertencem aos respectivos titulares, incluindo a CipSoft. O Tibia Farm Tracker é um projeto independente, não oficial e não afiliado, patrocinado ou endossado pela CipSoft.</p><h2>Limitação</h2><p>Na extensão permitida pela legislação aplicável, o projeto não se responsabiliza por decisões tomadas exclusivamente com base em estimativas da ferramenta, nem por indisponibilidades ou perdas decorrentes de serviços externos. Nada nestes termos limita direitos que não possam ser afastados por lei.</p><h2>Alterações e contato</h2><p>Estes termos podem ser atualizados. Dúvidas: <a href="mailto:tibiafarmtracker@gmail.com">tibiafarmtracker@gmail.com</a>.</p>',
+   contato:'<h1>Contato</h1><p>Tem dúvidas, sugestões ou encontrou algum problema no Tibia Farm Tracker?</p><p>Entre em contato pelo e-mail:</p><p><strong><a href="mailto:tibiafarmtracker@gmail.com">tibiafarmtracker@gmail.com</a></strong></p>'
+  };
+  el.innerHTML=html[k]||"";
+  var footer=document.getElementById("tftFooter");if(!footer){footer=document.createElement("footer");footer.id="tftFooter";footer.className="tft-footer";footer.innerHTML='<a href="/politica-de-privacidade" data-route="privacidade">Política de Privacidade</a><a href="/termos-de-uso" data-route="termos">Termos de Uso</a><a href="/contato" data-route="contato">Contato</a>';page.appendChild(footer);}
+ }
  function mostrar(k,semScroll){
   if(!ROTAS[k])return;
-  tftFecharMenu();abrirSubmenu();
+  tftFecharMenu();if(["privacidade","termos","contato"].indexOf(k)>=0){var lk="legal-"+k;tftDefinirPagina(lk);renderLegal(k);tftMarcarNav("legal");atualizarSEO(k);if(!semScroll)window.scrollTo({top:0,behavior:"smooth"});return;}abrirSubmenu();
   var atual=paginaAtual();if(!ROTAS[atual])ultimaPagina=atual;
   tftDefinirPagina(k);tftMarcarNav(k);atualizarSEO(k);
   if(k==="custos"&&typeof tftCustosResetar==="function")tftCustosResetar();
@@ -3305,6 +3326,8 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
   w.__tftTools=true;window.render=w;
  }
 
+ /* rodapé institucional disponível em todas as páginas */
+ renderLegal("");
  /* acesso direto pela URL / atualização da página */
  var k0=chaveDoCaminho(location.pathname);
  if(k0){try{history.replaceState({tft:k0},"",ROTAS[k0].path+location.search+location.hash)}catch(e){}mostrar(k0,true)}
