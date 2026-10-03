@@ -1,0 +1,746 @@
+{
+  "schemaVersion": 1,
+  "description": "Amostra inicial de 10 criaturas extraídas do banco SQLite TibiaWikiSQL enviado pelo usuário. Valores não presentes na fonte permanecem null ou listas vazias.",
+  "creatureCount": 10,
+  "creatures": [
+    {
+      "name": "Crazed Summer Vanguard",
+      "articleId": 86655,
+      "hitpoints": 5500,
+      "experience": 5000,
+      "armor": 77,
+      "mitigation": 3.26,
+      "speed": 195,
+      "class": "Humanoids",
+      "typePrimary": "Elves",
+      "typeSecondary": "Dreamelves",
+      "bestiary": {
+        "class": "Humanoid",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 100,
+        "earth": 100,
+        "fire": 50,
+        "ice": 130,
+        "energy": 100,
+        "death": 100,
+        "holy": 80,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-450",
+          "element": "physical"
+        },
+        {
+          "name": "Fire Berserk",
+          "effect": "100-300",
+          "element": "fire"
+        },
+        {
+          "name": "Fire Beam",
+          "effect": "100-300",
+          "element": "fire"
+        },
+        {
+          "name": "Blood Bomb on self",
+          "effect": "100-300",
+          "element": "?"
+        },
+        {
+          "name": "Red Sparks",
+          "effect": "100-250; chains through nearby players",
+          "element": "?"
+        },
+        {
+          "name": "Reflects Fire Damage",
+          "effect": "100%",
+          "element": "fire"
+        }
+      ],
+      "maxDamage": {
+        "physical": null,
+        "earth": null,
+        "fire": null,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 1300
+      },
+      "location": "Court of Summer, Dream Labyrinth.",
+      "version": "12.00.7695",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Crazed Summer Vanguard",
+        "articleId": 86655,
+        "recordTimestamp": "2026-06-25T07:40:14+00:00"
+      }
+    },
+    {
+      "name": "Crazed Summer Rearguard",
+      "articleId": 86654,
+      "hitpoints": 5300,
+      "experience": 4700,
+      "armor": 76,
+      "mitigation": 3.36,
+      "speed": 200,
+      "class": "Humanoids",
+      "typePrimary": "Elves",
+      "typeSecondary": "Dreamelves",
+      "bestiary": {
+        "class": "Humanoid",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 110,
+        "earth": 100,
+        "fire": 60,
+        "ice": 125,
+        "energy": 100,
+        "death": 100,
+        "holy": 80,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-450",
+          "element": "physical"
+        },
+        {
+          "name": "Fire Missile",
+          "effect": "150-300",
+          "element": "fire"
+        },
+        {
+          "name": "Fireball",
+          "effect": "200-300",
+          "element": "fire"
+        },
+        {
+          "name": "Reflects Fire Damage",
+          "effect": "100%",
+          "element": "fire"
+        }
+      ],
+      "maxDamage": {
+        "physical": 450,
+        "earth": null,
+        "fire": 300,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 750
+      },
+      "location": "Court of Summer, Dream Labyrinth.",
+      "version": "12.00.7695",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Crazed Summer Rearguard",
+        "articleId": 86654,
+        "recordTimestamp": "2026-06-25T07:40:16+00:00"
+      }
+    },
+    {
+      "name": "Crazed Winter Vanguard",
+      "articleId": 86657,
+      "hitpoints": 5800,
+      "experience": 5400,
+      "armor": 77,
+      "mitigation": 3.45,
+      "speed": 190,
+      "class": "Humanoids",
+      "typePrimary": "Elves",
+      "typeSecondary": "Dreamelves",
+      "bestiary": {
+        "class": "Humanoid",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 100,
+        "earth": 115,
+        "fire": 130,
+        "ice": 50,
+        "energy": 120,
+        "death": 85,
+        "holy": 100,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-400",
+          "element": "physical"
+        },
+        {
+          "name": "Ice Berserk",
+          "effect": "100-300",
+          "element": "ice"
+        },
+        {
+          "name": "Ice Berserk on target",
+          "effect": "100-300",
+          "element": "ice"
+        },
+        {
+          "name": "Ice Beam",
+          "effect": "100-300",
+          "element": "ice"
+        },
+        {
+          "name": "Ice Explosion on Itself",
+          "effect": "250-400",
+          "element": "ice"
+        },
+        {
+          "name": "Reflects Ice Damage",
+          "effect": "100%",
+          "element": "ice"
+        }
+      ],
+      "maxDamage": {
+        "physical": null,
+        "earth": null,
+        "fire": null,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 500
+      },
+      "location": "Court of Winter, Dream Labyrinth.",
+      "version": "12.00.7695",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Crazed Winter Vanguard",
+        "articleId": 86657,
+        "recordTimestamp": "2026-06-25T07:40:10+00:00"
+      }
+    },
+    {
+      "name": "Crazed Winter Rearguard",
+      "articleId": 86656,
+      "hitpoints": 5200,
+      "experience": 4700,
+      "armor": 76,
+      "mitigation": 3.36,
+      "speed": 200,
+      "class": "Humanoids",
+      "typePrimary": "Elves",
+      "typeSecondary": "Dreamelves",
+      "bestiary": {
+        "class": "Humanoid",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 100,
+        "earth": 120,
+        "fire": 120,
+        "ice": 60,
+        "energy": 115,
+        "death": 80,
+        "holy": 100,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-400",
+          "element": "physical"
+        },
+        {
+          "name": "Ice Berserk",
+          "effect": "100-300",
+          "element": "ice"
+        },
+        {
+          "name": "Ice Berserk on target",
+          "effect": "100-300",
+          "element": "ice"
+        },
+        {
+          "name": "Ice Beam",
+          "effect": "100-300",
+          "element": "ice"
+        },
+        {
+          "name": "Ice Explosion on Itself",
+          "effect": "250-400",
+          "element": "ice"
+        },
+        {
+          "name": "Reflects Ice Damage",
+          "effect": "100%",
+          "element": "ice"
+        }
+      ],
+      "maxDamage": {
+        "physical": 400,
+        "earth": null,
+        "fire": null,
+        "ice": 400,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 800
+      },
+      "location": "Court of Winter, Dream Labyrinth.",
+      "version": "12.00.7695",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Crazed Winter Rearguard",
+        "articleId": 86656,
+        "recordTimestamp": "2026-06-25T07:40:12+00:00"
+      }
+    },
+    {
+      "name": "Werelion",
+      "articleId": 91500,
+      "hitpoints": 2800,
+      "experience": 2200,
+      "armor": 38,
+      "mitigation": 1.44,
+      "speed": 110,
+      "class": "Mammals",
+      "typePrimary": "Felines",
+      "typeSecondary": "Lycanthropes",
+      "bestiary": {
+        "class": "Lycanthrope",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 100,
+        "earth": 50,
+        "fire": 75,
+        "ice": 125,
+        "energy": 100,
+        "death": 55,
+        "holy": 100,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-325",
+          "element": "physical"
+        },
+        {
+          "name": "Fire Ball",
+          "effect": "0-350",
+          "element": "fire"
+        },
+        {
+          "name": "Holy Strike",
+          "effect": "0-425",
+          "element": "holy"
+        },
+        {
+          "name": "Holy Wave",
+          "effect": "0-250",
+          "element": "holy"
+        }
+      ],
+      "maxDamage": {
+        "physical": 325,
+        "earth": null,
+        "fire": 350,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": 675,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 1349
+      },
+      "location": "Lion Sanctum.",
+      "version": "12.40.9997",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Werelion",
+        "articleId": 91500,
+        "recordTimestamp": "2026-06-25T07:51:11+00:00"
+      }
+    },
+    {
+      "name": "Weretiger",
+      "articleId": 102983,
+      "hitpoints": 5000,
+      "experience": 3920,
+      "armor": 76,
+      "mitigation": 3.45,
+      "speed": 125,
+      "class": "Mammals",
+      "typePrimary": "Felines",
+      "typeSecondary": "Lycanthropes",
+      "bestiary": {
+        "class": "Lycanthrope",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 105,
+        "earth": 115,
+        "fire": 125,
+        "ice": 70,
+        "energy": 75,
+        "death": 100,
+        "holy": 90,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [],
+      "maxDamage": {
+        "physical": null,
+        "earth": null,
+        "fire": null,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 925
+      },
+      "location": "Oskayaat, Oskayaat Undercity",
+      "version": "13.20.13560",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Weretiger",
+        "articleId": 102983,
+        "recordTimestamp": "2026-08-02T17:59:22+00:00"
+      }
+    },
+    {
+      "name": "Cobra Assassin",
+      "articleId": 88675,
+      "hitpoints": 8200,
+      "experience": 6980,
+      "armor": 81,
+      "mitigation": 3.54,
+      "speed": 140,
+      "class": "Humans",
+      "typePrimary": "Members of the Order of the Cobra",
+      "typeSecondary": null,
+      "bestiary": {
+        "class": "Human",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 80,
+        "earth": 0,
+        "fire": 100,
+        "ice": 100,
+        "energy": 100,
+        "death": 100,
+        "holy": 100,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-500",
+          "element": "physical"
+        },
+        {
+          "name": "Groundshaker",
+          "effect": "300-510",
+          "element": "physical"
+        },
+        {
+          "name": "Earth Wave",
+          "effect": "300-360",
+          "element": "earth"
+        },
+        {
+          "name": "Beam",
+          "effect": "300-500",
+          "element": "physical"
+        }
+      ],
+      "maxDamage": {
+        "physical": 1100,
+        "earth": 500,
+        "fire": null,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 1600
+      },
+      "location": "Cobra Bastion",
+      "version": "12.20.8834",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Cobra Assassin",
+        "articleId": 88675,
+        "recordTimestamp": "2026-06-25T07:13:00+00:00"
+      }
+    },
+    {
+      "name": "Falcon Knight",
+      "articleId": 85279,
+      "hitpoints": 9000,
+      "experience": 6300,
+      "armor": 86,
+      "mitigation": 3.78,
+      "speed": 110,
+      "class": "Humans",
+      "typePrimary": "Members of the Order of the Falcon",
+      "typeSecondary": null,
+      "bestiary": {
+        "class": "Undead",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 70,
+        "earth": 100,
+        "fire": 100,
+        "ice": 100,
+        "energy": 100,
+        "death": 50,
+        "holy": 110,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-400",
+          "element": "physical"
+        },
+        {
+          "name": "Earth Berserk",
+          "effect": "400-500",
+          "element": "earth"
+        },
+        {
+          "name": "Holy Beam",
+          "effect": "290-360",
+          "element": "holy"
+        },
+        {
+          "name": "Flame Dance",
+          "effect": "unknown maybe buff",
+          "element": "?"
+        }
+      ],
+      "maxDamage": {
+        "physical": null,
+        "earth": null,
+        "fire": null,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 1260
+      },
+      "location": "Falcon Bastion.",
+      "version": "11.80.7048",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Falcon Knight",
+        "articleId": 85279,
+        "recordTimestamp": "2026-06-25T08:27:26+00:00"
+      }
+    },
+    {
+      "name": "Hulking Carnisylvan",
+      "articleId": 94427,
+      "hitpoints": 8600,
+      "experience": 4700,
+      "armor": 51,
+      "mitigation": 2.09,
+      "speed": 110,
+      "class": "Elementals",
+      "typePrimary": "Bio-Elementals",
+      "typeSecondary": null,
+      "bestiary": {
+        "class": "Human",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 100,
+        "earth": 80,
+        "fire": 120,
+        "ice": 110,
+        "energy": 85,
+        "death": 90,
+        "holy": 100,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-300",
+          "element": "physical"
+        },
+        {
+          "name": "Poison Strike",
+          "effect": "350-450",
+          "element": "earth"
+        },
+        {
+          "name": "Explosion",
+          "effect": "600-800",
+          "element": "physical"
+        },
+        {
+          "name": "Explosion Beam",
+          "effect": "350-400",
+          "element": "physical"
+        }
+      ],
+      "maxDamage": {
+        "physical": 1500,
+        "earth": 450,
+        "fire": null,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 1950
+      },
+      "location": "Forest of Life",
+      "version": "12.70.10953",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Hulking Carnisylvan",
+        "articleId": 94427,
+        "recordTimestamp": "2026-06-25T07:14:35+00:00"
+      }
+    },
+    {
+      "name": "Bashmu",
+      "articleId": 94421,
+      "hitpoints": 8200,
+      "experience": 5000,
+      "armor": 72,
+      "mitigation": 3.45,
+      "speed": 200,
+      "class": "Reptiles",
+      "typePrimary": "Serpents",
+      "typeSecondary": null,
+      "bestiary": {
+        "class": "Magical",
+        "level": "Hard",
+        "occurrence": "Common"
+      },
+      "damageModifiersPercent": {
+        "physical": 95,
+        "earth": 80,
+        "fire": 100,
+        "ice": 105,
+        "energy": 95,
+        "death": 110,
+        "holy": 110,
+        "drown": 100,
+        "lifedrain": 100,
+        "healing": 100
+      },
+      "abilities": [
+        {
+          "name": "Melee",
+          "effect": "0-600",
+          "element": "physical"
+        },
+        {
+          "name": "Energy Beam",
+          "effect": "400-800",
+          "element": "energy"
+        },
+        {
+          "name": "Energy Berserk",
+          "effect": "400-500",
+          "element": "energy"
+        },
+        {
+          "name": "Earth Arrow",
+          "effect": "400-800",
+          "element": "earth"
+        }
+      ],
+      "maxDamage": {
+        "physical": null,
+        "earth": null,
+        "fire": null,
+        "ice": null,
+        "energy": null,
+        "death": null,
+        "holy": null,
+        "drown": null,
+        "lifedrain": null,
+        "manadrain": null,
+        "summons": null,
+        "total": 850
+      },
+      "location": "Salt Caves.",
+      "version": "12.70.10953",
+      "source": {
+        "database": "TibiaWikiSQL",
+        "articleTitle": "Bashmu",
+        "articleId": 94421,
+        "recordTimestamp": "2026-06-25T07:59:17+00:00"
+      }
+    }
+  ]
+}
