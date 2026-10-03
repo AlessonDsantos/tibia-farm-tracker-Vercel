@@ -542,6 +542,53 @@ tr.total td:first-child{font-weight:700}
  border-color:rgba(235,194,103,.45) !important;color:#ffdf9f !important;
  box-shadow:inset 3px 0 #e8b957,0 6px 16px rgba(0,0,0,.25) !important}
 .tft-nav>a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+/* === Divisor de Party Hunt === */
+.tft-shell[data-tft-page="party"] #tftPartyPage{display:block}
+.tft-shell[data-tft-page="party"] #app,
+.tft-shell[data-tft-page="party"] #retentionDashboard{display:none}
+#tftPartyPage .pty-box{position:relative;width:100%;box-sizing:border-box;background:#081a2b;color:#dcecf8;border:1px solid #38617e;border-radius:14px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#tftPartyPage h1{margin:0 0 4px;font-size:18px;color:#ffdf9f}
+#tftPartyPage h2{margin:22px 0 10px;font-size:14px;color:#cfe4f2;padding-bottom:8px;border-bottom:1px solid #12314a}
+.pty-muted{color:var(--muted);font-size:12px;margin:0 0 12px;line-height:1.5}
+.pty-modos{display:flex;gap:8px 18px;flex-wrap:wrap;margin:6px 0 14px}
+.pty-modos label{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#cfe4f2;cursor:pointer}
+.pty-modos input{width:auto;height:auto;min-height:0;margin:0;padding:0;flex:none;accent-color:#e2b149;cursor:pointer}
+.pty-lbl{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.pty-ta{width:100%;box-sizing:border-box;min-height:230px;resize:vertical;background:#05121f;color:#dcecf8;border:1px solid #23506f;border-radius:8px;padding:10px;font:12px/1.45 ui-monospace,Menlo,monospace}
+.pty-act{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.pty-act button,.pty-btn{border:1px solid #38617e;border-radius:8px;padding:9px 13px;background:#0b2135;color:#dcecf8;cursor:pointer;font-weight:600;font-family:inherit;font-size:13px}
+.pty-act button.primary{background:linear-gradient(100deg,#e2b149,#c8902c);color:#1a1204;border-color:#e8b957}
+.pty-err{color:var(--red);font-size:12.5px;margin:6px 0}
+.pty-err ul{margin:6px 0 0;padding-left:18px}
+.pty-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.pty-card{background:#05121f;border:1px solid #16354c;border-radius:10px;padding:11px}
+.pty-card .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.pty-card .v{font-size:16px;font-weight:700;color:#eaf6ff;overflow-wrap:anywhere}
+.pty-card .s{font-size:11px;color:var(--muted);margin-top:3px;overflow-wrap:anywhere}
+.pos{color:#5ff0b4}.neg{color:var(--red)}
+.pty-alert{margin:12px 0;padding:11px 14px;border-radius:10px;font-size:12.5px;line-height:1.5;border:1px solid}
+.pty-alert ul{margin:6px 0 0;padding-left:18px}
+.pty-alert li+li{margin-top:4px}
+.pty-alert.warn{background:rgba(233,196,106,.09);border-color:rgba(233,196,106,.45);color:#ffe3a0}
+.pty-alert.info{background:rgba(76,194,241,.07);border-color:rgba(76,194,241,.3);color:#cfe4f2}
+.pty-alert.ok{background:rgba(37,201,140,.08);border-color:rgba(37,201,140,.35);color:#bff5de}
+.pty-trs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.pty-tr{background:#05121f;border:1px solid #1d4462;border-left:3px solid #e8b957;border-radius:10px;padding:12px}
+.pty-tr-h{font-size:14px;color:#eaf6ff;overflow-wrap:anywhere}.pty-tr-h .arr{color:var(--gold);margin:0 4px}
+.pty-tr-v{font-size:12.5px;color:#9db7c9;margin:4px 0 9px}.pty-tr-v b{color:var(--gold2)}
+.pty-cmd{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pty-cmd code{flex:1 1 180px;min-width:0;background:#020a12;border:1px solid #23506f;border-radius:8px;padding:9px 10px;font:12.5px/1.3 ui-monospace,Menlo,monospace;color:#ffe3a0;overflow-wrap:anywhere}
+.pty-wrap{overflow-x:auto}
+.pty-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px}
+.pty-table th,.pty-table td{padding:8px 10px;border-bottom:1px solid #12314a;text-align:right;white-space:nowrap}
+.pty-table th:first-child,.pty-table td:first-child{text-align:left}
+.pty-table th{color:var(--muted);font-size:11px;text-transform:uppercase}
+.pty-pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:700;border:1px solid}
+.pty-pill.pay{color:var(--red);background:rgba(255,107,102,.09);border-color:rgba(255,107,102,.4)}
+.pty-pill.rec{color:#5ff0b4;background:rgba(37,201,140,.09);border-color:rgba(37,201,140,.4)}
+.pty-pill.ok{color:var(--muted);background:rgba(138,165,187,.08);border-color:rgba(138,165,187,.3)}
+.pty-tag{font-size:10px;font-weight:700;color:#1a1204;background:var(--gold);border-radius:4px;padding:1px 5px;vertical-align:middle}
+@media(max-width:650px){#tftPartyPage .pty-box{padding:14px}.pty-trs{grid-template-columns:1fr}}
 /* === Hunt Analyzer guardado por farm === */
 .an-text{width:100%;box-sizing:border-box;min-height:120px;resize:vertical;background:#04111e;color:#e4f2ff;border:1px solid #31516b;border-radius:9px;padding:10px;font:12px/1.45 ui-monospace,Menlo,monospace}
 .analyzer-box{margin-top:12px;border:1px solid #1d4462;border-radius:10px;background:rgba(3,11,20,.5)}
@@ -595,6 +642,7 @@ tr.total td:first-child{font-weight:700}
   <img class="menu-icon-img" src="/custo-hunt2.png" alt="">
   Custos de Hunt
 </a>
+   <a href="/ferramentas/divisor-party-hunt" data-nav="party" data-route="party"><span class="ic">👥</span>Divisor de Party Hunt</a>
   </div>
   <a href="/ajuda" data-nav="ajuda" data-route="ajuda"><span class="ic">❔</span>Central de Ajuda</a>
   <button type="button" data-nav="config" onclick="tftNav('config')"><span class="ic">⚙️</span>Configurações</button>
@@ -639,6 +687,19 @@ tr.total td:first-child{font-weight:700}
 
   <div id="app"></div>
 
+<div class="tft-tool-page" id="tftPartyPage" role="region" aria-labelledby="tftPartyTitle">
+<section class="pty-box">
+<h1 id="tftPartyTitle">👥 Divisor de Party Hunt</h1>
+<p class="pty-muted">Cole o relatório completo do Party Hunt Analyzer do Tibia. A ferramenta confere os valores, divide o balance igualmente entre os jogadores e gera os comandos <code>transfer</code> prontos para copiar. Nada do que você cola é salvo ou enviado: o cálculo acontece no seu navegador.</p>
+<div class="pty-modos" role="radiogroup" aria-label="Modo de cálculo">
+<label><input type="radio" name="ptyModo" value="dividir" checked onchange="tftPartyModo()"> Dividir o balance igualmente</label>
+<label><input type="radio" name="ptyModo" value="visualizar" onchange="tftPartyModo()"> Somente visualizar os dados</label>
+</div>
+<label class="pty-lbl" for="ptyText">Cole aqui os dados do Party Hunt Analyzer</label>
+<textarea id="ptyText" class="pty-ta" spellcheck="false" placeholder="Session data: From 2026-10-02, 16:42:34 to 2026-10-02, 17:20:24&#10;Session: 00:37h&#10;Loot Type: Market&#10;Loot: 1,139,766&#10;Supplies: 207,595&#10;Balance: 932,171&#10;&#10;Nome do Líder (Leader)&#10;    Loot: 1,100,246&#10;    Supplies: 81,568&#10;    Balance: 1,018,678&#10;    Damage: 2,437,148&#10;    Healing: 631,772&#10;&#10;Outro Jogador&#10;    Loot: 39,520&#10;    ..."></textarea>
+<div class="pty-act"><button class="primary" onclick="tftPartyCalcular()">Calcular divisão</button><button onclick="tftPartyLimpar()">Limpar</button></div>
+<div id="ptyErr" class="pty-err" role="alert"></div><div id="ptyOut" aria-live="polite"></div>
+</section></div>
 <div class="tft-tool-page" id="tftLootPage" role="region" aria-labelledby="tftLootTitle">
 <section class="loot-box"><h1 id="tftLootTitle">🧰 Guia de Venda de Loot</h1>
 <p class="loot-muted">Cole o texto completo do Hunt Analyzer. Apenas a seção “Looted Items” será considerada. Os resultados são agrupados por NPC; cada alternativa de comprador é apresentada separadamente, sem somar o mesmo item entre NPCs diferentes. O catálogo local inicial é parcial; confira os preços antes de usar como referência de venda.</p>
@@ -3174,10 +3235,10 @@ function removerMetaSemanal(){
 /* === Etapa 1 do redesign: navegação da sidebar + saudação do hero (não altera a lógica do app) === */
 function tftAbrirMenu(){var s=document.getElementById("tftSidebar"),o=document.getElementById("tftOverlay");if(s)s.classList.add("open");if(o)o.classList.add("open")}
 function tftFecharMenu(){var s=document.getElementById("tftSidebar"),o=document.getElementById("tftOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open")}
-var TFT_TOOL_KEYS=["loot","comparar","custos"];
+var TFT_TOOL_KEYS=["loot","comparar","custos","party"];
 function tftMarcarNav(k){document.querySelectorAll("#tftNav button,#tftNav a").forEach(function(b){var n=b.getAttribute("data-nav");b.classList.toggle("on",n===k||(n==="ferramentas"&&TFT_TOOL_KEYS.indexOf(k)!==-1));if(b.tagName==="A"){if(n===k)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")}})}
 function tftScrollTo(id){var el=document.getElementById(id);if(!el)return false;el.scrollIntoView({behavior:"smooth",block:"start"});return true}
-var TFT_PAGES=["inicio","farm","desempenho","historico","metas","loot","comparar","custos","legal-ajuda","legal-privacidade","legal-termos","legal-contato"];
+var TFT_PAGES=["inicio","farm","desempenho","historico","metas","loot","comparar","custos","party","legal-ajuda","legal-privacidade","legal-termos","legal-contato"];
 function tftDefinirPagina(k){
  var shell=document.querySelector(".tft-shell");
  if(!shell)return;
@@ -3355,6 +3416,202 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
 </script>
 
 
+<script id="tft-party-tool">
+/* === Divisor de Party Hunt === */
+(function(){
+ "use strict";
+ var $=function(id){return document.getElementById(id)};
+ var ultimo=null;
+ function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+ function fmt(v){return Number(v).toLocaleString("pt-BR")}
+ function fmtS(v){return(v>0?"+":v<0?"-":"")+fmt(Math.abs(v))}
+ function cls(v){return v>0?"pos":v<0?"neg":""}
+
+ /* ---------- Leitura do relatório ---------- */
+ var KV=/^(Session data|Session|Loot Type|Loot|Supplies|Balance|Damage|Healing|Raw XP Gain|XP Gain|Killed Monsters|Looted Items)\s*:\s*(.*)$/i;
+ var KFIN=/^(Loot|Supplies|Balance|Damage|Healing)\s*:/i;
+ function num(s){
+  var m=/^([+\-\u2212\u2013]?)\s*(\d[\d.,'\s]*)\s*(?:gp|gold)?$/i.exec(String(s).trim());
+  if(!m)return NaN;
+  var d=m[2].replace(/\D/g,"");if(!d)return NaN;
+  var v=parseInt(d,10);return(m[1]&&m[1]!=="+")?-v:v;
+ }
+ function limparNome(s){var n=String(s).trim(),ant;do{ant=n;n=n.replace(/\s*\([^()]*\)\s*$/,"")}while(n!==ant);return n.trim()}
+ function parse(texto){
+  var r={geral:{},jogadores:[],erros:[]};
+  var L=String(texto==null?"":texto).replace(/\r/g,"").split("\n").map(function(l){return l.replace(/\u00a0/g," ").trim()}).filter(Boolean);
+  var atual=null,sessoes=0;
+  for(var i=0;i<L.length;i++){
+   var l=L[i],m=KV.exec(l);
+   if(m){
+    var k=m[1].toLowerCase(),v=m[2].trim(),alvo=atual||r.geral;
+    if(k==="session data"){
+     sessoes++;
+     var d=/From\s+(\d{4}-\d{2}-\d{2})\s*,?\s*(\d{1,2}:\d{2}:\d{2})\s+to\s+(\d{4}-\d{2}-\d{2})\s*,?\s*(\d{1,2}:\d{2}:\d{2})/i.exec(v);
+     if(d){r.geral.inicio={data:d[1],hora:d[2]};r.geral.fim={data:d[3],hora:d[4]}}
+    }else if(k==="session"){if(!atual)r.geral.duracao=v}
+    else if(k==="loot type"){if(!atual)r.geral.lootType=v}
+    else if(k==="loot"||k==="supplies"||k==="balance"||k==="damage"||k==="healing"){
+     var n=num(v);
+     if(isNaN(n))r.erros.push("Valor inválido em \""+l+"\""+(atual?" (jogador "+atual.nome+")":"")+".");
+     else alvo[k]=n;
+    }
+    continue;
+   }
+   if(i+1<L.length&&l.indexOf(":")===-1&&KFIN.test(L[i+1])){
+    atual={nome:limparNome(l),lider:/\(\s*leader\s*\)/i.test(l)};
+    r.jogadores.push(atual);
+    if(!atual.nome)r.erros.push("Há um jogador sem nome no relatório (linha \""+l+"\").");
+   }
+  }
+  if(sessoes>1)r.erros.push("O texto contém mais de um relatório (\"Session data\" aparece "+sessoes+" vezes). Cole um relatório por vez.");
+  if(!r.jogadores.length)r.erros.push("Nenhum jogador encontrado. Cada jogador deve aparecer com o nome em uma linha, seguido de Loot, Supplies e Balance.");
+  var vistos={};
+  r.jogadores.forEach(function(j){
+   var f=[];if(j.loot==null)f.push("Loot");if(j.supplies==null)f.push("Supplies");if(j.balance==null)f.push("Balance");
+   if(f.length)r.erros.push("Jogador "+(j.nome||"sem nome")+": faltando "+f.join(", ")+".");
+   var key=j.nome.toLowerCase();
+   if(key&&sessoes<=1){if(vistos[key])r.erros.push("O jogador \""+j.nome+"\" aparece mais de uma vez no texto.");vistos[key]=1}
+  });
+  r.ok=!r.erros.length;
+  return r;
+ }
+
+ /* ---------- Validação (nunca altera os valores recebidos) ---------- */
+ function validar(r){
+  var av=[],J=r.jogadores,g=r.geral;
+  [["loot","Loot"],["supplies","Supplies"],["balance","Balance"]].forEach(function(p){
+   var k=p[0],s=J.reduce(function(a,j){return a+(j[k]||0)},0);
+   if(g[k]==null)av.push({nivel:"info",msg:"Não encontrei o "+p[1]+" total no texto, então não foi possível conferir a soma dos jogadores ("+fmt(s)+" GP)."});
+   else if(s!==g[k])av.push({nivel:"warn",msg:"A soma do "+p[1]+" dos jogadores ("+fmt(s)+" GP) difere do "+p[1]+" total informado ("+fmt(g[k])+" GP) em "+fmt(Math.abs(s-g[k]))+" GP."+(k==="balance"?" A divisão usa a soma dos balances individuais para que as transferências fechem.":"")});
+  });
+  J.forEach(function(j){
+   var esp=j.loot-j.supplies;
+   if(j.balance!==esp)av.push({nivel:"warn",msg:j.nome+": o Balance informado ("+fmtS(j.balance)+" GP) não corresponde a Loot − Supplies ("+fmtS(esp)+" GP); diferença de "+fmt(Math.abs(j.balance-esp))+" GP."});
+  });
+  return av;
+ }
+
+ /* ---------- Divisão igualitária do balance + transferências ---------- */
+ function dividir(J){
+  var n=J.length,B=J.reduce(function(a,j){return a+j.balance},0);
+  var base=Math.floor(B/n),resto=B-base*n;
+  /* o gold que sobra do arredondamento (resto) fica com quem recebe: os "resto" jogadores de menor balance levam +1 */
+  var ordem=J.map(function(j,i){return i}).sort(function(a,b){return J[a].balance-J[b].balance||a-b});
+  var extra={};for(var k=0;k<resto;k++)extra[ordem[k]]=1;
+  var jog=J.map(function(j,i){
+   var alvo=base+(extra[i]?1:0),dif=j.balance-alvo;
+   return{alvo:alvo,dif:dif,sit:dif>0?"paga":dif<0?"recebe":"ok"};
+  });
+  var pag=[],rec=[];
+  jog.forEach(function(d,i){if(d.dif>0)pag.push({i:i,v:d.dif});else if(d.dif<0)rec.push({i:i,v:-d.dif})});
+  var T=[];
+  /* 1) valores que se anulam exatamente viram uma única transferência */
+  pag.forEach(function(p){
+   for(var b=0;b<rec.length;b++){if(p.v>0&&rec[b].v===p.v){T.push({de:p.i,para:rec[b].i,valor:p.v});p.v=0;rec[b].v=0;break}}
+  });
+  pag=pag.filter(function(x){return x.v>0});rec=rec.filter(function(x){return x.v>0});
+  /* 2) o resto: maior pagador com maior recebedor, até zerar */
+  var desc=function(a,b){return b.v-a.v||a.i-b.i};
+  while(pag.length&&rec.length){
+   pag.sort(desc);rec.sort(desc);
+   var p=pag[0],q=rec[0],v=Math.min(p.v,q.v);
+   T.push({de:p.i,para:q.i,valor:v});p.v-=v;q.v-=v;
+   if(!p.v)pag.shift();if(!q.v)rec.shift();
+  }
+  T.sort(function(a,b){return a.de-b.de||b.valor-a.valor});
+  T.forEach(function(t){t.deNome=J[t.de].nome;t.paraNome=J[t.para].nome;t.comando="transfer "+t.valor+" to "+t.paraNome});
+  return{total:B,n:n,base:base,resto:resto,cota:B/n,jogadores:jog,transferencias:T};
+ }
+
+ /* ---------- Interface ---------- */
+ function fmtData(d){var p=d.data.split("-");return p[2]+"/"+p[1]+"/"+p[0]+" "+d.hora}
+ function periodo(g){
+  if(!g.inicio||!g.fim)return"";
+  return g.inicio.data===g.fim.data?fmtData(g.inicio)+" → "+g.fim.hora:fmtData(g.inicio)+" → "+fmtData(g.fim);
+ }
+ function mostrarErro(lista){
+  $("ptyOut").innerHTML="";
+  $("ptyErr").innerHTML="<b>Não foi possível calcular.</b><ul>"+lista.map(function(e){return"<li>"+esc(e)+"</li>"}).join("")+"</ul>";
+ }
+ function card(l,v,s,c){return'<div class="pty-card"><div class="l">'+l+'</div><div class="v '+(c||"")+'">'+v+"</div>"+(s?'<div class="s">'+s+"</div>":"")+"</div>"}
+ function desenhar(){
+  var u=ultimo;if(!u)return;
+  $("ptyErr").innerHTML="";
+  var modo=(document.querySelector('input[name="ptyModo"]:checked')||{}).value||"dividir";
+  var p=u.p,g=p.geral,J=p.jogadores,D=u.div,dividirModo=modo==="dividir",h="";
+  var soma=function(k){return J.reduce(function(a,j){return a+(j[k]||0)},0)};
+  var tot=function(k){return g[k]!=null?{v:g[k],est:""}:{v:soma(k),est:"soma dos jogadores"}};
+  var L=tot("loot"),S=tot("supplies"),Bt=tot("balance");
+  h+='<h2>Resumo da sessão</h2><div class="pty-cards">'
+   +card("Duração",esc(g.duracao||"Não informada"),esc(periodo(g)))
+   +card("Loot total",fmt(L.v)+" GP",L.est||(g.lootType?"Tipo: "+esc(g.lootType):""))
+   +card("Supplies totais",fmt(S.v)+" GP",S.est)
+   +card("Balance total",fmtS(Bt.v)+" GP",Bt.est,cls(Bt.v))
+   +card("Jogadores",J.length,"")
+   +(dividirModo?card("Cota por jogador",(D.cota).toLocaleString("pt-BR",{maximumFractionDigits:2})+" GP","valores finais em GP inteiros"):"")
+   +"</div>";
+  var warns=u.av.filter(function(a){return a.nivel==="warn"}),infos=u.av.filter(function(a){return a.nivel==="info"});
+  if(warns.length)h+='<div class="pty-alert warn"><b>⚠️ Inconsistências encontradas — confira o relatório antes de usar os comandos:</b><ul>'+warns.map(function(a){return"<li>"+esc(a.msg)+"</li>"}).join("")+"</ul></div>";
+  if(infos.length)h+='<div class="pty-alert info"><ul>'+infos.map(function(a){return"<li>ℹ️ "+esc(a.msg)+"</li>"}).join("")+"</ul></div>";
+  if(!u.av.length)h+='<div class="pty-alert ok">✓ Dados conferidos: as somas e os balances de todos os jogadores batem com o relatório.</div>';
+  if(dividirModo){
+   var T=D.transferencias;
+   h+="<h2>Transferências"+(T.length?" necessárias ("+T.length+")":"")+"</h2>";
+   if(J.length===1)h+='<div class="pty-alert ok">Há apenas 1 jogador no relatório: não há nada para dividir.</div>';
+   else if(!T.length)h+='<div class="pty-alert ok">✓ Todos já estão com o valor correto. Nenhuma transferência necessária.</div>';
+   else{
+    h+='<div class="pty-act"><button class="primary" onclick="tftPartyCopiarTodos(this)">Copiar todos os comandos</button></div><div class="pty-trs">';
+    T.forEach(function(t,i){
+     h+='<div class="pty-tr"><div class="pty-tr-h"><b>'+esc(t.deNome)+'</b> <span class="arr">→</span> <b>'+esc(t.paraNome)+'</b></div><div class="pty-tr-v">Valor: <b>'+fmt(t.valor)+" GP</b></div>"
+      +'<div class="pty-cmd"><code>'+esc(t.comando)+'</code><button class="pty-btn" onclick="tftPartyCopiar('+i+',this)">Copiar comando</button></div></div>';
+    });
+    h+="</div>";
+   }
+   if(D.resto&&J.length>1)h+='<p class="pty-muted" style="margin-top:10px">Arredondamento: o balance não divide em valores inteiros iguais (sobram '+D.resto+" GP). O gold excedente fica com quem recebe, então os resultados finais diferem em no máximo 1 GP.</p>";
+  }else h+='<div class="pty-alert info"><ul><li>Modo somente visualização: nenhuma transferência foi calculada.</li></ul></div>';
+  var temDmg=J.some(function(j){return j.damage!=null}),temHeal=J.some(function(j){return j.healing!=null});
+  h+="<h2>"+(dividirModo?"Resumo individual":"Jogadores")+'</h2><div class="pty-wrap"><table class="pty-table"><thead><tr><th>Jogador</th><th>Loot</th><th>Supplies</th><th>Balance original</th>'
+   +(dividirModo?"<th>Resultado final</th><th>Situação</th>":"")+(temDmg?"<th>Dano</th>":"")+(temHeal?"<th>Cura</th>":"")+"</tr></thead><tbody>";
+  J.forEach(function(j,i){
+   var d=D.jogadores[i];
+   h+="<tr><td><b>"+esc(j.nome)+"</b>"+(j.lider?' <span class="pty-tag">Líder</span>':"")+"</td><td>"+fmt(j.loot)+"</td><td>"+fmt(j.supplies)+'</td><td class="'+cls(j.balance)+'">'+fmtS(j.balance)+"</td>";
+   if(dividirModo){
+    var pill=d.sit==="paga"?'<span class="pty-pill pay">↑ Paga '+fmt(d.dif)+"</span>":d.sit==="recebe"?'<span class="pty-pill rec">↓ Recebe '+fmt(-d.dif)+"</span>":'<span class="pty-pill ok">✓ Sem transferência</span>';
+    h+='<td class="'+cls(d.alvo)+'"><b>'+fmtS(d.alvo)+"</b></td><td>"+pill+"</td>";
+   }
+   if(temDmg)h+="<td>"+(j.damage!=null?fmt(j.damage):"—")+"</td>";
+   if(temHeal)h+="<td>"+(j.healing!=null?fmt(j.healing):"—")+"</td>";
+   h+="</tr>";
+  });
+  h+="</tbody></table></div>";
+  $("ptyOut").innerHTML=h;
+ }
+ function copiar(txt,btn,msg){
+  var fim=function(ok){
+   if(typeof toast==="function")toast(ok?msg:"Não foi possível copiar automaticamente. Selecione o texto e copie manualmente.");
+   if(ok&&btn){var o=btn.getAttribute("data-t")||btn.textContent;btn.setAttribute("data-t",o);btn.textContent="Copiado ✓";clearTimeout(btn._t);btn._t=setTimeout(function(){btn.textContent=o},1600)}
+  };
+  var fallback=function(){var ta=document.createElement("textarea");ta.value=txt;ta.setAttribute("readonly","");ta.style.cssText="position:fixed;top:-1000px;opacity:0";document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);return ok};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){fim(true)},function(){fim(fallback())});
+  else fim(fallback());
+ }
+ window.tftPartyCalcular=function(){
+  var txt=$("ptyText").value;
+  if(!txt.trim()){ultimo=null;mostrarErro(["Cole o relatório completo do Party Hunt Analyzer na área de texto."]);return}
+  var p=parse(txt);
+  if(!p.ok){ultimo=null;mostrarErro(p.erros);return}
+  ultimo={p:p,av:validar(p),div:dividir(p.jogadores)};
+  desenhar();
+ };
+ window.tftPartyModo=function(){if(ultimo)desenhar()};
+ window.tftPartyLimpar=function(){ultimo=null;$("ptyText").value="";$("ptyErr").innerHTML="";$("ptyOut").innerHTML="";$("ptyText").focus()};
+ window.tftPartyCopiar=function(i,btn){var t=ultimo&&ultimo.div.transferencias[i];if(t)copiar(t.comando,btn,"Comando copiado.")};
+ window.tftPartyCopiarTodos=function(btn){if(!ultimo)return;var c=ultimo.div.transferencias.map(function(t){return t.comando});if(c.length)copiar(c.join("\n"),btn,c.length===1?"Comando copiado.":c.length+" comandos copiados.")};
+ window.TFTParty={parse:parse,validar:validar,dividir:dividir,num:num};
+})();
+</script>
+
 <script>
 /* === Rotas das ferramentas (History API): URL própria por ferramenta, sem recarregar a página === */
 (function(){
@@ -3368,6 +3625,9 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
   custos:{path:"/ferramentas/custos-de-hunts",
    title:"Custos de hunt: imbuements e Silver Tokens | Tibia Farm Tracker",
    desc:"Calcule o custo por hora de imbuements e Silver Tokens no Tibia e escolha em quais hunts usá-los para ver o lucro real."},
+  party:{path:"/ferramentas/divisor-party-hunt",
+   title:"Divisor de Party Hunt do Tibia | Tibia Farm Tracker",
+   desc:"Cole o Party Hunt Analyzer do Tibia, divida o balance igualmente entre os jogadores e copie os comandos transfer prontos para usar no jogo."},
   ajuda:{path:"/ajuda",title:"Central de Ajuda | Tibia Farm Tracker",desc:"Aprenda a registrar farms, configurar recursos, entender os custos de hunts e usar sua conta Google ou o armazenamento local no Tibia Farm Tracker."},
   privacidade:{path:"/politica-de-privacidade",title:"Política de Privacidade | Tibia Farm Tracker",desc:"Saiba como o Tibia Farm Tracker trata informações e dados utilizados nas ferramentas de acompanhamento de hunts."},
   termos:{path:"/termos-de-uso",title:"Termos de Uso | Tibia Farm Tracker",desc:"Consulte os termos de uso do Tibia Farm Tracker e as condições para utilizar suas ferramentas."},
@@ -3397,7 +3657,7 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
    privacidade:'<h1>Política de Privacidade</h1><p>Última atualização: 2 de outubro de 2026.</p><p>O Tibia Farm Tracker é uma ferramenta independente para ajudar jogadores a registrar e acompanhar resultados de hunts no Tibia. Esta política descreve, de forma simples, como as informações podem ser tratadas durante o uso do site.</p><h2>Informações utilizadas</h2><p>As informações inseridas nas ferramentas, como dados de hunts, loot, custos e metas, são utilizadas para apresentar cálculos, históricos e comparações. Conforme os recursos ativados no site, algumas informações podem ser armazenadas no próprio navegador ou sincronizadas por serviços de terceiros escolhidos pelo usuário.</p><h2>Armazenamento e serviços externos</h2><p>O site pode utilizar armazenamento local do navegador e serviços externos de autenticação, hospedagem, análise ou publicidade caso sejam habilitados. Esses serviços podem tratar dados conforme suas próprias políticas. Não informe senhas, dados financeiros sensíveis ou informações pessoais desnecessárias nas ferramentas.</p><h2>Cookies e tecnologias semelhantes</h2><p>Recursos técnicos essenciais podem utilizar armazenamento local ou tecnologias semelhantes para manter preferências e funcionamento. Se forem ativadas ferramentas de análise ou anúncios que utilizem cookies, esta política deverá ser atualizada para identificá-los e explicar suas finalidades.</p><h2>Compartilhamento e segurança</h2><p>Não comercializamos os dados pessoais inseridos nas ferramentas. O site adota medidas razoáveis para proteger seu funcionamento e as informações tratadas, mas nenhum serviço conectado à internet pode garantir segurança absoluta.</p><h2>Seus direitos e contato</h2><p>Para dúvidas ou solicitações relacionadas à privacidade, escreva para <a href="mailto:tibiafarmtracker@gmail.com">tibiafarmtracker@gmail.com</a>. Se dados pessoais forem tratados, solicitações serão avaliadas conforme a legislação aplicável.</p><h2>Atualizações</h2><p>Esta política pode ser atualizada quando funcionalidades ou serviços forem alterados. A versão vigente ficará disponível nesta página.</p>',
    termos:'<h1>Termos de Uso</h1><p>Última atualização: 2 de outubro de 2026.</p><p>Ao acessar o Tibia Farm Tracker, você concorda com estes termos. O site oferece ferramentas auxiliares para registrar, organizar e estimar resultados de hunts no jogo Tibia.</p><h2>Uso das ferramentas</h2><p>Você é responsável pelos dados informados e por conferir os resultados calculados. Valores de loot, custos, lucro, desempenho e estimativas podem depender das informações inseridas e não constituem garantia de ganhos ou resultados dentro do jogo.</p><h2>Dados e disponibilidade</h2><p>As ferramentas são fornecidas para uso informativo e podem ser modificadas, ficar temporariamente indisponíveis ou apresentar erros. Recomendamos manter cópias dos dados importantes quando houver essa opção. Não garantimos disponibilidade ininterrupta nem recuperação de informações perdidas por falhas do navegador, dispositivo ou serviços externos.</p><h2>Uso permitido</h2><p>Não utilize o site para atividades ilegais, tentativas de comprometer sua segurança, interferir no funcionamento ou prejudicar outros usuários. Você deve respeitar os termos e regras da CipSoft e de quaisquer serviços de terceiros que utilizar.</p><h2>Propriedade intelectual e relação com Tibia</h2><p>Tibia e seus elementos relacionados pertencem aos respectivos titulares, incluindo a CipSoft. O Tibia Farm Tracker é um projeto independente, não oficial e não afiliado, patrocinado ou endossado pela CipSoft.</p><h2>Limitação</h2><p>Na extensão permitida pela legislação aplicável, o projeto não se responsabiliza por decisões tomadas exclusivamente com base em estimativas da ferramenta, nem por indisponibilidades ou perdas decorrentes de serviços externos. Nada nestes termos limita direitos que não possam ser afastados por lei.</p><h2>Alterações e contato</h2><p>Estes termos podem ser atualizados. Dúvidas: <a href="mailto:tibiafarmtracker@gmail.com">tibiafarmtracker@gmail.com</a>.</p>',
    contato:'<h1>Contato</h1><p>Tem dúvidas, sugestões ou encontrou algum problema no Tibia Farm Tracker?</p><p>Entre em contato pelo e-mail:</p><p><strong><a href="mailto:tibiafarmtracker@gmail.com">tibiafarmtracker@gmail.com</a></strong></p>',
-   ajuda:'<h1>❔ Central de Ajuda</h1><p>Aprenda a usar o Tibia Farm Tracker para registrar suas hunts, entender os custos e acompanhar seu resultado real. Você pode começar a registrar farms mesmo sem configurar recursos ou conectar uma conta Google.</p><h2>1. Começando: registrar uma farm</h2><p>Crie ou selecione uma meta e acesse <strong>Registrar Farm</strong>. Informe os dados da sessão e salve. Se ainda não cadastrou recursos, a ausência de opções na área de recursos é normal: a farm pode ser registrada normalmente, sem nenhum custo de recurso associado.</p><h2 id="ajuda-recursos">2. O que são recursos e como funcionam?</h2><p>Recursos são custos de duração limitada que você pode associar às hunts em que realmente os utilizou, como imbuements ou itens carregados por tempo. Eles são configurados em <strong>Ferramentas → Custos de Hunt</strong> e ficam associados à meta ativa.</p><ol><li>Escolha o tipo de recurso e informe nome, custo e duração. Para Silver Tokens, informe também quantidade e preço por token.</li><li>Calcule o custo por hora e adicione o recurso aos recursos ativos.</li><li>Ao registrar uma hunt, selecione somente os recursos usados naquela sessão. O sistema considera o tempo da hunt, reduz o tempo restante do recurso e aplica o custo proporcional ao resultado.</li></ol><p><strong>Importante:</strong> cadastrar um recurso não desconta gold por si só. O custo só é aplicado à hunt quando o recurso é selecionado como utilizado. Se não usar nenhum recurso, registre a sessão sem selecioná-los.</p><div style="background:rgba(20,50,70,.55);border:1px solid rgba(126,174,205,.25);border-radius:10px;padding:14px 16px;margin:14px 0"><strong>Exemplo ilustrativo</strong><p style="margin:6px 0">Um imbuement custa 120.000 GP e dura 20 horas. O custo calculado é 6.000 GP/h. Em uma hunt de 1 hora que utilize esse imbuement, o resultado recebe um custo de 6.000 GP e o recurso passa a ter 19 horas restantes. Em uma sessão de 30 minutos, o custo proporcional seria 3.000 GP, respeitando o tempo restante do recurso.</p></div><h2>3. Por que não vejo recursos ao registrar a farm?</h2><p>As opções aparecem depois que você cadastra e associa recursos em <strong>Custos de Hunt</strong> para a meta selecionada. Se não cadastrou nenhum, você pode registrar a farm normalmente e configurar recursos mais tarde para as próximas sessões.</p><h2>4. Usar ou não uma conta Google</h2><p><strong>Conectar uma conta Google é opcional.</strong> Você pode utilizar as ferramentas e registrar suas hunts sem fazer login.</p><ul><li><strong>Sem Google:</strong> seus dados ficam salvos localmente neste navegador. Você pode continuar usando o sistema neste navegador, mas os dados não são sincronizados automaticamente com outros dispositivos e podem ser perdidos se limpar os dados do site, trocar de navegador ou utilizar uma sessão privada/anônima.</li><li><strong>Com Google:</strong> o login habilita a sincronização dos dados com a nuvem, permitindo acessar seus registros em outros dispositivos ao entrar na mesma conta. Recursos que dependem de autenticação, como envio de dados de desempenho para recursos comunitários, também podem exigir login.</li></ul><p>Se seus registros forem importantes, mantenha um backup. Evite limpar os dados do navegador antes de garantir que suas informações estejam sincronizadas ou exportadas, caso a opção de exportação esteja disponível.</p><h2>5. Outras ferramentas</h2><p><strong>Onde vender o loot?</strong> Cole o relatório do Hunt Analyzer. A ferramenta utiliza a seção Looted Items e organiza os itens por NPC comprador conforme o catálogo disponível.</p><p><strong>Comparar Hunts:</strong> compare duas sessões e observe diferenças nos resultados e nos dados do Hunt Analyzer.</p><p><strong>Custos de Hunt:</strong> calcule custos por hora e gerencie recursos associados à meta selecionada.</p><p><strong>Histórico, Desempenho e Metas:</strong> consulte sessões registradas e acompanhe seu progresso conforme os dados disponíveis no aplicativo.</p><h2>6. Ainda precisa de ajuda?</h2><p>Envie dúvidas ou sugestões para <a href="mailto:tibiafarmtracker@gmail.com">tibiafarmtracker@gmail.com</a>.</p>'
+   ajuda:'<h1>❔ Central de Ajuda</h1><p>Aprenda a usar o Tibia Farm Tracker para registrar suas hunts, entender os custos e acompanhar seu resultado real. Você pode começar a registrar farms mesmo sem configurar recursos ou conectar uma conta Google.</p><h2>1. Começando: registrar uma farm</h2><p>Crie ou selecione uma meta e acesse <strong>Registrar Farm</strong>. Informe os dados da sessão e salve. Se ainda não cadastrou recursos, a ausência de opções na área de recursos é normal: a farm pode ser registrada normalmente, sem nenhum custo de recurso associado.</p><h2 id="ajuda-recursos">2. O que são recursos e como funcionam?</h2><p>Recursos são custos de duração limitada que você pode associar às hunts em que realmente os utilizou, como imbuements ou itens carregados por tempo. Eles são configurados em <strong>Ferramentas → Custos de Hunt</strong> e ficam associados à meta ativa.</p><ol><li>Escolha o tipo de recurso e informe nome, custo e duração. Para Silver Tokens, informe também quantidade e preço por token.</li><li>Calcule o custo por hora e adicione o recurso aos recursos ativos.</li><li>Ao registrar uma hunt, selecione somente os recursos usados naquela sessão. O sistema considera o tempo da hunt, reduz o tempo restante do recurso e aplica o custo proporcional ao resultado.</li></ol><p><strong>Importante:</strong> cadastrar um recurso não desconta gold por si só. O custo só é aplicado à hunt quando o recurso é selecionado como utilizado. Se não usar nenhum recurso, registre a sessão sem selecioná-los.</p><div style="background:rgba(20,50,70,.55);border:1px solid rgba(126,174,205,.25);border-radius:10px;padding:14px 16px;margin:14px 0"><strong>Exemplo ilustrativo</strong><p style="margin:6px 0">Um imbuement custa 120.000 GP e dura 20 horas. O custo calculado é 6.000 GP/h. Em uma hunt de 1 hora que utilize esse imbuement, o resultado recebe um custo de 6.000 GP e o recurso passa a ter 19 horas restantes. Em uma sessão de 30 minutos, o custo proporcional seria 3.000 GP, respeitando o tempo restante do recurso.</p></div><h2>3. Por que não vejo recursos ao registrar a farm?</h2><p>As opções aparecem depois que você cadastra e associa recursos em <strong>Custos de Hunt</strong> para a meta selecionada. Se não cadastrou nenhum, você pode registrar a farm normalmente e configurar recursos mais tarde para as próximas sessões.</p><h2>4. Usar ou não uma conta Google</h2><p><strong>Conectar uma conta Google é opcional.</strong> Você pode utilizar as ferramentas e registrar suas hunts sem fazer login.</p><ul><li><strong>Sem Google:</strong> seus dados ficam salvos localmente neste navegador. Você pode continuar usando o sistema neste navegador, mas os dados não são sincronizados automaticamente com outros dispositivos e podem ser perdidos se limpar os dados do site, trocar de navegador ou utilizar uma sessão privada/anônima.</li><li><strong>Com Google:</strong> o login habilita a sincronização dos dados com a nuvem, permitindo acessar seus registros em outros dispositivos ao entrar na mesma conta. Recursos que dependem de autenticação, como envio de dados de desempenho para recursos comunitários, também podem exigir login.</li></ul><p>Se seus registros forem importantes, mantenha um backup. Evite limpar os dados do navegador antes de garantir que suas informações estejam sincronizadas ou exportadas, caso a opção de exportação esteja disponível.</p><h2>5. Outras ferramentas</h2><p><strong>Onde vender o loot?</strong> Cole o relatório do Hunt Analyzer. A ferramenta utiliza a seção Looted Items e organiza os itens por NPC comprador conforme o catálogo disponível.</p><p><strong>Comparar Hunts:</strong> compare duas sessões e observe diferenças nos resultados e nos dados do Hunt Analyzer.</p><p><strong>Custos de Hunt:</strong> calcule custos por hora e gerencie recursos associados à meta selecionada.</p><p><strong>Divisor de Party Hunt:</strong> cole o relatório do Party Hunt Analyzer, divida o balance igualmente entre os jogadores e copie os comandos transfer prontos para usar no jogo.</p><p><strong>Histórico, Desempenho e Metas:</strong> consulte sessões registradas e acompanhe seu progresso conforme os dados disponíveis no aplicativo.</p><h2>6. Ainda precisa de ajuda?</h2><p>Envie dúvidas ou sugestões para <a href="mailto:tibiafarmtracker@gmail.com">tibiafarmtracker@gmail.com</a>.</p>'
   };
   el.innerHTML=html[k]||"";
   var footer=document.getElementById("tftFooter");if(!footer){footer=document.createElement("footer");footer.id="tftFooter";footer.className="tft-footer";footer.innerHTML='<a href="/politica-de-privacidade" data-route="privacidade">Política de Privacidade</a><a href="/termos-de-uso" data-route="termos">Termos de Uso</a><a href="/contato" data-route="contato">Contato</a>';page.appendChild(footer);}
