@@ -565,7 +565,7 @@ tr.total td:first-child{font-weight:700}
 .pty-card .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
 .pty-card .v{font-size:16px;font-weight:700;color:#eaf6ff;overflow-wrap:anywhere}
 .pty-card .s{font-size:11px;color:var(--muted);margin-top:3px;overflow-wrap:anywhere}
-.pos{color:#5ff0b4}.neg{color:var(--red)}
+.pty-pos{color:#5ff0b4}.pty-neg{color:var(--red)}
 .pty-alert{margin:12px 0;padding:11px 14px;border-radius:10px;font-size:12.5px;line-height:1.5;border:1px solid}
 .pty-alert ul{margin:6px 0 0;padding-left:18px}
 .pty-alert li+li{margin-top:4px}
@@ -631,7 +631,8 @@ tr.total td:first-child{font-weight:700}
 #tftBestiaryPage button{border:1px solid #3b6888;border-radius:9px;padding:10px 14px;background:#12324b;color:#e4f2fb;font:inherit;font-weight:650;cursor:pointer}
 #tftBestiaryPage button.primary{background:linear-gradient(135deg,#b9852c,#e5bd68);color:#201708;border-color:#e3b95f}
 #tftBestiaryPage button:hover{filter:brightness(1.12)}
-#tftBestiaryPage .bst-picks{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 18px}
+#tftBestiaryPage .bst-picks{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:10px 0 18px}
+#tftBestiaryPage .bst-picks[hidden],#tftBestiaryPage #bstPicksLabel[hidden]{display:none}
 #tftBestiaryPage .bst-picks button{font-size:11px;padding:7px 10px;background:#102a40}
 #tftBestiaryPage .bst-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid #21425b}
 #tftBestiaryPage .bst-head h2{margin:0;color:#f4e4bd;font-size:20px}
@@ -747,10 +748,10 @@ tr.total td:first-child{font-weight:700}
 <div class="tft-tool-page" id="tftBestiaryPage" role="region" aria-labelledby="tftBestiaryTitle">
 <section class="bst-box">
 <h1 id="tftBestiaryTitle">📖 Bestiário de Hunt</h1>
-<p class="bst-muted">Pesquise uma criatura para consultar sua fraqueza elemental, elemento alternativo e os tipos de ataque que ajudam a escolher sua proteção. Catálogo inicial de 10 criaturas, extraído do TibiaWikiSQL.</p>
-<div class="bst-search"><input id="bstSearch" type="search" list="bstCreatureNames" placeholder="Digite o nome da criatura…" autocomplete="off" aria-label="Pesquisar criatura"><datalist id="bstCreatureNames"></datalist><button type="button" class="primary" id="bstSearchBtn">Pesquisar</button></div>
-<div class="bst-muted">Sugestões rápidas:</div><div class="bst-picks" id="bstQuickPicks"></div>
-<div id="bstResult" aria-live="polite"><div class="bst-empty">Escolha uma criatura ou digite o nome para consultar suas informações.</div></div>
+<p class="bst-muted">Pesquise uma criatura para consultar sua fraqueza elemental, elemento alternativo e os tipos de ataque que ajudam a escolher sua proteção. Catálogo inicial de <span id="bstCount">10</span> criaturas, extraído do TibiaWikiSQL.</p>
+<div class="bst-search"><input id="bstSearch" type="search" placeholder="Digite o nome da criatura…" autocomplete="off" aria-label="Pesquisar criatura"><button type="button" class="primary" id="bstSearchBtn">Pesquisar</button></div>
+<div class="bst-muted" id="bstPicksLabel" hidden>Sugestões rápidas:</div><div class="bst-picks" id="bstQuickPicks" role="group" aria-label="Sugestões rápidas de criaturas" hidden></div>
+<div id="bstResult" aria-live="polite"><div class="bst-empty">Digite o nome de uma criatura (ex.: Dr…) para ver sugestões e consultar suas informações.</div></div>
 <p class="bst-muted" style="margin-top:14px">As recomendações dependem dos dados disponíveis no catálogo. Ataques não identificados ou ausentes não são tratados como ausência de dano; confira a fonte antes de decidir seu equipamento.</p>
 </section></div>
 <div class="tft-tool-page" id="tftLootPage" role="region" aria-labelledby="tftLootTitle">
@@ -3478,7 +3479,7 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
  function fmt(v){return Number(v).toLocaleString("pt-BR")}
  function fmtS(v){return(v>0?"+":v<0?"-":"")+fmt(Math.abs(v))}
- function cls(v){return v>0?"pos":v<0?"neg":""}
+ function cls(v){return v>0?"pty-pos":v<0?"pty-neg":""}
 
  /* ---------- Leitura do relatório ---------- */
  var KV=/^(Session data|Session|Loot Type|Loot|Supplies|Balance|Damage|Healing|Raw XP Gain|XP Gain|Killed Monsters|Looted Items)\s*:\s*(.*)$/i;
@@ -3621,7 +3622,7 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
     });
     h+="</div>";
    }
-   if(D.resto&&J.length>1)h+='<p class="pty-muted" style="margin-top:10px">Arredondamento: o balance não divide em valores inteiros iguais (sobram '+D.resto+" GP). O gold excedente fica com quem recebe, então os resultados finais diferem em no máximo 1 GP.</p>";
+   if(D.resto&&J.length>1)h+='<p class="pty-muted" style="margin-top:10px">Arredondamento: o balance não divide em valores inteiros iguais (sobram '+D.resto+" GP). O gold excedente vai para os jogadores de menor balance original, então os resultados finais diferem em no máximo 1 GP.</p>";
   }else h+='<div class="pty-alert info"><ul><li>Modo somente visualização: nenhuma transferência foi calculada.</li></ul></div>';
   var temDmg=J.some(function(j){return j.damage!=null}),temHeal=J.some(function(j){return j.healing!=null});
   h+="<h2>"+(dividirModo?"Resumo individual":"Jogadores")+'</h2><div class="pty-wrap"><table class="pty-table"><thead><tr><th>Jogador</th><th>Loot</th><th>Supplies</th><th>Balance original</th>'
@@ -3672,9 +3673,10 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
  const icons={physical:'⚔️',earth:'🌿',fire:'🔥',ice:'❄️',energy:'⚡',death:'💀',holy:'✨',drown:'🌊',lifedrain:'🩸',manadrain:'🔮',healing:'💚'};
  const byId=id=>document.getElementById(id), norm=v=>String(v||'').toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
  const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const searchInput=byId('bstSearch'), list=byId('bstCreatureNames'), picks=byId('bstQuickPicks'), result=byId('bstResult');
- if(!searchInput||!list||!picks||!result)return;
+ const searchInput=byId('bstSearch'), picks=byId('bstQuickPicks'), label=byId('bstPicksLabel'), result=byId('bstResult');
+ if(!searchInput||!picks||!label||!result)return;
  let creatures=[];
+ const fm=v=>typeof v==='number'?v.toLocaleString('pt-BR'):(v==null||v===''?'—':esc(v));
  function attacksFor(c){const records=[],totals={};(c.abilities||[]).forEach(a=>{const el=String(a.element||'').toLowerCase();if(!names[el]||el==='?'||el==='healing')return;const m=String(a.effect||'').match(/\d+\s*[-–]\s*(\d+)/);if(!m)return;const max=Number(m[1]);totals[el]=(totals[el]||0)+max;records.push({name:a.name,element:el,max,effect:a.effect})});return{records,totals}}
  function show(c){const mods=c.damageModifiersPercent||{};const vals=Object.entries(mods).filter(([k,v])=>names[k]&&k!=='healing'&&typeof v==='number').sort((a,b)=>b[1]-a[1]);const weak=vals.filter(([,v])=>v>100),best=weak[0],alt=weak[1],atk=attacksFor(c);const def=Object.entries(atk.totals).filter(([el])=>el!=='physical').sort((a,b)=>b[1]-a[1]);const source=c.source||{},url='https://www.tibiawiki.com.br/wiki/'+encodeURIComponent((source.articleTitle||c.name).replace(/ /g,'_'));
  const main=best?`<div class="bst-rec"><div class="bst-tag">Elemento recomendado</div><div class="bst-main">${icons[best[0]]||''} ${names[best[0]]} · ${best[1]}%</div><div class="bst-detail">Recebe ${best[1]-100}% a mais de dano deste elemento em relação ao dano neutro.</div></div>`:'<div class="bst-nodata">Nenhuma fraqueza acima de 100% foi encontrada. Compare os elementos neutros abaixo; não há recomendação de fraqueza confirmada.</div>';
@@ -3682,11 +3684,61 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
  const rows=vals.map(([k,v])=>`<div class="bst-element"><span>${icons[k]||''} ${names[k]}</span><div class="bst-bar"><div class="bst-fill" style="width:${Math.max(0,Math.min(100,v/150*100))}%;background:${v>100?'#51c69a':v<100?'#e17878':'#d9b45e'}"></div></div><strong>${v===0?'Imune':v+'%'}</strong></div>`).join('');
  const protections=def.length?def.map(([el,n])=>`<div class="bst-protection"><b>${icons[el]||''} Proteção ${names[el]}</b><small>Há ataques desse elemento registrados. Soma dos máximos catalogados: ${n}. Isso é um indicador parcial, não uma previsão de dano recebido.</small></div>`).join(''):'<div class="bst-nodata">Não há ataques elementais identificáveis no registro. Não é possível indicar uma proteção elemental com segurança.</div>';
  const attackRows=atk.records.map(a=>`<div class="bst-attack"><div><b>${esc(a.name)}</b><small>${icons[a.element]||''} ${names[a.element]} · ${esc(a.effect)}</small></div><strong>máx. ${a.max}</strong></div>`).join('');
- result.innerHTML=`<div class="bst-head"><div><h2>${esc(c.name)}</h2><div class="bst-meta">${esc(c.location||'Localização não informada')} · ${esc(c.class||'Classe não informada')}</div><div class="bst-stats"><div class="bst-stat"><b>${c.hitpoints??'—'}</b>HP</div><div class="bst-stat"><b>${c.experience??'—'}</b>XP</div><div class="bst-stat"><b>${c.armor??'—'}</b>Armadura</div><div class="bst-stat"><b>${c.mitigation??'—'}</b>Mitigação</div></div></div><a class="bst-wiki" href="${url}" target="_blank" rel="noopener noreferrer">Abrir TibiaWiki ↗</a></div><div class="bst-grid"><article class="bst-card"><h3>🎯 Como atacar</h3><p class="bst-desc">Prioridade calculada pelos modificadores de dano recebido.</p>${main}${alternative}<h3 style="margin-top:18px">Resistências e fraquezas</h3>${rows}<div class="bst-legend">Acima de 100%: fraco · 100%: neutro · abaixo de 100%: resistente · 0%: imune</div></article><article class="bst-card"><h3>🛡️ Como se defender</h3><p class="bst-desc">Proteções elementais sugeridas pelos tipos de ataque identificados, não pelas fraquezas ofensivas.</p>${protections}<h3 style="margin-top:18px">Ataques identificados</h3>${attackRows||'<div class="bst-nodata">Nenhum ataque detalhado disponível no catálogo.</div>'}<div class="bst-notice">A lista de ataques pode estar incompleta. Quando o elemento ou o dano não está identificado, o sistema não inventa uma proteção. Considere também equipamentos e mecânicas específicas da hunt.</div></article></div>`;
+ result.innerHTML=`<div class="bst-head"><div><h2>${esc(c.name)}</h2><div class="bst-meta">${esc(c.location||'Localização não informada')} · ${esc(c.class||'Classe não informada')}</div><div class="bst-stats"><div class="bst-stat"><b>${fm(c.hitpoints)}</b>HP</div><div class="bst-stat"><b>${fm(c.experience)}</b>XP</div><div class="bst-stat"><b>${fm(c.armor)}</b>Armadura</div><div class="bst-stat"><b>${fm(c.mitigation)}</b>Mitigação</div></div></div><a class="bst-wiki" href="${url}" target="_blank" rel="noopener noreferrer">Abrir TibiaWiki ↗</a></div><div class="bst-grid"><article class="bst-card"><h3>🎯 Como atacar</h3><p class="bst-desc">Prioridade calculada pelos modificadores de dano recebido.</p>${main}${alternative}<h3 style="margin-top:18px">Resistências e fraquezas</h3>${rows}<div class="bst-legend">Acima de 100%: fraco · 100%: neutro · abaixo de 100%: resistente · 0%: imune</div></article><article class="bst-card"><h3>🛡️ Como se defender</h3><p class="bst-desc">Proteções elementais sugeridas pelos tipos de ataque identificados, não pelas fraquezas ofensivas.</p>${protections}<h3 style="margin-top:18px">Ataques identificados</h3>${attackRows||'<div class="bst-nodata">Nenhum ataque detalhado disponível no catálogo.</div>'}<div class="bst-notice">A lista de ataques pode estar incompleta. Quando o elemento ou o dano não está identificado, o sistema não inventa uma proteção. Considere também equipamentos e mecânicas específicas da hunt.</div></article></div>`;
  }
- function search(){const q=norm(searchInput.value);if(!q){result.innerHTML='<div class="bst-empty">Digite o nome de uma criatura.</div>';return}const c=creatures.find(x=>norm(x.name)===q)||creatures.find(x=>norm(x.name).includes(q));if(!c){result.innerHTML='<div class="bst-empty">Criatura não encontrada no catálogo carregado. Confira o nome ou o arquivo JSON.</div>';return}show(c)}
- byId('bstSearchBtn').addEventListener('click',search);searchInput.addEventListener('keydown',e=>{if(e.key==='Enter')search()});
- fetch('/tibia-creatures-completo.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(data=>{if(!data||!Array.isArray(data.creatures))throw new Error('Formato JSON inválido: esperado um array "creatures".');creatures=data.creatures.filter(c=>c&&typeof c.name==='string');if(!creatures.length)throw new Error('O catálogo não contém criaturas válidas.');creatures.forEach(c=>{const o=document.createElement('option');o.value=c.name;list.appendChild(o);const b=document.createElement('button');b.type='button';b.textContent=c.name;b.addEventListener('click',()=>{searchInput.value=c.name;show(c)});picks.appendChild(b)});result.innerHTML='<div class="bst-empty">Catálogo carregado ('+creatures.length+' criaturas). Escolha uma criatura ou digite o nome para consultar.</div>';}).catch(err=>{console.error('Erro ao carregar catálogo do bestiário:',err);result.innerHTML='<div class="bst-empty">Não foi possível carregar tibia-creatures-completo.json ('+esc(err.message)+'). Verifique se o arquivo está no mesmo nível do index.html e foi publicado no projeto.</div>';});
+ const MAX_PICKS=12;
+ const byName=(x,y)=>x._n<y._n?-1:x._n>y._n?1:0;
+ /* 1º nomes que COMEÇAM com o texto; só se não houver nenhum, cai para início de palavra e depois "contém" */
+ function matches(q){
+  if(!q)return{lista:[],modo:'prefixo'};
+  const pre=[],word=[],cont=[];
+  creatures.forEach(c=>{const n=c._n;if(n.startsWith(q))pre.push(c);else if(n.split(/[\s\-']+/).some(w=>w.startsWith(q)))word.push(c);else if(n.includes(q))cont.push(c)});
+  if(pre.length)return{lista:pre.sort(byName),modo:'prefixo'};
+  return{lista:word.sort(byName).concat(cont.sort(byName)),modo:'parcial'};
+ }
+ function esconderPicks(){picks.hidden=true;label.hidden=true;picks.textContent=''}
+ function escolher(c,porTeclado){searchInput.value=c.name;esconderPicks();show(c);if(porTeclado)searchInput.focus()}
+ function renderPicks(){
+  const raw=searchInput.value.trim(),q=norm(raw);
+  picks.textContent='';
+  if(!q||!creatures.length){esconderPicks();return}
+  const m=matches(q);
+  if(!m.lista.length){label.hidden=true;picks.hidden=false;const s=document.createElement('span');s.className='bst-muted';s.textContent='Nenhuma criatura encontrada para “'+raw+'”.';picks.appendChild(s);return}
+  label.textContent=m.modo==='prefixo'?'Sugestões rápidas:':'Nenhuma criatura começa com “'+raw+'”. Sugestões parecidas:';
+  label.hidden=false;picks.hidden=false;
+  m.lista.slice(0,MAX_PICKS).forEach(c=>{const btn=document.createElement('button');btn.type='button';btn.textContent=c.name;btn.addEventListener('click',e=>escolher(c,e.detail===0));picks.appendChild(btn)});
+  if(m.lista.length>MAX_PICKS){const s=document.createElement('span');s.className='bst-muted';s.textContent='+'+(m.lista.length-MAX_PICKS)+' criaturas. Continue digitando para filtrar.';picks.appendChild(s)}
+ }
+ function search(){
+  const q=norm(searchInput.value);
+  if(!q){result.innerHTML='<div class="bst-empty">Digite o nome de uma criatura.</div>';return}
+  if(!creatures.length)return;
+  const c=creatures.find(x=>x._n===q)||matches(q).lista[0];
+  if(!c){result.innerHTML='<div class="bst-empty">Criatura não encontrada no catálogo carregado. Confira o nome ou o arquivo JSON.</div>';return}
+  searchInput.value=c.name;esconderPicks();show(c);
+ }
+ byId('bstSearchBtn').addEventListener('click',search);
+ searchInput.addEventListener('input',renderPicks);
+ searchInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){search();return}
+  if(e.key==='ArrowDown'){const b=picks.querySelector('button');if(b){e.preventDefault();b.focus()}}
+  else if(e.key==='Escape')esconderPicks();
+ });
+ picks.addEventListener('keydown',e=>{
+  const bs=[...picks.querySelectorAll('button')],i=bs.indexOf(document.activeElement);if(i<0)return;
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();(bs[i+1]||bs[i]).focus()}
+  else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();(i?bs[i-1]:searchInput).focus()}
+  else if(e.key==='Escape'){searchInput.focus()}
+ });
+ fetch('/tibia-creatures-completo.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(data=>{
+  if(!data||!Array.isArray(data.creatures))throw new Error('Formato JSON inválido: esperado um array "creatures".');
+  creatures=data.creatures.filter(c=>c&&typeof c.name==='string');
+  if(!creatures.length)throw new Error('O catálogo não contém criaturas válidas.');
+  creatures.forEach(c=>{c._n=norm(c.name)});
+  const n=byId('bstCount');if(n)n.textContent=creatures.length;
+  result.innerHTML='<div class="bst-empty">Catálogo carregado ('+creatures.length+' criaturas). Comece a digitar o nome (ex.: Dr…) para ver as sugestões.</div>';
+  renderPicks();
+ }).catch(err=>{console.error('Erro ao carregar catálogo do bestiário:',err);result.innerHTML='<div class="bst-empty">Não foi possível carregar tibia-creatures-completo.json ('+esc(err.message)+'). Verifique se o arquivo está na raiz do site, junto do index.html, e foi publicado no projeto.</div>';});
 })();
 </script>
 <script>
