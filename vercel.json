@@ -6,6 +6,7 @@
     { "source": "/ferramentas/comparar-hunts", "destination": "/index.html" },
     { "source": "/ferramentas/custos-de-hunts", "destination": "/index.html" },
     { "source": "/ferramentas/divisor-party-hunt", "destination": "/index.html" },
+    { "source": "/ferramentas/bestiario-de-hunt", "destination": "/index.html" },
     { "source": "/ajuda", "destination": "/index.html" },
     { "source": "/politica-de-privacidade", "destination": "/index.html" },
     { "source": "/termos-de-uso", "destination": "/index.html" },
