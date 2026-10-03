@@ -7,7 +7,7 @@
     { "source": "/ferramentas/custos-de-hunts", "destination": "/index.html" },
     { "source": "/politica-de-privacidade", "destination": "/index.html" },
     { "source": "/termos-de-uso", "destination": "/index.html" },
-    { "source": "/contato", "destination": "/index.html" }
+    { "source": "/contato", "destination": "/index.html" },
     { "source": "/ajuda", "destination": "/index.html" }
   ]
 }
