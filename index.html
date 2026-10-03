@@ -619,6 +619,49 @@ tr.total td:first-child{font-weight:700}
 .tft-footer{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;padding:22px 12px;color:#a9bfd0;font-size:13px}.tft-footer a{color:#c9ddeb;text-decoration:none}.tft-footer a:hover{text-decoration:underline}
 .tft-shell[data-tft-page^="legal-"] .page > :not(#tftLegalPage):not(.tft-footer){display:none!important}
 .tft-shell[data-tft-page^="legal-"] #tftLegalPage{display:block}
+
+/* === Bestiário de Hunt === */
+.tft-shell[data-tft-page="bestiario"] #tftBestiaryPage{display:block}
+.tft-shell[data-tft-page="bestiario"] #app,.tft-shell[data-tft-page="bestiario"] #retentionDashboard{display:none}
+#tftBestiaryPage .bst-box{width:100%;box-sizing:border-box;background:#081a2b;color:#dcecf8;border:1px solid #38617e;border-radius:14px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#tftBestiaryPage h1{margin:0 0 5px;font-size:18px;color:#ffdf9f}
+#tftBestiaryPage .bst-muted{color:#9eb5c7;font-size:12px;line-height:1.55}
+#tftBestiaryPage .bst-search{display:flex;gap:9px;margin:16px 0 12px}
+#tftBestiaryPage input{min-width:0;flex:1;background:#061829;color:#e8f3fb;border:1px solid #315b78;border-radius:9px;padding:12px;font:inherit}
+#tftBestiaryPage button{border:1px solid #3b6888;border-radius:9px;padding:10px 14px;background:#12324b;color:#e4f2fb;font:inherit;font-weight:650;cursor:pointer}
+#tftBestiaryPage button.primary{background:linear-gradient(135deg,#b9852c,#e5bd68);color:#201708;border-color:#e3b95f}
+#tftBestiaryPage button:hover{filter:brightness(1.12)}
+#tftBestiaryPage .bst-picks{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 18px}
+#tftBestiaryPage .bst-picks button{font-size:11px;padding:7px 10px;background:#102a40}
+#tftBestiaryPage .bst-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid #21425b}
+#tftBestiaryPage .bst-head h2{margin:0;color:#f4e4bd;font-size:20px}
+#tftBestiaryPage .bst-meta{font-size:12px;color:#9eb5c7;margin-top:5px}
+#tftBestiaryPage .bst-wiki{color:#eac779;font-size:12px;text-decoration:none}
+#tftBestiaryPage .bst-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+#tftBestiaryPage .bst-stat{background:#102b41;border:1px solid #244760;border-radius:8px;padding:8px 11px;font-size:11px;color:#a9c1d2}
+#tftBestiaryPage .bst-stat b{display:block;color:#f0f7fb;font-size:15px}
+#tftBestiaryPage .bst-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+#tftBestiaryPage .bst-card{background:#0b2032;border:1px solid #23445d;border-radius:11px;padding:14px;min-width:0}
+#tftBestiaryPage .bst-card h3{margin:0 0 8px;color:#d8e9f5;font-size:14px}
+#tftBestiaryPage .bst-desc{color:#9eb5c7;font-size:11px;line-height:1.5;margin:0 0 12px}
+#tftBestiaryPage .bst-rec{background:#123b35;border:1px solid #2b725e;border-radius:9px;padding:12px;margin:8px 0}
+#tftBestiaryPage .bst-rec.alt{background:#132e43;border-color:#315b78}
+#tftBestiaryPage .bst-tag{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:#a9d9c5}
+#tftBestiaryPage .bst-main{font-size:18px;font-weight:750;color:#e9fff4;margin:3px 0}
+#tftBestiaryPage .bst-detail{font-size:11px;color:#c0d8d2;line-height:1.5}
+#tftBestiaryPage .bst-element{display:grid;grid-template-columns:100px 1fr 48px;align-items:center;gap:8px;font-size:11px;margin:9px 0}
+#tftBestiaryPage .bst-bar{height:8px;border-radius:9px;background:#1a354a;overflow:hidden}
+#tftBestiaryPage .bst-fill{height:100%;border-radius:9px}
+#tftBestiaryPage .bst-element strong{text-align:right;color:#e8f3fb}
+#tftBestiaryPage .bst-legend,#tftBestiaryPage .bst-notice,#tftBestiaryPage .bst-nodata{font-size:11px;color:#a8bdcc;line-height:1.55;margin-top:10px}
+#tftBestiaryPage .bst-protection{border:1px solid #315b78;border-radius:8px;padding:10px;margin:7px 0;background:#102b41}
+#tftBestiaryPage .bst-protection b{display:block;color:#e5f2fa;font-size:12px}
+#tftBestiaryPage .bst-protection small{display:block;color:#9eb5c7;line-height:1.45;margin-top:4px}
+#tftBestiaryPage .bst-attack{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #1e3a50;padding:8px 0;font-size:11px}
+#tftBestiaryPage .bst-attack:last-child{border-bottom:0}
+#tftBestiaryPage .bst-attack small{display:block;color:#9eb5c7;margin-top:3px}
+#tftBestiaryPage .bst-empty{border:1px dashed #31516b;border-radius:10px;padding:22px;text-align:center;color:#9eb5c7;font-size:13px}
+@media(max-width:700px){#tftBestiaryPage .bst-box{padding:14px}#tftBestiaryPage .bst-grid{grid-template-columns:1fr}#tftBestiaryPage .bst-search{flex-wrap:wrap}#tftBestiaryPage .bst-search input{flex-basis:100%}}
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
@@ -643,6 +686,7 @@ tr.total td:first-child{font-weight:700}
   Custos de Hunt
 </a>
    <a href="/ferramentas/divisor-party-hunt" data-nav="party" data-route="party"><span class="ic">👥</span>Divisor de Party Hunt</a>
+   <a href="/ferramentas/bestiario-de-hunt" data-nav="bestiario" data-route="bestiario"><span class="ic">📖</span>Bestiário de Hunt</a>
   </div>
   <a href="/ajuda" data-nav="ajuda" data-route="ajuda"><span class="ic">❔</span>Central de Ajuda</a>
   <button type="button" data-nav="config" onclick="tftNav('config')"><span class="ic">⚙️</span>Configurações</button>
@@ -699,6 +743,15 @@ tr.total td:first-child{font-weight:700}
 <textarea id="ptyText" class="pty-ta" spellcheck="false" placeholder="Session data: From 2026-10-02, 16:42:34 to 2026-10-02, 17:20:24&#10;Session: 00:37h&#10;Loot Type: Market&#10;Loot: 1,139,766&#10;Supplies: 207,595&#10;Balance: 932,171&#10;&#10;Nome do Líder (Leader)&#10;    Loot: 1,100,246&#10;    Supplies: 81,568&#10;    Balance: 1,018,678&#10;    Damage: 2,437,148&#10;    Healing: 631,772&#10;&#10;Outro Jogador&#10;    Loot: 39,520&#10;    ..."></textarea>
 <div class="pty-act"><button class="primary" onclick="tftPartyCalcular()">Calcular divisão</button><button onclick="tftPartyLimpar()">Limpar</button></div>
 <div id="ptyErr" class="pty-err" role="alert"></div><div id="ptyOut" aria-live="polite"></div>
+</section></div>
+<div class="tft-tool-page" id="tftBestiaryPage" role="region" aria-labelledby="tftBestiaryTitle">
+<section class="bst-box">
+<h1 id="tftBestiaryTitle">📖 Bestiário de Hunt</h1>
+<p class="bst-muted">Pesquise uma criatura para consultar sua fraqueza elemental, elemento alternativo e os tipos de ataque que ajudam a escolher sua proteção. Catálogo inicial de 10 criaturas, extraído do TibiaWikiSQL.</p>
+<div class="bst-search"><input id="bstSearch" type="search" list="bstCreatureNames" placeholder="Digite o nome da criatura…" autocomplete="off" aria-label="Pesquisar criatura"><datalist id="bstCreatureNames"></datalist><button type="button" class="primary" id="bstSearchBtn">Pesquisar</button></div>
+<div class="bst-muted">Sugestões rápidas:</div><div class="bst-picks" id="bstQuickPicks"></div>
+<div id="bstResult" aria-live="polite"><div class="bst-empty">Escolha uma criatura ou digite o nome para consultar suas informações.</div></div>
+<p class="bst-muted" style="margin-top:14px">As recomendações dependem dos dados disponíveis no catálogo. Ataques não identificados ou ausentes não são tratados como ausência de dano; confira a fonte antes de decidir seu equipamento.</p>
 </section></div>
 <div class="tft-tool-page" id="tftLootPage" role="region" aria-labelledby="tftLootTitle">
 <section class="loot-box"><h1 id="tftLootTitle">🧰 Guia de Venda de Loot</h1>
@@ -3235,10 +3288,10 @@ function removerMetaSemanal(){
 /* === Etapa 1 do redesign: navegação da sidebar + saudação do hero (não altera a lógica do app) === */
 function tftAbrirMenu(){var s=document.getElementById("tftSidebar"),o=document.getElementById("tftOverlay");if(s)s.classList.add("open");if(o)o.classList.add("open")}
 function tftFecharMenu(){var s=document.getElementById("tftSidebar"),o=document.getElementById("tftOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open")}
-var TFT_TOOL_KEYS=["loot","comparar","custos","party"];
+var TFT_TOOL_KEYS=["loot","comparar","custos","party","bestiario"];
 function tftMarcarNav(k){document.querySelectorAll("#tftNav button,#tftNav a").forEach(function(b){var n=b.getAttribute("data-nav");b.classList.toggle("on",n===k||(n==="ferramentas"&&TFT_TOOL_KEYS.indexOf(k)!==-1));if(b.tagName==="A"){if(n===k)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")}})}
 function tftScrollTo(id){var el=document.getElementById(id);if(!el)return false;el.scrollIntoView({behavior:"smooth",block:"start"});return true}
-var TFT_PAGES=["inicio","farm","desempenho","historico","metas","loot","comparar","custos","party","legal-ajuda","legal-privacidade","legal-termos","legal-contato"];
+var TFT_PAGES=["inicio","farm","desempenho","historico","metas","loot","comparar","custos","party","bestiario","legal-ajuda","legal-privacidade","legal-termos","legal-contato"];
 function tftDefinirPagina(k){
  var shell=document.querySelector(".tft-shell");
  if(!shell)return;
@@ -3613,6 +3666,30 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
 </script>
 
 <script>
+/* === Bestiário de Hunt: dados carregados do JSON externo === */
+(function(){
+ const names={physical:'Físico',earth:'Terra',fire:'Fogo',ice:'Gelo',energy:'Energia',death:'Morte',holy:'Sagrado',drown:'Afogamento',lifedrain:'Dreno de vida',manadrain:'Dreno de mana',healing:'Cura'};
+ const icons={physical:'⚔️',earth:'🌿',fire:'🔥',ice:'❄️',energy:'⚡',death:'💀',holy:'✨',drown:'🌊',lifedrain:'🩸',manadrain:'🔮',healing:'💚'};
+ const byId=id=>document.getElementById(id), norm=v=>String(v||'').toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+ const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const searchInput=byId('bstSearch'), list=byId('bstCreatureNames'), picks=byId('bstQuickPicks'), result=byId('bstResult');
+ if(!searchInput||!list||!picks||!result)return;
+ let creatures=[];
+ function attacksFor(c){const records=[],totals={};(c.abilities||[]).forEach(a=>{const el=String(a.element||'').toLowerCase();if(!names[el]||el==='?'||el==='healing')return;const m=String(a.effect||'').match(/\d+\s*[-–]\s*(\d+)/);if(!m)return;const max=Number(m[1]);totals[el]=(totals[el]||0)+max;records.push({name:a.name,element:el,max,effect:a.effect})});return{records,totals}}
+ function show(c){const mods=c.damageModifiersPercent||{};const vals=Object.entries(mods).filter(([k,v])=>names[k]&&k!=='healing'&&typeof v==='number').sort((a,b)=>b[1]-a[1]);const weak=vals.filter(([,v])=>v>100),best=weak[0],alt=weak[1],atk=attacksFor(c);const def=Object.entries(atk.totals).filter(([el])=>el!=='physical').sort((a,b)=>b[1]-a[1]);const source=c.source||{},url='https://www.tibiawiki.com.br/wiki/'+encodeURIComponent((source.articleTitle||c.name).replace(/ /g,'_'));
+ const main=best?`<div class="bst-rec"><div class="bst-tag">Elemento recomendado</div><div class="bst-main">${icons[best[0]]||''} ${names[best[0]]} · ${best[1]}%</div><div class="bst-detail">Recebe ${best[1]-100}% a mais de dano deste elemento em relação ao dano neutro.</div></div>`:'<div class="bst-nodata">Nenhuma fraqueza acima de 100% foi encontrada. Compare os elementos neutros abaixo; não há recomendação de fraqueza confirmada.</div>';
+ const alternative=alt?`<div class="bst-rec alt"><div class="bst-tag">Alternativa ofensiva</div><div class="bst-main">${icons[alt[0]]||''} ${names[alt[0]]} · ${alt[1]}%</div><div class="bst-detail">Também causa dano aumentado (${alt[1]-100}% acima do neutro).</div></div>`:'<div class="bst-nodata">Não há segunda fraqueza confirmada nos dados. Elementos neutros podem funcionar, mas não são fraquezas.</div>';
+ const rows=vals.map(([k,v])=>`<div class="bst-element"><span>${icons[k]||''} ${names[k]}</span><div class="bst-bar"><div class="bst-fill" style="width:${Math.max(0,Math.min(100,v/150*100))}%;background:${v>100?'#51c69a':v<100?'#e17878':'#d9b45e'}"></div></div><strong>${v===0?'Imune':v+'%'}</strong></div>`).join('');
+ const protections=def.length?def.map(([el,n])=>`<div class="bst-protection"><b>${icons[el]||''} Proteção ${names[el]}</b><small>Há ataques desse elemento registrados. Soma dos máximos catalogados: ${n}. Isso é um indicador parcial, não uma previsão de dano recebido.</small></div>`).join(''):'<div class="bst-nodata">Não há ataques elementais identificáveis no registro. Não é possível indicar uma proteção elemental com segurança.</div>';
+ const attackRows=atk.records.map(a=>`<div class="bst-attack"><div><b>${esc(a.name)}</b><small>${icons[a.element]||''} ${names[a.element]} · ${esc(a.effect)}</small></div><strong>máx. ${a.max}</strong></div>`).join('');
+ result.innerHTML=`<div class="bst-head"><div><h2>${esc(c.name)}</h2><div class="bst-meta">${esc(c.location||'Localização não informada')} · ${esc(c.class||'Classe não informada')}</div><div class="bst-stats"><div class="bst-stat"><b>${c.hitpoints??'—'}</b>HP</div><div class="bst-stat"><b>${c.experience??'—'}</b>XP</div><div class="bst-stat"><b>${c.armor??'—'}</b>Armadura</div><div class="bst-stat"><b>${c.mitigation??'—'}</b>Mitigação</div></div></div><a class="bst-wiki" href="${url}" target="_blank" rel="noopener noreferrer">Abrir TibiaWiki ↗</a></div><div class="bst-grid"><article class="bst-card"><h3>🎯 Como atacar</h3><p class="bst-desc">Prioridade calculada pelos modificadores de dano recebido.</p>${main}${alternative}<h3 style="margin-top:18px">Resistências e fraquezas</h3>${rows}<div class="bst-legend">Acima de 100%: fraco · 100%: neutro · abaixo de 100%: resistente · 0%: imune</div></article><article class="bst-card"><h3>🛡️ Como se defender</h3><p class="bst-desc">Proteções elementais sugeridas pelos tipos de ataque identificados, não pelas fraquezas ofensivas.</p>${protections}<h3 style="margin-top:18px">Ataques identificados</h3>${attackRows||'<div class="bst-nodata">Nenhum ataque detalhado disponível no catálogo.</div>'}<div class="bst-notice">A lista de ataques pode estar incompleta. Quando o elemento ou o dano não está identificado, o sistema não inventa uma proteção. Considere também equipamentos e mecânicas específicas da hunt.</div></article></div>`;
+ }
+ function search(){const q=norm(searchInput.value);if(!q){result.innerHTML='<div class="bst-empty">Digite o nome de uma criatura.</div>';return}const c=creatures.find(x=>norm(x.name)===q)||creatures.find(x=>norm(x.name).includes(q));if(!c){result.innerHTML='<div class="bst-empty">Criatura não encontrada no catálogo carregado. Confira o nome ou o arquivo JSON.</div>';return}show(c)}
+ byId('bstSearchBtn').addEventListener('click',search);searchInput.addEventListener('keydown',e=>{if(e.key==='Enter')search()});
+ fetch('./tibia-creatures-10.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(data=>{if(!data||!Array.isArray(data.creatures))throw new Error('Formato JSON inválido: esperado um array "creatures".');creatures=data.creatures.filter(c=>c&&typeof c.name==='string');if(!creatures.length)throw new Error('O catálogo não contém criaturas válidas.');creatures.forEach(c=>{const o=document.createElement('option');o.value=c.name;list.appendChild(o);const b=document.createElement('button');b.type='button';b.textContent=c.name;b.addEventListener('click',()=>{searchInput.value=c.name;show(c)});picks.appendChild(b)});result.innerHTML='<div class="bst-empty">Catálogo carregado ('+creatures.length+' criaturas). Escolha uma criatura ou digite o nome para consultar.</div>';}).catch(err=>{console.error('Erro ao carregar catálogo do bestiário:',err);result.innerHTML='<div class="bst-empty">Não foi possível carregar tibia-creatures-10.json ('+esc(err.message)+'). Verifique se o arquivo está no mesmo nível do index.html e foi publicado no projeto.</div>';});
+})();
+</script>
+<script>
 /* === Rotas das ferramentas (History API): URL própria por ferramenta, sem recarregar a página === */
 (function(){
  var ROTAS={
@@ -3628,6 +3705,7 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
   party:{path:"/ferramentas/divisor-party-hunt",
    title:"Divisor de Party Hunt do Tibia | Tibia Farm Tracker",
    desc:"Cole o Party Hunt Analyzer do Tibia, divida o balance igualmente entre os jogadores e copie os comandos transfer prontos para usar no jogo."},
+  bestiario:{path:"/ferramentas/bestiario-de-hunt",title:"Bestiário de Hunt: fraquezas e proteções | Tibia Farm Tracker",desc:"Pesquise criaturas do Tibia, consulte fraquezas elementais, elemento recomendado para atacar e tipos de dano para preparar suas proteções."},
   ajuda:{path:"/ajuda",title:"Central de Ajuda | Tibia Farm Tracker",desc:"Aprenda a registrar farms, configurar recursos, entender os custos de hunts e usar sua conta Google ou o armazenamento local no Tibia Farm Tracker."},
   privacidade:{path:"/politica-de-privacidade",title:"Política de Privacidade | Tibia Farm Tracker",desc:"Saiba como o Tibia Farm Tracker trata informações e dados utilizados nas ferramentas de acompanhamento de hunts."},
   termos:{path:"/termos-de-uso",title:"Termos de Uso | Tibia Farm Tracker",desc:"Consulte os termos de uso do Tibia Farm Tracker e as condições para utilizar suas ferramentas."},
