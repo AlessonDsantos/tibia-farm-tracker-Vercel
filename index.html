@@ -700,6 +700,35 @@ tr.total td:first-child{font-weight:700}
 #tftElemPage .elm-empty{padding:18px;text-align:center;color:#9eb5c7;font-size:13px}
 @media(max-width:720px){#tftElemPage .elm-filters{grid-template-columns:1fr 1fr}#tftElemPage .elm-filters>div:first-child{grid-column:1/-1}}
 </style>
+<style id="tft-party-sys-css">
+.pty-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 4px;border-bottom:1px solid #12314a;padding-bottom:10px}
+.pty-tabs button{border:1px solid #2c5573;border-radius:999px;padding:8px 14px;background:#0b2135;color:#cfe4f2;font:inherit;font-size:12.5px;font-weight:650;cursor:pointer}
+.pty-tabs button.on{background:linear-gradient(100deg,#e2b149,#c8902c);color:#1a1204;border-color:#e8b957}
+.pty-pane[hidden]{display:none}
+.pty-in{width:100%;box-sizing:border-box;background:#05121f;color:#dcecf8;border:1px solid #23506f;border-radius:8px;padding:9px 10px;font:inherit;font-size:13px}
+textarea.pty-in{min-height:120px;resize:vertical;font:12.5px/1.5 ui-monospace,Menlo,monospace}
+.pty-field{margin:10px 0}
+.pty-plist{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:10px}
+.pty-pc{background:#05121f;border:1px solid #1d4462;border-radius:10px;padding:13px}
+.pty-pc h3{margin:0 0 4px;font-size:15px;color:#ffdf9f}.pty-pc .m{font-size:12px;color:#9db7c9;margin-bottom:10px;line-height:1.5}
+.pty-pc .a{display:flex;gap:6px;flex-wrap:wrap}
+.pty-btn.pri{background:linear-gradient(100deg,#e2b149,#c8902c);color:#1a1204;border-color:#e8b957}
+.pty-btn.dng{border-color:#7a3a3a;color:#ffb4b0}
+.pty-row{cursor:pointer}.pty-row:hover td{background:#0b2135}
+.pty-save{margin-top:18px;border:1px solid #38617e;border-radius:12px;padding:14px;background:#071727}
+.pty-save h2{margin-top:0}
+.pty-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pty-chart{width:100%;height:auto;background:#05121f;border:1px solid #16354c;border-radius:10px}
+.pty-modal{position:fixed;inset:0;z-index:10070;background:rgba(0,0,0,.78);display:flex;align-items:flex-start;justify-content:center;padding:18px;overflow:auto}
+.pty-modal[hidden]{display:none}
+.pty-mbox{position:relative;width:min(860px,100%);background:#081a2b;border:1px solid #38617e;border-radius:14px;padding:20px;color:#dcecf8}
+.pty-x{position:absolute;top:10px;right:14px;background:none;border:0;color:#9db7c9;font-size:18px;cursor:pointer}
+.pty-prow{display:grid;grid-template-columns:1fr 150px 40px;gap:8px;margin-bottom:8px}
+.pty-prow .pty-btn{padding:6px 0}
+@media(max-width:650px){.pty-prow{grid-template-columns:1fr 120px 36px}}
+.pty-sel{display:inline-block;background:#05121f;color:#dcecf8;border:1px solid #23506f;border-radius:8px;padding:8px 10px;font:inherit;font-size:13px}
+@media(max-width:650px){.pty-two{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <div class="tft-shell">
@@ -770,20 +799,22 @@ tr.total td:first-child{font-weight:700}
 <div class="tft-tool-page" id="tftPartyPage" role="region" aria-labelledby="tftPartyTitle">
 <section class="pty-box">
 <h1 id="tftPartyTitle">👥 Divisor de Party Hunt</h1>
-<p class="pty-muted">Cole o relatório completo do Party Hunt Analyzer do Tibia. A ferramenta confere os valores, divide o balance igualmente entre os jogadores e gera os comandos <code>transfer</code> prontos para copiar. Nada do que você cola é salvo ou enviado: o cálculo acontece no seu navegador.</p>
-<div class="pty-modos" role="radiogroup" aria-label="Modo de cálculo">
-<label><input type="radio" name="ptyModo" value="dividir" checked onchange="tftPartyModo()"> Dividir o balance igualmente</label>
-<label><input type="radio" name="ptyModo" value="visualizar" onchange="tftPartyModo()"> Somente visualizar os dados</label>
-</div>
+<div class="pty-tabs" id="ptyTabs" role="tablist" aria-label="Seções do Party Hunt"><button type="button" data-tab="div" role="tab">💰 Divisor</button><button type="button" data-tab="parties" role="tab">👥 Minhas Parties</button><button type="button" data-tab="hist" role="tab">📜 Histórico de Acertos</button><button type="button" data-tab="rank" role="tab">🏆 Ranking</button></div>
+<div class="pty-pane" id="ptyPaneDiv">
+<p class="pty-muted">Cole o relatório completo do Party Hunt Analyzer do Tibia. A ferramenta confere os valores, divide o balance igualmente entre os jogadores e gera os comandos <code>transfer</code> prontos para copiar. O cálculo acontece no seu navegador e nada é enviado. Os dados só são salvos se você registrar a hunt em uma Party, e ficam apenas neste navegador.</p>
 <label class="pty-lbl" for="ptyText">Cole aqui os dados do Party Hunt Analyzer</label>
 <textarea id="ptyText" class="pty-ta" spellcheck="false" placeholder="Session data: From 2026-10-02, 16:42:34 to 2026-10-02, 17:20:24&#10;Session: 00:37h&#10;Loot Type: Market&#10;Loot: 1,139,766&#10;Supplies: 207,595&#10;Balance: 932,171&#10;&#10;Nome do Líder (Leader)&#10;    Loot: 1,100,246&#10;    Supplies: 81,568&#10;    Balance: 1,018,678&#10;    Damage: 2,437,148&#10;    Healing: 631,772&#10;&#10;Outro Jogador&#10;    Loot: 39,520&#10;    ..."></textarea>
 <div class="pty-act"><button class="primary" onclick="tftPartyCalcular()">Calcular divisão</button><button onclick="tftPartyLimpar()">Limpar</button></div>
 <div id="ptyErr" class="pty-err" role="alert"></div><div id="ptyOut" aria-live="polite"></div>
+<div id="ptySave"></div>
+</div>
+<div class="pty-pane" id="ptyPaneParties" hidden></div><div class="pty-pane" id="ptyPaneHist" hidden></div><div class="pty-pane" id="ptyPaneRank" hidden></div>
 </section></div>
+<div class="pty-modal" id="ptyModal" hidden role="dialog" aria-modal="true" aria-label="Detalhes da hunt"><div class="pty-mbox"></div></div>
 <div class="tft-tool-page" id="tftBestiaryPage" role="region" aria-labelledby="tftBestiaryTitle">
 <section class="bst-box">
 <h1 id="tftBestiaryTitle">📖 Bestiário de Hunt</h1>
-<p class="bst-muted">Pesquise uma criatura para consultar sua fraqueza elemental, elemento alternativo e os tipos de ataque que ajudam a escolher sua proteção.</p>
+<p class="bst-muted">Pesquise uma criatura para consultar sua fraqueza elemental, elemento alternativo e os tipos de ataque que ajudam a escolher sua proteção. Catálogo inicial de <span id="bstCount">10</span> criaturas, extraído do TibiaWikiSQL.</p>
 <div class="bst-search"><input id="bstSearch" type="search" placeholder="Digite o nome da criatura…" autocomplete="off" aria-label="Pesquisar criatura"><button type="button" class="primary" id="bstSearchBtn">Pesquisar</button></div>
 <div class="bst-muted" id="bstPicksLabel" hidden>Sugestões rápidas:</div><div class="bst-picks" id="bstQuickPicks" role="group" aria-label="Sugestões rápidas de criaturas" hidden></div>
 <div id="bstResult" aria-live="polite"><div class="bst-empty">Digite o nome de uma criatura (ex.: Dr…) para ver sugestões e consultar suas informações.</div></div>
@@ -792,7 +823,7 @@ tr.total td:first-child{font-weight:700}
 <div class="tft-tool-page" id="tftElemPage" role="region" aria-labelledby="tftElemTitle">
 <section class="elm-box">
 <h1 id="tftElemTitle">🎯 Caçar por Elemento</h1>
-<p class="elm-muted">Escolha o elemento do seu dano e veja as criaturas que recebem mais dano dele (fraqueza acima de 100%). Use os filtros para achar hunts com bom XP, poucos pontos de vida ou em um local específico.(<span id="elmCount">…</span> criaturas).</p>
+<p class="elm-muted">Escolha o elemento do seu dano e veja as criaturas que recebem mais dano dele (fraqueza acima de 100%). Use os filtros para achar hunts com bom XP, poucos pontos de vida ou em um local específico. Dados do TibiaWikiSQL (<span id="elmCount">…</span> criaturas).</p>
 <div class="elm-chips" id="elmChips" role="group" aria-label="Elemento do seu dano"></div>
 <div class="elm-filters">
 <div><label for="elmSearch">Nome ou local</label><input id="elmSearch" type="search" placeholder="Ex.: Dragon, Forest of Life…" autocomplete="off"></div>
@@ -3636,6 +3667,7 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
   return g.inicio.data===g.fim.data?fmtData(g.inicio)+" → "+g.fim.hora:fmtData(g.inicio)+" → "+fmtData(g.fim);
  }
  function mostrarErro(lista){
+  document.dispatchEvent(new Event("tft:party-calc"));
   $("ptyOut").innerHTML="";
   $("ptyErr").innerHTML="<b>Não foi possível calcular.</b><ul>"+lista.map(function(e){return"<li>"+esc(e)+"</li>"}).join("")+"</ul>";
  }
@@ -3675,12 +3707,13 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
    }
    if(D.resto&&J.length>1)h+='<p class="pty-muted" style="margin-top:10px">Arredondamento: o balance não divide em valores inteiros iguais (sobram '+D.resto+" GP). O gold excedente vai para os jogadores de menor balance original, então os resultados finais diferem em no máximo 1 GP.</p>";
   }else h+='<div class="pty-alert info"><ul><li>Modo somente visualização: nenhuma transferência foi calculada.</li></ul></div>';
+  var CLF=window.TFTPartyClasse,temCls=!!CLF&&J.some(function(j){return CLF(j.nome)});
   var temDmg=J.some(function(j){return j.damage!=null}),temHeal=J.some(function(j){return j.healing!=null});
-  h+="<h2>"+(dividirModo?"Resumo individual":"Jogadores")+'</h2><div class="pty-wrap"><table class="pty-table"><thead><tr><th>Jogador</th><th>Loot</th><th>Supplies</th><th>Balance original</th>'
+  h+="<h2>"+(dividirModo?"Resumo individual":"Jogadores")+'</h2><div class="pty-wrap"><table class="pty-table"><thead><tr><th>Jogador</th>'+(temCls?"<th>Classe</th>":"")+'<th>Loot</th><th>Supplies</th><th>Balance original</th>'
    +(dividirModo?"<th>Resultado final</th><th>Situação</th>":"")+(temDmg?"<th>Dano</th>":"")+(temHeal?"<th>Cura</th>":"")+"</tr></thead><tbody>";
   J.forEach(function(j,i){
    var d=D.jogadores[i];
-   h+="<tr><td><b>"+esc(j.nome)+"</b>"+(j.lider?' <span class="pty-tag">Líder</span>':"")+"</td><td>"+fmt(j.loot)+"</td><td>"+fmt(j.supplies)+'</td><td class="'+cls(j.balance)+'">'+fmtS(j.balance)+"</td>";
+   h+="<tr><td><b>"+esc(j.nome)+"</b>"+(j.lider?' <span class="pty-tag">Líder</span>':"")+"</td>"+(temCls?"<td>"+esc(CLF(j.nome)||"—")+"</td>":"")+"<td>"+fmt(j.loot)+"</td><td>"+fmt(j.supplies)+'</td><td class="'+cls(j.balance)+'">'+fmtS(j.balance)+"</td>";
    if(dividirModo){
     var pill=d.sit==="paga"?'<span class="pty-pill pay">↑ Paga '+fmt(d.dif)+"</span>":d.sit==="recebe"?'<span class="pty-pill rec">↓ Recebe '+fmt(-d.dif)+"</span>":'<span class="pty-pill ok">✓ Sem transferência</span>';
     h+='<td class="'+cls(d.alvo)+'"><b>'+fmtS(d.alvo)+"</b></td><td>"+pill+"</td>";
@@ -3708,14 +3741,302 @@ window.TFTCmp={parse:parse,pct:pct,narrative:narrative};
   if(!p.ok){ultimo=null;mostrarErro(p.erros);return}
   ultimo={p:p,av:validar(p),div:dividir(p.jogadores)};
   desenhar();
+  document.dispatchEvent(new Event("tft:party-calc"));
  };
- window.tftPartyModo=function(){if(ultimo)desenhar()};
- window.tftPartyLimpar=function(){ultimo=null;$("ptyText").value="";$("ptyErr").innerHTML="";$("ptyOut").innerHTML="";$("ptyText").focus()};
+ window.tftPartyModo=function(){if(ultimo){desenhar();document.dispatchEvent(new Event("tft:party-calc"))}};
+ window.tftPartyLimpar=function(){ultimo=null;document.dispatchEvent(new Event("tft:party-calc"));$("ptyText").value="";$("ptyErr").innerHTML="";$("ptyOut").innerHTML="";$("ptyText").focus()};
  window.tftPartyCopiar=function(i,btn){var t=ultimo&&ultimo.div.transferencias[i];if(t)copiar(t.comando,btn,"Comando copiado.")};
  window.tftPartyCopiarTodos=function(btn){if(!ultimo)return;var c=ultimo.div.transferencias.map(function(t){return t.comando});if(c.length)copiar(c.join("\n"),btn,c.length===1?"Comando copiado.":c.length+" comandos copiados.")};
- window.TFTParty={parse:parse,validar:validar,dividir:dividir,num:num};
+ window.TFTParty={parse:parse,validar:validar,dividir:dividir,num:num,ultimo:function(){return ultimo}};
 })();
 </script>
+<script id="tft-party-system">
+/* === Sistema de Party Hunt: Parties salvas, histórico, desempenho e ranking (dados em localStorage) === */
+(function(){
+"use strict";
+/* ---- Configuração: ajuste aqui ---- */
+var CFG={minHunts:5,storageKey:"tft:party:v1",version:1,maxPlayers:30,classes:["Knight","Paladin","Sorcerer","Druid","Monk"]};
+/* ---- Critérios de ranking: para criar um novo (ou um Score futuro) basta acrescentar uma entrada ---- */
+var METRICS={
+ bph:{label:"Balance/h médio",val:function(s){return s.bph},fmt:function(v){return fmt(Math.round(v))+" gp/h"}},
+ bal:{label:"Balance total",val:function(s){return s.bal},fmt:function(v){return fmt(v)+" gp"}},
+ avg:{label:"Melhor média por hunt",val:function(s){return s.n?s.avg:null},fmt:function(v){return fmt(Math.round(v))+" gp"}}
+};
+var $=function(i){return document.getElementById(i)};
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function fmt(v){return Number(v).toLocaleString("pt-BR")}
+function fmtS(v){return(v>0?"+":v<0?"-":"")+fmt(Math.abs(v))}
+function kk(v){var a=Math.abs(v),s=v<0?"-":"";return a>=1e6?s+(a/1e6).toLocaleString("pt-BR",{maximumFractionDigits:2})+"kk":a>=1e3?s+Math.round(a/1e3)+"k":s+a}
+function pad(n){return(n<10?"0":"")+n}
+function dur(m){return m>0?Math.floor(m/60)+"h "+pad(m%60)+"min":"—"}
+function dBR(d){var p=String(d).split("-");return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:d}
+function cls(v){return v>0?"pty-pos":v<0?"pty-neg":""}
+function toast_(m){if(typeof toast==="function")toast(m)}
+function uid(p){return p+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function pluralHunts(n){return n+(n===1?" hunt":" hunts")}
+
+/* ---- Camada de dados (única parte que toca o armazenamento: troque por API/banco no futuro) ---- */
+var Repo={
+ load:function(){try{var r=JSON.parse(localStorage.getItem(CFG.storageKey)||"null");if(r&&Array.isArray(r.parties)&&Array.isArray(r.hunts))return r}catch(e){}return{v:CFG.version,parties:[],hunts:[]}},
+ save:function(d){try{localStorage.setItem(CFG.storageKey,JSON.stringify(d));return true}catch(e){return false}}
+};
+function loadDB(){var d=Repo.load();d.parties.forEach(function(p){p.jogadores=p.jogadores.map(function(j){return typeof j==="string"?{nome:j,classe:""}:j})});return d}
+var DB=loadDB();
+function persist(){if(!Repo.save(DB))toast_("Não foi possível salvar no navegador (armazenamento cheio ou bloqueado).")}
+function party(id){return DB.parties.filter(function(p){return p.id===id})[0]}
+function huntsOf(pid){return DB.hunts.filter(function(h){return!pid||h.partyId===pid}).sort(function(a,b){return a.ts-b.ts})}
+
+/* ---- Estatísticas ---- */
+function stats(hs){
+ var t={n:hs.length,bal:0,loot:0,sup:0,min:0,balDur:0,players:{}};
+ hs.forEach(function(h){
+  t.bal+=h.balance;t.loot+=h.loot;t.sup+=h.supplies;
+  if(h.duracaoMin>0){t.min+=h.duracaoMin;t.balDur+=h.balance}
+  h.jogadores.forEach(function(j){
+   var k=j.nome.toLowerCase(),p=t.players[k]||(t.players[k]={nome:j.nome,hunts:0,res:0,dmg:0,heal:0,hd:false,hh:false});
+   p.hunts++;p.res+=j.resultado;if(j.classe)p.classe=j.classe;
+   if(j.damage!=null){p.dmg+=j.damage;p.hd=true}
+   if(j.healing!=null){p.heal+=j.healing;p.hh=true}
+  });
+ });
+ t.avg=t.n?t.bal/t.n:0;
+ t.bph=t.min>0?t.balDur/(t.min/60):null;
+ return t;
+}
+function ranking(metric){
+ var M=METRICS[metric]||METRICS.bph,q=[],w=[];
+ DB.parties.forEach(function(p){
+  var s=stats(huntsOf(p.id)),v=M.val(s);
+  if(s.n>=CFG.minHunts&&v!=null)q.push({p:p,s:s,v:v});else w.push({p:p,s:s});
+ });
+ q.sort(function(a,b){return b.v-a.v});
+ return{q:q,w:w,M:M};
+}
+
+/* ---- Estado da interface ---- */
+var tab="div",chosen={},view={m:"list",id:null},rankMetric="bph",histParty="",pending="",registrada=null;
+
+function setTab(t){
+ tab=t;
+ [["div","ptyPaneDiv"],["parties","ptyPaneParties"],["hist","ptyPaneHist"],["rank","ptyPaneRank"]].forEach(function(x){var e=$(x[1]);if(e)e.hidden=x[0]!==t});
+ document.querySelectorAll("#ptyTabs button").forEach(function(b){var on=b.getAttribute("data-tab")===t;b.classList.toggle("on",on);b.setAttribute("aria-selected",on)});
+ if(t==="parties")renderParties();else if(t==="hist")renderHist();else if(t==="rank")renderRank();else renderSave();
+}
+
+/* ---- Minhas Parties ---- */
+function rowHtml(n,c){
+ return'<div class="pty-prow"><input class="pty-in" data-f="n" maxlength="30" value="'+esc(n||"")+'" placeholder="Nome do jogador (igual ao Analyzer)" aria-label="Nome do jogador"><select class="pty-in" data-f="c" aria-label="Classe"><option value="">Classe…</option>'+CFG.classes.map(function(x){return"<option"+(x===c?" selected":"")+">"+x+"</option>"}).join("")+'</select><button type="button" class="pty-btn dng" data-act="rmRow" aria-label="Remover jogador">✕</button></div>';
+}
+function formHtml(p){
+ var rows=p?p.jogadores.map(function(j){return rowHtml(j.nome,j.classe)}).join(""):CFG.classes.map(function(c){return rowHtml("",c)}).join("");
+ return'<h2>'+(p?"Editar Party":"Nova Party")+'</h2><div class="pty-field"><label class="pty-lbl" for="ptyFName">Nome da Party</label><input id="ptyFName" class="pty-in" maxlength="40" value="'+esc(p?p.nome:"")+'" placeholder="Ex.: Minha Party Principal"></div>'
+ +'<div class="pty-field"><span class="pty-lbl">Jogadores e classes</span><p class="pty-muted" style="margin:0 0 8px">Use o nome exatamente como aparece no Analyzer e escolha a classe de cada jogador. Linhas sem nome são ignoradas.</p><div id="ptyFRows">'+rows+'</div><button type="button" class="pty-btn" data-act="addRow">+ Adicionar jogador</button></div>'
+ +'<div id="ptyFErr" class="pty-err" role="alert"></div><div class="pty-act"><button class="primary" data-act="saveParty" data-id="'+(p?p.id:"")+'">Salvar Party</button><button data-act="list">Cancelar</button></div>';
+}
+function saveParty(id){
+ var nome=$("ptyFName").value.trim().replace(/\s+/g," "),seen={},jog=[],err=[];
+ document.querySelectorAll("#ptyFRows .pty-prow").forEach(function(r){
+  var n=r.querySelector("[data-f=n]").value.trim().replace(/\s+/g," "),c=r.querySelector("[data-f=c]").value;
+  if(!n)return;
+  if(seen[n.toLowerCase()]){err.push("Jogador repetido: "+n+".");return}
+  seen[n.toLowerCase()]=1;if(!c)err.push("Escolha a classe de "+n+".");
+  jog.push({nome:n,classe:c});
+ });
+ if(!nome)err.push("Dê um nome para a Party.");
+ if(jog.length<2)err.push("Adicione pelo menos 2 jogadores.");
+ if(jog.length>CFG.maxPlayers)err.push("Máximo de "+CFG.maxPlayers+" jogadores.");
+ if(DB.parties.some(function(p){return p.id!==id&&p.nome.toLowerCase()===nome.toLowerCase()}))err.push("Já existe uma Party com esse nome.");
+ if(err.length){$("ptyFErr").innerHTML="<ul>"+err.map(function(e){return"<li>"+esc(e)+"</li>"}).join("")+"</ul>";return}
+ if(id){var p=party(id);p.nome=nome;p.jogadores=jog}
+ else{id=uid("p");DB.parties.push({id:id,nome:nome,jogadores:jog,criado:Date.now()})}
+ persist();toast_("Party salva.");view={m:"dash",id:id};renderParties();
+}
+function delParty(id){
+ var p=party(id),n=huntsOf(id).length;if(!p)return;
+ if(!confirm('Excluir a Party "'+p.nome+'"'+(n?" e as "+pluralHunts(n)+" registradas":"")+"? Essa ação não pode ser desfeita."))return;
+ DB.parties=DB.parties.filter(function(x){return x.id!==id});DB.hunts=DB.hunts.filter(function(h){return h.partyId!==id});
+ persist();view={m:"list",id:null};renderParties();
+}
+function renderParties(){
+ var el=$("ptyPaneParties");if(!el)return;
+ if(view.m==="form"){el.innerHTML=formHtml(view.id?party(view.id):null);return}
+ if(view.m==="dash"&&party(view.id)){el.innerHTML=dashHtml(party(view.id));return}
+ view={m:"list",id:null};
+ var h='<h2>Minhas Parties</h2><p class="pty-muted">Salve sua party fixa para registrar hunts, acompanhar a evolução e entrar no ranking. Os dados ficam apenas neste navegador.</p><div class="pty-act"><button class="primary" data-act="newParty">+ Nova Party</button></div>';
+ if(!DB.parties.length)h+='<div class="pty-alert info">Você ainda não tem nenhuma Party salva.</div>';
+ else{
+  h+='<div class="pty-plist">';
+  DB.parties.forEach(function(p){
+   var s=stats(huntsOf(p.id));
+   h+='<div class="pty-pc"><h3>👥 '+esc(p.nome)+'</h3><div class="m">'+p.jogadores.length+" jogadores · "+pluralHunts(s.n)+(s.n?"<br>"+kk(s.bal)+" balance"+(s.bph!=null?" · "+kk(s.bph)+"/h":""):"")+'</div><div class="a"><button class="pty-btn pri" data-act="open" data-id="'+p.id+'">Abrir</button><button class="pty-btn" data-act="reg" data-id="'+p.id+'">Registrar hunt</button><button class="pty-btn" data-act="edit" data-id="'+p.id+'">Editar</button><button class="pty-btn dng" data-act="del" data-id="'+p.id+'">Excluir</button></div></div>';
+  });
+  h+="</div>";
+ }
+ el.innerHTML=h;
+}
+function chartHtml(hs){
+ var pts=hs.filter(function(h){return h.duracaoMin>0}).map(function(h){return h.balance/(h.duracaoMin/60)});
+ if(pts.length<2)return'<div class="pty-alert info">O gráfico aparece a partir de 2 hunts com duração informada.</div>';
+ var W=640,H=200,L=52,R=14,T=14,B=26,mx=Math.max.apply(null,pts),mn=Math.min(0,Math.min.apply(null,pts)),rg=(mx-mn)||1;
+ var X=function(i){return L+(W-L-R)*i/(pts.length-1)},Y=function(v){return T+(H-T-B)*(1-(v-mn)/rg)};
+ var line=pts.map(function(v,i){return X(i).toFixed(1)+","+Y(v).toFixed(1)}).join(" ");
+ var s='<svg class="pty-chart" viewBox="0 0 '+W+" "+H+'" role="img" aria-label="Evolução do balance por hora">';
+ [0,.5,1].forEach(function(f){var v=mn+rg*f,y=Y(v);s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="#16354c"/><text x="'+(L-6)+'" y="'+(y+4)+'" text-anchor="end" fill="#9db7c9" font-size="11">'+kk(v)+"</text>"});
+ s+='<polyline points="'+line+'" fill="none" stroke="#e2b149" stroke-width="2.5"/>';
+ pts.forEach(function(v,i){s+='<circle cx="'+X(i)+'" cy="'+Y(v)+'" r="3.5" fill="#ffd98a"><title>Hunt '+(i+1)+": "+fmt(Math.round(v))+" gp/h</title></circle>"});
+ s+='<text x="'+L+'" y="'+(H-8)+'" fill="#9db7c9" font-size="11">Hunt 1</text><text x="'+(W-R)+'" y="'+(H-8)+'" text-anchor="end" fill="#9db7c9" font-size="11">Hunt '+pts.length+"</text></svg>";
+ return s;
+}
+function playersTable(s){
+ var arr=Object.keys(s.players).map(function(k){return s.players[k]}).sort(function(a,b){return b.res-a.res});
+ var hd=arr.some(function(p){return p.hd}),hh=arr.some(function(p){return p.hh});
+ return'<div class="pty-wrap"><table class="pty-table"><thead><tr><th>Jogador</th><th>Classe</th><th>Hunts</th><th>Balance acumulado</th>'+(hd?"<th>Damage</th>":"")+(hh?"<th>Healing</th>":"")+"</tr></thead><tbody>"
+  +arr.map(function(p){return"<tr><td><b>"+esc(p.nome)+"</b></td><td>"+esc(p.classe||"—")+"</td><td>"+p.hunts+'</td><td class="'+cls(p.res)+'">'+fmtS(p.res)+"</td>"+(hd?"<td>"+(p.hd?fmt(p.dmg):"—")+"</td>":"")+(hh?"<td>"+(p.hh?fmt(p.heal):"—")+"</td>":"")+"</tr>"}).join("")+"</tbody></table></div>";
+}
+function dashHtml(p){
+ var hs=huntsOf(p.id),s=stats(hs),r=ranking("bph"),pos=r.q.map(function(x){return x.p.id}).indexOf(p.id);
+ var h='<div class="pty-act"><button class="pty-btn" data-act="list">← Minhas Parties</button><button class="pty-btn pri" data-act="reg" data-id="'+p.id+'">Registrar hunt</button><button class="pty-btn" data-act="edit" data-id="'+p.id+'">Editar</button></div>'
+  +"<h2 style=\"font-size:18px;color:#ffdf9f;border:0;margin-top:6px\">👥 "+esc(p.nome)+'</h2><p class="pty-muted">'+p.jogadores.length+" jogadores: "+p.jogadores.map(function(j){return esc(j.nome)+(j.classe?" ("+esc(j.classe)+")":"")}).join(", ")+"</p>";
+ if(!hs.length)return h+'<div class="pty-alert info">Nenhuma hunt registrada ainda. Cole o Analyzer na aba Divisor, selecione esta Party e registre a hunt.</div>';
+ var best=hs.filter(function(x){return x.duracaoMin>0}).sort(function(a,b){return b.balance/b.duracaoMin-a.balance/a.duracaoMin})[0];
+ h+="<h2>Resumo</h2><div class=\"pty-cards\">"
+  +card("Hunts",s.n)+card("Balance total",kk(s.bal)+" gp",fmt(s.bal)+" gp",cls(s.bal))+card("Média por hunt",kk(s.avg)+" gp")
+  +(s.bph!=null?card("Balance/h médio",kk(s.bph)+"/h",fmt(Math.round(s.bph))+" gp/h"):"")+card("Tempo total",dur(s.min))
+  +(best?card("Melhor hunt",kk(best.balance/(best.duracaoMin/60))+"/h",esc(best.local||dBR(best.data))):"")+"</div>";
+ h+="<h2>🏆 Ranking</h2>"+(pos>=0?'<div class="pty-alert ok">Posição atual: <b>#'+(pos+1)+"</b> de "+r.q.length+" — "+METRICS.bph.fmt(r.q[pos].v)+' <span class="pty-muted">(ranking entre as parties salvas neste navegador)</span></div>'
+  :'<div class="pty-alert warn">🔒 Sua Party ainda não está qualificada para o Ranking. Registre mais '+(CFG.minHunts-s.n)+" hunt"+(CFG.minHunts-s.n===1?"":"s")+" para entrar (mínimo de "+CFG.minHunts+").</div>");
+ h+="<h2>📊 Desempenho</h2>"+chartHtml(hs)+"<h2>Desempenho por jogador</h2>"+playersTable(s);
+ h+="<h2>📜 Histórico</h2>"+huntList(hs.slice().reverse(),false);
+ return h;
+}
+function card(l,v,s,c){return'<div class="pty-card"><div class="l">'+l+'</div><div class="v '+(c||"")+'">'+v+"</div>"+(s?'<div class="s">'+s+"</div>":"")+"</div>"}
+function huntList(hs,showParty){
+ if(!hs.length)return'<div class="pty-alert info">Nenhum acerto registrado.</div>';
+ return'<div class="pty-wrap"><table class="pty-table"><thead><tr><th>Data</th>'+(showParty?"<th>Party</th>":"")+"<th>Hunt</th><th>Duração</th><th>Balance</th><th>Balance/h</th><th>Jogadores</th></tr></thead><tbody>"
+  +hs.map(function(h){var p=party(h.partyId),bph=h.duracaoMin>0?h.balance/(h.duracaoMin/60):null;
+   return'<tr class="pty-row" data-act="hunt" data-id="'+h.id+'" tabindex="0"><td>'+dBR(h.data)+" "+esc(h.hora||"")+"</td>"+(showParty?"<td>"+esc(p?p.nome:"—")+"</td>":"")+"<td>"+esc(h.local||"—")+"</td><td>"+dur(h.duracaoMin)+'</td><td class="'+cls(h.balance)+'">'+fmtS(h.balance)+"</td><td>"+(bph!=null?kk(bph)+"/h":"—")+"</td><td>"+h.jogadores.length+"</td></tr>"}).join("")+"</tbody></table></div>";
+}
+
+/* ---- Histórico de Acertos ---- */
+function renderHist(){
+ var el=$("ptyPaneHist");if(!el)return;
+ if(histParty&&!party(histParty))histParty="";
+ var hs=huntsOf(histParty),s=stats(hs);
+ var h='<h2>Histórico de Acertos</h2><div class="pty-field"><label class="pty-lbl" for="ptyHistSel">Party</label><select id="ptyHistSel" class="pty-sel"><option value="">Todas as parties</option>'+DB.parties.map(function(p){return'<option value="'+p.id+'"'+(p.id===histParty?" selected":"")+">"+esc(p.nome)+"</option>"}).join("")+"</select></div>";
+ if(!hs.length){el.innerHTML=h+'<div class="pty-alert info">Nenhum acerto registrado ainda. Use o Divisor e clique em <b>Registrar hunt</b>.</div>';return}
+ h+='<div class="pty-cards">'+card("Hunts registradas",s.n)+card("Balance total",kk(s.bal)+" gp",fmt(s.bal)+" gp",cls(s.bal))+card("Média por hunt",kk(s.avg)+" gp")+(s.bph!=null?card("Balance/h médio",kk(s.bph)+"/h"):"")+card("Tempo total",dur(s.min))+"</div>";
+ h+="<h2>Total acumulado por jogador</h2>"+playersTable(s)+"<h2>Últimos acertos</h2>"+huntList(hs.slice().reverse(),!histParty);
+ el.innerHTML=h;
+}
+
+/* ---- Ranking de Parties ---- */
+function renderRank(){
+ var el=$("ptyPaneRank");if(!el)return;
+ var r=ranking(rankMetric);
+ var h='<h2>🏆 Ranking de Parties</h2><p class="pty-muted">Só entram parties salvas com pelo menos <b>'+CFG.minHunts+' hunts</b> registradas. Por enquanto o ranking compara as parties salvas <b>neste navegador</b>; um ranking entre jogadores exige contas e banco de dados online (versão futura).</p>'
+  +'<div class="pty-field"><label class="pty-lbl" for="ptyRankSel">Critério</label><select id="ptyRankSel" class="pty-sel">'+Object.keys(METRICS).map(function(k){return'<option value="'+k+'"'+(k===rankMetric?" selected":"")+">"+METRICS[k].label+"</option>"}).join("")+"</select></div>";
+ if(!r.q.length)h+='<div class="pty-alert info">Nenhuma Party qualificada ainda.</div>';
+ else h+='<div class="pty-wrap"><table class="pty-table"><thead><tr><th>#</th><th>Party</th><th>Hunts</th><th>'+r.M.label+"</th></tr></thead><tbody>"+r.q.map(function(x,i){return"<tr><td>"+(["🥇","🥈","🥉"][i]||(i+1)+"º")+"</td><td><b>"+esc(x.p.nome)+"</b></td><td>"+x.s.n+"</td><td><b>"+r.M.fmt(x.v)+"</b></td></tr>"}).join("")+"</tbody></table></div>";
+ if(r.w.length)h+="<h2>Aguardando qualificação</h2>"+r.w.map(function(x){var f=Math.max(0,CFG.minHunts-x.s.n);return'<div class="pty-alert warn">🔒 <b>'+esc(x.p.nome)+"</b>: "+pluralHunts(x.s.n)+(f?" — registre mais "+f+" para entrar no ranking.":" — sem duração informada, não há dados para este critério.")+"</div>"}).join("");
+ el.innerHTML=h;
+}
+
+/* ---- Detalhe de uma hunt ---- */
+function openHunt(id){
+ var h=DB.hunts.filter(function(x){return x.id===id})[0];if(!h)return;
+ var p=party(h.partyId),n=huntsOf(h.partyId).map(function(x){return x.id}).indexOf(id)+1,bph=h.duracaoMin>0?h.balance/(h.duracaoMin/60):null;
+ var td=0,th=0;h.jogadores.forEach(function(j){td+=j.damage||0;th+=j.healing||0});
+ var hd=td>0,hh=th>0,top=function(k,t){return h.jogadores.filter(function(j){return j[k]!=null}).sort(function(a,b){return b[k]-a[k]})[0]};
+ var pc=function(v,t){return(v/t*100).toLocaleString("pt-BR",{maximumFractionDigits:1})+"%"};
+ var m='<button class="pty-x" data-act="close" aria-label="Fechar">✕</button><h2 style="font-size:18px;color:#ffdf9f;border:0;margin:0">Hunt #'+n+" — "+esc(p?p.nome:"Party removida")+'</h2><p class="pty-muted">'+esc(h.local||"Local não informado")+" · "+dBR(h.data)+" "+esc(h.hora||"")+" · "+dur(h.duracaoMin)+"</p>"
+  +'<div class="pty-cards">'+card("Loot",fmt(h.loot)+" gp")+card("Supplies",fmt(h.supplies)+" gp")+card("Balance",fmtS(h.balance)+" gp","",cls(h.balance))+(bph!=null?card("Balance/h",fmt(Math.round(bph))+" gp/h"):"")+card("Divisão",h.modo==="dividir"?"Igualitária":"Sem divisão")+"</div>"
+  +"<h2>Jogadores</h2>";
+ if(hd||hh){var a=top("damage"),b=top("healing");m+='<div class="pty-alert info"><ul>'+(hd&&a?"<li>"+esc(a.nome)+" teve "+pc(a.damage,td)+" do damage da party.</li>":"")+(hh&&b?"<li>"+esc(b.nome)+" realizou "+pc(b.healing,th)+" do healing da party.</li>":"")+"</ul></div>"}
+ m+='<div class="pty-wrap"><table class="pty-table"><thead><tr><th>Jogador</th><th>Classe</th><th>Resultado</th>'+(hd?"<th>Damage</th><th>% Damage</th>":"")+(hh?"<th>Healing</th><th>% Healing</th>":"")+"</tr></thead><tbody>"
+  +h.jogadores.map(function(j){return"<tr><td><b>"+esc(j.nome)+"</b></td><td>"+esc(j.classe||"—")+'</td><td class="'+cls(j.resultado)+'">'+fmtS(j.resultado)+"</td>"+(hd?"<td>"+(j.damage!=null?fmt(j.damage):"—")+"</td><td>"+(j.damage!=null?pc(j.damage,td):"—")+"</td>":"")+(hh?"<td>"+(j.healing!=null?fmt(j.healing):"—")+"</td><td>"+(j.healing!=null?pc(j.healing,th):"—")+"</td>":"")+"</tr>"}).join("")+"</tbody></table></div>";
+ m+="<h2>Transferências ("+h.transferencias.length+")</h2>"+(h.transferencias.length?'<div class="pty-wrap"><table class="pty-table"><thead><tr><th>De</th><th>Para</th><th>Valor</th></tr></thead><tbody>'+h.transferencias.map(function(t){return"<tr><td>"+esc(t.de)+"</td><td>"+esc(t.para)+"</td><td>"+fmt(t.valor)+" gp</td></tr>"}).join("")+"</tbody></table></div>":'<div class="pty-alert info">Nenhuma transferência registrada nesta hunt.</div>');
+ m+='<div class="pty-act"><button class="pty-btn dng" data-act="delhunt" data-id="'+id+'">Excluir hunt</button><button class="pty-btn" data-act="close">Fechar</button></div>';
+ var md=$("ptyModal");md.querySelector(".pty-mbox").innerHTML=m;md.hidden=false;
+}
+
+/* ---- Registrar hunt (integrado ao divisor existente) ---- */
+function selParty(){return($("ptySavePt")||{}).value||pending||(DB.parties[0]&&DB.parties[0].id)||""}
+function classeDe(nome,p){var k=nome.toLowerCase(),m=p&&p.jogadores.filter(function(x){return x.nome.toLowerCase()===k})[0];return(m&&m.classe)||chosen[k]||""}
+function clsCell(nome,inP){
+ var k=nome.toLowerCase();if(inP[k])return esc(inP[k]);
+ return'<select class="pty-sel" data-cls="'+esc(k)+'" aria-label="Classe de '+esc(nome)+'"><option value="">Informe a classe…</option>'+CFG.classes.map(function(c){return"<option"+(chosen[k]===c?" selected":"")+">"+c+"</option>"}).join("")+"</select>";
+}
+window.TFTPartyClasse=function(nome){return classeDe(nome,party(selParty()))};
+function parseDur(s){var m=/(\d+):(\d+)/.exec(String(s||""));return m?(+m[1])*60+(+m[2]):0}
+function renderSave(){
+ var box=$("ptySave");if(!box)return;
+ var u=window.TFTParty.ultimo();
+ if(!u){box.innerHTML="";return}
+ if(registrada){box.innerHTML='<div class="pty-alert ok">✓ Hunt registrada na Party <b>'+esc(registrada.nome)+'</b>. As estatísticas e o ranking foram atualizados.</div><div class="pty-act"><button class="primary" data-act="open" data-id="'+registrada.id+'">Ver Party</button><button data-act="clearReg">Registrar em outra Party</button></div>';return}
+ if(!DB.parties.length){box.innerHTML='<div class="pty-save"><h2>📊 Acompanhar esta hunt</h2><p class="pty-muted">Crie uma Party salva para registrar esta hunt, ver o histórico e o desempenho da sua party e entrar no ranking.</p><div class="pty-act"><button class="primary" data-act="newParty">Criar Party</button></div></div>';return}
+ var sv=($("ptySavePt")||{}).value||pending||DB.parties[0].id,lv=($("ptySaveLoc")||{}).value||"",p=party(sv)||DB.parties[0];
+ var g=u.p.geral,J=u.p.jogadores,modo=(document.querySelector('input[name="ptyModo"]:checked')||{}).value||"dividir";
+ var inP={};p.jogadores.forEach(function(n){inP[n.nome.toLowerCase()]=n.classe||""});var inR={};J.forEach(function(j){inR[j.nome.toLowerCase()]=1});
+ var extra=J.filter(function(j){return!(j.nome.toLowerCase() in inP)}).map(function(j){return j.nome}),falta=p.jogadores.filter(function(n){return!inR[n.nome.toLowerCase()]}).map(function(n){return n.nome});
+ var hd=J.some(function(j){return j.damage!=null}),hh=J.some(function(j){return j.healing!=null});
+ var h='<div class="pty-save"><h2>📊 Registrar na Party</h2><div class="pty-two"><div><label class="pty-lbl" for="ptySavePt">Party</label><select id="ptySavePt" class="pty-in">'+DB.parties.map(function(x){return'<option value="'+x.id+'"'+(x.id===p.id?" selected":"")+">"+esc(x.nome)+"</option>"}).join("")+'</select></div><div><label class="pty-lbl" for="ptySaveLoc">Hunt / local (opcional)</label><input id="ptySaveLoc" class="pty-in" maxlength="60" value="'+esc(lv)+'" placeholder="Ex.: Grotto of the Lost"></div></div>';
+ if(extra.length||falta.length)h+='<div class="pty-alert warn"><ul>'+(extra.length?"<li>Jogadores do relatório que não estão na Party: <b>"+extra.map(esc).join(", ")+"</b>.</li>":"")+(falta.length?"<li>Membros da Party que não aparecem no relatório: <b>"+falta.map(esc).join(", ")+"</b>.</li>":"")+"</ul>Você ainda pode registrar, mas confira os nomes (ou edite a Party) para manter as estatísticas por jogador corretas.</div>";
+ h+='<h2 style="margin-top:14px">Hunt identificada</h2><p class="pty-muted">'+esc(g.duracao||"Duração não informada")+(g.inicio?" · "+dBR(g.inicio.data)+" "+g.inicio.hora:"")+" · Balance "+fmtS(u.div.total)+" gp · "+(modo==="dividir"?"divisão igualitária":"sem divisão")+'</p><div class="pty-wrap"><table class="pty-table"><thead><tr><th>Jogador</th><th>Classe</th><th>Resultado</th>'+(hd?"<th>Damage</th>":"")+(hh?"<th>Healing</th>":"")+"</tr></thead><tbody>"
+  +J.map(function(j,i){var r=modo==="dividir"?u.div.jogadores[i].alvo:j.balance;return"<tr><td><b>"+esc(j.nome)+"</b></td><td>"+clsCell(j.nome,inP)+'</td><td class="'+cls(r)+'">'+fmtS(r)+"</td>"+(hd?"<td>"+(j.damage!=null?fmt(j.damage):"—")+"</td>":"")+(hh?"<td>"+(j.healing!=null?fmt(j.healing):"—")+"</td>":"")+"</tr>"}).join("")+'</tbody></table></div><div class="pty-act"><button class="primary" data-act="register">Registrar hunt</button></div></div>';
+ box.innerHTML=h;
+}
+function register(){
+ var u=window.TFTParty.ultimo(),p=party(($("ptySavePt")||{}).value);if(!u||!p)return;
+ var semC=u.p.jogadores.filter(function(j){return!classeDe(j.nome,p)}).map(function(j){return j.nome});
+ if(semC.length){toast_("Informe a classe de: "+semC.join(", ")+".");return}
+ var g=u.p.geral,J=u.p.jogadores,D=u.div,modo=(document.querySelector('input[name="ptyModo"]:checked')||{}).value||"dividir";
+ var sum=function(k){return J.reduce(function(a,j){return a+(j[k]||0)},0)};
+ var now=new Date(),data=g.inicio?g.inicio.data:now.getFullYear()+"-"+pad(now.getMonth()+1)+"-"+pad(now.getDate()),hora=g.inicio?g.inicio.hora:pad(now.getHours())+":"+pad(now.getMinutes())+":00";
+ var hp=hora.length===7?"0"+hora:hora,ts=Date.parse(data+"T"+hp)||Date.now();
+ var hunt={id:uid("h"),partyId:p.id,local:($("ptySaveLoc").value||"").trim(),data:data,hora:hora,ts:ts,duracaoMin:parseDur(g.duracao),loot:g.loot!=null?g.loot:sum("loot"),supplies:g.supplies!=null?g.supplies:sum("supplies"),balance:D.total,modo:modo,
+  jogadores:J.map(function(j,i){return{nome:j.nome,classe:classeDe(j.nome,p),loot:j.loot,supplies:j.supplies,balance:j.balance,damage:j.damage!=null?j.damage:null,healing:j.healing!=null?j.healing:null,resultado:modo==="dividir"?D.jogadores[i].alvo:j.balance}}),
+  transferencias:modo==="dividir"?D.transferencias.map(function(t){return{de:t.deNome,para:t.paraNome,valor:t.valor}}):[],criado:Date.now()};
+ if(DB.hunts.some(function(x){return x.partyId===p.id&&x.ts===ts&&x.balance===hunt.balance})){toast_("Essa hunt já está registrada nesta Party.");return}
+ DB.hunts.push(hunt);persist();registrada={id:p.id,nome:p.nome};renderSave();toast_("Hunt registrada na Party "+p.nome+".");
+}
+
+/* ---- Eventos ---- */
+document.addEventListener("click",function(e){
+ var t=e.target.closest("[data-act],[data-tab]");if(!t||!$("tftPartyPage")||!$("tftPartyPage").contains(t)&&!$("ptyModal").contains(t))return;
+ if(t.hasAttribute("data-tab")){setTab(t.getAttribute("data-tab"));return}
+ var a=t.getAttribute("data-act"),id=t.getAttribute("data-id");
+ if(a==="newParty"){view={m:"form",id:null};setTab("parties")}
+ else if(a==="addRow")$("ptyFRows").insertAdjacentHTML("beforeend",rowHtml("",""));
+ else if(a==="rmRow")t.closest(".pty-prow").remove();
+ else if(a==="saveParty")saveParty(id);
+ else if(a==="list"){view={m:"list",id:null};renderParties()}
+ else if(a==="open"){view={m:"dash",id:id};setTab("parties")}
+ else if(a==="edit"){view={m:"form",id:id};setTab("parties")}
+ else if(a==="del")delParty(id);
+ else if(a==="reg"){pending=id;registrada=null;setTab("div");var tx=$("ptyText");if(tx&&!window.TFTParty.ultimo())tx.focus()}
+ else if(a==="register")register();
+ else if(a==="clearReg"){registrada=null;renderSave()}
+ else if(a==="hunt")openHunt(id);
+ else if(a==="close")$("ptyModal").hidden=true;
+ else if(a==="delhunt"){if(confirm("Excluir esta hunt do histórico?")){DB.hunts=DB.hunts.filter(function(h){return h.id!==id});persist();$("ptyModal").hidden=true;setTab(tab==="div"?"parties":tab)}}
+});
+document.addEventListener("keydown",function(e){
+ if(e.key==="Escape"&&$("ptyModal"))$("ptyModal").hidden=true;
+ if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("pty-row")){e.preventDefault();openHunt(e.target.getAttribute("data-id"))}
+});
+document.addEventListener("change",function(e){
+ if(e.target.id==="ptyHistSel"){histParty=e.target.value;renderHist()}
+ else if(e.target.id==="ptyRankSel"){rankMetric=e.target.value;renderRank()}
+ else if(e.target.id==="ptySavePt"){pending=e.target.value;if(window.tftPartyModo)window.tftPartyModo();else renderSave()}
+ else if(e.target.hasAttribute&&e.target.hasAttribute("data-cls")){chosen[e.target.getAttribute("data-cls")]=e.target.value;if(window.tftPartyModo)window.tftPartyModo()}
+});
+document.addEventListener("tft:party-calc",function(){registrada=null;renderSave()});
+$("ptyModal").addEventListener("click",function(e){if(e.target===this)this.hidden=true});
+window.TFTPartySystem={cfg:CFG,metrics:METRICS,stats:stats,ranking:ranking,data:function(){return DB},reload:function(){DB=loadDB();setTab(tab)}};
+setTab("div");
+})();
+</script>
+
 
 <script>
 /* === Bestiário de Hunt: dados carregados do JSON externo === */
