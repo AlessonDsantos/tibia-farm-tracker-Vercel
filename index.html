@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tibia Farm Tracker</title>
-<meta name="description" id="tftMetaDesc" content="Tibia Farm Tracker: registre suas hunts, acompanhe lucro, metas e desempenho e use ferramentas como guia de venda de loot, comparador de hunts e custos de hunt.">
+<title>Tibia Farm Tracker | Controle de farm, profit por hora e metas no Tibia</title>
+<meta name="description" id="tftMetaDesc" content="Registre suas hunts do Tibia, acompanhe profit por hora e metas de farm e use ferramentas gratuitas: onde vender o loot, comparar hunts, divisor de party hunt, bestiário e caçar por elemento.">
 <link rel="canonical" id="tftCanonical" href="/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tibia Farm Tracker">
-<meta property="og:title" id="tftOgTitle" content="Tibia Farm Tracker">
-<meta property="og:description" id="tftOgDesc" content="Tibia Farm Tracker: registre suas hunts, acompanhe lucro, metas e desempenho e use ferramentas como guia de venda de loot, comparador de hunts e custos de hunt.">
+<meta property="og:title" id="tftOgTitle" content="Tibia Farm Tracker | Controle de farm, profit por hora e metas no Tibia">
+<meta property="og:description" id="tftOgDesc" content="Registre suas hunts do Tibia, acompanhe profit por hora e metas de farm e use ferramentas gratuitas: onde vender o loot, comparar hunts, divisor de party hunt, bestiário e caçar por elemento.">
 <meta property="og:url" id="tftOgUrl" content="/">
 <meta name="google-adsense-account" content="ca-pub-5697409002718368">
 
@@ -729,18 +729,83 @@ textarea.pty-in{min-height:120px;resize:vertical;font:12.5px/1.5 ui-monospace,Me
 .pty-sel{display:inline-block;background:#05121f;color:#dcecf8;border:1px solid #23506f;border-radius:8px;padding:8px 10px;font:inherit;font-size:13px}
 @media(max-width:650px){.pty-two{grid-template-columns:1fr}}
 </style>
+<style id="tft-pages-css">
+/* ---- visibilidade por página ---- */
+.tft-shell:not([data-tft-page]) .tft-hero,
+.tft-shell:not([data-tft-page]) #retentionDashboard,
+.tft-shell:not([data-tft-page]) #app,
+.tft-shell:not([data-tft-page]) #tftPageHead{display:none!important}
+.tft-shell:not([data-tft-page])[data-tft-meta="open"] #app{display:block!important}
+.tft-shell:not([data-tft-page]) #app .side,.tft-shell:not([data-tft-page]) #secaoFarm,.tft-shell:not([data-tft-page]) #secaoHistorico,.tft-shell:not([data-tft-page]) #secaoMetas{display:none}
+.tft-shell:not([data-tft-page])[data-tft-meta="open"] #secaoMetas{display:block}
+.tft-shell:not([data-tft-page]) #app .main,.tft-shell:not([data-tft-page]) #app .left{display:block}
+.tft-shell[data-tft-page]:not([data-tft-page="farm"]):not([data-tft-page="historico"]):not([data-tft-page="desempenho"]) #tftPageHead,
+.tft-shell[data-tft-page="desempenho"] #tftPageHead{display:none}
+.tft-shell[data-tft-page]:not([data-tft-page="inicio"]) #tftHome,.tft-shell[data-tft-page]:not([data-tft-page="inicio"]) #tftHomeFoot{display:none}
+#cardSessao{display:none}
+.tft-todayhd{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.tft-todayhd h2{margin:0;font-size:14px;color:#cfe4f2}.tft-todayhd small{color:var(--muted);font-size:11.5px}
+.tft-today{grid-template-columns:1fr 1fr;align-items:center;margin-bottom:14px}
+.tfth-est{margin-top:12px;padding:10px 12px;border:1px solid #1d4462;border-left:3px solid var(--gold2);border-radius:9px;background:rgba(5,18,31,.6);font-size:13px;color:#cfe4f2}
+.tfth-est b{color:#fff}.tfth-est span{color:var(--gold2);font-weight:700}.tfth-est small{display:block;margin-top:4px;color:var(--muted);font-size:11.5px}
+.tft-shell[data-tft-page="farm"] #cardSessao{display:block}
+.tft-shell[data-tft-page="farm"] #secaoMetas{display:none}
+.tft-shell[data-tft-page="farm"] #app .main{grid-template-columns:minmax(0,1fr) 330px}
+.tft-shell[data-tft-page="farm"] #app .left{display:block}
+@media(max-width:900px){.tft-shell[data-tft-page="farm"] #app .main{grid-template-columns:1fr}}
+h1.retention-title{margin:0}
+/* ---- cabeçalho das páginas (SEO) ---- */
+.tft-pagehead{margin:0 0 14px}
+.tft-pagehead h1{margin:0 0 5px;font-size:20px;color:#ffdf9f}
+.tft-pagehead p{margin:0;font-size:12.5px;line-height:1.55;color:var(--muted);max-width:760px}
+/* ---- Início ---- */
+.tfth{display:grid;gap:12px}
+.tfth .card{margin:0}
+.tfth-hero h1{margin:0;font-size:21px;color:#fff}.tfth-hero p{margin:4px 0 0;font-size:12.5px;color:var(--muted)}
+.tfth-k{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold2);font-weight:700}
+.tfth-nums{margin:8px 0 8px;font-size:15px;color:#cfe4f2}.tfth-nums b{font-size:22px;color:#fff}
+.tfth-falta{margin-top:8px;font-size:13px;color:#b9d0e0}.tfth-falta b{color:var(--gold2)}
+.tfth-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tfth-stat{background:rgba(5,18,31,.72);border:1px solid #1d4462;border-radius:12px;padding:14px}
+.tfth-stat .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.tfth-stat .v{font-size:20px;font-weight:800;color:var(--gold2);margin-top:6px}.tfth-stat .s{font-size:11.5px;color:var(--muted);margin-top:3px}
+.tfth h2{margin:0 0 10px;font-size:14px;color:#cfe4f2}
+.tfth-wrap{overflow-x:auto}
+.tfth table{width:100%;border-collapse:collapse;font-size:13px;min-width:420px}
+.tfth th,.tfth td{padding:9px 8px;border-bottom:1px solid #12314a;text-align:right;white-space:nowrap}
+.tfth th:first-child,.tfth td:first-child{text-align:left;white-space:normal}
+.tfth th{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:600}
+.tfth .pos{color:#5ff0b4;font-weight:700}.tfth .neg{color:var(--red);font-weight:700}
+.tfth-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.tfth-btn,.tfth-act .btn-green{display:inline-block;text-decoration:none;border-radius:9px;padding:10px 16px;font:inherit;font-weight:700;font-size:13px;cursor:pointer;text-align:center}
+.tfth-btn{border:1px solid #3b6888;background:#12324b;color:#e4f2fb}
+.tfth-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tfth-empty{padding:16px;text-align:center;color:var(--muted);font-size:13px}
+.tfth-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:10px}
+.tfth-tools a{display:block;text-decoration:none;background:rgba(5,18,31,.72);border:1px solid #1d4462;border-radius:11px;padding:12px;color:#dcecf8}
+.tfth-tools a:hover{border-color:#3b6888}.tfth-tools b{display:block;font-size:13px;color:#ffdf9f;margin-bottom:3px}.tfth-tools span{font-size:11.5px;color:var(--muted);line-height:1.45}
+.tfth-about{font-size:12.5px;color:var(--muted);line-height:1.6;margin:0}
+#tftHomeFoot{margin-top:12px}
+@media(max-width:900px){.tfth-stats{grid-template-columns:1fr 1fr}}@media(max-width:420px){.tfth-stats{grid-template-columns:1fr}}
+/* ---- Registrar Farm: resumo da sessão ---- */
+#cardSessao .ss{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #12314a;font-size:13px}
+#cardSessao .ss span{color:var(--muted)}#cardSessao .ss b{color:#e6f2fa;text-align:right}
+#cardSessao .ss.tot b{color:var(--gold2);font-size:16px}#cardSessao .ss.tot{padding-top:12px}
+#cardSessao .sn{font-size:11.5px;color:var(--muted);margin:8px 0 0;line-height:1.5}
+.tft-shell[data-tft-page="farm"] #secaoFarm .actions .btn-green{width:100%;padding:12px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Tibia Farm Tracker","url":"https://tibiafarmtracker.com/","applicationCategory":"GameApplication","operatingSystem":"Web","inLanguage":"pt-BR","description":"Controle de farm para Tibia: registre hunts, acompanhe profit por hora e metas e use ferramentas gratuitas.","offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"}}</script>
 </head>
 <body>
 <div class="tft-shell">
 <aside class="tft-sidebar" id="tftSidebar">
  <div class="tft-brand-logo"><img src="/img/tft-logo.png" alt="Tibia Farm Tracker"></div>
  <nav class="tft-nav" id="tftNav">
-  <button type="button" class="on" data-nav="inicio" onclick="tftNav('inicio')"><span class="ic">🏠</span>Início</button>
-  <button type="button" data-nav="farm" onclick="tftNav('farm')"><span class="ic">⚔️</span>Registrar Farm</button>
-  <button type="button" data-nav="desempenho" onclick="tftNav('desempenho')"><span class="ic">📈</span>Desempenho</button>
-  <button type="button" data-nav="historico" onclick="tftNav('historico')"><span class="ic">🕒</span>Histórico</button>
+  <a href="/" class="on" data-nav="inicio" onclick="event.preventDefault();tftNav('inicio')"><span class="ic">🏠</span>Início</a>
+  <a href="/registrar-farm" data-nav="farm" data-route="farm"><span class="ic">⚔️</span>Registrar Farm</a>
+  <a href="/desempenho" data-nav="desempenho" data-route="desempenho"><span class="ic">📈</span>Desempenho</a>
+  <a href="/historico" data-nav="historico" data-route="historico"><span class="ic">🕒</span>Histórico</a>
   <button type="button" data-nav="rankings" onclick="tftNav('rankings')"><span class="ic">🏆</span>Rankings</button>
-  <button type="button" data-nav="metas" onclick="tftNav('metas')"><span class="ic">🎯</span>Metas</button>
   <button type="button" data-nav="ferramentas" aria-expanded="false" aria-controls="tftSubnavFerramentas" onclick="tftToggleFerramentas()"><span class="ic">🧰</span>Ferramentas <span class="tft-chevron" aria-hidden="true" style="margin-left:auto">▾</span></button>
   <div class="tft-subnav" id="tftSubnavFerramentas" aria-label="Submenu Ferramentas">
    <a href="/ferramentas/onde-vender-loot" data-nav="loot" data-route="loot"><span class="ic">💰</span>Onde vender o loot?</a>
@@ -2352,11 +2417,11 @@ function render(){
    </section>
 
    <section class="card" id="secaoFarm">
-    <h2>⚔ Farm do Dia <small>(atual)</small></h2>
-    <div class="today" id="todayBox">
+    <div class="tft-todayhd"><h2>⚔ Farm do Dia <small>(atual)</small></h2><small>${doDia(g,d).length} ${doDia(g,d).length===1?"sessão":"sessões"} hoje</small></div>
+    <div class="today tft-today" id="todayBox">
      <div class="val goldtxt"><span class="coin">G</span>${fmt(goldDia(g,d))} <small>GP</small></div>
      <div class="val tc"><span class="coin tc">TC</span>${fmt2(tcDia(g,d))} <small>TC</small></div>
-     ${S.tcBRL>0?'<div class="muted" style="font-size:11px;margin-top:2px">≈ '+brl(tcDia(g,d)*S.tcBRL)+'</div>':''}
+     ${S.tcBRL>0?'<div class="muted" style="font-size:11px;grid-column:1/-1">≈ '+brl(tcDia(g,d)*S.tcBRL)+'</div>':''}
     </div>
     ${tipoTabsHTML('farm')}
     ${campoNomeHTML('farm')}
@@ -2381,6 +2446,7 @@ function render(){
   </div>
 
   <div class="side">
+   <section class="card" id="cardSessao"><h2>📊 Resumo da sessão</h2><div id="sessaoBody"></div></section>
    <section class="card" id="cardResumoGeral">
     <h2>👤 Resumo Geral</h2>
     <div class="sum">
@@ -2799,7 +2865,7 @@ window.verificarAvisoNickname=function(){
 <section id="retentionDashboard" class="retention-dashboard" aria-label="Seu desempenho">
   <div class="retention-header">
     <div>
-      <h2 class="retention-title">📊 Seu desempenho</h2>
+      <h1 class="retention-title">📊 Seu desempenho</h1>
       <p class="retention-subtitle">Acompanhe sua evolução e descubra suas melhores hunts.</p>
     </div>
     <div class="performance-filter"><div class="pf-field"><label for="rtDateIni">De</label><input id="rtDateIni" type="date"></div><div class="pf-field"><label for="rtDateFim">Até</label><input id="rtDateFim" type="date"></div><div class="pf-field"><label for="rtHunt">Hunt</label><select id="rtHunt"><option value="">Todas as hunts</option></select></div><button type="button" id="rtClearDate">Todas</button></div>
@@ -3417,6 +3483,8 @@ function tftNav(k){
  tftFecharMenu();
  if(k==="rankings"){if(typeof abrirRanking==="function")abrirRanking();return}
  if(k==="config"){if(typeof abrirConfig==="function")abrirConfig();return}
+ if(k==="metas")k="inicio";
+ if((k==="farm"||k==="desempenho"||k==="historico")&&window.tftIrPara){window.tftIrPara(k);return}
  tftMarcarNav(k);
  tftDefinirPagina(k);
  if(window.tftRotaSair)window.tftRotaSair();
@@ -4219,6 +4287,9 @@ setTab("div");
 /* === Rotas das ferramentas (History API): URL própria por ferramenta, sem recarregar a página === */
 (function(){
  var ROTAS={
+  farm:{path:"/registrar-farm",title:"Registrar Farm de Hunt, Boss e Loot no Tibia | Tibia Farm Tracker",desc:"Registre sua hunt no Tibia com tempo, gold e recursos usados e veja o resultado líquido e o gold por hora. Sua meta de farm é atualizada automaticamente."},
+  desempenho:{path:"/desempenho",title:"Desempenho de Farm no Tibia: Profit/h, Tempo e Recordes | Tibia Farm Tracker",desc:"Acompanhe seu profit por hora, tempo farmado, melhor hunt e evolução no Tibia, com filtros por período e por hunt."},
+  historico:{path:"/historico",title:"Histórico de Hunts e Farms do Tibia | Tibia Farm Tracker",desc:"Consulte todas as hunts, bosses e farms registrados, com relatórios semanais e mensais e o Hunt Analyzer guardado de cada sessão."},
   loot:{path:"/ferramentas/onde-vender-loot",
    title:"Onde vender o loot no Tibia | Tibia Farm Tracker",
    desc:"Cole o texto do Hunt Analyzer e descubra qual NPC paga mais por cada item do loot da sua hunt no Tibia, com total por NPC e por item."},
@@ -4238,7 +4309,7 @@ setTab("div");
   termos:{path:"/termos-de-uso",title:"Termos de Uso | Tibia Farm Tracker",desc:"Consulte os termos de uso do Tibia Farm Tracker e as condições para utilizar suas ferramentas."},
   contato:{path:"/contato",title:"Contato | Tibia Farm Tracker",desc:"Entre em contato com o Tibia Farm Tracker pelo e-mail tibiafarmtracker@gmail.com."}
  };
- var HOME={title:"Tibia Farm Tracker",desc:"Tibia Farm Tracker: registre suas hunts, acompanhe lucro, metas e desempenho e use ferramentas como guia de venda de loot, comparador de hunts e custos de hunt."};
+ var HOME={title:"Tibia Farm Tracker | Controle de farm, profit por hora e metas no Tibia",desc:"Registre suas hunts do Tibia, acompanhe profit por hora e metas de farm e use ferramentas gratuitas: onde vender o loot, comparar hunts, divisor de party hunt, bestiário e caçar por elemento."};
  var ultimaPagina="inicio";
  function ehPaginaDeRota(p){return !!ROTAS[p]||String(p).indexOf("legal-")===0}
  function origem(){return(location.origin&&location.origin!=="null")?location.origin:""}
@@ -4269,9 +4340,10 @@ setTab("div");
  }
  function mostrar(k,semScroll){
   if(!ROTAS[k])return;
-  tftFecharMenu();if(["privacidade","termos","contato","ajuda"].indexOf(k)>=0){var lk="legal-"+k;var atualL=paginaAtual();if(!ehPaginaDeRota(atualL))ultimaPagina=atualL;tftDefinirPagina(lk);renderLegal(k);tftMarcarNav(k==="ajuda"?"ajuda":"legal");atualizarSEO(k);if(!semScroll)window.scrollTo({top:0,behavior:"smooth"});return;}abrirSubmenu();
+  tftFecharMenu();if(["privacidade","termos","contato","ajuda"].indexOf(k)>=0){var lk="legal-"+k;var atualL=paginaAtual();if(!ehPaginaDeRota(atualL))ultimaPagina=atualL;tftDefinirPagina(lk);renderLegal(k);tftMarcarNav(k==="ajuda"?"ajuda":"legal");atualizarSEO(k);if(!semScroll)window.scrollTo({top:0,behavior:"smooth"});return;}if(TFT_TOOL_KEYS.indexOf(k)>=0)abrirSubmenu();
   var atual=paginaAtual();if(!ehPaginaDeRota(atual))ultimaPagina=atual;
   tftDefinirPagina(k);tftMarcarNav(k);atualizarSEO(k);
+  if(k==="farm"&&!document.getElementById("secaoMetas")&&typeof novaMeta==="function")novaMeta();
   if(k==="custos"&&typeof tftCustosResetar==="function")tftCustosResetar();
   if(k==="comparar"&&window.tftCmpAtualizarLista)window.tftCmpAtualizarLista();
   if(!semScroll)window.scrollTo({top:0,behavior:"smooth"});
@@ -4313,6 +4385,121 @@ setTab("div");
  var k0=chaveDoCaminho(location.pathname);
  if(k0){try{history.replaceState({tft:k0},"",ROTAS[k0].path+location.search+location.hash)}catch(e){}mostrar(k0,true)}
  else atualizarSEO(null);
+})();
+</script>
+
+<script id="tft-pages">
+/* === Páginas do menu: novo Início, cabeçalhos (SEO) e resumo da sessão em Registrar Farm === */
+(function(){
+ var E=function(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+ var F=function(n){return Math.round(Number(n)||0).toLocaleString("pt-BR")};
+ var $=function(i){return document.getElementById(i)};
+ var shell=function(){return document.querySelector(".tft-shell")};
+ var hhmm=function(m){m=Math.round(Number(m)||0);return m>0?String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0"):"—"};
+ var dm=function(d){var p=String(d||"").split("-");return p.length===3?p[2]+"/"+p[1]:""};
+
+ /* ---- cabeçalho de cada página (H1 + texto) ---- */
+ var HEAD={
+  farm:["⚔️ Registrar Farm","Registre o resultado da sua sessão de hunt, boss ou outro farm: tempo, gold e recursos usados. O Tibia Farm Tracker calcula o resultado líquido e o gold por hora e atualiza a sua meta."],
+  historico:["🕒 Histórico de Farms","Consulte cada hunt, boss e farm registrado, com relatórios semanais e mensais e o Hunt Analyzer guardado de cada sessão."]
+ };
+ function head(k){
+  var ref=$("tftHome")||$("app"),h=$("tftPageHead");if(!ref)return;
+  if(!h){h=document.createElement("header");h.id="tftPageHead";h.className="tft-pagehead";h.innerHTML="<h1></h1><p></p>";ref.parentNode.insertBefore(h,ref)}
+  var t=HEAD[k];if(!t)return;
+  h.querySelector("h1").textContent=t[0];h.querySelector("p").textContent=t[1];
+ }
+ var defOrig=window.tftDefinirPagina;
+ window.tftDefinirPagina=function(k){defOrig(k);try{head(k);if(k!=="inicio"){shell().removeAttribute("data-tft-meta")}}catch(e){}};
+
+ /* ---- meta completa (saldo, falta, gasto) dentro do Início ---- */
+ window.tftToggleMeta=function(){
+  var sh=shell(),open=sh.getAttribute("data-tft-meta")==="open";
+  if(open)sh.removeAttribute("data-tft-meta");else sh.setAttribute("data-tft-meta","open");
+  var b=$("tfthMetaBtn");if(b)b.textContent=open?"Ver Meta":"Ocultar meta";
+  if(!open){var el=$("secaoMetas");if(el)setTimeout(function(){el.scrollIntoView({behavior:"smooth",block:"nearest"})},50)}
+ };
+
+ /* ---- Início ---- */
+ var TOOLS=[
+  ["/ferramentas/onde-vender-loot","loot","💰 Onde vender o loot?","Descubra qual NPC paga mais por cada item do seu loot."],
+  ["/ferramentas/comparar-hunts","comparar","⚖️ Comparar Hunts","Compare duas hunts lado a lado: balance, XP e dano por hora."],
+  ["/ferramentas/custos-de-hunts","custos","🧪 Custos de Hunt","Calcule o custo por hora de imbuements e outros recursos."],
+  ["/ferramentas/divisor-party-hunt","party","👥 Divisor de Party Hunt","Divida o balance, salve sua party e acompanhe o ranking."],
+  ["/ferramentas/bestiario-de-hunt","bestiario","📖 Bestiário de Hunt","Fraquezas e ataques de cada criatura para escolher sua proteção."],
+  ["/ferramentas/cacar-por-elemento","elementos","🎯 Caçar por Elemento","Liste as criaturas fracas ao elemento do seu dano."],
+  ["/ajuda","ajuda","❔ Central de Ajuda","Guias de uso de todas as ferramentas do site."]
+ ];
+ function renderHome(){
+  var app=$("app");if(!app)return;
+  var host=$("tftHome");
+  if(!host){host=document.createElement("section");host.id="tftHome";host.className="tfth";app.parentNode.insertBefore(host,app)}
+  var foot=$("tftHomeFoot");
+  if(!foot){foot=document.createElement("section");foot.id="tftHomeFoot";foot.className="tfth";app.parentNode.insertBefore(foot,app.nextSibling);
+   foot.innerHTML='<section class="card"><h2>🧰 Ferramentas gratuitas para Tibia</h2><p class="tfth-about">O Tibia Farm Tracker ajuda você a controlar o resultado das suas hunts e a chegar mais rápido na sua meta de farm. Além do registro de farms, o site reúne ferramentas gratuitas que usam os relatórios do Hunt Analyzer do Tibia.</p><div class="tfth-tools">'+TOOLS.map(function(t){return'<a href="'+t[0]+'" data-route="'+t[1]+'"><b>'+t[2]+'</b><span>'+t[3]+'</span></a>'}).join("")+'</div></section>'}
+  var g=(typeof meta==="function")?meta():null,nick=String((window.S&&window.S.nickname)||"").trim();
+  var h='<header class="card tfth-hero"><h1>Olá, '+E(nick||"aventureiro")+'! 👑</h1><p>Seu resumo de farm</p></header>';
+  if(!g){
+   host.innerHTML=h+'<section class="card"><div class="tfth-empty"><b style="color:#fff;font-size:15px">Comece pela sua meta</b><p style="max-width:440px;margin:8px auto 14px">Escolha o item que você quer conquistar, defina o valor em gold e registre o farm de cada sessão.</p><button class="btn-green" onclick="novaMeta()">Criar minha primeira meta</button></div></section>';
+   return;
+  }
+  var tot=gold(g),sd=Math.max(0,saldo(g)),falta=g.infinita?0:Math.max(0,g.metaGold-sd),pct=g.infinita?100:Math.min(100,g.metaGold?sd/g.metaGold*100:0);
+  var hunts=g.sessoes.filter(function(s){return!isResumo(s)&&!s.somado&&tipoDe(s)==="hunt"&&!s.suspeito&&Number(s.time)>0});
+  var gh=hunts.reduce(function(a,s){return a+Number(s.gold)},0),th=hunts.reduce(function(a,s){return a+Number(s.time)},0),media=th>0?gh/(th/60):0;
+  var best=null;hunts.forEach(function(s){var p=pphDe(s.gold,s.time);if(!best||p>best.p)best={p:p,s:s}});
+  var ult=g.sessoes.filter(function(s){return!isResumo(s)&&!s.somado}).slice().sort(function(a,b){var x=String(a.data)+String(a.hora||""),y=String(b.data)+String(b.hora||"");return x<y?1:x>y?-1:0}).slice(0,5);
+  var nome=E(g.nome),open=shell().getAttribute("data-tft-meta")==="open";
+  var rec=melhorDia(g),ttc=tc(g),dH=diasFarmHunt(g).length,jan=janelaFarmHunt(g),mDia=dH>0?goldHunt(g)/dH:0,fq=dH>0?Math.round(dH/jan*7*10)/10:0;
+  var fd=(!g.infinita&&mDia>0)?Math.ceil(falta/mDia):null,dr=(g.infinita||g.concluida)?null:(fd!=null&&fq>0?Math.ceil(fd/(fq/7)):null);
+  var dp=(dr!=null)?new Date(Date.now()+dr*86400000).toLocaleDateString("pt-BR"):"";
+  var est=(g.infinita||g.concluida)?"":'<div class="tfth-est">⏳ <b>Estimativa para a meta:</b> '+(dr==null?"registre hunts para calcular":dr===0?'<span>hoje!</span>':'<span>'+dr+(dr===1?" dia":" dias")+'</span> · até '+dp)+(mDia>0?'<small>'+F(mDia)+' GP por dia de hunt · ritmo de '+fq+'x por semana</small>':'')+'</div>';
+  /* meta em destaque */
+  h+='<section class="card"><div class="tfth-k">🎯 '+nome+'</div>';
+  if(g.infinita)h+='<div class="tfth-nums"><b>'+F(sd)+'</b> GP de saldo</div><div class="tfth-falta">Farm livre: sem valor alvo, acompanhe o seu saldo acumulado.</div>';
+  else{
+   h+='<div class="tfth-nums"><b>'+F(sd)+'</b> / '+F(g.metaGold)+' GP</div><div class="bar-row"><div class="bar"><i style="width:'+pct+'%"></i></div><div class="pct">'+Math.round(pct)+'%</div></div>';
+   h+=g.concluida?'<div class="tfth-falta" style="color:#5ff0b4">✓ Meta atingida em '+new Date(g.concluida).toLocaleDateString("pt-BR")+'</div><div class="tfth-act"><button class="btn-green" onclick="abrirNovaMetaAposConclusao()">🎯 Definir nova meta</button></div>':'<div class="tfth-falta">Faltam <b>'+F(falta)+' GP</b></div>'+est;
+  }
+  h+='</section>';
+  /* indicadores */
+  h+='<div class="tfth-stats"><div class="tfth-stat"><div class="l">💰 Farm total</div><div class="v">'+F(tot)+' GP</div><div class="s">≈ '+fmt2(ttc/1)+' TC'+(S.tcBRL>0?' · '+brl(ttc*S.tcBRL):'')+'</div></div>'
+   +'<div class="tfth-stat"><div class="l">📈 Média/h</div><div class="v">'+(media>0?F(media)+' GP/h':'—')+'</div><div class="s">'+(hunts.length?'em '+hunts.length+(hunts.length===1?' hunt':' hunts'):'registre uma hunt com tempo')+'</div></div>'
+   +'<div class="tfth-stat"><div class="l">🔥 Melhor hunt/h</div><div class="v">'+(best?F(best.p)+' GP/h':'—')+'</div><div class="s">'+(best?E(best.s.hunt||"Hunt")+' · '+dm(best.s.data):'sem registros ainda')+'</div></div>'
+   +'<div class="tfth-stat"><div class="l">🏆 Melhor dia de hunt</div><div class="v">'+(rec?F(rec.gold)+' GP':'—')+'</div><div class="s">'+(rec?'em '+brData(rec.data):'sem hunts ainda')+'</div></div></div>';
+  /* últimas hunts */
+  h+='<section class="card"><h2>⚔️ Últimas hunts</h2>';
+  if(!ult.length)h+='<div class="tfth-empty">Nenhum farm registrado ainda nesta meta.</div>';
+  else h+='<div class="tfth-wrap"><table><thead><tr><th>Farm</th><th>Data</th><th>Tempo</th><th>Resultado</th></tr></thead><tbody>'+ult.map(function(s){var v=Number(s.gold)||0;return'<tr><td>'+iconeTipo(s)+" "+E(s.hunt||"Farm")+'</td><td>'+dm(s.data)+'</td><td>'+hhmm(s.time)+'</td><td class="'+(v>=0?"pos":"neg")+'">'+(v>=0?"+":"")+F(v)+'</td></tr>'}).join("")+'</tbody></table></div>';
+  h+='<div class="tfth-act"><a class="btn-green" href="/registrar-farm" data-route="farm">Registrar nova Hunt</a><a class="tfth-btn" href="/historico" data-route="historico">Ver histórico</a></div></section>';
+  /* meta (detalhes) */
+  h+='<section class="card"><div class="tfth-row"><h2 style="margin:0">🎯 Meta</h2><button class="tfth-btn" id="tfthMetaBtn" onclick="tftToggleMeta()">'+(open?"Ocultar meta":"Ver Meta")+'</button></div>'
+   +'<div class="tfth-nums" style="margin-top:10px">'+nome+(g.infinita?'':' <span style="color:var(--gold2)">'+Math.round(pct)+'%</span>')+'</div>'
+   +'<div class="tfth-falta">'+(g.infinita?'Saldo, gastos e acumulado disponíveis em Ver Meta.':g.concluida?'Meta concluída.':'Próximo objetivo: <b>'+F(falta)+' GP</b>')+'</div></section>';
+  host.innerHTML=h;
+ }
+
+ /* ---- Registrar Farm: resumo da sessão ao vivo ---- */
+ function sessao(){
+  var b=$("sessaoBody");if(!b)return;
+  var g=(typeof meta==="function")?meta():null;if(!g)return;
+  var ge=$("farmGold"),te=$("farmTime");if(!ge||!te)return;
+  var v=parseGold(ge.value)||0,t=Number(te.value)||0,tipo=(typeof tipoSel!=="undefined"&&tipoSel.farm)||"hunt";
+  var custo=0;
+  try{if(tipo==="hunt"&&t>0)custo=consumirRecursosFarm({recursosFarm:JSON.parse(JSON.stringify(g.recursosFarm||[]))},t,recIdsSelecionados("farm")).custo||0}catch(e){}
+  var liq=Math.round(v-custo),vazio=!(v>0);
+  var row=function(l,x,c){return'<div class="ss'+(c?" "+c:"")+'"><span>'+l+'</span><b>'+x+'</b></div>'};
+  b.innerHTML=row("Resultado",vazio?"—":F(v)+" GP")+row("Tempo",t>0?hhmm(t)+"h":"—")+row("Resultado/h",(!vazio&&t>0)?F(v/(t/60))+" GP/h":"—")+row("Custo de recursos",tipo==="hunt"?(custo>0?"− "+F(custo)+" GP":"0 GP"):"—")+row("Resultado líquido",vazio?"—":F(liq)+" GP","tot")+row("Farm do dia após registrar",F(goldDia(g,hoje())+(vazio?0:liq))+" GP")
+   +'<p class="sn">'+(vazio?"Informe o tempo e o gold para ver o resumo desta sessão.":(t>0&&tipo==="hunt"?"Líquido por hora: "+F(liq/(t/60))+" GP/h. ":"")+"Valores estimados antes de registrar.")+'</p>';
+ }
+ document.addEventListener("input",function(e){if(e.target&&(e.target.id==="farmGold"||e.target.id==="farmTime"))sessao()});
+ document.addEventListener("change",function(e){if(e.target&&e.target.closest&&e.target.closest("#farmRecursos"))sessao()});
+ document.addEventListener("click",function(e){if(e.target&&e.target.closest&&e.target.closest("#tipoTabsfarm,#farmRecursos"))setTimeout(sessao,0)});
+
+ var orig=window.render;
+ window.render=function(){var r=orig.apply(this,arguments);try{renderHome();sessao()}catch(e){console.error(e)}return r};
+ renderHome();sessao();
+ /* acesso direto pela URL: o router já aplicou a página antes deste script, então atualiza o cabeçalho agora */
+ var cur=(shell()&&shell().getAttribute("data-tft-page"))||"inicio";head(cur);
 })();
 </script>
 
