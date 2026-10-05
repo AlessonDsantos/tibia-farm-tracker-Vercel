@@ -842,7 +842,9 @@ h1.retention-title{margin:0}
 @media(max-width:760px){#tftPartyXpPage .pxp-grid{grid-template-columns:1fr}#tftPartyXpPage .pxp-big{font-size:30px}}
 @media(max-width:380px){#tftPartyXpPage .pxp-two{grid-template-columns:1fr}}
 </style>
-</head>
+<style id="tft-hunts-db-css">
+.tft-hunt-city-inline{font-weight:500;color:var(--muted);font-size:10.5px}.tft-legacy-badge{display:inline-block;margin-left:5px;padding:2px 6px;border-radius:999px;font-size:9px;font-weight:700;color:#ffe3a0;background:rgba(226,177,73,.10);border:1px solid rgba(226,177,73,.30);vertical-align:middle}.tft-hunt-legacy{margin-top:7px;font-size:11.5px;line-height:1.45;color:#8fd4ff}.hunt-pick-name{display:flex!important;align-items:center;justify-content:space-between;gap:10px}.hunt-pick-name small.hunt-pick-city{display:inline-block;color:#8fb1c7;font-size:10.5px;font-weight:500;white-space:nowrap}
+</style></head>
 <body>
 <div class="tft-shell">
 <aside class="tft-sidebar" id="tftSidebar">
@@ -1114,7 +1116,7 @@ h1.retention-title{margin:0}
   <button type="button" data-tipo="boss" onclick="setTipoFarm('edit','boss')">☠️ Boss</button>
   <button type="button" data-tipo="outro" onclick="setTipoFarm('edit','outro')">✨ Outro</button>
  </div></div>
- <div class="field"><label id="editHuntLabel">Nome da Hunt</label><input id="editHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('edit')" style="cursor:pointer"></div>
+ <div class="field"><label id="editHuntLabel">Nome da Hunt</label><input id="editHunt" type="text" maxlength="80" placeholder="Toque para escolher a hunt" readonly onclick="abrirHuntPicker('edit')" style="cursor:pointer"><div id="editHuntLegacy" class="tft-hunt-legacy"></div></div>
  <div class="grid2">
   <div class="field"><label id="editTimeLabel">Tempo de Hunt (minutos)</label><input id="editTime" type="number" min="1" step="1" placeholder="Ex.: 60"></div>
   <div class="field"><label>Valor em Gold</label><input id="editGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
@@ -1274,16 +1276,7 @@ async function buscarItens(termo){
 
 /* ================= estado + persistência ================= */
 const CK="tibiaFarm3_",CHUNK=3200;
-const HUNTS_PADRAO=["Asura Palace","Azzilon Walls","Barkless Ab Cults","Bashmu","Brimstone Bugs WOTE","Bulltaur Lair -2",
-"Carnivoras","Cobra Bastion","Deathlings","Deeper Banuta -6","Deeper Banuta (Bottom Floor)","Deeplings Library",
-"Draken Walls","Drefia Wyrm's Lair","East Bounac","Edron Heroes -3","Edron South Werecreatures","Elder Wyrms Drefia",
-"Exotic Cave","Feyrist","Fire Library","Gazer","Glooth Bandits East","Glooth Tower","Green Valley",
-"Haunted Temple","Iksupan","Infernatil Seal","Kazordoon Mini Otherworld","Lower Rosh","Lower Spike",
-"Marapur Nagas","Marapur Turtles","Medusa Tower","Nimmersatt's Breeding Ground","Oramond Minos",
-"Oramond West","Oramond Wildlife Raid","Oskayaat Weretigers","Oskayaat Weretigers -2","Oskayaat Werecrocodiles",
-"Otherworld","Otherworld (Kazo)","Pirats","Podzilla Quara","Ravenous Lava Lurkers","Roshamuul Mines",
-"Summer Court","Warzone","Warzone 3","Warzone 4","Warzone 8","Werehyaenas","Werelions","Werelions -1",
-"Winter Court","Yalahar Grim Reapers","Yalahar Sunken Quarter"];
+const HUNTS_PADRAO=[]; /* catálogo oficial de hunts agora vem de /hunts.json */
 const BOSSES_SOLO=["Bakragore","Brain Head","Dragonking Zyrtarch","Faceless Bane","Ferumbras Mortal Shell",
 "Gaz'haragoth","Goshnar's Malice","Grand Master Oberon","Ghulosh","Irgix the Flimsy","Magma Bubble","Mearidion",
 "Morshabaal","Plagirath","Ravenous Hunger","Scarlett Etzel","Soul-Broken Harbinger","The Baron from Below",
@@ -1298,6 +1291,26 @@ var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas
 var tipoSel={farm:"hunt",add:"hunt",edit:"hunt"};
 var recSel={farm:{modo:"ind",ids:[]},add:{modo:"ind",ids:[]},edit:{modo:"ind",ids:[]}};
 var recEditMin={},recEditLegado=0; /* edição: minutos que cada recurso consumiu nesta hunt / custo de registro antigo sem detalhe */
+/* ================= nova base oficial de hunts ================= */
+var TFT_HUNTS_DB={version:0,hunts:[]},TFT_HUNTS_PROMISE=null;
+function tftHuntNorm(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim()}
+function tftHuntLabel(h){return h?(h.name+(h.city?" — "+h.city:"")):""}
+function tftHuntById(id){if(!id)return null;return TFT_HUNTS_DB.hunts.find(h=>String(h.id)===String(id))||null}
+function tftHuntFindByNameCity(name,city){const n=tftHuntNorm(name),c=tftHuntNorm(city);return TFT_HUNTS_DB.hunts.find(h=>tftHuntNorm(h.name)===n&&(!c||tftHuntNorm(h.city)===c))||null}
+function tftHuntFindName(name){const n=tftHuntNorm(name);return TFT_HUNTS_DB.hunts.find(h=>tftHuntNorm(h.name)===n)||null}
+async function tftCarregarHunts(){
+ if(TFT_HUNTS_PROMISE)return TFT_HUNTS_PROMISE;
+ TFT_HUNTS_PROMISE=fetch("/hunts.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>{
+  const arr=Array.isArray(j?.hunts)?j.hunts:[];
+  TFT_HUNTS_DB={version:Number(j?.version)||1,hunts:arr.filter(h=>h&&h.id&&h.name).map(h=>({id:String(h.id),name:String(h.name),city:String(h.city||"")}))};
+  return TFT_HUNTS_DB;
+ }).catch(e=>{console.warn("Tibia Farm Tracker: não foi possível carregar /hunts.json",e);TFT_HUNTS_DB={version:0,hunts:[]};return TFT_HUNTS_DB});
+ return TFT_HUNTS_PROMISE;
+}
+function tftHuntOfSession(s){if(!s)return null;return tftHuntById(s.huntId)||tftHuntFindByNameCity(s.hunt,s.huntCity)||tftHuntFindName(s.hunt)}
+function tftHuntEhLegada(s){return !!s&&tipoDe(s)==="hunt"&&!tftHuntOfSession(s)}
+function tftHuntSetOnSession(s,h){if(!s||!h)return;s.huntId=String(h.id);s.hunt=h.name;s.huntCity=h.city||""}
+
 
 function serializar(){return btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
 function salvar(){
@@ -1533,7 +1546,8 @@ function todosBosses(){
 }
 function todasHunts(){
  const custom=customList("hunt");
- return [...new Set([...HUNTS_PADRAO,...custom])].sort((a,b)=>a.localeCompare(b,"pt-BR"));
+ const oficiais=TFT_HUNTS_DB.hunts.map(h=>h.name);
+ return [...new Set([...oficiais,...custom])].sort((a,b)=>a.localeCompare(b,"pt-BR"));
 }
 function catalogoTipo(tipo){return tipo==="boss"?todosBosses():todasHunts()}
 function customList(tipo){
@@ -1691,7 +1705,9 @@ function registrarFarm(){
  if(!hunt)return toast(msgNomeVazio(tipo));
  if(tipo==="hunt"&&!(tempo>0))return toast("Informe o tempo da Hunt.");
  const salvarAgora=()=>{
-  const ses=montarSessaoFarm(g,{id:Date.now()+Math.random(),data:hoje(),hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),tcPrice:S.tcPrice,hunt},v,tipo,tempo,recIdsSelecionados("farm"));g.sessoes.push(ses);definirAnalyzer(ses.id,anKeep?an:"");
+  const farmEl=document.getElementById("farmHunt");
+  const ses=montarSessaoFarm(g,{id:Date.now()+Math.random(),data:hoje(),hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),tcPrice:S.tcPrice,hunt,huntId:farmEl?.dataset.huntId||null,huntCity:farmEl?.dataset.huntCity||""},v,tipo,tempo,recIdsSelecionados("farm"));
+  if(tipo==="hunt"&&!ses.huntId){const hh=tftHuntFindName(hunt);if(hh)tftHuntSetOnSession(ses,hh);}g.sessoes.push(ses);definirAnalyzer(ses.id,anKeep?an:"");
   recSel.farm={modo:"ind",ids:[]};checar(g);salvar();render();
   ["farmHunt","farmTime","farmGold","farmAnalyzer"].forEach(id=>{const e=document.getElementById(id);if(e)e.value=""});{const k=document.getElementById("farmAnKeep"),t=document.getElementById("farmAnStatus");if(k)k.checked=false;if(t)t.textContent=""}
   toast(ses.custoRecursos>0?"Farm registrado: "+fmt(ses.gold)+" GP (bruto "+fmt(ses.goldBruto)+" − recursos "+fmt(ses.custoRecursos)+")":"Farm registrado: "+fmt(ses.gold)+" GP")
@@ -1777,7 +1793,11 @@ function editarFarm(id){
  recEditLegado=(!Array.isArray(s.recursosUsados)&&(Number(s.custoRecursos)||0)>0)?Number(s.custoRecursos):0;
  recSel.edit={modo:"ind",ids:Object.keys(recEditMin)};
  setTipoFarm("edit",tipoDe(s),true);
- document.getElementById("editHunt").value=s.hunt||"";
+ const eh=tftHuntOfSession(s),ehEl=document.getElementById("editHunt");
+ ehEl.value=eh?tftHuntLabel(eh):(s.hunt||"");
+ if(eh){ehEl.dataset.huntId=eh.id;ehEl.dataset.huntName=eh.name;ehEl.dataset.huntCity=eh.city||""}else{delete ehEl.dataset.huntId;delete ehEl.dataset.huntName;delete ehEl.dataset.huntCity}
+ const legacy=document.getElementById("editHuntLegacy");
+ if(legacy)legacy.innerHTML=(tipoDe(s)==="hunt"&&!eh)?'⚠️ Esta hunt pertence ao catálogo antigo. Escolha uma hunt da nova base para atualizar este registro.':'✓ Hunt vinculada à nova base.';
  document.getElementById("editTime").value=s.time||"";
  document.getElementById("editGold").value=(s.goldBruto!=null?s.goldBruto:s.gold)||"";
  {const t=analyzerDe(s.id),e=document.getElementById("editAnalyzer"),b=document.getElementById("editAnalyzerBox");if(e)e.value=t;if(b)b.open=!!t}
@@ -1827,9 +1847,10 @@ function toggleHuntFavorita(nome){
  if(i>=0)lista.splice(i,1);else lista.push(nome);
  salvar();renderHuntPicker();
 }
-function abrirHuntPicker(alvo){
+async function abrirHuntPicker(alvo){
  huntPickerAlvo=alvo;huntPickerTipo=(tipoSel[alvo]==="boss")?"boss":"hunt";
  huntPickerBusca="";huntPickerFiltro="todas";
+ if(huntPickerTipo==="hunt"&&!TFT_HUNTS_DB.hunts.length)await tftCarregarHunts();
  const busca=document.getElementById("huntPickerSearch");
  if(busca){busca.value="";busca.placeholder=huntPickerTipo==="boss"?"Pesquisar boss...":"Pesquisar hunt..."}
  const titulo=document.getElementById("huntPickerTitle");
@@ -1851,48 +1872,32 @@ function atualizarAbasHuntPicker(){
   p.textContent=huntPickerTipo==="boss"?"\ud83e\udde9 Meus bosses":"\ud83e\udde9 Personalizadas"}
 }
 function renderHuntPicker(){
- const box=document.getElementById("huntPickerResults");
- if(!box)return;
- const tipo=huntPickerTipo==="boss"?"boss":"hunt";
- const q=(huntPickerBusca||"").trim().toLowerCase();
- const todas=catalogoTipo(tipo);
- const custom=customList(tipo);
- const somentePersonalizadas=huntPickerFiltro==="personalizadas";
- const base=somentePersonalizadas?custom.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")):todas;
- const filtradas=q?base.filter(h=>h.toLowerCase().includes(q)):base;
- const favoritos=favList(tipo).filter(h=>base.includes(h));
- const recs=recentesDoTipo(tipo,3).filter(h=>base.includes(h));
- const linha=nome=>{
-  const fav=huntEhFavorita(nome),safe=nome.replace(/'/g,"\\'").replace(/"/g,"&quot;"),ehCustom=custom.includes(nome);
-  const btnEditar=ehCustom?'<button type="button" class="hunt-pick-edit" title="Renomear" onclick="editarHuntPersonalizada(\''+safe+'\')">\u270f\ufe0f</button>':'';
-  return '<div class="hunt-pick-row"><button type="button" class="hunt-pick-name" onclick="selecionarHunt(\''+safe+'\')">'+esc(nome)+'</button>'+btnEditar+
-   '<button type="button" class="hunt-pick-star" title="Favoritar" onclick="toggleHuntFavorita(\''+safe+'\')">'+(fav?'\u2605':'\u2606')+'</button></div>';
+ const box=document.getElementById("huntPickerResults");if(!box)return;
+ const tipo=huntPickerTipo==="boss"?"boss":"hunt",q=(huntPickerBusca||"").trim().toLowerCase();
+ const custom=customList(tipo),somentePersonalizadas=huntPickerFiltro==="personalizadas";
+ let registros=tipo==="hunt"&&!somentePersonalizadas?TFT_HUNTS_DB.hunts.slice():custom.map(name=>({id:"custom-"+name,name,city:"",custom:true}));
+ const filtradas=registros.filter(h=>(h.name+" "+(h.city||"")).toLowerCase().includes(q));
+ const favoritos=favList(tipo).filter(n=>registros.some(x=>x.name===n));
+ const recs=recentesDoTipo(tipo,3).filter(n=>registros.some(x=>x.name===n));
+ const linha=h=>{
+  const nome=h.name,fav=favList(tipo).includes(nome),safe=encodeURIComponent(nome);
+  const btnEditar=h.custom?'<button type="button" class="hunt-pick-edit" title="Renomear" onclick="editarHuntPersonalizada(decodeURIComponent(&quot;'+safe+'&quot;))">✏️</button>':"";
+  return '<div class="hunt-pick-row"><button type="button" class="hunt-pick-name" onclick="selecionarHunt(decodeURIComponent(&quot;'+safe+'&quot;))"><span>'+esc(nome)+'</span>'+(h.city?'<small class="hunt-pick-city">'+esc(h.city)+'</small>':"")+'</button>'+btnEditar+'<button type="button" class="hunt-pick-star" title="Favoritar" onclick="toggleHuntFavorita(decodeURIComponent(&quot;'+safe+'&quot;))">'+(fav?"★":"☆")+'</button></div>';
  };
  let html="";
- if(somentePersonalizadas){
-  html+=filtradas.length?filtradas.map(linha).join(""):'<div class="empty" style="padding:14px"><b>Voc\u00ea ainda n\u00e3o cadastrou nada aqui.</b></div>';
- }else if(!q){
-  if(favoritos.length)html+='<div class="hunt-pick-section">\u2b50 Favoritas</div>'+favoritos.map(linha).join("");
-  if(recs.length)html+='<div class="hunt-pick-section">\ud83d\udd52 Recentes</div>'+recs.map(linha).join("");
+ if(somentePersonalizadas)html=filtradas.length?filtradas.map(linha).join(""):'<div class="empty" style="padding:14px"><b>Você ainda não cadastrou nada aqui.</b></div>';
+ else if(!q){
+  if(favoritos.length)html+='<div class="hunt-pick-section">⭐ Favoritas</div>'+favoritos.map(n=>linha(registros.find(x=>x.name===n)||{name:n})).join("");
+  if(recs.length)html+='<div class="hunt-pick-section">🕒 Recentes</div>'+recs.map(n=>linha(registros.find(x=>x.name===n)||{name:n})).join("");
   if(tipo==="boss"){
-   rotacoes().forEach(r=>{
-    const itens=[nomeRotacaoCompleta(r.nome)].concat(r.bosses||[]);
-    html+='<div class="hunt-pick-section">\ud83d\udd01 '+esc(r.nome)+' ('+(r.bosses||[]).length+' bosses)</div>'+itens.map(linha).join("");
-   });
-   html+='<div class="hunt-pick-section">\u2620\ufe0f Bosses solo</div>'+BOSSES_SOLO.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")).map(linha).join("");
-   if(custom.length)html+='<div class="hunt-pick-section">\ud83e\udde9 Meus bosses</div>'+custom.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")).map(linha).join("");
-  }else{
-   html+='<div class="hunt-pick-section">\ud83d\udcd6 Todas as hunts</div>'+filtradas.map(linha).join("");
-  }
- }else{
-  html+=filtradas.map(linha).join("");
- }
- if(q&&!todas.some(h=>h.toLowerCase()===q)){
-  html+='<div class="hunt-pick-custom"><button type="button" class="mini" onclick="cadastrarHuntPersonalizada()">+ Cadastrar "'+esc(huntPickerBusca.trim())+'" como '+(tipo==="boss"?"boss":"hunt")+' personalizado</button></div>';
- }
- if(tipo==="boss"&&!somentePersonalizadas){
-  html+='<div class="hunt-pick-custom"><button type="button" class="mini" onclick="criarRotacaoPersonalizada()">+ Criar rota\u00e7\u00e3o personalizada</button></div>';
- }
+   rotacoes().forEach(r=>{const itens=[nomeRotacaoCompleta(r.nome)].concat(r.bosses||[]);html+='<div class="hunt-pick-section">🔁 '+esc(r.nome)+' ('+(r.bosses||[]).length+' bosses)</div>'+itens.map(n=>linha({name:n})).join("")});
+   html+='<div class="hunt-pick-section">☠️ Bosses solo</div>'+BOSSES_SOLO.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")).map(n=>linha({name:n})).join("");
+   if(custom.length)html+='<div class="hunt-pick-section">🧩 Meus bosses</div>'+custom.slice().sort((a,b)=>a.localeCompare(b,"pt-BR")).map(n=>linha({name:n,custom:true})).join("");
+  }else html+='<div class="hunt-pick-section">📖 Todas as hunts ('+TFT_HUNTS_DB.hunts.length+')</div>'+filtradas.map(linha).join("");
+ }else html=filtradas.map(linha).join("");
+ if(tipo==="hunt"&&!somentePersonalizadas&&q&&!filtradas.length)html+='<div class="hunt-pick-custom"><div style="padding:10px 12px;color:var(--muted);font-size:12px">Nenhuma hunt da base encontrada para <b>'+esc(huntPickerBusca.trim())+'</b>.</div></div>';
+ if(q&&tipo==="boss"&&!registros.some(h=>h.name.toLowerCase()===q))html+='<div class="hunt-pick-custom"><button type="button" class="mini" onclick="cadastrarHuntPersonalizada()">+ Cadastrar "'+esc(huntPickerBusca.trim())+'" como boss personalizado</button></div>';
+ if(tipo==="boss"&&!somentePersonalizadas)html+='<div class="hunt-pick-custom"><button type="button" class="mini" onclick="criarRotacaoPersonalizada()">+ Criar rotação personalizada</button></div>';
  if(!html)html='<div class="empty" style="padding:14px"><b>Nada encontrado.</b></div>';
  box.innerHTML=html;
 }
@@ -1933,8 +1938,12 @@ function editarHuntPersonalizada(nomeAntigo){
  salvar();renderHuntPicker();render();toast('Renomeado para "'+novo+'".');
 }
 function selecionarHunt(nome){
- const el=document.getElementById(idNome(huntPickerAlvo));
- if(el)el.value=nome;
+ const alvo=huntPickerAlvo,tipo=huntPickerTipo,el=document.getElementById(idNome(alvo));if(!el)return;
+ if(tipo==="hunt"){
+  const h=TFT_HUNTS_DB.hunts.find(x=>x.name===nome)||tftHuntFindName(nome);
+  if(h){el.value=tftHuntLabel(h);el.dataset.huntId=h.id;el.dataset.huntName=h.name;el.dataset.huntCity=h.city||""}
+  else{el.value=nome;delete el.dataset.huntId;delete el.dataset.huntName;delete el.dataset.huntCity}
+ }else{el.value=nome;delete el.dataset.huntId;delete el.dataset.huntName;delete el.dataset.huntCity}
  fechar("mHuntPicker");
 }
 document.addEventListener("input",e=>{
@@ -2433,7 +2442,7 @@ function tabelaHistHunts(g,ds){
  const filtered=ds.filter(histNoRange);
  if(!filtered.length)return '<div class="empty"><b>Nenhum farm neste período.</b></div>';
  let html='<div class="tablewrap"><table><thead><tr><th>Data</th><th>Farm</th><th>Tempo</th><th>Profit</th><th>Profit/h</th><th>TC</th><th></th></tr></thead><tbody>';
- const AN=lerAnalyzers();filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(s.hunt||'Farm não informado')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP'+(Number(s.custoRecursos)>0?'<div style="font-size:10.5px;color:var(--muted)">bruto '+fmt(s.goldBruto)+' − recursos '+fmt(s.custoRecursos)+'</div>':'')+'</td><td>'+(mins?fmt(pph)+'/h':'—')+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns">'+(AN[String(s.id)]?'<button class="rowbtn" title="Ver Hunt Analyzer" onclick="verAnalyzer(\''+s.id+'\')">📋</button>':'')+'<button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';});});
+ const AN=lerAnalyzers();filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0,pph=mins>0?profit/(mins/60):0;html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(s.hunt||'Farm não informado')+(s.huntCity?' <small class="tft-hunt-city-inline">— '+esc(s.huntCity)+'</small>':'')+(tftHuntEhLegada(s)?' <span class="tft-legacy-badge">antiga</span>':'')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP'+(Number(s.custoRecursos)>0?'<div style="font-size:10.5px;color:var(--muted)">bruto '+fmt(s.goldBruto)+' − recursos '+fmt(s.custoRecursos)+'</div>':'')+'</td><td>'+(mins?fmt(pph)+'/h':'—')+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns">'+(AN[String(s.id)]?'<button class="rowbtn" title="Ver Hunt Analyzer" onclick="verAnalyzer(\''+s.id+'\')">📋</button>':'')+'<button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';});});
  return html+'</tbody></table></div>'}
 function tabelaRel(g,tipo){
  const arr=(tipo==="semanal"?g.semanais:g.mensais).slice().reverse();
@@ -4671,5 +4680,5 @@ setTab("div");
  calc();
 })();
 </script>
-</body>
+<script id="tft-hunts-loader">document.addEventListener("DOMContentLoaded",function(){if(typeof tftCarregarHunts==="function")tftCarregarHunts()});</script></body>
 </html>
