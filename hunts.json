@@ -1,0 +1,2115 @@
+{
+  "version": 1,
+  "hunts": [
+    {
+      "id": "barkless-ab-dendriel",
+      "name": "Barkless",
+      "city": "Ab'Dendriel"
+    },
+    {
+      "id": "hellgate-ab-dendriel",
+      "name": "Hellgate",
+      "city": "Ab'Dendriel"
+    },
+    {
+      "id": "poacher-cave-ab-dendriel",
+      "name": "Poacher Cave",
+      "city": "Ab'Dendriel"
+    },
+    {
+      "id": "troll-ab-dendriel",
+      "name": "Troll",
+      "city": "Ab'Dendriel"
+    },
+    {
+      "id": "wasp-ab-dendriel",
+      "name": "Wasp",
+      "city": "Ab'Dendriel"
+    },
+    {
+      "id": "outer-crypt-ab-dendriel",
+      "name": "Outer Crypt",
+      "city": "Ab'Dendriel"
+    },
+    {
+      "id": "hollowed-crypt-ab-dendriel",
+      "name": "Hollowed Crypt",
+      "city": "Ab'Dendriel"
+    },
+    {
+      "id": "inner-crypt-ab-dendriel",
+      "name": "Inner Crypt",
+      "city": "Ab'Dendriel"
+    },
+    {
+      "id": "ancient-scarab-north-ankrahmun",
+      "name": "Ancient Scarab North",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "ancient-scarab-west-ankrahmun",
+      "name": "Ancient Scarab West",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "gs-tomb-ankrahmun",
+      "name": "GS Tomb",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "gold-token-ankrahmun",
+      "name": "Gold Token",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "hydra-passage-ankrahmun",
+      "name": "Hydra (Passage)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "mother-of-scarab-liar-ankrahmun",
+      "name": "Mother of Scarab Liar",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "oasis-tomb-ankrahmun",
+      "name": "Oasis Tomb",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "peninsula-tomb-ankrahmun",
+      "name": "Peninsula Tomb",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "rahemos-ankrahmun",
+      "name": "Rahemos",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "stone-tomb-ankrahmun",
+      "name": "Stone Tomb",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "terramite-ankrahmun",
+      "name": "Terramite",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "vashresamun-ankrahmun",
+      "name": "Vashresamun",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "cobra-bastion-1-ankrahmun",
+      "name": "Cobra Bastion (-1)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "cobra-bastion-0-e-1-até-flask-ankrahmun",
+      "name": "Cobra Bastion (0 e +1 até flask)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "cobra-bastion-1-depois-do-flask-2-3-e-4-ankrahmun",
+      "name": "Cobra Bastion (+1 depois do flask, +2, +3 e +4)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "cobra-bastion-mini-boss-fire-ankrahmun",
+      "name": "Cobra Bastion (Mini Boss Fire)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "cobra-bastion-mini-boss-smoke-ankrahmun",
+      "name": "Cobra Bastion (Mini Boss Smoke)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "cobra-bastion-0-e-1-ankrahmun",
+      "name": "Cobra Bastion (0 e +1)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "drefia-grim-reaper-floor-all-darashia",
+      "name": "Drefia Grim Reaper (Floor All)",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-south-darashia",
+      "name": "Ferumbra's (South)",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-arc-darashia",
+      "name": "Ferumbra's Arc",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-dt-seal-darashia",
+      "name": "Ferumbra's DT Seal",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-fury-seal-darashia",
+      "name": "Ferumbra's Fury Seal",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-jugger-seal-darashia",
+      "name": "Ferumbra's Jugger Seal",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-lair-entrance-darashia",
+      "name": "Ferumbra's Lair (Entrance)",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-plague-seal-1-darashia",
+      "name": "Ferumbra's Plague Seal -1",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-plague-seal-2-darashia",
+      "name": "Ferumbra's Plague Seal -2",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-undead-seal-darashia",
+      "name": "Ferumbra's Undead Seal",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-bazir-seal-darashia",
+      "name": "Ferumbra's Bazir Seal",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-dt-seal-1-darashia",
+      "name": "Ferumbra's DT Seal -1",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-pumin-after-darashia",
+      "name": "Ferumbra's Pumin After",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-pumin-before-darashia",
+      "name": "Ferumbra's Pumin Before",
+      "city": "Darashia"
+    },
+    {
+      "id": "ferumbra-s-undead-seal-after-tp-darashia",
+      "name": "Ferumbra's Undead Seal (after tp)",
+      "city": "Darashia"
+    },
+    {
+      "id": "haunted-nexus-darashia-darashia",
+      "name": "Haunted Nexus (Darashia)",
+      "city": "Darashia"
+    },
+    {
+      "id": "nightmare-isles-darashia",
+      "name": "Nightmare Isles",
+      "city": "Darashia"
+    },
+    {
+      "id": "arotworm-east-darashia",
+      "name": "aRotworm (East)",
+      "city": "Darashia"
+    },
+    {
+      "id": "rotworm-west-darashia",
+      "name": "Rotworm (West)",
+      "city": "Darashia"
+    },
+    {
+      "id": "skeleton-elite-warrior-inside-darashia",
+      "name": "Skeleton Elite Warrior (Inside)",
+      "city": "Darashia"
+    },
+    {
+      "id": "skeleton-elite-warrior-outside-darashia",
+      "name": "Skeleton Elite Warrior (Outside)",
+      "city": "Darashia"
+    },
+    {
+      "id": "terramite-s-cave-darashia",
+      "name": "Terramite's Cave",
+      "city": "Darashia"
+    },
+    {
+      "id": "wyrm-darashia",
+      "name": "Wyrm",
+      "city": "Darashia"
+    },
+    {
+      "id": "werehyaena-1-darashia",
+      "name": "Werehyaena -1",
+      "city": "Darashia"
+    },
+    {
+      "id": "werehyaena-2-north-darashia",
+      "name": "Werehyaena -2 (North)",
+      "city": "Darashia"
+    },
+    {
+      "id": "forgotten-tomb-edron",
+      "name": "Forgotten Tomb",
+      "city": "Edron"
+    },
+    {
+      "id": "grimvale-edron",
+      "name": "Grimvale",
+      "city": "Edron"
+    },
+    {
+      "id": "hero-fortress-1-bonebeast-edron",
+      "name": "Hero Fortress -1 (Bonebeast)",
+      "city": "Edron"
+    },
+    {
+      "id": "hero-fortress-2-edron",
+      "name": "Hero Fortress -2",
+      "city": "Edron"
+    },
+    {
+      "id": "hero-fortress-2-e-3-edron",
+      "name": "Hero Fortress -2 e -3",
+      "city": "Edron"
+    },
+    {
+      "id": "hero-fortress-3-edron",
+      "name": "Hero Fortress -3",
+      "city": "Edron"
+    },
+    {
+      "id": "inquisition-edron",
+      "name": "Inquisition",
+      "city": "Edron"
+    },
+    {
+      "id": "inquisition-hellhound-edron",
+      "name": "Inquisition Hellhound",
+      "city": "Edron"
+    },
+    {
+      "id": "servants-mad-mage-edron",
+      "name": "Servants (Mad Mage)",
+      "city": "Edron"
+    },
+    {
+      "id": "shaburak-demons-edron",
+      "name": "shaburak Demons",
+      "city": "Edron"
+    },
+    {
+      "id": "vampire-crypt-edron",
+      "name": "Vampire Crypt",
+      "city": "Edron"
+    },
+    {
+      "id": "werefox-cave-edron",
+      "name": "Werefox Cave",
+      "city": "Edron"
+    },
+    {
+      "id": "zugurosh-edron",
+      "name": "Zugurosh",
+      "city": "Edron"
+    },
+    {
+      "id": "usurper-east-edron",
+      "name": "Usurper East",
+      "city": "Edron"
+    },
+    {
+      "id": "bounac-edron",
+      "name": "Bounac",
+      "city": "Edron"
+    },
+    {
+      "id": "ancient-lion-knight-edron",
+      "name": "Ancient Lion Knight",
+      "city": "Edron"
+    },
+    {
+      "id": "crypt-warden-edron",
+      "name": "Crypt Warden",
+      "city": "Edron"
+    },
+    {
+      "id": "carnisylvan-edron",
+      "name": "Carnisylvan",
+      "city": "Edron"
+    },
+    {
+      "id": "ingol-surface-edron",
+      "name": "Ingol (Surface)",
+      "city": "Edron"
+    },
+    {
+      "id": "ingol-1-edron",
+      "name": "Ingol (-1)",
+      "city": "Edron"
+    },
+    {
+      "id": "ingol-2-edron",
+      "name": "Ingol (-2)",
+      "city": "Edron"
+    },
+    {
+      "id": "ingol-3-edron",
+      "name": "Ingol (-3)",
+      "city": "Edron"
+    },
+    {
+      "id": "ingol-4-edron",
+      "name": "Ingol (-4)",
+      "city": "Edron"
+    },
+    {
+      "id": "stag-bastion-edron",
+      "name": "Stag Bastion",
+      "city": "Edron"
+    },
+    {
+      "id": "stag-underground-edron",
+      "name": "Stag Underground",
+      "city": "Edron"
+    },
+    {
+      "id": "podzilla-rootthings-1-edron",
+      "name": "Podzilla Rootthings (-1)",
+      "city": "Edron"
+    },
+    {
+      "id": "podzilla-rootthings-2-edron",
+      "name": "Podzilla Rootthings (-2)",
+      "city": "Edron"
+    },
+    {
+      "id": "ghastly-dragon-mission-7-farmine",
+      "name": "Ghastly Dragon (Mission 7)",
+      "city": "Farmine"
+    },
+    {
+      "id": "ghastly-dragon-palace-farmine",
+      "name": "Ghastly Dragon (Palace)",
+      "city": "Farmine"
+    },
+    {
+      "id": "gold-token-farmine",
+      "name": "Gold Token",
+      "city": "Farmine"
+    },
+    {
+      "id": "hidden-lizards-mission-7-farmine",
+      "name": "Hidden Lizards (Mission 7)",
+      "city": "Farmine"
+    },
+    {
+      "id": "lizard-camp-muggy-plains-farmine",
+      "name": "Lizard Camp (Muggy Plains)",
+      "city": "Farmine"
+    },
+    {
+      "id": "lizard-chosen-new-1-2-3-farmine",
+      "name": "Lizard Chosen (New - 1,2,3)",
+      "city": "Farmine"
+    },
+    {
+      "id": "lizard-chosen-new-4-5-farmine",
+      "name": "Lizard Chosen (New - 4,5)",
+      "city": "Farmine"
+    },
+    {
+      "id": "lizard-city-farmine",
+      "name": "Lizard City",
+      "city": "Farmine"
+    },
+    {
+      "id": "lizards-mortal-kombat-farmine",
+      "name": "Lizards (Mortal Kombat)",
+      "city": "Farmine"
+    },
+    {
+      "id": "souleaters-farmine",
+      "name": "Souleaters",
+      "city": "Farmine"
+    },
+    {
+      "id": "wailing-widow-cave-farmine",
+      "name": "Wailing Widow Cave",
+      "city": "Farmine"
+    },
+    {
+      "id": "yielothax-farmine",
+      "name": "Yielothax",
+      "city": "Farmine"
+    },
+    {
+      "id": "mega-dragon-respawn-1-farmine",
+      "name": "Mega Dragon [Respawn 1]",
+      "city": "Farmine"
+    },
+    {
+      "id": "mega-dragon-respawn-2-farmine",
+      "name": "Mega Dragon [Respawn 2]",
+      "city": "Farmine"
+    },
+    {
+      "id": "dream-labyrinth-fire-feyrist",
+      "name": "Dream Labyrinth (Fire)",
+      "city": "Feyrist"
+    },
+    {
+      "id": "dream-labyrinth-ice-feyrist",
+      "name": "Dream Labyrinth (Ice)",
+      "city": "Feyrist"
+    },
+    {
+      "id": "mini-roshamuul-1-feyrist",
+      "name": "Mini Roshamuul -1",
+      "city": "Feyrist"
+    },
+    {
+      "id": "mini-roshamuul-2-feyrist",
+      "name": "Mini Roshamuul -2",
+      "city": "Feyrist"
+    },
+    {
+      "id": "summer-court-feyrist",
+      "name": "Summer Court",
+      "city": "Feyrist"
+    },
+    {
+      "id": "winter-court-feyrist",
+      "name": "Winter Court",
+      "city": "Feyrist"
+    },
+    {
+      "id": "monster-graveyard-esquerda-gnomprona",
+      "name": "Monster Graveyard (Esquerda)",
+      "city": "Gnomprona"
+    },
+    {
+      "id": "monster-graveyard-direita-gnomprona",
+      "name": "Monster Graveyard (Direita)",
+      "city": "Gnomprona"
+    },
+    {
+      "id": "crystal-enigma-esquerda-gnomprona",
+      "name": "Crystal Enigma (Esquerda)",
+      "city": "Gnomprona"
+    },
+    {
+      "id": "crystal-enigma-direita-gnomprona",
+      "name": "Crystal Enigma (Direita)",
+      "city": "Gnomprona"
+    },
+    {
+      "id": "sparkling-pools-esquerda-gnomprona",
+      "name": "Sparkling Pools (Esquerda)",
+      "city": "Gnomprona"
+    },
+    {
+      "id": "sparkling-pools-direita-gnomprona",
+      "name": "Sparkling Pools (Direita)",
+      "city": "Gnomprona"
+    },
+    {
+      "id": "dragon-lair-goroma",
+      "name": "Dragon Lair",
+      "city": "Goroma"
+    },
+    {
+      "id": "goannas-issavi",
+      "name": "Goannas",
+      "city": "Issavi"
+    },
+    {
+      "id": "corym-kazordoon",
+      "name": "Corym",
+      "city": "Kazordoon"
+    },
+    {
+      "id": "drillworms-east-kazordoon",
+      "name": "Drillworms (East)",
+      "city": "Kazordoon"
+    },
+    {
+      "id": "drillworms-west-kazordoon",
+      "name": "Drillworms (West)",
+      "city": "Kazordoon"
+    },
+    {
+      "id": "lost-dwarfs-east-kazordoon",
+      "name": "Lost Dwarfs (East)",
+      "city": "Kazordoon"
+    },
+    {
+      "id": "lost-dwarfs-small-respawn-kazordoon",
+      "name": "Lost Dwarfs (Small Respawn)",
+      "city": "Kazordoon"
+    },
+    {
+      "id": "lost-dwarfs-west-up-kazordoon",
+      "name": "Lost Dwarfs (West Up)",
+      "city": "Kazordoon"
+    },
+    {
+      "id": "lost-dwarfs-west-kazordoon",
+      "name": "Lost Dwarfs (West)",
+      "city": "Kazordoon"
+    },
+    {
+      "id": "lower-spikes-kazordoon",
+      "name": "Lower Spikes",
+      "city": "Kazordoon"
+    },
+    {
+      "id": "brimstone-bugs-krailos",
+      "name": "Brimstone Bugs",
+      "city": "Krailos"
+    },
+    {
+      "id": "nightmare-krailos",
+      "name": "Nightmare",
+      "city": "Krailos"
+    },
+    {
+      "id": "behemoths-liberty-bay",
+      "name": "Behemoths",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "calassa-quara-east-liberty-bay",
+      "name": "Calassa Quara East",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "calassa-quara-west-liberty-bay",
+      "name": "Calassa Quara West",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "coryms-liberty-bay",
+      "name": "Coryms",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "crystal-garden-liberty-bay",
+      "name": "Crystal Garden",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "cult-liberty-bay",
+      "name": "Cult",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "earth-elemental-liberty-bay",
+      "name": "Earth Elemental",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "gargoyles-meriana-liberty-bay",
+      "name": "Gargoyles (Meriana)",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "hive-outpost-liberty-bay",
+      "name": "Hive Outpost",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "laguna-island-liberty-bay",
+      "name": "Laguna Island",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "night-stalker-1-liberty-bay",
+      "name": "Night Stalker -1",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "pirates-nargor-liberty-bay",
+      "name": "Pirates (Nargor)",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "quara-new-liberty-bay",
+      "name": "Quara (New)",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "wyrms-1-liberty-bay",
+      "name": "Wyrms +1",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "wyrms-2-liberty-bay",
+      "name": "Wyrms +2",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "wyrms-cave-new-liberty-bay",
+      "name": "Wyrms Cave (New)",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "asura-palace-port-hope",
+      "name": "Asura Palace",
+      "city": "Port Hope"
+    },
+    {
+      "id": "banuta-1-port-hope",
+      "name": "Banuta -1",
+      "city": "Port Hope"
+    },
+    {
+      "id": "banuta-2-port-hope",
+      "name": "Banuta -2",
+      "city": "Port Hope"
+    },
+    {
+      "id": "banuta-3-port-hope",
+      "name": "Banuta -3",
+      "city": "Port Hope"
+    },
+    {
+      "id": "banuta-4-port-hope",
+      "name": "Banuta -4",
+      "city": "Port Hope"
+    },
+    {
+      "id": "carnivora-s-rock-1-port-hope",
+      "name": "Carnivora's Rock -1",
+      "city": "Port Hope"
+    },
+    {
+      "id": "carnivora-s-rock-2-port-hope",
+      "name": "Carnivora's Rock -2",
+      "city": "Port Hope"
+    },
+    {
+      "id": "carnivora-s-rock-2-e-3-port-hope",
+      "name": "Carnivora's Rock -2 e -3",
+      "city": "Port Hope"
+    },
+    {
+      "id": "carnivora-s-rock-3-port-hope",
+      "name": "Carnivora's Rock -3",
+      "city": "Port Hope"
+    },
+    {
+      "id": "carnivora-s-rock-1-e-2-port-hope",
+      "name": "Carnivora's Rock -1 e -2",
+      "city": "Port Hope"
+    },
+    {
+      "id": "haunted-nexus-port-hope-port-hope",
+      "name": "Haunted Nexus (Port Hope)",
+      "city": "Port Hope"
+    },
+    {
+      "id": "medusa-tower-port-hope",
+      "name": "Medusa Tower",
+      "city": "Port Hope"
+    },
+    {
+      "id": "iks-entrada-port-hope",
+      "name": "Iks Entrada",
+      "city": "Port Hope"
+    },
+    {
+      "id": "iks-antes-da-ponte-das-3-vidas-port-hope",
+      "name": "Iks Antes da Ponte das 3 vidas",
+      "city": "Port Hope"
+    },
+    {
+      "id": "iks-depois-da-ponte-das-3-vidas-port-hope",
+      "name": "Iks Depois da Ponte das 3 vidas",
+      "city": "Port Hope"
+    },
+    {
+      "id": "flimsy-1-e-2-port-hope",
+      "name": "Flimsy -1 e -2",
+      "city": "Port-Hope"
+    },
+    {
+      "id": "guzzlemaw-valley-east-roshamuul",
+      "name": "Guzzlemaw Valley (East)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "guzzlemaw-valley-west-roshamuul",
+      "name": "Guzzlemaw Valley (West)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "prison-1-roshamuul",
+      "name": "Prison (-1)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "prison-2-roshamuul",
+      "name": "Prison (-2)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "dprison-3-roshamuul",
+      "name": "dPrison (-3)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "roshamuul-dp-north-roshamuul",
+      "name": "Roshamuul DP (North)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "roshamuul-dp-south-roshamuul",
+      "name": "Roshamuul DP (South)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "terror-sleep-roshamuul",
+      "name": "Terror Sleep",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "roshamuul-mountain-east-roshamuul",
+      "name": "Roshamuul Mountain (East)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "roshamuul-mountain-north-east-roshamuul",
+      "name": "Roshamuul Mountain (North East)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "roshamuul-mountain-south-roshamuul",
+      "name": "Roshamuul Mountain (South)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "okolnir-frost-dragons-west-svargrond",
+      "name": "Okolnir Frost Dragons (West)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "sea-serpent-north-old-cave-svargrond",
+      "name": "Sea Serpent North (Old Cave)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "sea-serpent-south-old-cave-svargrond",
+      "name": "Sea Serpent South (Old Cave)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "minotaur-cult-cave-1-thais",
+      "name": "Minotaur Cult Cave -1",
+      "city": "Thais"
+    },
+    {
+      "id": "minotaur-cult-cave-2-thais",
+      "name": "Minotaur Cult Cave -2",
+      "city": "Thais"
+    },
+    {
+      "id": "thais-fury-thais",
+      "name": "Thais Fury",
+      "city": "Thais"
+    },
+    {
+      "id": "amazon-camp-venore",
+      "name": "Amazon Camp",
+      "city": "Venore"
+    },
+    {
+      "id": "buried-cathedral-1-venore",
+      "name": "Buried Cathedral -1",
+      "city": "Venore"
+    },
+    {
+      "id": "buried-cathedral-2-venore",
+      "name": "Buried Cathedral -2",
+      "city": "Venore"
+    },
+    {
+      "id": "buried-cathedral-3-venore",
+      "name": "Buried Cathedral -3",
+      "city": "Venore"
+    },
+    {
+      "id": "dark-cathedral-venore",
+      "name": "Dark Cathedral",
+      "city": "Venore"
+    },
+    {
+      "id": "dragon-lair-east-venore",
+      "name": "Dragon Lair (East)",
+      "city": "Venore"
+    },
+    {
+      "id": "dragon-lair-west-venore",
+      "name": "Dragon Lair (West)",
+      "city": "Venore"
+    },
+    {
+      "id": "dragon-lord-poi-venore",
+      "name": "Dragon Lord (POI)",
+      "city": "Venore"
+    },
+    {
+      "id": "flimsy-1-2-e-3-venore",
+      "name": "Flimsy -1, -2 e -3",
+      "city": "Venore"
+    },
+    {
+      "id": "haunted-nexus-poh-venore",
+      "name": "Haunted Nexus (PoH)",
+      "city": "Venore"
+    },
+    {
+      "id": "orc-fortress-inside-venore",
+      "name": "Orc Fortress (Inside)",
+      "city": "Venore"
+    },
+    {
+      "id": "orc-fortress-outside-venore",
+      "name": "Orc Fortress (Outside)",
+      "city": "Venore"
+    },
+    {
+      "id": "salamandra-venore",
+      "name": "Salamandra",
+      "city": "Venore"
+    },
+    {
+      "id": "stonerefiner-venore",
+      "name": "Stonerefiner",
+      "city": "Venore"
+    },
+    {
+      "id": "tainted-soul-cave-venore",
+      "name": "Tainted Soul Cave",
+      "city": "Venore"
+    },
+    {
+      "id": "bulltaurs-respawn-3-venore",
+      "name": "Bulltaurs [Respawn 3]",
+      "city": "Venore"
+    },
+    {
+      "id": "crystal-grounds-warzone",
+      "name": "Crystal Grounds",
+      "city": "Warzone"
+    },
+    {
+      "id": "diremaw-north-warzone",
+      "name": "Diremaw (North)",
+      "city": "Warzone"
+    },
+    {
+      "id": "diremaw-south-warzone",
+      "name": "Diremaw (South)",
+      "city": "Warzone"
+    },
+    {
+      "id": "gnoman-s-land-warzone",
+      "name": "Gnoman's Land",
+      "city": "Warzone"
+    },
+    {
+      "id": "gnomegate-hotspot-warzone",
+      "name": "Gnomegate Hotspot",
+      "city": "Warzone"
+    },
+    {
+      "id": "cycs-mistrock-south-yalahar",
+      "name": "Cycs Mistrock (South)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "demon-east-yalahar",
+      "name": "Demon (East)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "demon-west-yalahar",
+      "name": "Demon (West)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "dragon-hydra-yalahar",
+      "name": "Dragon (Hydra)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "dragon-nw-yalahar",
+      "name": "Dragon (NW)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "dragon-se-yalahar",
+      "name": "Dragon (SE)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "dragon-serpent-yalahar",
+      "name": "Dragon (Serpent)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "dragon-lord-fenrock-yalahar",
+      "name": "Dragon Lord (Fenrock)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "giant-spider-yalahar",
+      "name": "Giant Spider",
+      "city": "Yalahar"
+    },
+    {
+      "id": "green-djinn-yalahar",
+      "name": "Green Djinn",
+      "city": "Yalahar"
+    },
+    {
+      "id": "grim-reaper-yalahar",
+      "name": "Grim Reaper",
+      "city": "Yalahar"
+    },
+    {
+      "id": "haunted-treeling-yalahar",
+      "name": "Haunted Treeling",
+      "city": "Yalahar"
+    },
+    {
+      "id": "hellspawn-1-yalahar",
+      "name": "Hellspawn (-1)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "bhellspawn-surface-yalahar",
+      "name": "bHellspawn (Surface)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "magician-yalahar",
+      "name": "Magician",
+      "city": "Yalahar"
+    },
+    {
+      "id": "minotaurs-yalahar",
+      "name": "Minotaurs",
+      "city": "Yalahar"
+    },
+    {
+      "id": "mutated-human-yalahar",
+      "name": "Mutated Human",
+      "city": "Yalahar"
+    },
+    {
+      "id": "mutated-rat-yalahar",
+      "name": "Mutated Rat",
+      "city": "Yalahar"
+    },
+    {
+      "id": "necromancer-east-yalahar",
+      "name": "Necromancer (East)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "bnecromancer-west-yalahar",
+      "name": "bNecromancer (West)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "nightmare-yalahar",
+      "name": "Nightmare",
+      "city": "Yalahar"
+    },
+    {
+      "id": "pirates-yalahar",
+      "name": "Pirates",
+      "city": "Yalahar"
+    },
+    {
+      "id": "sunken-quaras-yalahar",
+      "name": "Sunken Quaras",
+      "city": "Yalahar"
+    },
+    {
+      "id": "tortoise-barbarian-fenrock-yalahar",
+      "name": "Tortoise & Barbarian (Fenrock)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "vengoth-castle-yalahar",
+      "name": "Vengoth Castle",
+      "city": "Yalahar"
+    },
+    {
+      "id": "vengoth-castle-north-yalahar",
+      "name": "Vengoth Castle (North)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "war-golem-yalahar",
+      "name": "War Golem",
+      "city": "Yalahar"
+    },
+    {
+      "id": "cobra-bastion-2-3-e-4-ankrahmun",
+      "name": "Cobra Bastion (+2, +3 e +4)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "cobra-bastion-3-e-4-ankrahmun",
+      "name": "Cobra Bastion (+3 e +4)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "weretiger-1-ankrahmun",
+      "name": "Weretiger (-1)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "weretiger-2-ankrahmun",
+      "name": "Weretiger (-2)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "weretiger-1-e-2-ankrahmun",
+      "name": "Weretiger (-1 e -2)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "werecrododile-1-ankrahmun",
+      "name": "Werecrododile (-1)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "werecrododile-2-ankrahmun",
+      "name": "Werecrododile (-2)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "werecrododile-1-e-2-ankrahmun",
+      "name": "Werecrododile (-1 e -2)",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "lion-s-rock-ankrahmun",
+      "name": "Lion's Rock",
+      "city": "Ankrahmun"
+    },
+    {
+      "id": "candia-surface-candia",
+      "name": "Candia Surface",
+      "city": "Candia"
+    },
+    {
+      "id": "chocolate-mines-candia",
+      "name": "Chocolate Mines",
+      "city": "Candia"
+    },
+    {
+      "id": "dessert-dungeon-candia",
+      "name": "Dessert Dungeon",
+      "city": "Candia"
+    },
+    {
+      "id": "corym-carlin",
+      "name": "Corym",
+      "city": "Carlin"
+    },
+    {
+      "id": "cults-1-carlin",
+      "name": "Cults -1",
+      "city": "Carlin"
+    },
+    {
+      "id": "cults-2-carlin",
+      "name": "Cults -2",
+      "city": "Carlin"
+    },
+    {
+      "id": "cults-3-carlin",
+      "name": "Cults -3",
+      "city": "Carlin"
+    },
+    {
+      "id": "secret-library-biting-book-carlin",
+      "name": "Secret Library (Biting Book)",
+      "city": "Carlin"
+    },
+    {
+      "id": "secret-library-earth-carlin",
+      "name": "Secret Library (Earth)",
+      "city": "Carlin"
+    },
+    {
+      "id": "secret-library-energy-carlin",
+      "name": "Secret Library (Energy)",
+      "city": "Carlin"
+    },
+    {
+      "id": "secret-library-fire-carlin",
+      "name": "Secret Library (Fire)",
+      "city": "Carlin"
+    },
+    {
+      "id": "secret-library-ice-carlin",
+      "name": "Secret Library (Ice)",
+      "city": "Carlin"
+    },
+    {
+      "id": "ancient-scarabs-tomb-darashia",
+      "name": "Ancient Scarabs Tomb",
+      "city": "Darashia"
+    },
+    {
+      "id": "cults-lizards-darashia",
+      "name": "Cults & Lizards",
+      "city": "Darashia"
+    },
+    {
+      "id": "dragon-darashia",
+      "name": "Dragon",
+      "city": "Darashia"
+    },
+    {
+      "id": "dragon-lord-darashia",
+      "name": "Dragon Lord",
+      "city": "Darashia"
+    },
+    {
+      "id": "drefia-grim-reaper-floor-1-darashia",
+      "name": "Drefia Grim Reaper (Floor 1)",
+      "city": "Darashia"
+    },
+    {
+      "id": "drefia-grim-reaper-floor-1-2-darashia",
+      "name": "Drefia Grim Reaper (Floor 1+2)",
+      "city": "Darashia"
+    },
+    {
+      "id": "werelion-2-darashia",
+      "name": "Werelion -2",
+      "city": "Darashia"
+    },
+    {
+      "id": "werelion-2-darashia-2",
+      "name": "Werelion -2 ->",
+      "city": "Darashia"
+    },
+    {
+      "id": "werelion-2-darashia-3",
+      "name": "Werelion -2 <-",
+      "city": "Darashia"
+    },
+    {
+      "id": "rotten-blood-blood-vestibule-darashia",
+      "name": "Rotten Blood (Blood Vestibule)",
+      "city": "Darashia"
+    },
+    {
+      "id": "rotten-blood-darklight-core-darashia",
+      "name": "Rotten Blood (Darklight Core)",
+      "city": "Darashia"
+    },
+    {
+      "id": "rotten-blood-gloom-pillars-darashia",
+      "name": "Rotten Blood (Gloom Pillars)",
+      "city": "Darashia"
+    },
+    {
+      "id": "rotten-blood-jaded-roots-darashia",
+      "name": "Rotten Blood (Jaded Roots)",
+      "city": "Darashia"
+    },
+    {
+      "id": "rotten-blood-putrefactory-darashia",
+      "name": "Rotten Blood (Putrefactory)",
+      "city": "Darashia"
+    },
+    {
+      "id": "asharak-demon-edron",
+      "name": "Asharak Demon",
+      "city": "Edron"
+    },
+    {
+      "id": "bog-raider-cave-earth-elemental-edron",
+      "name": "Bog Raider (Cave Earth Elemental)",
+      "city": "Edron"
+    },
+    {
+      "id": "bog-raider-east-hidden-edron",
+      "name": "Bog Raider East (Hidden)",
+      "city": "Edron"
+    },
+    {
+      "id": "cyclopolis-edron",
+      "name": "Cyclopolis",
+      "city": "Edron"
+    },
+    {
+      "id": "cyclopolis-behemoths-edron",
+      "name": "Cyclopolis Behemoths",
+      "city": "Edron"
+    },
+    {
+      "id": "demon-demon-helmet-quest-edron",
+      "name": "Demon (Demon Helmet Quest)",
+      "city": "Edron"
+    },
+    {
+      "id": "demon-novo-edron",
+      "name": "Demon (Novo)",
+      "city": "Edron"
+    },
+    {
+      "id": "demon-forge-edron",
+      "name": "Demon Forge",
+      "city": "Edron"
+    },
+    {
+      "id": "dragon-lair-edron",
+      "name": "Dragon Lair",
+      "city": "Edron"
+    },
+    {
+      "id": "dryad-gardens-edron",
+      "name": "Dryad Gardens",
+      "city": "Edron"
+    },
+    {
+      "id": "earth-elemental-edron",
+      "name": "Earth Elemental",
+      "city": "Edron"
+    },
+    {
+      "id": "elemental-quest-soil-ed-edron",
+      "name": "Elemental Quest - Soil ED",
+      "city": "Edron"
+    },
+    {
+      "id": "elemental-quest-soil-ek-edron",
+      "name": "Elemental Quest - Soil EK",
+      "city": "Edron"
+    },
+    {
+      "id": "elemental-quest-soil-ms-edron",
+      "name": "Elemental Quest - Soil MS",
+      "city": "Edron"
+    },
+    {
+      "id": "delemental-quest-soil-rp-edron",
+      "name": "dElemental Quest - Soil RP",
+      "city": "Edron"
+    },
+    {
+      "id": "falcon-bastion-edron",
+      "name": "Falcon Bastion",
+      "city": "Edron"
+    },
+    {
+      "id": "falcon-mini-bosses-edron",
+      "name": "Falcon Mini-Bosses",
+      "city": "Edron"
+    },
+    {
+      "id": "falcon-underground-edron",
+      "name": "Falcon Underground",
+      "city": "Edron"
+    },
+    {
+      "id": "flimsy-1-edron",
+      "name": "Flimsy -1",
+      "city": "Edron"
+    },
+    {
+      "id": "podzilla-quaras-1-edron",
+      "name": "Podzilla Quaras (-1)",
+      "city": "Edron"
+    },
+    {
+      "id": "podzilla-quaras-2-edron",
+      "name": "Podzilla Quaras (-2)",
+      "city": "Edron"
+    },
+    {
+      "id": "inferniarchs-surface-e-1-tree-edron",
+      "name": "Inferniarchs Surface e -1 (Tree)",
+      "city": "Edron"
+    },
+    {
+      "id": "inferniarchs-2-edron",
+      "name": "Inferniarchs -2",
+      "city": "Edron"
+    },
+    {
+      "id": "inferniarchs-3-edron",
+      "name": "Inferniarchs -3",
+      "city": "Edron"
+    },
+    {
+      "id": "inferniarchs-4-edron",
+      "name": "Inferniarchs -4",
+      "city": "Edron"
+    },
+    {
+      "id": "mini-livraria-capitulo-i-terreo-edron",
+      "name": "Mini Livraria Capitulo I (Terreo)",
+      "city": "Edron"
+    },
+    {
+      "id": "mini-livraria-capitulo-ii-edron",
+      "name": "Mini Livraria Capitulo II",
+      "city": "Edron"
+    },
+    {
+      "id": "mini-livraria-capitulo-iii-edron",
+      "name": "Mini Livraria Capitulo III",
+      "city": "Edron"
+    },
+    {
+      "id": "mini-livraria-capitulo-iv-edron",
+      "name": "Mini Livraria Capitulo IV",
+      "city": "Edron"
+    },
+    {
+      "id": "brimstone-bug-hidden-farmine",
+      "name": "Brimstone Bug (Hidden)",
+      "city": "Farmine"
+    },
+    {
+      "id": "brimstone-bug-shovel-farmine",
+      "name": "Brimstone Bug (Shovel)",
+      "city": "Farmine"
+    },
+    {
+      "id": "brimstone-bug-surface-farmine",
+      "name": "Brimstone Bug (Surface)",
+      "city": "Farmine"
+    },
+    {
+      "id": "brimstone-bug-wrath-farmine",
+      "name": "Brimstone Bug (Wrath)",
+      "city": "Farmine"
+    },
+    {
+      "id": "corruption-hole-1-farmine",
+      "name": "Corruption Hole -1",
+      "city": "Farmine"
+    },
+    {
+      "id": "corruption-hole-2-farmine",
+      "name": "Corruption Hole -2",
+      "city": "Farmine"
+    },
+    {
+      "id": "dragon-lord-antes-do-tp-farmine",
+      "name": "Dragon Lord (Antes do TP)",
+      "city": "Farmine"
+    },
+    {
+      "id": "dragon-lord-depois-do-tp-farmine",
+      "name": "Dragon Lord (Depois do TP)",
+      "city": "Farmine"
+    },
+    {
+      "id": "dragonblaze-farmine",
+      "name": "Dragonblaze",
+      "city": "Farmine"
+    },
+    {
+      "id": "draken-elite-farmine",
+      "name": "Draken Elite",
+      "city": "Farmine"
+    },
+    {
+      "id": "draken-wall-farmine",
+      "name": "Draken Wall",
+      "city": "Farmine"
+    },
+    {
+      "id": "draken-wall-bottom-farmine",
+      "name": "Draken Wall (Bottom)",
+      "city": "Farmine"
+    },
+    {
+      "id": "draken-wall-top-farmine",
+      "name": "Draken Wall (Top)",
+      "city": "Farmine"
+    },
+    {
+      "id": "draken-wall-tower-meio-farmine",
+      "name": "Draken Wall (Tower Meio)",
+      "city": "Farmine"
+    },
+    {
+      "id": "flimsy-1-farmine",
+      "name": "Flimsy -1",
+      "city": "Farmine"
+    },
+    {
+      "id": "ghastly-dragon-farmine",
+      "name": "Ghastly Dragon",
+      "city": "Farmine"
+    },
+    {
+      "id": "ghastly-dragon-mission-10-farmine",
+      "name": "Ghastly Dragon (Mission 10)",
+      "city": "Farmine"
+    },
+    {
+      "id": "medusa-1-east-goroma",
+      "name": "Medusa -1 (East)",
+      "city": "Goroma"
+    },
+    {
+      "id": "medusa-1-west-west-goroma",
+      "name": "Medusa -1 (West) & West",
+      "city": "Goroma"
+    },
+    {
+      "id": "medusa-east-northeast-goroma",
+      "name": "Medusa East & Northeast",
+      "city": "Goroma"
+    },
+    {
+      "id": "medusa-north-northwest-goroma",
+      "name": "Medusa North & Northwest",
+      "city": "Goroma"
+    },
+    {
+      "id": "deathling-port-hope-gray-island",
+      "name": "Deathling (Port Hope)",
+      "city": "Gray Island"
+    },
+    {
+      "id": "deathling-cave-1-gray-island",
+      "name": "Deathling Cave -1",
+      "city": "Gray Island"
+    },
+    {
+      "id": "deathling-cave-2-gray-island",
+      "name": "Deathling Cave -2",
+      "city": "Gray Island"
+    },
+    {
+      "id": "deepling-east-gray-island",
+      "name": "Deepling (East)",
+      "city": "Gray Island"
+    },
+    {
+      "id": "deepling-north-hardcore-gray-island",
+      "name": "Deepling (North - Hardcore)",
+      "city": "Gray Island"
+    },
+    {
+      "id": "deepling-north-gray-island",
+      "name": "Deepling (North)",
+      "city": "Gray Island"
+    },
+    {
+      "id": "deepling-south-library-gray-island",
+      "name": "Deepling (South - Library)",
+      "city": "Gray Island"
+    },
+    {
+      "id": "deepling-west-gray-island",
+      "name": "Deepling (West)",
+      "city": "Gray Island"
+    },
+    {
+      "id": "hive-surface-gray-island",
+      "name": "Hive Surface",
+      "city": "Gray Island"
+    },
+    {
+      "id": "hive-tower-gray-island",
+      "name": "Hive Tower",
+      "city": "Gray Island"
+    },
+    {
+      "id": "hive-underground-gray-island",
+      "name": "Hive Underground",
+      "city": "Gray Island"
+    },
+    {
+      "id": "bridge-west-issavi",
+      "name": "Bridge (West)",
+      "city": "Issavi"
+    },
+    {
+      "id": "sphinx-cave-1-issavi",
+      "name": "Sphinx Cave -1",
+      "city": "Issavi"
+    },
+    {
+      "id": "sphinx-cave-2-issavi",
+      "name": "Sphinx Cave -2",
+      "city": "Issavi"
+    },
+    {
+      "id": "undergrond-bueiro-sewers-issavi",
+      "name": "Undergrond (Bueiro/Sewers)",
+      "city": "Issavi"
+    },
+    {
+      "id": "waterfall-issavi",
+      "name": "Waterfall",
+      "city": "Issavi"
+    },
+    {
+      "id": "pirat-ship-1-issavi",
+      "name": "Pirat Ship -1",
+      "city": "Issavi"
+    },
+    {
+      "id": "pirat-1-issavi",
+      "name": "Pirat -1",
+      "city": "Issavi"
+    },
+    {
+      "id": "pirat-2-issavi",
+      "name": "Pirat -2",
+      "city": "Issavi"
+    },
+    {
+      "id": "exotic-cave-1-issavi",
+      "name": "Exotic Cave -1",
+      "city": "Issavi"
+    },
+    {
+      "id": "exotic-cave-2-issavi",
+      "name": "Exotic Cave -2",
+      "city": "Issavi"
+    },
+    {
+      "id": "ruins-of-nuur-bilu-issavi",
+      "name": "Ruins of Nuur (Bilu)",
+      "city": "Issavi"
+    },
+    {
+      "id": "salt-caves-bashmu-issavi",
+      "name": "Salt Caves (Bashmu)",
+      "city": "Issavi"
+    },
+    {
+      "id": "zombie-treasure-island-liberty-bay",
+      "name": "Zombie (Treasure Island)",
+      "city": "Liberty Bay"
+    },
+    {
+      "id": "foam-stalker-1-marapur",
+      "name": "Foam Stalker (-1)",
+      "city": "Marapur"
+    },
+    {
+      "id": "foam-stalker-2-marapur",
+      "name": "Foam Stalker (-2)",
+      "city": "Marapur"
+    },
+    {
+      "id": "naga-1-marapur",
+      "name": "Naga (-1)",
+      "city": "Marapur"
+    },
+    {
+      "id": "naga-2-marapur",
+      "name": "Naga (-2)",
+      "city": "Marapur"
+    },
+    {
+      "id": "asura-citadel-1-marapur",
+      "name": "Asura Citadel -1",
+      "city": "Marapur"
+    },
+    {
+      "id": "asura-citadel-2-marapur",
+      "name": "Asura Citadel -2",
+      "city": "Marapur"
+    },
+    {
+      "id": "catacombs-middle-oramond",
+      "name": "Catacombs (Middle)",
+      "city": "Oramond"
+    },
+    {
+      "id": "catacombs-east-oramond",
+      "name": "Catacombs (East)",
+      "city": "Oramond"
+    },
+    {
+      "id": "catacombs-west-oramond",
+      "name": "Catacombs (West)",
+      "city": "Oramond"
+    },
+    {
+      "id": "demons-grim-reaper-oramond",
+      "name": "Demons & Grim Reaper",
+      "city": "Oramond"
+    },
+    {
+      "id": "devourer-quaras-west-oramond",
+      "name": "Devourer & Quaras (West)",
+      "city": "Oramond"
+    },
+    {
+      "id": "fury-spectre-oramond",
+      "name": "Fury & Spectre",
+      "city": "Oramond"
+    },
+    {
+      "id": "glooth-bandits-east-oramond",
+      "name": "Glooth Bandits (East)",
+      "city": "Oramond"
+    },
+    {
+      "id": "glooth-bandits-south-oramond",
+      "name": "Glooth Bandits (South)",
+      "city": "Oramond"
+    },
+    {
+      "id": "cglooth-bandits-west-oramond",
+      "name": "cGlooth Bandits (West)",
+      "city": "Oramond"
+    },
+    {
+      "id": "glooth-factory-oramond",
+      "name": "Glooth Factory",
+      "city": "Oramond"
+    },
+    {
+      "id": "glooth-tower-oramond",
+      "name": "Glooth Tower",
+      "city": "Oramond"
+    },
+    {
+      "id": "hydras-bog-raider-deeper-oramond",
+      "name": "Hydras & Bog Raider (Deeper)",
+      "city": "Oramond"
+    },
+    {
+      "id": "hydras-bog-raider-surface-oramond",
+      "name": "Hydras & Bog Raider (Surface)",
+      "city": "Oramond"
+    },
+    {
+      "id": "seacrest-east-oramond",
+      "name": "Seacrest (East)",
+      "city": "Oramond"
+    },
+    {
+      "id": "seacrest-north-oramond",
+      "name": "Seacrest (North)",
+      "city": "Oramond"
+    },
+    {
+      "id": "seacrest-west-oramond",
+      "name": "Seacrest (West)",
+      "city": "Oramond"
+    },
+    {
+      "id": "asura-mirror-mirror-port-hope",
+      "name": "Asura (Mirror) Mirror",
+      "city": "Port Hope"
+    },
+    {
+      "id": "asura-mirror-true-1-port-hope",
+      "name": "Asura (Mirror) True (-1)",
+      "city": "Port Hope"
+    },
+    {
+      "id": "asura-mirror-true-2-port-hope",
+      "name": "Asura (Mirror) True (-2)",
+      "city": "Port Hope"
+    },
+    {
+      "id": "asura-mirror-true-all-port-hope",
+      "name": "Asura (Mirror) True (All)",
+      "city": "Port Hope"
+    },
+    {
+      "id": "shock-head-roshamuul",
+      "name": "Shock Head",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "surface-3-roshamuul",
+      "name": "Surface (-3)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "surface-buckets-east-roshamuul",
+      "name": "Surface (Buckets - East)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "surface-buckets-west-roshamuul",
+      "name": "Surface (Buckets - West)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "surface-buckets-roshamuul",
+      "name": "Surface (Buckets)",
+      "city": "Roshamuul"
+    },
+    {
+      "id": "barbarian-camp-big-svargrond",
+      "name": "Barbarian Camp (Big)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "barbarian-camp-medium-svargrond",
+      "name": "Barbarian Camp (Medium)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "barbarian-camp-small-svargrond",
+      "name": "Barbarian Camp (Small)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "crystal-spiders-hidden-svargrond",
+      "name": "Crystal Spiders (Hidden)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "crystal-spiders-new-svargrond",
+      "name": "Crystal Spiders (New)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "crystal-spiders-nibelor-svargrond",
+      "name": "Crystal Spiders (Nibelor)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "crystal-spiders-old-svargrond",
+      "name": "Crystal Spiders (Old)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "crystal-spiders-north-new-svargrond",
+      "name": "Crystal Spiders North (New)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "crystal-spiders-south-new-svargrond",
+      "name": "Crystal Spiders South (New)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "cults-hidden-svargrond",
+      "name": "Cults Hidden",
+      "city": "Svargrond"
+    },
+    {
+      "id": "cults-mines-east-svargrond",
+      "name": "Cults Mines (East)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "cults-mines-north-west-svargrond",
+      "name": "Cults Mines (North West)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "frost-giant-svargrond",
+      "name": "Frost Giant",
+      "city": "Svargrond"
+    },
+    {
+      "id": "gold-token-svargrond",
+      "name": "Gold Token",
+      "city": "Svargrond"
+    },
+    {
+      "id": "hidden-formogar-mines-svargrond",
+      "name": "Hidden Formogar Mines",
+      "city": "Svargrond"
+    },
+    {
+      "id": "ice-witch-temple-new-svargrond",
+      "name": "Ice Witch Temple (New)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "mammoth-factory-svargrond",
+      "name": "Mammoth Factory",
+      "city": "Svargrond"
+    },
+    {
+      "id": "mines-2-svargrond",
+      "name": "Mines -2",
+      "city": "Svargrond"
+    },
+    {
+      "id": "mines-3-svargrond",
+      "name": "Mines -3",
+      "city": "Svargrond"
+    },
+    {
+      "id": "mines-south-east-2-svargrond",
+      "name": "Mines South East -2",
+      "city": "Svargrond"
+    },
+    {
+      "id": "mines-yakchal-floor-svargrond",
+      "name": "Mines Yakchal Floor",
+      "city": "Svargrond"
+    },
+    {
+      "id": "okolnir-frost-dragons-east-svargrond",
+      "name": "Okolnir Frost Dragons (East)",
+      "city": "Svargrond"
+    },
+    {
+      "id": "mushroom-gardens-warzone",
+      "name": "Mushroom Gardens",
+      "city": "Warzone"
+    },
+    {
+      "id": "warzone-3-warzone",
+      "name": "Warzone 3",
+      "city": "Warzone"
+    },
+    {
+      "id": "warzone-4-warzone",
+      "name": "Warzone 4",
+      "city": "Warzone"
+    },
+    {
+      "id": "warzone-5-warzone",
+      "name": "Warzone 5",
+      "city": "Warzone"
+    },
+    {
+      "id": "warzone-6-warzone",
+      "name": "Warzone 6",
+      "city": "Warzone"
+    },
+    {
+      "id": "warzone-7-warzone",
+      "name": "Warzone 7",
+      "city": "Warzone"
+    },
+    {
+      "id": "warzone-8-warzone",
+      "name": "Warzone 8",
+      "city": "Warzone"
+    },
+    {
+      "id": "warzone-9-warzone",
+      "name": "Warzone 9",
+      "city": "Warzone"
+    },
+    {
+      "id": "monster-graveyard-left-warzone",
+      "name": "Monster Graveyard (Left)",
+      "city": "Warzone"
+    },
+    {
+      "id": "monster-graveyard-right-warzone",
+      "name": "Monster Graveyard (Right)",
+      "city": "Warzone"
+    },
+    {
+      "id": "crystal-enigma-left-warzone",
+      "name": "Crystal Enigma (Left)",
+      "city": "Warzone"
+    },
+    {
+      "id": "crystal-enigma-right-warzone",
+      "name": "Crystal Enigma (Right)",
+      "city": "Warzone"
+    },
+    {
+      "id": "sparkling-pools-left-warzone",
+      "name": "Sparkling Pools (Left)",
+      "city": "Warzone"
+    },
+    {
+      "id": "sparkling-pools-right-warzone",
+      "name": "Sparkling Pools (Right)",
+      "city": "Warzone"
+    },
+    {
+      "id": "ravenous-lavalurker-warzone",
+      "name": "Ravenous Lavalurker",
+      "city": "Warzone"
+    },
+    {
+      "id": "arena-quarter-yalahar",
+      "name": "Arena Quarter",
+      "city": "Yalahar"
+    },
+    {
+      "id": "barbarian-bloodwalker-yalahar",
+      "name": "Barbarian Bloodwalker",
+      "city": "Yalahar"
+    },
+    {
+      "id": "blue-djinn-yalahar",
+      "name": "Blue Djinn",
+      "city": "Yalahar"
+    },
+    {
+      "id": "bog-raider-north-yalahar",
+      "name": "Bog Raider (North)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "bog-raider-nightmare-destroyer-yalahar",
+      "name": "Bog Raider + Nightmare + Destroyer",
+      "city": "Yalahar"
+    },
+    {
+      "id": "cemetery-1-yalahar",
+      "name": "Cemetery -1",
+      "city": "Yalahar"
+    },
+    {
+      "id": "cemetery-ghoul-east-yalahar",
+      "name": "Cemetery Ghoul (East)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "bcemetery-ghoul-west-yalahar",
+      "name": "bCemetery Ghoul (West)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "cemetery-zombies-yalahar",
+      "name": "Cemetery Zombies",
+      "city": "Yalahar"
+    },
+    {
+      "id": "cults-yalahar",
+      "name": "Cults",
+      "city": "Yalahar"
+    },
+    {
+      "id": "cycs-mistrock-center-yalahar",
+      "name": "Cycs Mistrock (Center)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "cycs-mistrock-north-yalahar",
+      "name": "Cycs Mistrock (North)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "war-golem-new-east-yalahar",
+      "name": "War Golem New (East)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "war-golem-new-west-yalahar",
+      "name": "War Golem New (West)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "werewolf-yalahar",
+      "name": "Werewolf",
+      "city": "Yalahar"
+    },
+    {
+      "id": "worker-golem-yalahar",
+      "name": "Worker Golem",
+      "city": "Yalahar"
+    },
+    {
+      "id": "claustrophobic-inferno-yalahar",
+      "name": "Claustrophobic Inferno",
+      "city": "Yalahar"
+    },
+    {
+      "id": "rotten-wasteland-yalahar",
+      "name": "Rotten Wasteland",
+      "city": "Yalahar"
+    },
+    {
+      "id": "rotten-wasteland-north-yalahar",
+      "name": "Rotten Wasteland (North)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "rotten-wasteland-south-yalahar",
+      "name": "Rotten Wasteland (South)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "ebb-and-flow-yalahar",
+      "name": "Ebb and Flow",
+      "city": "Yalahar"
+    },
+    {
+      "id": "furious-crater-yalahar",
+      "name": "Furious Crater",
+      "city": "Yalahar"
+    },
+    {
+      "id": "mirrored-nightmare-yalahar",
+      "name": "Mirrored Nightmare",
+      "city": "Yalahar"
+    },
+    {
+      "id": "mutated-tiger-arena-3-yalahar",
+      "name": "Mutated Tiger (Arena -3)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "mutated-tiger-bog-raider-north-alchemist-yalahar",
+      "name": "Mutated Tiger & Bog Raider (North Alchemist)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "norcferatu-castelo-yalahar",
+      "name": "Norcferatu Castelo",
+      "city": "Yalahar"
+    },
+    {
+      "id": "norcferatu-direita-boss-yalahar",
+      "name": "Norcferatu (Direita/Boss)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "norcferatu-esquerda-yalahar",
+      "name": "Norcferatu (Esquerda)",
+      "city": "Yalahar"
+    },
+    {
+      "id": "stag-bastion-edron-2",
+      "name": "Stag bastion",
+      "city": "Edron"
+    },
+    {
+      "id": "pirat-ship-2-issavi",
+      "name": "Pirat Ship -2",
+      "city": "Issavi"
+    },
+    {
+      "id": "werehyaena-2-south-darashia",
+      "name": "Werehyaena -2 (South)",
+      "city": "Darashia"
+    },
+    {
+      "id": "werelion-1-darashia",
+      "name": "Werelion -1",
+      "city": "Darashia"
+    }
+  ]
+}
