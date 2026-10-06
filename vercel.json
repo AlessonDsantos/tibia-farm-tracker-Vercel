@@ -8,6 +8,7 @@
     { "source": "/ferramentas/divisor-party-hunt", "destination": "/index.html" },
     { "source": "/ferramentas/bestiario-de-hunt", "destination": "/index.html" },
     { "source": "/ferramentas/cacar-por-elemento", "destination": "/index.html" },
+    { "source": "/ferramentas/calculadora-party-xp", "destination": "/index.html" },
     { "source": "/registrar-farm", "destination": "/index.html" },
     { "source": "/desempenho", "destination": "/index.html" },
     { "source": "/historico", "destination": "/index.html" },
