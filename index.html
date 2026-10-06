@@ -1125,7 +1125,7 @@ h1.retention-title{margin:0}
  </div>
  <div id="rankPageGeneral" class="rank-page-pane">
   <div class="rank-page-grid">
-   <article class="rank-board" data-board="farm"><div class="rank-board-head"><div><span>💰</span><h2>Maior Farm do Dia</h2><p>Maior farm de uma hunt em um único dia (só hunts).</p></div><b>TOP 10</b></div><div id="rankBoardFarm" class="rank-board-list"></div></article>
+   <article class="rank-board" data-board="farm"><div class="rank-board-head"><div><span>💰</span><h2>Maior Farm do Dia</h2><p>Maior farm total em um único dia, somando só hunts (boss e outros não contam).</p></div><b>TOP 10</b></div><div id="rankBoardFarm" class="rank-board-list"></div></article>
    <article class="rank-board" data-board="pph"><div class="rank-board-head"><div><span>⚔️</span><h2>Melhor Profit/H</h2><p>Maior profit por hora em uma hunt registrada.</p></div><b>TOP 10</b></div><div id="rankBoardPph" class="rank-board-list"></div></article>
    <article class="rank-board" data-board="streak"><div class="rank-board-head"><div><span>🔥</span><h2>Maior Constância</h2><p>Maior sequência atual de dias de hunt, com domingo como descanso.</p></div><b>TOP 10</b></div><div id="rankBoardStreak" class="rank-board-list"></div></article>
    <article class="rank-board" data-board="time"><div class="rank-board-head"><div><span>⏱️</span><h2>Maior Tempo de Farm</h2><p>Maior tempo total registrado em hunts.</p></div><b>TOP 10</b></div><div id="rankBoardTime" class="rank-board-list"></div></article>
@@ -2169,7 +2169,7 @@ function rankingHuntKey(s){
 /* ================= Ciclo mensal do ranking =================
    O ranking é lógico: só considera hunts registradas no mês corrente (data da própria hunt, AAAA-MM).
    Nada é apagado; no dia 1º o ciclo muda e o ranking recomeça. */
-const RANKING_FARM_DIA_MODO="maxHunt"; /* "maxHunt" = maior hunt do dia · "somaDia" = soma das hunts do dia */
+const RANKING_FARM_DIA_MODO="somaDia"; /* "somaDia" = soma das hunts do dia (Melhor dia de hunt) · "maxHunt" = maior hunt do dia */
 const HALL_MIN_MIN=60;
 function tftCicloDe(data){const m=/^(\d{4})-(\d{2})/.exec(String(data||""));return m?m[1]+"-"+m[2]:""}
 function tftCicloAtual(){return tftCicloDe(hoje())}
@@ -2191,7 +2191,7 @@ function calcularRankingStats(){
   tempoTotal+=mins;if(mins>maiorHuntMin)maiorHuntMin=mins;if(at>ultimoAt)ultimoAt=at;
   if(gold<=0)return;
   const dk=RANKING_FARM_DIA_MODO==="somaDia"?String(s.data):"s"+String(s.id);
-  const d=dias[dk]||(dias[dk]={v:0,min:0,at:at});d.v+=gold;if(mins>d.min)d.min=mins;if(at<d.at)d.at=at;
+  const d=dias[dk]||(dias[dk]={v:0,min:0,at:at});d.v+=gold;d.min+=mins;if(at<d.at)d.at=at;
   const key=rankingHuntKey(s),nome=(s.hunt||"Hunt não informada").trim()||"Hunt não informada";
   const h=porHunt[key]||(porHunt[key]={hunt:nome,gold:0,time:0,at:at});h.gold+=gold;h.time+=mins;if(at>h.at)h.at=at;
  });
@@ -2333,7 +2333,7 @@ function renderGeneralRankings(){
  const pph=docs.filter(r=>n(r.melhorHunt)>0).sort(tftRankCmp(r=>n(r.melhorHunt),r=>n(r.melhorHuntMin),r=>r.melhorHuntAt));
  const streak=docs.map(r=>({...r,_streak:streakAindaValida(r.updatedAt)?n(r.streak):0})).filter(r=>r._streak>0).sort(tftRankCmp(r=>r._streak,r=>n(r.maiorHuntMin),r=>r.ultimoAt));
  const time=docs.filter(r=>n(r.tempoTotal)>0).sort(tftRankCmp(r=>n(r.tempoTotal),r=>n(r.maiorHuntMin),r=>r.ultimoAt));
- renderRankingBoard("rankBoardFarm",farm,r=>fmt(n(r.profit))+" GP",r=>"Maior hunt do dia"+(n(r.profitMin)?" · "+fmtTempoRanking(r.profitMin):""));
+ renderRankingBoard("rankBoardFarm",farm,r=>fmt(n(r.profit))+" GP",r=>"Melhor dia de hunt"+(r.profitAt?" · "+brData(String(r.profitAt).slice(0,10)):"")+(n(r.profitMin)?" · "+fmtTempoRanking(r.profitMin):""));
  renderRankingBoard("rankBoardPph",pph,r=>fmt(n(r.melhorHunt))+" GP/h",r=>r.melhorHuntNome||"Melhor hunt");
  renderRankingBoard("rankBoardStreak",streak,r=>n(r._streak)+" "+(n(r._streak)===1?"dia":"dias"),r=>"Sequência atual");
  renderRankingBoard("rankBoardTime",time,r=>fmtTempoRanking(r.tempoTotal),r=>"Tempo total em hunts");
@@ -2505,7 +2505,7 @@ window.renderHuntsEmAlta=renderHuntsEmAlta;
    const topTime=docs.filter(r=>(Number(r.tempoTotal)||0)>0).sort((a,b)=>(Number(b.tempoTotal)||0)-(Number(a.tempoTotal)||0)).slice(0,3);
 
    if(topFarm.length)slides.push({
-     kind:"general",title:"💰 Maior Farm do Dia",sub:"Maior farm de uma hunt em um único dia.",
+     kind:"general",title:"💰 Maior Farm do Dia",sub:"Maior farm total de hunts em um único dia.",
      cards:topFarm.map((r,i)=>({pos:i+1,name:r.nickname,value:fmtH(r.profit)+" GP",meta:"melhor dia"}))
    });
    if(topPph.length)slides.push({
