@@ -269,6 +269,54 @@ tr.total td:first-child{font-weight:700}
  border:1px solid #2c6188;background:rgba(7,20,35,.7);color:#e9f6ff;font-size:16px;cursor:pointer;flex:none}
 .tft-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:4}
 .tft-overlay.open{display:block}
+
+/* === Ranking rotativo da Home === */
+.home-ranking-widget{
+ margin:12px 0 0;
+ border:1px solid rgba(35,80,111,.95);
+ border-radius:14px;
+ background:linear-gradient(180deg,rgba(7,22,38,.95),rgba(4,12,23,.97));
+ box-shadow:0 12px 30px rgba(0,0,0,.28);
+ overflow:hidden;
+}
+.tft-shell[data-tft-page]:not([data-tft-page=""]) #homeRankingWidget{display:none}
+.hrw-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px 11px;border-bottom:1px solid #12314a}
+.hrw-kicker{font-size:9.5px;letter-spacing:.12em;color:var(--gold);font-weight:800}
+.hrw-head h2{margin:3px 0 2px;font-size:17px;color:#e8f2fa}
+.hrw-head p{margin:0;color:var(--muted);font-size:11px}
+.hrw-link{border:1px solid #23506f;background:#081a2b;color:#bfe6fa;border-radius:8px;padding:8px 11px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+.hrw-link:hover{border-color:#4cc2f1;color:#fff}
+.hrw-stage{min-height:116px;padding:13px 16px;display:flex;align-items:center}
+.hrw-loading{width:100%;text-align:center;color:var(--muted);font-size:12px;padding:25px 0}
+.hrw-grid{width:100%;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:10px}
+.hrw-card{border:1px solid #16354c;border-radius:10px;background:#05121f;padding:11px 12px;min-height:88px}
+.hrw-card.main{border-color:#315d78;display:block}
+.hrw-rank{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
+.hrw-name{margin-top:4px;font-size:13px;font-weight:800;color:#eaf6ff}
+.hrw-value{margin-top:5px;font-size:18px;font-weight:900;color:var(--gold2)}
+.hrw-value.cyan{color:#4cc2f1}
+.hrw-meta{margin-top:3px;font-size:10.5px;color:var(--muted)}
+.hrw-champion{display:flex;align-items:center;gap:9px}
+.hrw-medal{font-size:25px}
+.hrw-domain{font-size:11px;color:#cfe4f2}
+.hrw-domain b{color:var(--gold2)}
+.hrw-dots{display:flex;justify-content:center;gap:5px;padding:0 0 10px}
+.hrw-dot{width:6px;height:6px;border-radius:50%;background:#24465e;transition:.2s}
+.hrw-dot.on{background:var(--gold);transform:scale(1.25)}
+.hrw-note{font-size:10px;color:var(--muted);text-align:right;margin-top:7px}
+@media(max-width:760px){
+ .hrw-head{align-items:flex-start}
+ .hrw-link{padding:7px 9px}
+ .hrw-grid{grid-template-columns:1fr 1fr}
+ .hrw-card.main{grid-column:1/-1}
+}
+@media(max-width:520px){
+ .hrw-head{display:block}
+ .hrw-link{margin-top:9px}
+ .hrw-stage{min-height:190px}
+ .hrw-grid{grid-template-columns:1fr}
+ .hrw-card.main{grid-column:auto}
+}
 </style>
 
 <style>
@@ -543,6 +591,8 @@ tr.total td:first-child{font-weight:700}
  box-shadow:inset 3px 0 #e8b957,0 6px 16px rgba(0,0,0,.25) !important}
 .tft-nav>a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 /* === Divisor de Party Hunt === */
+.tft-shell[data-tft-page="rankings"] #tftRankingsPage{display:block}
+.tft-shell[data-tft-page="rankings"] #app,.tft-shell[data-tft-page="rankings"] #retentionDashboard{display:none}
 .tft-shell[data-tft-page="party"] #tftPartyPage{display:block}
 .tft-shell[data-tft-page="party"] #app,
 .tft-shell[data-tft-page="party"] #retentionDashboard{display:none}
@@ -734,6 +784,65 @@ textarea.pty-in{min-height:120px;resize:vertical;font:12.5px/1.5 ui-monospace,Me
 .pty-sel{display:inline-block;background:#05121f;color:#dcecf8;border:1px solid #23506f;border-radius:8px;padding:8px 10px;font:inherit;font-size:13px}
 @media(max-width:650px){.pty-two{grid-template-columns:1fr}}
 </style>
+<style id="tft-rankings-css">
+.tft-shell[data-tft-page="rankings"] #tftRankingsPage{display:block}
+.tft-shell[data-tft-page="rankings"] #app,.tft-shell[data-tft-page="rankings"] #retentionDashboard{display:none}
+#tftRankingsPage .rank-page-box{width:100%;box-sizing:border-box;background:#081a2b;color:#dcecf8;border:1px solid #38617e;border-radius:14px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+#tftRankingsPage .rank-page-hero{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:16px;border-bottom:1px solid #12314a}
+#tftRankingsPage .rank-kicker{font-size:10.5px;letter-spacing:.1em;color:#e2b149;font-weight:800;margin-bottom:4px}
+#tftRankingsPage h1{margin:0;color:#ffdf9f;font-size:25px}
+#tftRankingsPage .rank-page-hero p{margin:5px 0 0;color:#9eb5c7;font-size:12.5px;line-height:1.5}
+#tftRankingsPage .rank-page-updated{font-size:11px;color:#7f9caf;white-space:nowrap}
+#tftRankingsPage .rank-page-tabs{display:flex;gap:8px;margin:16px 0}
+#tftRankingsPage .rank-page-tabs button{flex:0 0 auto;border:1px solid #315b78;border-radius:9px;padding:10px 15px;background:#102a40;color:#cfe4f2;font:inherit;font-size:12.5px;font-weight:750;cursor:pointer}
+#tftRankingsPage .rank-page-tabs button.on{background:rgba(226,177,73,.12);border-color:#d2a447;color:#ffdf9f}
+#tftRankingsPage .rank-page-pane[hidden]{display:none}
+#tftRankingsPage .rank-page-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+#tftRankingsPage .rank-board{background:#05121f;border:1px solid #1d4462;border-radius:12px;overflow:hidden}
+#tftRankingsPage .rank-board-head{display:flex;justify-content:space-between;gap:10px;padding:14px 15px 12px;border-bottom:1px solid #16354c;background:rgba(10,33,51,.7)}
+#tftRankingsPage .rank-board-head>div{min-width:0;position:relative;padding-left:31px}
+#tftRankingsPage .rank-board-head>div>span{position:absolute;left:0;top:0;font-size:21px}
+#tftRankingsPage .rank-board-head h2{margin:0;color:#e9f3f9;font-size:14px}
+#tftRankingsPage .rank-board-head p{margin:3px 0 0;color:#7893a5;font-size:10.5px;line-height:1.4}
+#tftRankingsPage .rank-board-head>b{font-size:9px;letter-spacing:.08em;color:#6e899c;white-space:nowrap;padding-top:3px}
+#tftRankingsPage .rank-board-list{padding:5px 10px 10px}
+#tftRankingsPage .rank-line{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:9px;align-items:center;padding:10px 5px;border-bottom:1px solid #102b40}
+#tftRankingsPage .rank-line:last-child{border-bottom:0}
+#tftRankingsPage .rank-pos{font-size:12px;font-weight:850;color:#7893a5;text-align:center}
+#tftRankingsPage .rank-line:nth-child(1) .rank-pos{color:#f0c45d}
+#tftRankingsPage .rank-line:nth-child(2) .rank-pos{color:#c8d6df}
+#tftRankingsPage .rank-line:nth-child(3) .rank-pos{color:#c58b63}
+#tftRankingsPage .rank-person{min-width:0}.rank-person b{display:block;color:#e7f2f8;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rank-person small{display:block;color:#68869a;font-size:10.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#tftRankingsPage .rank-val{text-align:right;color:#e2b149;font-weight:850;font-size:12px;white-space:nowrap}
+#tftRankingsPage .rank-empty{padding:20px 8px;text-align:center;color:#718da0;font-size:12px}
+#tftRankingsPage .hall-intro{display:flex;gap:12px;align-items:center;background:linear-gradient(110deg,rgba(226,177,73,.1),rgba(11,40,61,.55));border:1px solid rgba(226,177,73,.25);border-radius:12px;padding:15px}
+#tftRankingsPage .hall-crown{font-size:34px;flex:0 0 auto}.hall-intro h2{margin:0;color:#ffdf9f;font-size:18px}.hall-intro p{margin:4px 0 0;color:#9eb5c7;font-size:12px;line-height:1.55}
+#tftRankingsPage .hall-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+#tftRankingsPage .hall-stat{background:#05121f;border:1px solid #1d4462;border-radius:10px;padding:12px}.hall-stat small{display:block;color:#6f8a9d;font-size:10px;text-transform:uppercase;letter-spacing:.05em}.hall-stat b{display:block;margin-top:4px;color:#e2b149;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hall-stat span{display:block;margin-top:2px;color:#7893a5;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#tftRankingsPage .hall-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:13px;margin-top:4px}
+#tftRankingsPage .hall-section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:12px 0 8px}.hall-section-title h3{margin:0;color:#cfe4f2;font-size:14px}.hall-section-title span{color:#718da0;font-size:10.5px}
+#tftRankingsPage .hall-filterbar{display:flex;flex-direction:column;gap:9px;margin-bottom:12px}
+#tftRankingsPage .hall-search{background:#05121f;color:#dcecf8;border:1px solid #1d4462;border-radius:9px;padding:9px 10px;font:inherit;font-size:12px;width:100%}
+#tftRankingsPage .hall-chips{display:flex;flex-wrap:wrap;gap:7px}
+#tftRankingsPage .hall-chip{background:#05121f;color:#9eb5c7;border:1px solid #1d4462;border-radius:20px;padding:7px 13px;font:inherit;font-size:11.5px;font-weight:750;cursor:pointer;white-space:nowrap}
+#tftRankingsPage .hall-chip:hover{border-color:#2c5578;color:#cfe4f2}
+#tftRankingsPage .hall-chip.on{background:rgba(226,177,73,.14);border-color:#d2a447;color:#ffdf9f}
+#tftRankingsPage .hall-list{background:#05121f;border:1px solid #1d4462;border-radius:12px;padding:5px 10px;max-height:560px;overflow:auto}
+#tftRankingsPage .hall-row{display:grid;grid-template-columns:28px 32px minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 5px;border-bottom:1px solid #102b40}.hall-row:last-child{border-bottom:0}.hall-row .hall-rank{color:#e2b149;font-weight:850;text-align:center}.hall-row .hall-hunt b{display:block;color:#e7f2f8;font-size:12.5px}.hall-row .hall-hunt small{display:block;color:#68869a;font-size:10.5px;margin-top:2px}.hall-row .hall-champ{text-align:right}.hall-row .hall-champ b{display:block;color:#7fe0d3;font-size:12px}.hall-row .hall-champ small{display:block;color:#718da0;font-size:10px;margin-top:2px}
+#tftRankingsPage .hall-avatar{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#173a59,#0e2c45);border:1px solid #255276;display:flex;align-items:center;justify-content:center;font-weight:850;font-size:12px;color:#8bc6ff;flex:0 0 auto}
+#tftRankingsPage .hall-side{background:#05121f;border:1px solid #1d4462;border-radius:12px;padding:14px;height:max-content;margin-top:12px}.hall-side h3{margin:0;color:#ffdf9f;font-size:14px}.hall-side>p{margin:4px 0 10px;color:#718da0;font-size:10.5px;line-height:1.4}.hall-leader{display:grid;grid-template-columns:28px 1fr auto;gap:7px;align-items:center;padding:9px 0;border-bottom:1px solid #102b40}.hall-leader:last-child{border-bottom:0}.hall-leader>span{color:#e2b149;font-weight:850;text-align:center}.hall-leader b{font-size:11.5px;color:#e7f2f8}.hall-leader small{display:block;color:#68869a;font-size:9.5px;margin-top:2px}.hall-leader strong{color:#e2b149;font-size:12px}
+#tftRankingsPage .hall-events{margin-top:13px;background:#05121f;border:1px solid #1d4462;border-radius:12px;padding:5px 10px}
+#tftRankingsPage .hall-event{display:grid;grid-template-columns:32px minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:11px 5px;border-bottom:1px solid #102b40}.hall-event:last-child{border-bottom:0}
+#tftRankingsPage .hall-event .hall-ev-who{min-width:0}.hall-event .hall-ev-who b{display:block;color:#e7f2f8;font-size:12.5px}.hall-event .hall-ev-who small{display:block;color:#68869a;font-size:10.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#tftRankingsPage .hall-event .hall-ev-val{text-align:right;color:#e2b149;font-weight:850;font-size:12px;white-space:nowrap}
+#tftRankingsPage .hall-event .hall-ev-date{text-align:right;color:#718da0;font-size:10.5px;white-space:nowrap}
+#tftRankingsPage .hall-badge-new{display:inline-block;background:rgba(127,224,211,.12);color:#7fe0d3;border-radius:20px;padding:3px 8px;font-size:9.5px;font-weight:800;margin-left:6px}
+#tftRankingsPage .hall-badge-took{display:inline-block;background:rgba(226,177,73,.14);color:#e2b149;border-radius:20px;padding:3px 8px;font-size:9.5px;font-weight:800;margin-left:6px}
+#tftRankingsPage .rank-rules{margin-top:16px;padding:14px;background:#071727;border:1px solid #16354c;border-radius:11px}.rank-rules h3{margin:0 0 10px;color:#cfe4f2;font-size:13px}.rank-rules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.rank-rules-grid>div{background:#05121f;border:1px solid #15364e;border-radius:9px;padding:10px}.rank-rules-grid b{display:block;color:#e2b149;font-size:11px;margin-bottom:3px}.rank-rules-grid span{display:block;color:#718da0;font-size:10.5px;line-height:1.45}
+@media(max-width:850px){#tftRankingsPage .rank-page-grid{grid-template-columns:1fr}.rank-page-hero{align-items:flex-start!important;flex-direction:column}.hall-layout{grid-template-columns:1fr!important}.rank-rules-grid{grid-template-columns:1fr 1fr!important}.hall-summary{grid-template-columns:repeat(2,1fr)!important}}
+@media(max-width:520px){#tftRankingsPage .hall-summary{grid-template-columns:1fr!important}.hall-row{grid-template-columns:22px 26px minmax(0,1fr)!important}.hall-champ{grid-column:1/4;text-align:left!important;margin-top:-4px;padding-left:38px}.hall-filterbar{flex-wrap:wrap}.hall-event{grid-template-columns:28px minmax(0,1fr)!important}.hall-ev-val,.hall-ev-date{grid-column:2;text-align:left!important}}
+@media(max-width:520px){#tftRankingsPage .rank-page-box{padding:14px}.rank-page-tabs{overflow-x:auto}.rank-rules-grid{grid-template-columns:1fr!important}.rank-line{grid-template-columns:28px minmax(0,1fr);}.rank-val{grid-column:2;text-align:left!important;margin-top:-5px}}
+</style>
 <style id="tft-pages-css">
 /* ---- visibilidade por página ---- */
 .tft-shell:not([data-tft-page]) .tft-hero,
@@ -886,6 +995,22 @@ h1.retention-title{margin:0}
   <div class="tft-hero-avatar" aria-hidden="true">&#129497;</div><div class="tft-hero-txt"><b id="tftHeroTitulo">Olá, aventureiro! 👑</b><div id="tftHeroSub">Bem-vindo de volta ao Tibia Farm Tracker</div></div>
   <button type="button" class="tft-menu-btn" onclick="tftAbrirMenu()" aria-label="Abrir menu">☰</button>
  </div>
+
+ <section id="homeRankingWidget" class="home-ranking-widget" aria-label="Ranking do Tibia Farm Tracker">
+  <div class="hrw-head">
+   <div>
+    <div class="hrw-kicker">🏆 COMPETIÇÃO DA COMUNIDADE</div>
+    <h2 id="hrwTitle">Ranking TFT</h2>
+    <p id="hrwSub">Os melhores resultados da comunidade, em destaque.</p>
+   </div>
+   <button type="button" class="hrw-link" onclick="tftNav('rankings')">Ver rankings completos →</button>
+  </div>
+  <div class="hrw-stage" id="hrwStage">
+   <div class="hrw-loading">Carregando ranking...</div>
+  </div>
+  <div class="hrw-dots" id="hrwDots" aria-hidden="true"></div>
+ </section>
+
  <img class="logo" src="data:image/webp;base64,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" alt="Tibia Farm Tracker">
  <div class="frame">
   <div class="topbar">
@@ -986,6 +1111,35 @@ h1.retention-title{margin:0}
 <p>Não. Ela considera apenas os levels. Para a divisão de XP funcionar, a Shared Experience também precisa estar ativada na party e os membros precisam participar da caça. Confira as regras atuais no jogo.</p>
 <h3>Quer dividir também o loot da party?</h3>
 <p>Use o <a href="/ferramentas/divisor-party-hunt" data-route="party" style="color:#8fd4ff">Divisor de Party Hunt</a> para dividir o balance e gerar as transferências.</p>
+</section></div>
+<div class="tft-tool-page" id="tftRankingsPage" role="region" aria-labelledby="tftRankingsTitle">
+<section class="rank-page-box">
+ <div class="rank-page-hero">
+  <div><div class="rank-kicker">🏆 COMPETIÇÃO DA COMUNIDADE</div><h1 id="tftRankingsTitle">Rankings TFT</h1><p>Compare os melhores resultados da comunidade e conquiste seu espaço no <strong>Hall dos Caçadores</strong>.</p></div>
+  <div class="rank-page-updated" id="rankPageUpdated">Carregando ranking…</div>
+ </div>
+ <div class="rank-page-tabs" role="tablist" aria-label="Seções do ranking">
+  <button type="button" class="on" id="rankPageTabGeneral" onclick="tftRankPageTab('general')">📊 Rankings Gerais</button>
+  <button type="button" id="rankPageTabHall" onclick="tftRankPageTab('hall')">👑 Hall dos Caçadores</button>
+ </div>
+ <div id="rankPageGeneral" class="rank-page-pane">
+  <div class="rank-page-grid">
+   <article class="rank-board" data-board="farm"><div class="rank-board-head"><div><span>💰</span><h2>Maior Farm do Dia</h2><p>Maior farm total obtido em um único dia.</p></div><b>TOP 10</b></div><div id="rankBoardFarm" class="rank-board-list"></div></article>
+   <article class="rank-board" data-board="pph"><div class="rank-board-head"><div><span>⚔️</span><h2>Melhor Profit/H</h2><p>Maior profit por hora em uma hunt registrada.</p></div><b>TOP 10</b></div><div id="rankBoardPph" class="rank-board-list"></div></article>
+   <article class="rank-board" data-board="streak"><div class="rank-board-head"><div><span>🔥</span><h2>Maior Constância</h2><p>Maior sequência atual de dias de farm, com domingo como descanso.</p></div><b>TOP 10</b></div><div id="rankBoardStreak" class="rank-board-list"></div></article>
+   <article class="rank-board" data-board="time"><div class="rank-board-head"><div><span>⏱️</span><h2>Maior Tempo de Farm</h2><p>Maior tempo total registrado pela comunidade.</p></div><b>TOP 10</b></div><div id="rankBoardTime" class="rank-board-list"></div></article>
+  </div>
+ </div>
+ <div id="rankPageHall" class="rank-page-pane" hidden>
+  <div class="hall-intro"><div class="hall-crown">👑</div><div><h2>Hall dos Caçadores</h2><p>Cada hunt possui <strong>um único campeão atual</strong>: o jogador com o melhor Profit/H registrado para aquela hunt. O domínio mostra quantas hunts diferentes o jogador lidera.</p></div></div>
+  <div class="hall-summary" id="hallSummary"></div>
+  <div class="hall-layout"><div><div class="hall-section-title"><h3>👑 Campeões por Hunt</h3><span id="hallCount">0 hunts</span></div>
+   <div class="hall-filterbar"><div class="hall-chips" id="hallHuntChips" role="group" aria-label="Sugestões de hunt"></div><input class="hall-search" id="hallSearch" placeholder="🔎 Procurar uma hunt..." oninput="tftHallFilter()"></div>
+   <div id="hallList" class="hall-list"></div></div><aside class="hall-side"><h3>🏆 Maiores Domínios</h3><p>Jogadores que dominam o maior número de hunts.</p><div id="hallLeaders"></div></aside></div>
+  <div class="hall-section-title" style="margin-top:14px"><h3>⚔️ Últimas Conquistas</h3><span>Mudanças recentes no Hall dos Caçadores</span></div>
+  <div class="hall-events" id="hallEvents"></div>
+ </div>
+ <div class="rank-rules"><h3>📖 Como funciona</h3><div class="rank-rules-grid"><div><b>1. 🔐 Entre com sua conta Google</b><span>Para participar dos rankings, entre no Tibia Farm Tracker usando sua conta Google. Assim seus resultados podem ser associados ao seu perfil e aparecer nas classificações.</span></div><div><b>2. ⚔️ Registre suas hunts corretamente</b><span>Registre suas hunts e farms normalmente no Tibia Farm Tracker, informando os dados reais da sessão. Quanto mais corretamente você registrar seus resultados, mais confiável será sua posição nos rankings.</span></div><div><b>3. 🏆 Conquiste seu lugar nos rankings</b><span>Seus melhores resultados podem aparecer nas diferentes categorias, como Maior Farm do Dia, Melhor Profit/H, Maior Constância e Maior Tempo de Farm.</span></div><div><b>4. 👑 Torne-se campeão de uma hunt</b><span>No Hall dos Caçadores, cada hunt possui um campeão atual. O jogador com o melhor Profit/H registrado naquela hunt ocupa o primeiro lugar.</span></div></div></div>
 </section></div>
 <div class="tft-tool-page" id="tftLootPage" role="region" aria-labelledby="tftLootTitle">
 <section class="loot-box"><h1 id="tftLootTitle">🧰 Guia de Venda de Loot</h1>
@@ -1184,20 +1338,6 @@ h1.retention-title{margin:0}
  <div class="field"><label>Meta em Gold</label><input id="weeklyGoalInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 1kk ou 1000000" title="Use k para mil e kk para milhão"></div>
  <div class="actions"><button class="btn-green" onclick="salvarMetaSemanalModal()">Salvar meta</button><button class="red" onclick="removerMetaSemanal()">Remover meta</button><button onclick="fechar('mWeeklyGoal')">Cancelar</button></div>
 </div></div>
-
-<div class="modal" id="mRanking"><div class="box" style="width:min(760px,100%)">
- <h3 id="rankingTitulo">🏆 Ranking do Tibia Farm Tracker</h3>
- <p id="rankingSubtitulo">Apenas os 10 usuários que mais se esforçaram serão merecedores de aparecer no ranking.</p>
- <div class="rank-tabs">
-  <button class="on" id="rankTabFarm" onclick="mostrarRanking('farm')">💰 Maior Farm no dia</button>
-  <button id="rankTabStreak" onclick="mostrarRanking('streak')">🔥 Maior Constância</button>
-  <button id="rankTabHunts" onclick="mostrarRanking('hunts')">⚔️ Melhor Caçador</button>
-  <button id="rankTabAlta" onclick="mostrarRanking('alta')">📈 Melhores Hunts</button>
- </div>
- <div id="rankingStatus" class="ranking-status">Carregando ranking...</div>
- <div id="rankingList" class="ranking-list"></div>
- <div class="actions"><button onclick="fechar('mRanking')">Fechar</button></div>
- </div></div>
 
 <div class="toast" id="toast"></div>
 
@@ -2013,112 +2153,162 @@ async function limpar(){
  toast("Todos os dados foram apagados.");
 }
 function rankingStreakFromDates(dates){
-  const set=new Set(dates);
-  const keyOf=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-  let cur=new Date();cur.setHours(12,0,0,0);
-  let key=keyOf(cur);
-  if(!set.has(key)){cur.setDate(cur.getDate()-1);key=keyOf(cur);} // hoje ainda sem farm: começa a contagem de ontem
-  let n=0;
-  while(true){
-    if(set.has(key)){
-      n++;
-    }else if(cur.getDay()!==0){
-      break; // dia sem farm que não é domingo quebra a sequência
-    }
-    // domingo sem farm: dia de descanso, não conta mas também não quebra
-    cur.setDate(cur.getDate()-1);
-    key=keyOf(cur);
-  }
-  return n;
+ const set=new Set(dates);
+ const keyOf=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+ let cur=new Date();cur.setHours(12,0,0,0);
+ let key=keyOf(cur);
+ if(!set.has(key)){cur.setDate(cur.getDate()-1);key=keyOf(cur);}
+ let n=0;
+ while(true){
+  if(set.has(key))n++;
+  else if(cur.getDay()!==0)break;
+  cur.setDate(cur.getDate()-1);key=keyOf(cur);
+ }
+ return n;
+}
+function rankingHuntKey(s){
+ const id=String(s.huntId||s.hunt_id||"").trim();
+ if(id)return "id:"+id;
+ return "name:"+String(s.hunt||"Hunt não informada").trim().toLowerCase();
 }
 function calcularRankingStats(){
-  (S.metas||[]).forEach(m=>reavaliarSuspeitos(m));
-  const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
-  const sessoes=sessoesRaw.filter(s=>!s.resumoDia&&!s.somado);
-  const porDiaHunt={};
-  sessoes.filter(s=>tipoDe(s)==="hunt"&&!s.suspeito).forEach(s=>{if(!s.data)return;porDiaHunt[s.data]=(porDiaHunt[s.data]||0)+(Number(s.gold)||0)});
-  let melhorDiaTotal=0;
-  Object.values(porDiaHunt).forEach(v=>{if(v>melhorDiaTotal)melhorDiaTotal=v});
-  const porHunt={};
-  const addHunt=(nome,gold,time)=>{
-    const h=(nome||"Hunt não informada").trim()||"Hunt não informada";
-    if(!porHunt[h])porHunt[h]={gold:0,time:0};
-    porHunt[h].gold+=Number(gold)||0;porHunt[h].time+=Number(time)||0;
-  };
-  sessoes.filter(s=>tipoDe(s)==="hunt"&&!s.suspeito).forEach(s=>addHunt(s.hunt,s.gold,s.time));
-  sessoesRaw.filter(s=>s.resumoDia&&Array.isArray(s.huntsDetalhes)).forEach(s=>{
-    s.huntsDetalhes.filter(h=>(h.tipo||"hunt")==="hunt"&&!h.suspeito).forEach(h=>addHunt(h.hunt,h.gold,h.time));
-  });
-  let melhorHunt=0,melhorHuntNome="";
-  Object.keys(porHunt).forEach(nome=>{
-    const v=porHunt[nome],pph=v.time>0?v.gold/(v.time/60):0;
-    if(pph>melhorHunt){melhorHunt=pph;melhorHuntNome=nome}
-  });
-  const dates=[...new Set(sessoes.filter(s=>tipoDe(s)==="hunt"||tipoDe(s)==="boss").map(s=>s.data).filter(Boolean))];
-  return {nickname:(S.nickname||"").trim(),profit:melhorDiaTotal,melhorHunt,melhorHuntNome,streak:rankingStreakFromDates(dates)};
+ (S.metas||[]).forEach(m=>reavaliarSuspeitos(m));
+ const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
+ const sessoes=sessoesRaw.filter(s=>!s.resumoDia&&!s.somado&&!s.suspeito);
+ const porDia={}; const porHunt={}; const hallPorHunt={};
+ let tempoTotal=0;
+ sessoes.forEach(s=>{
+  const mins=Number(s.time)||0,gold=Number(s.gold)||0;
+  tempoTotal+=Math.max(0,mins);
+  if(s.data)porDia[s.data]=(porDia[s.data]||0)+gold;
+  if(tipoDe(s)!=="hunt"||mins<=0||gold<=0)return;
+  const key=rankingHuntKey(s),nome=(s.hunt||"Hunt não informada").trim()||"Hunt não informada";
+  if(!porHunt[key])porHunt[key]={hunt:nome,huntId:s.huntId||"",huntCity:s.huntCity||"",gold:0,time:0};
+  porHunt[key].gold+=gold;porHunt[key].time+=mins;
+  const pph=gold/(mins/60); const atual=hallPorHunt[key];
+  if(!atual||pph>atual.pph)hallPorHunt[key]={hunt:nome,huntId:s.huntId||"",huntCity:s.huntCity||"",pph:Math.round(pph),gold,time:mins};
+ });
+ let melhorDia=0;Object.values(porDia).forEach(v=>{if(v>melhorDia)melhorDia=v});
+ let melhorHunt=0,melhorHuntNome="";Object.values(porHunt).forEach(v=>{const p=v.time>0?v.gold/(v.time/60):0;if(p>melhorHunt){melhorHunt=p;melhorHuntNome=v.hunt}});
+ const dates=[...new Set(sessoes.filter(s=>tipoDe(s)==="hunt"||tipoDe(s)==="boss").map(s=>s.data).filter(Boolean))];
+ const hall=Object.values(hallPorHunt).sort((a,b)=>b.pph-a.pph).slice(0,200);
+ return {nickname:(S.nickname||"").trim(),profit:Math.round(melhorDia),melhorHunt:Math.round(melhorHunt),melhorHuntNome,streak:rankingStreakFromDates(dates),tempoTotal:Math.round(tempoTotal),hall};
 }
-let rankingCache={farm:[],streak:[],hunts:[]},rankingAtual="farm";
-async function abrirRanking(){
-  abrir("mRanking");
-  const status=document.getElementById("rankingStatus");
-  if(status)status.textContent="Carregando ranking...";
-  if(window.syncRanking){ try{ await window.syncRanking(); }catch(e){} }
-  if(window.carregarRanking) await window.carregarRanking();
-  else if(status)status.textContent="O ranking ainda está inicializando. Tente novamente em alguns segundos.";
-}
-async function mostrarRanking(tipo){
-  rankingAtual=tipo;
-  ["farm","streak","hunts","alta"].forEach(t=>{
-    const b=document.getElementById("rankTab"+(t==="farm"?"Farm":t==="streak"?"Streak":t==="hunts"?"Hunts":"Alta"));
-    if(b)b.classList.toggle("on",t===tipo);
-  });
-  const titulo=document.getElementById("rankingTitulo"),sub=document.getElementById("rankingSubtitulo"),status=document.getElementById("rankingStatus");
-  if(tipo==="alta"){
-    if(titulo)titulo.textContent="📈 Hunts em Alta";
-    if(sub)sub.textContent="Média de profit/h reportada pela comunidade nos últimos 7 dias (só hunts com pelo menos 3 jogadores).";
-    if(status)status.textContent="Carregando...";
-    if(window.syncHuntPerf){ try{ await window.syncHuntPerf(); }catch(e){} }
-    if(window.carregarHuntsEmAlta) await window.carregarHuntsEmAlta();
-    else if(status)status.textContent="Ainda inicializando. Tente novamente em alguns segundos.";
-  }else{
-    if(titulo)titulo.textContent="🏆 Ranking do Tibia Farm Tracker";
-    if(sub)sub.textContent="Apenas os 10 usuários que mais se esforçaram serão merecedores de aparecer no ranking.";
-    renderRankingList();
-  }
-}
+let rankingCache={farm:[],streak:[],hunts:[],hall:[],time:[]};
+window.tftRankingDocs=[];
 function streakAindaValida(updatedAt){
-  if(!updatedAt)return false;
-  let ultimo;
-  try{ ultimo = updatedAt.toDate ? updatedAt.toDate() : new Date(updatedAt); }catch(e){ return false; }
-  if(isNaN(ultimo))return false;
-  ultimo.setHours(12,0,0,0);
-  let cur=new Date();cur.setHours(12,0,0,0);
-  cur.setDate(cur.getDate()-1); // "ontem": hoje ainda pode ser farmado
-  while(cur.getTime()>ultimo.getTime()){
-    if(cur.getDay()!==0)return false; // dia normal (não domingo) sem atualização: sequência quebrada
-    cur.setDate(cur.getDate()-1);
-  }
+ if(!updatedAt)return false;let ultimo;try{ultimo=updatedAt.toDate?updatedAt.toDate():new Date(updatedAt)}catch(e){return false}
+ if(isNaN(ultimo))return false;ultimo.setHours(12,0,0,0);let cur=new Date();cur.setHours(12,0,0,0);cur.setDate(cur.getDate()-1);
+ while(cur.getTime()>ultimo.getTime()){if(cur.getDay()!==0)return false;cur.setDate(cur.getDate()-1)}return true;
+}
+function fmtTempoRanking(mins){mins=Math.max(0,Math.round(Number(mins)||0));const h=Math.floor(mins/60),m=mins%60;return h?String(h)+"h "+String(m).padStart(2,"0")+"min":m+" min"}
+function tftRankingMedal(i){return i===0?"🥇":i===1?"🥈":i===2?"🥉":String(i+1)}
+function tftRankingTabLabel(type){return type==="hall"?"👑 Hall dos Caçadores":"📊 Rankings Gerais"}
+function tftRankPageTab(tab){
+ const g=document.getElementById("rankPageGeneral"),h=document.getElementById("rankPageHall"),bg=document.getElementById("rankPageTabGeneral"),bh=document.getElementById("rankPageTabHall");
+ if(g)g.hidden=tab!=="general";if(h)h.hidden=tab!=="hall";if(bg)bg.classList.toggle("on",tab==="general");if(bh)bh.classList.toggle("on",tab==="hall");
+ if(tab==="hall")renderHallPage();
+}
+function renderRankingBoard(id,arr,valueFn,metaFn){
+ const box=document.getElementById(id);if(!box)return;
+ if(!arr||!arr.length){box.innerHTML='<div class="rank-empty">Ainda não há dados suficientes para este ranking.</div>';return}
+ box.innerHTML=arr.slice(0,10).map((r,i)=>'<div class="rank-line"><div class="rank-pos">'+tftRankingMedal(i)+'</div><div class="rank-person"><b>'+esc(r.nickname||"Jogador")+'</b><small>'+esc(metaFn?metaFn(r):"")+'</small></div><div class="rank-val">'+esc(valueFn(r))+'</div></div>').join("");
+}
+function renderGeneralRankings(){
+ const docs=window.tftRankingDocs||[];
+ const farm=docs.slice().sort((a,b)=>(Number(b.profit)||0)-(Number(a.profit)||0));
+ const pph=docs.slice().sort((a,b)=>(Number(b.melhorHunt)||0)-(Number(a.melhorHunt)||0));
+ const streak=docs.slice().map(r=>({...r,_streak:streakAindaValida(r.updatedAt)?Number(r.streak)||0:0})).sort((a,b)=>b._streak-a._streak);
+ const time=docs.slice().sort((a,b)=>(Number(b.tempoTotal)||0)-(Number(a.tempoTotal)||0));
+ renderRankingBoard("rankBoardFarm",farm,r=>fmt(Number(r.profit)||0)+" GP",r=>"Melhor dia registrado");
+ renderRankingBoard("rankBoardPph",pph,r=>fmt(Number(r.melhorHunt)||0)+" GP/h",r=>r.melhorHuntNome||"Melhor hunt");
+ renderRankingBoard("rankBoardStreak",streak,r=>(Number(r._streak)||0)+" "+(Number(r._streak)===1?"dia":"dias"),r=>"Sequência atual");
+ renderRankingBoard("rankBoardTime",time,r=>fmtTempoRanking(r.tempoTotal),r=>"Tempo total de farm");
+}
+function tftHallInitials(name){
+ name=String(name||"?").trim();if(!name)return "?";
+ const parts=name.split(/\s+/).filter(Boolean);
+ if(parts.length>1)return (parts[0][0]+parts[1][0]).toUpperCase();
+ return name.slice(0,2).toUpperCase();
+}
+function tftComputeHallChampions(docs){
+ const byHunt={};
+ (docs||[]).forEach(r=>(Array.isArray(r.hall)?r.hall:[]).forEach(h=>{const key=String(h.huntId||"").trim()?"id:"+h.huntId:"name:"+String(h.hunt||"").trim().toLowerCase();if(!key)return;const p=Number(h.pph)||0;if(p<=0)return;const cand={...h,key,pph:p,nickname:r.nickname||"Jogador"};if(!byHunt[key]||p>byHunt[key].pph)byHunt[key]=cand;}));
+ return Object.values(byHunt).sort((a,b)=>b.pph-a.pph||String(a.hunt).localeCompare(String(b.hunt),"pt-BR"));
+}
+function renderHallList(champions){
+ const list=document.getElementById("hallList");if(!list)return;
+ list.innerHTML=champions.length?champions.map((h,i)=>'<div class="hall-row"><div class="hall-rank">'+tftRankingMedal(i)+'</div><div class="hall-avatar">'+esc(tftHallInitials(h.nickname))+'</div><div class="hall-hunt"><b>'+esc(h.hunt||"Hunt")+'</b><small>'+esc(h.huntCity?"📍 "+h.huntCity:"Hunt registrada no tracker")+'</small></div><div class="hall-champ"><b>'+esc(h.nickname||"Jogador")+'</b><small>'+fmt(Number(h.pph)||0)+' GP/h</small></div></div>').join(""):'<div class="rank-empty">Nenhuma hunt encontrada com esse filtro.</div>';
+ const hc=document.getElementById("hallCount");if(hc)hc.textContent=champions.length+" "+(champions.length===1?"hunt":"hunts");
+}
+window.hallActiveHuntFilter="";
+function renderHallChips(champions){
+ const box=document.getElementById("hallHuntChips");if(!box)return;
+ // sugestões: as hunts com campeão mais disputado/relevante (já vêm ordenadas por pph)
+ const nomes=[];const vistos={};
+ champions.forEach(h=>{const n=String(h.hunt||"").trim();if(!n||vistos[n])return;vistos[n]=1;nomes.push(n)});
+ const sugestoes=nomes.slice(0,8);
+ if(window.hallActiveHuntFilter&&!sugestoes.includes(window.hallActiveHuntFilter))sugestoes.unshift(window.hallActiveHuntFilter);
+ box.innerHTML='<button type="button" class="hall-chip'+(window.hallActiveHuntFilter?"":" on")+'" onclick="tftHallChipClick(\'\')">Todas</button>'+
+  sugestoes.map(n=>'<button type="button" class="hall-chip'+(window.hallActiveHuntFilter===n?" on":"")+'" onclick="tftHallChipClick('+JSON.stringify(n).replace(/"/g,"&quot;")+')">'+esc(n)+'</button>').join("");
+}
+function tftHallChipClick(nome){
+ window.hallActiveHuntFilter=nome||"";
+ renderHallChips(window.hallChampionsCache||[]);
+ tftHallFilter();
+}
+window.tftHallChipClick=tftHallChipClick;
+function tftHallFilter(){
+ const all=window.hallChampionsCache||[];
+ const ativa=window.hallActiveHuntFilter||"";
+ const term=((document.getElementById("hallSearch")||{}).value||"").trim().toLowerCase();
+ const filtered=all.filter(h=>{
+  if(ativa&&String(h.hunt||"")!==ativa)return false;
+  if(term&&!(String(h.hunt||"").toLowerCase().includes(term)||String(h.nickname||"").toLowerCase().includes(term)))return false;
   return true;
+ });
+ renderHallList(filtered);
 }
-function renderRankingList(){
-  const box=document.getElementById("rankingList"),status=document.getElementById("rankingStatus");
-  if(!box)return;
-  const arr=rankingAtual==="streak"
-    ?(rankingCache.streak||[]).map(r=>({...r,_efetivo:streakAindaValida(r.updatedAt)?(Number(r.streak)||0):0}))
-      .sort((a,b)=>b._efetivo-a._efetivo).slice(0,10)
-    :(rankingCache[rankingAtual]||[]);
-  if(!arr.length){box.innerHTML='<div class="ranking-empty">Nenhum usuário com nickname cadastrado ainda.</div>';return}
-  if(status)status.textContent="Top 10 • atualizado agora";
-  const labels={farm:["💰","Melhor dia"," GP"],streak:["🔥","Dias seguidos"," dias"],hunts:["⚔️","Melhor hunt",""]};
-  const meta=labels[rankingAtual];
-  box.innerHTML=arr.map((r,i)=>{
-    let val;
-    if(rankingAtual==="farm")val=fmt(Number(r.profit)||0);
-    else if(rankingAtual==="streak")val=r._efetivo.toLocaleString("pt-BR");
-    else val=esc(r.melhorHuntNome||"—");
-    return '<div class="ranking-row"><div class="ranking-pos">'+(i+1)+'</div><div class="ranking-name">'+esc(r.nickname||"Jogador")+'</div><div class="ranking-value"><span>'+meta[0]+'</span>'+val+meta[2]+'</div></div>';
-  }).join("");
+window.tftHallFilter=tftHallFilter;
+function tftHallEventDate(at){
+ let d;try{d=at&&at.toDate?at.toDate():new Date(at)}catch(e){d=null}
+ if(!d||isNaN(d))return "—";
+ const hoje=new Date();hoje.setHours(0,0,0,0);
+ const ontem=new Date(hoje);ontem.setDate(ontem.getDate()-1);
+ const dd=new Date(d);dd.setHours(0,0,0,0);
+ if(dd.getTime()===hoje.getTime())return "Hoje";
+ if(dd.getTime()===ontem.getTime())return "Ontem";
+ return d.toLocaleDateString("pt-BR");
 }
+function renderHallEvents(){
+ const box=document.getElementById("hallEvents");if(!box)return;
+ const events=(window.hallEventsCache&&Array.isArray(window.hallEventsCache.events))?window.hallEventsCache.events:[];
+ if(!events.length){box.innerHTML='<div class="rank-empty">Ainda não há conquistas registradas. Elas aparecem aqui conforme o Hall muda.</div>';return}
+ box.innerHTML=events.slice(0,20).map(ev=>{
+  const label=ev.type==="new"?"Conquistou "+esc(ev.hunt||"uma hunt")+'<span class="hall-badge-new">NOVA</span>':"Tomou o título de "+esc(ev.hunt||"uma hunt")+'<span class="hall-badge-took">TROCA</span>';
+  return '<div class="hall-event"><div class="hall-avatar">'+esc(tftHallInitials(ev.nickname))+'</div><div class="hall-ev-who"><b>'+esc(ev.nickname||"Jogador")+'</b><small>'+label+'</small></div><div class="hall-ev-val">'+fmt(Number(ev.pph)||0)+' GP/h</div><div class="hall-ev-date">'+tftHallEventDate(ev.at)+'</div></div>';
+ }).join("");
+}
+window.renderHallEvents=renderHallEvents;
+function renderHallPage(){
+ const docs=window.tftRankingDocs||[];
+ const champions=tftComputeHallChampions(docs);
+ window.hallChampionsCache=champions;
+ const domain={};champions.forEach(h=>{const n=h.nickname||"Jogador";if(!domain[n])domain[n]={nickname:n,count:0,total:0};domain[n].count++;domain[n].total+=Number(h.pph)||0});
+ const leaders=Object.values(domain).sort((a,b)=>b.count-a.count||b.total-a.total);
+ const lastEvent=(window.hallEventsCache&&window.hallEventsCache.events&&window.hallEventsCache.events[0])||null;
+ const sum=document.getElementById("hallSummary");if(sum)sum.innerHTML='<div class="hall-stat"><small>Hunts com campeão</small><b>'+champions.length.toLocaleString("pt-BR")+'</b><span>um líder atual por hunt</span></div><div class="hall-stat"><small>Caçadores no Hall</small><b>'+leaders.length.toLocaleString("pt-BR")+'</b><span>jogadores com pelo menos 1 domínio</span></div><div class="hall-stat"><small>Maior domínio</small><b>'+((leaders[0]&&leaders[0].count)||0)+'</b><span>'+(leaders[0]?esc(leaders[0].nickname):"—")+'</span></div><div class="hall-stat"><small>Última conquista</small><b>'+(lastEvent?esc(lastEvent.nickname):"—")+'</b><span>'+(lastEvent?esc(lastEvent.hunt||""):"nenhuma ainda")+'</span></div>';
+ if(window.hallActiveHuntFilter&&!champions.some(h=>h.hunt===window.hallActiveHuntFilter))window.hallActiveHuntFilter="";
+ renderHallChips(champions);
+ tftHallFilter();
+ const lb=document.getElementById("hallLeaders");if(lb)lb.innerHTML=leaders.length?leaders.slice(0,10).map((r,i)=>'<div class="hall-leader"><span>'+tftRankingMedal(i)+'</span><div><b>'+esc(r.nickname)+'</b><small>'+r.count+' '+(r.count===1?"hunt dominada":"hunts dominadas")+'</small></div><strong>'+r.count+'</strong></div>').join(""):'<div class="rank-empty">Sem campeões ainda.</div>';
+ renderHallEvents();
+}
+async function carregarRankingPage(){
+ const status=document.getElementById("rankPageUpdated");if(status)status.textContent="Atualizando…";
+ try{if(window.currentUser&&window.syncRanking)await window.syncRanking();if(window.carregarRanking)await window.carregarRanking();renderGeneralRankings();if(!document.getElementById("rankPageHall")?.hidden)renderHallPage();if(status)status.textContent="Atualizado agora";}catch(e){console.error(e);if(status)status.textContent="Não foi possível atualizar agora";renderGeneralRankings();renderHallPage();}
+}
+window.carregarRankingPage=carregarRankingPage;window.renderGeneralRankings=renderGeneralRankings;window.renderHallPage=renderHallPage;window.tftRankPageTab=tftRankPageTab;window.tftComputeHallChampions=tftComputeHallChampions;
 /* Hunts em Alta: média de profit/h por hunt, calculada localmente (últimos 7 dias, só Hunt, sem suspeitos) */
 function calcularHuntPerf(){
   (S.metas||[]).forEach(m=>reavaliarSuspeitos(m));
@@ -2167,6 +2357,110 @@ function renderHuntsEmAlta(){
   box.innerHTML=lista.map((x,i)=>'<div class="ranking-row"><div class="ranking-pos">'+(i+1)+'</div><div class="ranking-name">'+esc(x.nome)+'</div><div class="ranking-value"><span>⚔️</span>'+fmt(x.media)+' GP/h <small style="opacity:.65;font-weight:400">· '+x.jogadores+' jogador'+(x.jogadores===1?'':'es')+'</small></div></div>').join('');
 }
 window.renderHuntsEmAlta=renderHuntsEmAlta;
+
+/* === Ranking rotativo da Home === */
+(function(){
+ let slides=[],index=0,timer=null,loaded=false;
+
+ function escH(v){return String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+ function fmtH(v){return Number(v||0).toLocaleString("pt-BR");}
+
+ function montarSlides(){
+   const docs=window.tftRankingDocs||rankingCache.farm||[];
+   slides=[];
+
+   const topFarm=docs.slice().sort((a,b)=>(Number(b.profit)||0)-(Number(a.profit)||0)).slice(0,3);
+   const topPph=docs.slice().sort((a,b)=>(Number(b.melhorHunt)||0)-(Number(a.melhorHunt)||0)).slice(0,3);
+   const topStreak=docs.slice().map(r=>({...r,_streak:streakAindaValida(r.updatedAt)?(Number(r.streak)||0):0}))
+      .sort((a,b)=>b._streak-a._streak).slice(0,3);
+
+   const topTime=docs.slice().sort((a,b)=>(Number(b.tempoTotal)||0)-(Number(a.tempoTotal)||0)).slice(0,3);
+
+   if(topFarm.length)slides.push({
+     kind:"general",title:"💰 Maior Farm do Dia",sub:"Quem teve o maior farm total em um único dia.",
+     cards:topFarm.map((r,i)=>({pos:i+1,name:r.nickname,value:fmtH(r.profit)+" GP",meta:"melhor dia"}))
+   });
+   if(topPph.length)slides.push({
+     kind:"general",title:"⚔️ Melhor Profit/H",sub:"A maior média de profit por hora registrada.",
+     cards:topPph.map((r,i)=>({pos:i+1,name:r.nickname,value:fmtH(r.melhorHunt)+" GP/h",meta:r.melhorHuntNome||"melhor hunt"}))
+   });
+   if(topStreak.length)slides.push({
+     kind:"general",title:"🔥 Maior Constância",sub:"A sequência de dias de farm mais longa.",
+     cards:topStreak.map((r,i)=>({pos:i+1,name:r.nickname,value:r._streak+" "+(r._streak===1?"dia":"dias"),meta:"sequência atual"}))
+   });
+
+   if(topTime.length)slides.push({
+     kind:"general",title:"⏱️ Maior Tempo de Farm",sub:"Quem acumulou mais tempo de farm registrado.",
+     cards:topTime.map((r,i)=>({pos:i+1,name:r.nickname,value:fmtTempoRanking(r.tempoTotal),meta:"tempo total"}))
+   });
+
+   /* Maior tempo de farm: calculado a partir dos dados locais do usuário
+      só pode aparecer globalmente depois que o backend passar a armazenar o campo. */
+   const topHall=[];
+   const byHunt={};
+   (docs||[]).forEach(r=>{
+     (Array.isArray(r.hall)?r.hall:[]).forEach(h=>{
+       const hunt=String(h.hunt||"").trim(); const pph=Number(h.pph)||0;
+       if(!hunt||pph<=0)return;
+       const atual=byHunt[hunt];
+       if(!atual||pph>atual.pph)byHunt[hunt]={...h,pph,nickname:r.nickname};
+     });
+   });
+   Object.values(byHunt).sort((a,b)=>b.pph-a.pph).slice(0,3).forEach((h,i)=>topHall.push({
+     pos:i+1,name:h.hunt,value:fmtH(h.pph)+" GP/h",meta:h.nickname+" • campeão da hunt"
+   }));
+
+   if(topHall.length)slides.push({
+     kind:"hall",title:"👑 Hall dos Caçadores",sub:"Cada hunt tem um campeão. Aqui estão os maiores domínios.",
+     cards:topHall
+   });
+
+   if(!slides.length){
+     slides=[{kind:"empty",title:"🏆 Ranking TFT",sub:"O ranking começa a aparecer quando a comunidade registrar seus primeiros farms.",cards:[]}];
+   }
+ }
+
+ function renderSlide(){
+   const stage=document.getElementById("hrwStage"),dots=document.getElementById("hrwDots");
+   const title=document.getElementById("hrwTitle"),sub=document.getElementById("hrwSub");
+   if(!stage)return;
+   montarSlides();
+   const sl=slides[index%slides.length];
+   if(title)title.textContent=sl.title.replace(/^[^ ]+ /,"");
+   if(sub)sub.textContent=sl.sub;
+   if(dots)dots.innerHTML=slides.map((_,i)=>'<span class="hrw-dot '+(i===index?'on':'')+'"></span>').join("");
+
+   if(sl.kind==="empty"){
+     stage.innerHTML='<div class="hrw-loading">🏹 Registre hunts e participe dos rankings da comunidade.</div>';
+     return;
+   }
+   stage.innerHTML='<div class="hrw-grid">'+sl.cards.map((c,i)=>
+     '<div class="hrw-card '+(i===0?'main':'')+'">'+
+       '<div class="hrw-rank">#'+c.pos+'</div>'+
+       '<div class="hrw-champion"><div class="hrw-medal">'+(i===0?'🥇':i===1?'🥈':'🥉')+'</div><div>'+
+       '<div class="hrw-name">'+escH(c.name)+'</div>'+
+       '<div class="hrw-value '+(sl.kind==="hall"?'cyan':'')+'">'+escH(c.value)+'</div>'+
+       '<div class="hrw-meta">'+escH(c.meta)+'</div>'+
+       '</div></div>'+
+     '</div>'
+   ).join("")+'</div>';
+ }
+
+ async function carregar(){
+   try{
+     if(window.currentUser && window.syncRanking)await window.syncRanking();
+     if(window.carregarRanking)await window.carregarRanking();
+     loaded=true;index=0;renderSlide();
+   }catch(e){console.warn("Ranking Home:",e);renderSlide();}
+   clearInterval(timer);
+   timer=setInterval(function(){if(slides.length){index=(index+1)%slides.length;renderSlide();}},15000);
+ }
+ window.tftRankingHomeRefresh=function(){index=0;renderSlide();};
+
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",carregar);
+ else setTimeout(carregar,350);
+})();
+
 function exportar(){
  const a=document.createElement("a");
  a.href=URL.createObjectURL(new Blob([JSON.stringify(exportObj(),null,1)],{type:"application/json"}));
@@ -2690,6 +2984,8 @@ async function syncRanking(){
    melhorHunt:stats.melhorHunt,
    melhorHuntNome:stats.melhorHuntNome,
    streak:stats.streak,
+   tempoTotal:stats.tempoTotal||0,
+   hall:Array.isArray(stats.hall)?stats.hall:[],
    updatedAt:new Date()
   });
   return true;
@@ -2717,6 +3013,61 @@ async function syncHuntPerf(){
  }
 }
 window.syncHuntPerf=syncHuntPerf;
+
+async function fetchHallEvents(){
+ try{
+  const snap=await getDoc(doc(db,"hallEvents","log"));
+  window.hallEventsCache=snap.exists()?snap.data():{events:[],snapshot:{}};
+ }catch(e){
+  console.error("Falha ao carregar últimas conquistas:",e);
+  window.hallEventsCache=window.hallEventsCache||{events:[],snapshot:{}};
+ }
+}
+
+// Compara os campeões atuais com o último retrato salvo e registra
+// quem tomou/conquistou o título de cada hunt. Só um usuário logado
+// tenta escrever, e no máximo 1x a cada 5min, para evitar contenção.
+// Requer uma regra do Firestore liberando leitura pública e escrita
+// para usuários autenticados em hallEvents/log.
+async function syncHallEvents(champions){
+ if(!window.currentUser)return;
+ try{
+  const chave="tftHallEventsSync";
+  const ultimo=Number(localStorage.getItem(chave)||0);
+  if(Date.now()-ultimo<5*60*1000)return;
+  const ref=doc(db,"hallEvents","log");
+  const snap=await getDoc(ref);
+  const primeiraVez=!snap.exists();
+  const atual=snap.exists()?snap.data():{events:[],snapshot:{}};
+  localStorage.setItem(chave,String(Date.now()));
+  const novoSnapshot={};champions.forEach(h=>{novoSnapshot[h.key]={nickname:h.nickname,pph:h.pph}});
+  if(primeiraVez){
+   await setDoc(ref,{events:[],snapshot:novoSnapshot});
+   window.hallEventsCache={events:[],snapshot:novoSnapshot};
+   return;
+  }
+  const snapshotAnterior=atual.snapshot||{};
+  const eventos=Array.isArray(atual.events)?atual.events.slice():[];
+  let houveNovidade=false;
+  champions.forEach(h=>{
+   const anterior=snapshotAnterior[h.key];
+   if(!anterior){
+    eventos.unshift({type:"new",nickname:h.nickname,hunt:h.hunt,huntCity:h.huntCity||"",pph:h.pph,at:new Date()});
+    houveNovidade=true;
+   }else if(anterior.nickname!==h.nickname && Number(h.pph)>Number(anterior.pph||0)){
+    eventos.unshift({type:"took",nickname:h.nickname,hunt:h.hunt,huntCity:h.huntCity||"",pph:h.pph,prevNickname:anterior.nickname,at:new Date()});
+    houveNovidade=true;
+   }
+  });
+  if(!houveNovidade)return;
+  const eventosSalvos=eventos.slice(0,30);
+  await setDoc(ref,{events:eventosSalvos,snapshot:novoSnapshot});
+  window.hallEventsCache={events:eventosSalvos,snapshot:novoSnapshot};
+ }catch(e){
+  console.error("Falha ao registrar conquistas do Hall:",e);
+ }
+}
+window.syncHallEvents=syncHallEvents;
 
 async function pushCloud(){
  const u=window.currentUser;
@@ -2785,21 +3136,23 @@ window.syncRanking=syncRanking;
 window.carregarRanking = async function(){
  try{
   if(window.currentUser)await syncRanking();
-  const base=collection(db,"rankings");
-  const [a,b,c]=await Promise.all([
-   getDocs(query(base,orderBy("profit","desc"),limit(10))),
-   getDocs(query(base,orderBy("streak","desc"),limit(30))),
-   getDocs(query(base,orderBy("melhorHunt","desc"),limit(10)))
-  ]);
-  const parse=snap=>snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.nickname||"").trim());
-  rankingCache.farm=parse(a);rankingCache.streak=parse(b);rankingCache.hunts=parse(c);
-  renderRankingList();
+  const snap=await getDocs(collection(db,"rankings"));
+  const parse=snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.nickname||"").trim());
+  rankingCache.farm=parse.slice().sort((a,b)=>(Number(b.profit)||0)-(Number(a.profit)||0)).slice(0,10);
+  rankingCache.streak=parse.slice().sort((a,b)=>{const sa=streakAindaValida(a.updatedAt)?Number(a.streak)||0:0;const sb=streakAindaValida(b.updatedAt)?Number(b.streak)||0:0;return sb-sa}).slice(0,10);
+  rankingCache.hunts=parse.slice().sort((a,b)=>(Number(b.melhorHunt)||0)-(Number(a.melhorHunt)||0)).slice(0,10);
+  rankingCache.time=parse.slice().sort((a,b)=>(Number(b.tempoTotal)||0)-(Number(a.tempoTotal)||0)).slice(0,10);
+  rankingCache.hall=parse;
+  window.tftRankingDocs=parse;
+  const champions=window.tftComputeHallChampions?window.tftComputeHallChampions(parse):[];
+  await fetchHallEvents();
+  if(window.currentUser)await syncHallEvents(champions);
+  if(document.getElementById("rankPageGeneral")){renderGeneralRankings();renderHallPage();}
+  if(window.tftRankingHomeRefresh)window.tftRankingHomeRefresh();
  }catch(e){
   console.error("Falha ao carregar ranking:",e);
-  const status=document.getElementById("rankingStatus");
-  const box=document.getElementById("rankingList");
-  if(status)status.textContent="Não foi possível carregar o ranking.";
-  if(box)box.innerHTML='<div class="ranking-empty">Verifique as regras do Firestore para a coleção <b>rankings</b>.</div>';
+  const status=document.getElementById("rankPageUpdated");if(status)status.textContent="Não foi possível carregar o ranking";
+  ["rankBoardFarm","rankBoardPph","rankBoardStreak","rankBoardTime"].forEach(id=>{const b=document.getElementById(id);if(b)b.innerHTML='<div class="rank-empty">Não foi possível carregar os dados agora.</div>';});
  }
 };
 
@@ -3564,7 +3917,7 @@ function tftFecharMenu(){var s=document.getElementById("tftSidebar"),o=document.
 var TFT_TOOL_KEYS=["loot","comparar","custos","party","partyxp","bestiario","elementos"];
 function tftMarcarNav(k){document.querySelectorAll("#tftNav button,#tftNav a").forEach(function(b){var n=b.getAttribute("data-nav");b.classList.toggle("on",n===k||(n==="ferramentas"&&TFT_TOOL_KEYS.indexOf(k)!==-1));if(b.tagName==="A"){if(n===k)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")}})}
 function tftScrollTo(id){var el=document.getElementById(id);if(!el)return false;el.scrollIntoView({behavior:"smooth",block:"start"});return true}
-var TFT_PAGES=["inicio","farm","desempenho","historico","metas","loot","comparar","custos","party","partyxp","bestiario","elementos","legal-ajuda","legal-privacidade","legal-termos","legal-contato"];
+var TFT_PAGES=["inicio","farm","desempenho","historico","metas","rankings","loot","comparar","custos","party","partyxp","bestiario","elementos","legal-ajuda","legal-privacidade","legal-termos","legal-contato"];
 function tftDefinirPagina(k){
  var shell=document.querySelector(".tft-shell");
  if(!shell)return;
@@ -3574,7 +3927,7 @@ function tftDefinirPagina(k){
 }
 function tftNav(k){
  tftFecharMenu();
- if(k==="rankings"){if(typeof abrirRanking==="function")abrirRanking();return}
+ if(k==="rankings"){if(window.tftIrPara){window.tftIrPara("rankings");return;} }
  if(k==="config"){if(typeof abrirConfig==="function")abrirConfig();return}
  if(k==="metas")k="inicio";
  if((k==="farm"||k==="desempenho"||k==="historico")&&window.tftIrPara){window.tftIrPara(k);return}
@@ -4383,6 +4736,7 @@ setTab("div");
   farm:{path:"/registrar-farm",title:"Registrar Farm de Hunt, Boss e Loot no Tibia | Tibia Farm Tracker",desc:"Registre sua hunt no Tibia com tempo, gold e recursos usados e veja o resultado líquido e o gold por hora. Sua meta de farm é atualizada automaticamente."},
   desempenho:{path:"/desempenho",title:"Desempenho de Farm no Tibia: Profit/h, Tempo e Recordes | Tibia Farm Tracker",desc:"Acompanhe seu profit por hora, tempo farmado, melhor hunt e evolução no Tibia, com filtros por período e por hunt."},
   historico:{path:"/historico",title:"Histórico de Hunts e Farms do Tibia | Tibia Farm Tracker",desc:"Consulte todas as hunts, bosses e farms registrados, com relatórios semanais e mensais e o Hunt Analyzer guardado de cada sessão."},
+  rankings:{path:"/rankings",title:"Rankings do Tibia Farm Tracker | Melhores Farms, Profit/h e Hall dos Caçadores",desc:"Veja os rankings da comunidade do Tibia Farm Tracker: maior farm do dia, melhor profit por hora, maior constância, maior tempo de farm e o Hall dos Caçadores por hunt."},
   loot:{path:"/ferramentas/onde-vender-loot",
    title:"Onde vender o loot no Tibia | Tibia Farm Tracker",
    desc:"Cole o texto do Hunt Analyzer e descubra qual NPC paga mais por cada item do loot da sua hunt no Tibia, com total por NPC e por item."},
@@ -4440,6 +4794,7 @@ setTab("div");
   if(k==="farm"&&!document.getElementById("secaoMetas")&&typeof novaMeta==="function")novaMeta();
   if(k==="custos"&&typeof tftCustosResetar==="function")tftCustosResetar();
   if(k==="comparar"&&window.tftCmpAtualizarLista)window.tftCmpAtualizarLista();
+  if(k==="rankings"&&window.carregarRankingPage)window.carregarRankingPage();
   if(!semScroll)window.scrollTo({top:0,behavior:"smooth"});
  }
  function ir(k){
