@@ -784,6 +784,7 @@ textarea.pty-in{min-height:120px;resize:vertical;font:12.5px/1.5 ui-monospace,Me
 .pty-sel{display:inline-block;background:#05121f;color:#dcecf8;border:1px solid #23506f;border-radius:8px;padding:8px 10px;font:inherit;font-size:13px}
 @media(max-width:650px){.pty-two{grid-template-columns:1fr}}
 </style>
+<style id="tft-analyzer-card-css">.an-card{display:flex;gap:10px;align-items:flex-start;background:rgba(226,177,73,.1);border:1px solid rgba(226,177,73,.35);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:12px;line-height:1.5}.an-card-ic{font-size:22px;flex:0 0 auto}.an-card b{display:block;font-size:12.5px}.an-card p{margin:3px 0 0;opacity:.88}</style>
 <style id="tft-rankings-css">
 .tft-shell[data-tft-page="rankings"] #tftRankingsPage{display:block}
 .tft-shell[data-tft-page="rankings"] #app,.tft-shell[data-tft-page="rankings"] #retentionDashboard{display:none}
@@ -1115,7 +1116,7 @@ h1.retention-title{margin:0}
 <div class="tft-tool-page" id="tftRankingsPage" role="region" aria-labelledby="tftRankingsTitle">
 <section class="rank-page-box">
  <div class="rank-page-hero">
-  <div><div class="rank-kicker">🏆 COMPETIÇÃO DA COMUNIDADE</div><h1 id="tftRankingsTitle">Rankings TFT</h1><p>Compare os melhores resultados do mês e conquiste seu espaço no <strong>Hall dos Caçadores</strong>. <span id="rankCycleInfo" style="color:#e2b149"></span></p></div>
+  <div><div class="rank-kicker">🏆 COMPETIÇÃO DA COMUNIDADE</div><h1 id="tftRankingsTitle">Rankings TFT</h1><p>Compare os melhores resultados da comunidade e conquiste seu espaço no <strong>Hall dos Caçadores</strong>. <span id="rankCycleInfo" style="color:#e2b149"></span></p></div>
   <div class="rank-page-updated" id="rankPageUpdated">Carregando ranking…</div>
  </div>
  <div class="rank-page-tabs" role="tablist" aria-label="Seções do ranking">
@@ -1125,9 +1126,9 @@ h1.retention-title{margin:0}
  <div id="rankPageGeneral" class="rank-page-pane">
   <div class="rank-page-grid">
    <article class="rank-board" data-board="farm"><div class="rank-board-head"><div><span>💰</span><h2>Maior Farm do Dia</h2><p>Maior farm de uma hunt em um único dia (só hunts).</p></div><b>TOP 10</b></div><div id="rankBoardFarm" class="rank-board-list"></div></article>
-   <article class="rank-board" data-board="pph"><div class="rank-board-head"><div><span>⚔️</span><h2>Melhor Profit/H</h2><p>Maior profit por hora em hunts do mês.</p></div><b>TOP 10</b></div><div id="rankBoardPph" class="rank-board-list"></div></article>
+   <article class="rank-board" data-board="pph"><div class="rank-board-head"><div><span>⚔️</span><h2>Melhor Profit/H</h2><p>Maior profit por hora em uma hunt registrada.</p></div><b>TOP 10</b></div><div id="rankBoardPph" class="rank-board-list"></div></article>
    <article class="rank-board" data-board="streak"><div class="rank-board-head"><div><span>🔥</span><h2>Maior Constância</h2><p>Maior sequência atual de dias de hunt, com domingo como descanso.</p></div><b>TOP 10</b></div><div id="rankBoardStreak" class="rank-board-list"></div></article>
-   <article class="rank-board" data-board="time"><div class="rank-board-head"><div><span>⏱️</span><h2>Maior Tempo de Farm</h2><p>Maior tempo total em hunts neste mês.</p></div><b>TOP 10</b></div><div id="rankBoardTime" class="rank-board-list"></div></article>
+   <article class="rank-board" data-board="time"><div class="rank-board-head"><div><span>⏱️</span><h2>Maior Tempo de Farm</h2><p>Maior tempo total registrado em hunts.</p></div><b>TOP 10</b></div><div id="rankBoardTime" class="rank-board-list"></div></article>
   </div>
  </div>
  <div id="rankPageHall" class="rank-page-pane" hidden>
@@ -1139,7 +1140,7 @@ h1.retention-title{margin:0}
   <div class="hall-section-title" style="margin-top:14px"><h3>⚔️ Últimas Conquistas</h3><span>Mudanças no Hall neste mês</span></div>
   <div class="hall-events" id="hallEvents"></div>
  </div>
- <div class="rank-rules"><h3>📖 Como funciona</h3><div class="rank-rules-grid"><div><b>1. 🔐 Entre com sua conta Google</b><span>Faça login para participar dos rankings.</span></div><div><b>2. ⚔️ Registre suas Hunts</b><span>Registre suas hunts normalmente no Tibia Farm Tracker.</span></div><div><b>3. 🏆 Conquiste seu lugar nos rankings</b><span>Os melhores resultados do mês aparecem nos rankings.</span></div><div><b>4. 👑 Torne-se campeão de uma Hunt</b><span>Para disputar o Hall, é necessário enviar o Hunt Analyzer, ter pelo menos 1 hora de Hunt e passar pelas validações do sistema.</span></div></div></div>
+ <div class="rank-rules"><h3>📖 Como funciona</h3><div class="rank-rules-grid"><div><b>1. 🔐 Entre com sua conta Google</b><span>Faça login para participar dos rankings.</span></div><div><b>2. ⚔️ Registre suas Hunts</b><span>Registre suas hunts normalmente no Tibia Farm Tracker.</span></div><div><b>3. 🏆 Conquiste seu lugar nos rankings</b><span>Os melhores resultados aparecem nos rankings gerais. O Hall dos Caçadores recomeça todo mês.</span></div><div><b>4. 👑 Torne-se campeão de uma Hunt</b><span>Para disputar o Hall, é necessário enviar o Hunt Analyzer, ter pelo menos 1 hora de Hunt e passar pelas validações do sistema.</span></div></div></div>
 </section></div>
 <div class="tft-tool-page" id="tftLootPage" role="region" aria-labelledby="tftLootTitle">
 <section class="loot-box"><h1 id="tftLootTitle">🧰 Guia de Venda de Loot</h1>
@@ -1258,7 +1259,7 @@ h1.retention-title{margin:0}
   <div class="field"><label>Valor em Gold</label><input id="addGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
  </div>
  <div id="addRecursos" class="rec-box" style="display:none"></div>
- <details class="analyzer-box" id="addAnalyzerBox"><summary>📋 Hunt Analyzer <small>(opcional · preenche tempo e gold automaticamente)</small></summary><textarea id="addAnalyzer" class="an-text" placeholder="Cole aqui o Hunt Analyzer (opcional)"></textarea><div style="font-size:11px;opacity:.75;margin:6px 0">👑 Para disputar o Hall dos Caçadores: hunt de 1h ou mais, com o Hunt Analyzer completo e sem edições.</div><div class="an-extra"><div class="an-status" id="addAnStatus"></div><label class="an-keep"><input type="checkbox" id="addAnKeep"> 💾 Guardar este Hunt Analyzer no histórico <small id="addAnCount"></small></label></div></details>
+ <div class="an-card"><div class="an-card-ic">👑</div><div><b>Cole o Hunt Analyzer e participe do Hall dos Caçadores</b><p>Copie o Hunt Analyzer no Tibia e cole abaixo: o <strong>tempo, o gold e o nome da hunt são preenchidos automaticamente</strong>. Com ele, hunts de 1h ou mais disputam o <strong>👑 Hall dos Caçadores</strong>. O Analyzer fica salvo no seu histórico.</p></div></div><details class="analyzer-box" id="addAnalyzerBox"><summary>📋 Hunt Analyzer <small>(opcional · preenche tempo e gold automaticamente)</small></summary><textarea id="addAnalyzer" class="an-text" placeholder="Cole aqui o Hunt Analyzer (opcional)"></textarea><div class="an-extra"><div class="an-status" id="addAnStatus"></div><div class="an-saved" style="font-size:11px;opacity:.8;margin-top:4px">💾 Salvo automaticamente no seu histórico <small id="addAnCount"></small></div></div></details>
     <div class="actions"><button class="btn-green" onclick="confirmarAdd()">Registrar farm</button>
   <button onclick="fechar('mAdd')">Cancelar</button></div>
 </div></div>
@@ -1276,7 +1277,7 @@ h1.retention-title{margin:0}
   <div class="field"><label>Valor em Gold</label><input id="editGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão"></div>
  </div>
  <div id="editRecursos" class="rec-box" style="display:none"></div>
- <details class="analyzer-box" id="editAnalyzerBox"><summary>📋 Hunt Analyzer <small>(opcional · até 5 guardados · salvo na nuvem se estiver logado)</small></summary><textarea id="editAnalyzer" class="an-text" placeholder="Cole aqui o Hunt Analyzer (opcional)"></textarea></details>
+ <details class="analyzer-box" id="editAnalyzerBox"><summary>📋 Hunt Analyzer <small>(opcional · todos ficam guardados · salvo na nuvem se estiver logado)</small></summary><textarea id="editAnalyzer" class="an-text" placeholder="Cole aqui o Hunt Analyzer (opcional)"></textarea></details>
     <div class="actions"><button class="btn-green" onclick="confirmarEdit()">Salvar alterações</button>
   <button onclick="fechar('mEditFarm')">Cancelar</button></div>
 </div></div>
@@ -1797,16 +1798,10 @@ function maisAntigosAn(o,excluir,qtd){return Object.keys(o).filter(k=>k!==exclui
 function definirAnalyzer(id,txt){
  id=String(id);txt=String(txt||"").trim();const o=lerAnalyzers();
  if(!txt){if(id in o){delete o[id];gravarAnalyzers(o)}return true}
- if(!(id in o)&&Object.keys(o).length>=ANALYZER_LIMIT){
-  const n=Object.keys(o).length,apagar=maisAntigosAn(o,id,n-ANALYZER_LIMIT+1);
-  const nomes=apagar.map(k=>{const s=sessaoPorId(k);return s?nomeCurtoAnalyzer(s):"farm removido"}).join(", ");
-  if(!confirm("Você já guardou "+n+" Hunt Analyzers (limite: "+ANALYZER_LIMIT+").\nPara guardar este, "+(apagar.length>1?"os mais antigos serão apagados: ":"o mais antigo será apagado: ")+nomes+".\n\nApagar e guardar o novo?")){
-   setTimeout(()=>toast("Farm salvo sem o Hunt Analyzer (limite de "+ANALYZER_LIMIT+" atingido)."),1800);return false}
-  apagar.forEach(k=>delete o[k]);
- }
- o[id]=txt;gravarAnalyzers(o);return true;
+ if(o[id]===txt)return true;
+ o[id]=txt;return gravarAnalyzers(o);
 }
-function limitarAnalyzers(avisar){const o=lerAnalyzers(),n=Object.keys(o).length;if(n<=ANALYZER_LIMIT)return false;maisAntigosAn(o,"",n-ANALYZER_LIMIT).forEach(k=>delete o[k]);gravarLocalAnalyzers(o);if(avisar)toast("Limite de "+ANALYZER_LIMIT+" Hunt Analyzers: os mais antigos foram removidos.");return true}
+function limitarAnalyzers(){return false} /* sem limite de Analyzers guardados */
 /* Nuvem: os Analyzers vão no mesmo documento do usuário (farmTrackers/{uid}), no campo "analyzers"; chaves sem "." */
 const anKey=id=>String(id).replace(/\./g,"_");
 window.tftAnalyzersNuvem=function(){const o=lerAnalyzers(),r={};Object.keys(o).forEach(k=>{if(sessaoPorId(k))r[anKey(k)]=o[k]});return r};
@@ -2188,8 +2183,8 @@ const tftCmpStr=(p,q)=>p<q?-1:p>q?1:0;
 function tftRankCmp(m,t,a){return(x,y)=>(m(y)-m(x))||(t(y)-t(x))||tftCmpStr(a(x)||"~",a(y)||"~")||tftCmpStr(String(x.id||""),String(y.id||""))}
 function calcularRankingStats(){
  (S.metas||[]).forEach(m=>reavaliarSuspeitos(m));
- const cyc=tftCicloAtual();
- const sessoes=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]).filter(s=>isValidRankingHunt(s)&&tftCicloDe(s.data)===cyc);
+ /* rankings gerais: todo o período (não reiniciam por mês); só o Hall é mensal */
+ const sessoes=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]).filter(s=>isValidRankingHunt(s));
  const dias={},porHunt={};let tempoTotal=0,maiorHuntMin=0,ultimoAt="";
  sessoes.forEach(s=>{
   const mins=Number(s.time)||0,gold=Number(s.gold)||0,at=tftAtKey(s);
@@ -2205,7 +2200,7 @@ function calcularRankingStats(){
  let mh={p:0,nome:"",min:0,at:""};
  Object.values(porHunt).forEach(v=>{const p=v.time>0?v.gold/(v.time/60):0;if(p>mh.p||(p===mh.p&&p>0&&(v.time>mh.min||(v.time===mh.min&&v.at<mh.at))))mh={p,nome:v.hunt,min:v.time,at:v.at}});
  const dates=[...new Set(sessoes.map(s=>s.data).filter(Boolean))];
- return {nickname:(S.nickname||"").trim(),cycle:cyc,profit:Math.round(mf.v),profitMin:Math.round(mf.min),profitAt:mf.at||"",melhorHunt:Math.round(mh.p),melhorHuntNome:mh.nome,melhorHuntMin:Math.round(mh.min),melhorHuntAt:mh.at||"",streak:rankingStreakFromDates(dates),tempoTotal:Math.round(tempoTotal),maiorHuntMin:Math.round(maiorHuntMin),ultimoAt:ultimoAt};
+ return {nickname:(S.nickname||"").trim(),profit:Math.round(mf.v),profitMin:Math.round(mf.min),profitAt:mf.at||"",melhorHunt:Math.round(mh.p),melhorHuntNome:mh.nome,melhorHuntMin:Math.round(mh.min),melhorHuntAt:mh.at||"",streak:rankingStreakFromDates(dates),tempoTotal:Math.round(tempoTotal),maiorHuntMin:Math.round(maiorHuntMin),ultimoAt:ultimoAt};
 }
 /* ================= Hall: validação do Hunt Analyzer =================
    Camadas: Analyzer obrigatório → parser → validação matemática → ≥1h → Profit/h calculado pelo sistema.
@@ -2295,6 +2290,22 @@ function tftHallDesejados(uid,nick){
  return Object.keys(best).map(k=>{const b=best[k],s=b.s,c=s.hallCalc;return{id:tftHallSubId(uid,cyc,k),data:{uid,nickname:nick,rankingCycle:cyc,huntKey:k,hunt:String(s.hunt||""),huntId:String(s.huntId||""),huntCity:String(s.huntCity||""),profit:c.bal,profitPerHour:c.pph,durationMin:c.dur,loot:c.loot,supplies:c.sup,sessionDate:String(s.data||""),registeredKey:b.reg,analyzerId:tftHallAnId(uid,s.id),hallStatus:"eligible"}}});
 }
 window.tftHallDesejados=tftHallDesejados;window.tftHallAnId=tftHallAnId;
+/* ===== Analyzers na nuvem (sem limite): cada um vira um documento privado em hallAnalyzers ===== */
+const ANUP_KEY=CK+"anup";
+function tftAnUpLer(){try{const o=JSON.parse(localStorage.getItem(ANUP_KEY)||"{}");return o&&typeof o==="object"?o:{}}catch(e){return{}}}
+function tftAnUpGravar(o){try{localStorage.setItem(ANUP_KEY,JSON.stringify(o))}catch(e){}}
+function tftAnHash(t){t=String(t||"");let h=5381;for(let i=0;i<t.length;i++)h=((h<<5)+h+t.charCodeAt(i))>>>0;return t.length+"-"+h.toString(36)}
+window.tftAnalyzersParaNuvem=function(){
+ const AN=Object.assign({},tftHallLerPend(),lerAnalyzers()),out=[];
+ Object.keys(AN).forEach(id=>{
+  const s=sessaoPorId(id),t=String(AN[id]||"").trim();
+  if(!s||!t||t.length>ANALYZER_MAX)return;
+  const r=tftHallParseAnalyzer(t),bal=r.bal!=null?r.bal:(r.loot!=null&&r.sup!=null?r.loot-r.sup:0);
+  out.push({id:String(id),text:t,hash:tftAnHash(t),ses:s,doc:{sessionId:String(s.id),rankingCycle:tftCicloDe(s.data)||tftCicloAtual(),huntKey:String(rankingHuntKey(s)).slice(0,200),hunt:String(s.hunt||"").slice(0,100),huntId:String(s.huntId||"").slice(0,100),sessionDate:String(s.data||"").slice(0,20),durationMin:r.dur||0,loot:r.loot||0,supplies:r.sup||0,balance:bal,profitPerHour:(r.dur>0&&r.bal!=null)?Math.round(r.bal/(r.dur/60)):0,text:t}});
+ });
+ return out;
+};
+
 let rankingCache={farm:[],streak:[],hunts:[],hall:[],time:[]};
 window.tftRankingDocs=[];
 function streakAindaValida(updatedAt){
@@ -2316,7 +2327,7 @@ function renderRankingBoard(id,arr,valueFn,metaFn){
  box.innerHTML=arr.slice(0,10).map((r,i)=>'<div class="rank-line"><div class="rank-pos">'+tftRankingMedal(i)+'</div><div class="rank-person"><b>'+esc(r.nickname||"Jogador")+'</b><small>'+esc(metaFn?metaFn(r):"")+'</small></div><div class="rank-val">'+esc(valueFn(r))+'</div></div>').join("");
 }
 function renderGeneralRankings(){
- const cyc=tftCicloAtual(),docs=(window.tftRankingDocs||[]).filter(r=>r.cycle===cyc);
+ const docs=window.tftRankingDocs||[];
  const n=v=>Number(v)||0;
  const farm=docs.filter(r=>n(r.profit)>0).sort(tftRankCmp(r=>n(r.profit),r=>n(r.profitMin),r=>r.profitAt));
  const pph=docs.filter(r=>n(r.melhorHunt)>0).sort(tftRankCmp(r=>n(r.melhorHunt),r=>n(r.melhorHuntMin),r=>r.melhorHuntAt));
@@ -2326,7 +2337,7 @@ function renderGeneralRankings(){
  renderRankingBoard("rankBoardPph",pph,r=>fmt(n(r.melhorHunt))+" GP/h",r=>r.melhorHuntNome||"Melhor hunt");
  renderRankingBoard("rankBoardStreak",streak,r=>n(r._streak)+" "+(n(r._streak)===1?"dia":"dias"),r=>"Sequência atual");
  renderRankingBoard("rankBoardTime",time,r=>fmtTempoRanking(r.tempoTotal),r=>"Tempo total em hunts");
- const ci=document.getElementById("rankCycleInfo");if(ci)ci.textContent="Ranking de "+tftCicloRotulo(cyc)+" · recomeça todo dia 1º.";
+ const ci=document.getElementById("rankCycleInfo");if(ci)ci.textContent="Rankings gerais: todo o período. Hall dos Caçadores: ciclo de "+tftCicloRotulo(tftCicloAtual())+", recomeça todo dia 1º.";
 }
 function tftHallInitials(name){
  name=String(name||"?").trim();if(!name)return "?";
@@ -2483,7 +2494,7 @@ window.renderHuntsEmAlta=renderHuntsEmAlta;
  function fmtH(v){return Number(v||0).toLocaleString("pt-BR");}
 
  function montarSlides(){
-   const cycH=tftCicloAtual(),docs=(window.tftRankingDocs||[]).filter(r=>r.cycle===cycH);
+   const docs=window.tftRankingDocs||[];
    slides=[];
 
    const topFarm=docs.filter(r=>(Number(r.profit)||0)>0).sort((a,b)=>(Number(b.profit)||0)-(Number(a.profit)||0)).slice(0,3);
@@ -2494,7 +2505,7 @@ window.renderHuntsEmAlta=renderHuntsEmAlta;
    const topTime=docs.filter(r=>(Number(r.tempoTotal)||0)>0).sort((a,b)=>(Number(b.tempoTotal)||0)-(Number(a.tempoTotal)||0)).slice(0,3);
 
    if(topFarm.length)slides.push({
-     kind:"general",title:"💰 Maior Farm do Dia",sub:"Maior farm de uma hunt em um único dia, neste mês.",
+     kind:"general",title:"💰 Maior Farm do Dia",sub:"Maior farm de uma hunt em um único dia.",
      cards:topFarm.map((r,i)=>({pos:i+1,name:r.nickname,value:fmtH(r.profit)+" GP",meta:"melhor dia"}))
    });
    if(topPph.length)slides.push({
@@ -2521,7 +2532,7 @@ window.renderHuntsEmAlta=renderHuntsEmAlta;
    });
 
    if(!slides.length){
-     slides=[{kind:"empty",title:"🏆 Ranking TFT",sub:"O ranking do mês começa a aparecer quando a comunidade registrar suas hunts.",cards:[]}];
+     slides=[{kind:"empty",title:"🏆 Ranking TFT",sub:"O ranking começa a aparecer quando a comunidade registrar suas hunts.",cards:[]}];
    }
  }
 
@@ -2922,7 +2933,7 @@ function render(){
      <div class="field"><label>Valor em Gold</label><input id="farmGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão" onkeydown="if(event.key==='Enter')registrarFarm()"></div>
     </div>
     ${htmlSeletorRecursos('farm')}
-    <details class="analyzer-box" id="farmAnalyzerBox"><summary>📋 Hunt Analyzer <small>(opcional · preenche tempo e gold automaticamente)</small></summary><textarea id="farmAnalyzer" class="an-text" placeholder="Cole aqui o texto completo do Hunt Analyzer copiado do Tibia. O tempo e o gold são preenchidos automaticamente. Guardar o Analyzer é opcional."></textarea><div style="font-size:11px;opacity:.75;margin:6px 0">👑 Para disputar o Hall dos Caçadores: hunt de 1h ou mais, com o Hunt Analyzer completo e sem edições.</div><div class="an-extra"><div class="an-status" id="farmAnStatus"></div><label class="an-keep"><input type="checkbox" id="farmAnKeep"> 💾 Guardar este Hunt Analyzer no histórico <small id="farmAnCount"></small></label></div></details>
+    <div class="an-card"><div class="an-card-ic">👑</div><div><b>Cole o Hunt Analyzer e participe do Hall dos Caçadores</b><p>Copie o Hunt Analyzer no Tibia e cole abaixo: o <strong>tempo, o gold e o nome da hunt são preenchidos automaticamente</strong>. Com ele, hunts de 1h ou mais disputam o <strong>👑 Hall dos Caçadores</strong>. O Analyzer fica salvo no seu histórico.</p></div></div><details class="analyzer-box" id="farmAnalyzerBox" open><summary>📋 Hunt Analyzer <small>(opcional · preenche tempo e gold automaticamente)</small></summary><textarea id="farmAnalyzer" class="an-text" placeholder="Cole aqui o texto completo do Hunt Analyzer copiado do Tibia. O tempo, o gold e o nome da hunt são preenchidos automaticamente e o Analyzer é salvo no seu histórico."></textarea><div class="an-extra"><div class="an-status" id="farmAnStatus"></div><div class="an-saved" style="font-size:11px;opacity:.8;margin-top:4px">💾 Salvo automaticamente no seu histórico <small id="farmAnCount"></small></div></div></details>
     <div class="actions"><button class="btn-green" onclick="registrarFarm()">Registrar Farm</button></div>
    </section>
 
@@ -3085,7 +3096,6 @@ async function syncRanking(){
 
   await setDoc(rankRef,{
    nickname:stats.nickname,
-   cycle:stats.cycle,
    profit:stats.profit,
    profitMin:stats.profitMin||0,
    profitAt:stats.profitAt||"",
@@ -3178,18 +3188,41 @@ window.syncHallEvents=syncHallEvents;
 /* ===== Hall: Analyzers (privados, sem limite) e submissões (públicas, só dados calculados) ===== */
 async function hallUploadAnalyzers(){
  const u=window.currentUser;
- if(!u||!window.tftHallPreparar)return;
+ if(!u||!window.tftAnalyzersParaNuvem)return;
  try{
   const prep=window.tftHallPreparar();let mudou=prep.mutado;
-  for(const up of prep.uploads){
-   const s=up.ses,c=s.hallCalc||{};
+  const mapa=tftAnUpLer(),lista=tftAnalyzersParaNuvem(),vistos=new Set();
+  for(const it of lista){
+   vistos.add(it.id);
+   const eleg=it.ses.hallStatus==="eligible";
+   if(mapa[it.id]===it.hash&&(!eleg||it.ses.hallUp))continue;
    try{
-    await setDoc(doc(db,"hallAnalyzers",tftHallAnId(u.uid,s.id)),{uid:u.uid,sessionId:String(s.id),rankingCycle:prep.cycle,huntKey:rankingHuntKey(s),hunt:String(s.hunt||""),huntId:String(s.huntId||""),sessionDate:String(s.data||""),durationMin:c.dur||0,loot:c.loot||0,supplies:c.sup||0,balance:c.bal||0,profitPerHour:c.pph||0,text:up.text,createdAt:new Date()});
-    window.tftHallMarcarUp(s.id);mudou=true;
-   }catch(e){console.error("Falha ao enviar Hunt Analyzer ao Hall:",e)}
+    await setDoc(doc(db,"hallAnalyzers",tftHallAnId(u.uid,it.id)),{uid:u.uid,...it.doc,createdAt:new Date()});
+    mapa[it.id]=it.hash;
+    if(eleg){window.tftHallMarcarUp(it.id);mudou=true}
+   }catch(e){console.error("Falha ao enviar Hunt Analyzer:",e)}
   }
+  for(const id of Object.keys(mapa)){
+   if(vistos.has(id))continue;
+   try{await deleteDoc(doc(db,"hallAnalyzers",tftHallAnId(u.uid,id)));delete mapa[id]}catch(e){console.error("Falha ao remover Hunt Analyzer:",e)}
+  }
+  tftAnUpGravar(mapa);
   if(mudou&&window.tftSalvarQuieto)window.tftSalvarQuieto();
  }catch(e){console.error("Hall (analyzers):",e)}
+}
+async function pullHallAnalyzers(uid){
+ try{
+  const snap=await getDocs(query(collection(db,"hallAnalyzers"),where("uid","==",uid)));
+  const o=lerAnalyzers(),mapa=tftAnUpLer();let mud=false;
+  snap.docs.forEach(d=>{
+   const x=d.data(),id=String(x.sessionId||"");
+   if(!id||typeof x.text!=="string"||!sessaoPorId(id))return;
+   if(!(id in o)){o[id]=x.text;mud=true}
+   mapa[id]=tftAnHash(x.text);
+  });
+  tftAnUpGravar(mapa);
+  if(mud){gravarLocalAnalyzers(o);window.render&&window.render()}
+ }catch(e){console.error("Falha ao carregar Hunt Analyzers:",e)}
 }
 async function syncHallSubmissions(){
  const u=window.currentUser;
@@ -3215,7 +3248,7 @@ async function pushCloud(){
  if(!u || !window.S)return false;
  try{
   await hallUploadAnalyzers();
-  await setDoc(refDoUsuario(u.uid),Object.assign(JSON.parse(JSON.stringify(window.S)),{analyzers:(window.tftAnalyzersNuvem?window.tftAnalyzersNuvem():{})}));
+  await setDoc(refDoUsuario(u.uid),JSON.parse(JSON.stringify(window.S)));
   await syncRanking();
   await syncHuntPerf();
   await syncHallSubmissions();
@@ -3240,6 +3273,7 @@ async function pullCloud(uid){
    if(typeof window.S.nickname!=="string") window.S.nickname="";
    window.salvarLocal&&window.salvarLocal();
    window.tftAnalyzersMesclar&&window.tftAnalyzersMesclar(anNuvem);
+   await pullHallAnalyzers(uid);
    await pushCloud();
   }else{
    // Conta sem dados/metas: não cria nickname, não cria ranking e não
@@ -3287,7 +3321,7 @@ window.carregarRanking = async function(){
  try{
   if(window.currentUser)await syncRanking();
   const cyc=tftCicloAtual();
-  const snap=await getDocs(query(collection(db,"rankings"),where("cycle","==",cyc)));
+  const snap=await getDocs(collection(db,"rankings"));
   const parse=snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.nickname||"").trim());
   rankingCache.farm=parse.slice().sort((a,b)=>(Number(b.profit)||0)-(Number(a.profit)||0)).slice(0,10);
   rankingCache.hall=parse;
@@ -5129,9 +5163,9 @@ setTab("div");
  }
  function usados(){try{return Object.keys(lerAnalyzers()).length}catch(e){return 0}}
  function contador(){
-  ["farm","add"].forEach(function(k){var c=$(SC[k].pre+"AnCount");if(c)c.textContent="("+usados()+" de "+ANALYZER_LIMIT+" usados)"});
+  ["farm","add"].forEach(function(k){var c=$(SC[k].pre+"AnCount");if(c)c.textContent="("+usados()+" guardados)"});
  }
- window.anGuardar=function(k){var c=$(SC[k].pre+"AnKeep");return!!(c&&c.checked)};
+ window.anGuardar=function(k){return true}; /* todo Analyzer colado é guardado */
  function status(k,msg,warn){var e=$(SC[k].pre+"AnStatus");if(e){e.textContent=msg||"";e.className="an-status"+(warn?" warn":"")}}
  function aplicar(k){
   var c=SC[k],ta=$(c.txt);if(!ta)return;
