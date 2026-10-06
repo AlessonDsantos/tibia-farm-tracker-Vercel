@@ -11,6 +11,7 @@
     { "source": "/ferramentas/calculadora-party-xp", "destination": "/index.html" },
     { "source": "/registrar-farm", "destination": "/index.html" },
     { "source": "/desempenho", "destination": "/index.html" },
+    { "source": "/rankings", "destination": "/index.html" },
     { "source": "/historico", "destination": "/index.html" },
     { "source": "/ajuda", "destination": "/index.html" },
     { "source": "/politica-de-privacidade", "destination": "/index.html" },
