@@ -642,6 +642,9 @@ tr.total td:first-child{font-weight:700}
 /* === Hunt Analyzer guardado por farm === */
 .an-text{width:100%;box-sizing:border-box;min-height:120px;resize:vertical;background:#04111e;color:#e4f2ff;border:1px solid #31516b;border-radius:9px;padding:10px;font:12px/1.45 ui-monospace,Menlo,monospace}
 .analyzer-box{margin-top:12px;border:1px solid #1d4462;border-radius:10px;background:rgba(3,11,20,.5)}
+.hall-analyzer-notice{margin-top:12px;border:1px solid rgba(226,177,73,.72);border-radius:12px;background:linear-gradient(135deg,rgba(88,61,18,.34),rgba(5,20,31,.82));padding:13px 15px;box-shadow:0 6px 20px rgba(0,0,0,.16)}
+.hall-analyzer-notice .han-head{display:flex;align-items:center;gap:10px;margin-bottom:7px}.hall-analyzer-notice .han-icon{font-size:24px;line-height:1}.hall-analyzer-notice .han-title{font-size:14px;font-weight:800;color:#ffe3a0}.hall-analyzer-notice .han-required{margin-left:auto;display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;border:1px solid rgba(226,177,73,.8);background:rgba(226,177,73,.12);color:#ffe3a0;font-size:10px;font-weight:800;letter-spacing:.05em;white-space:nowrap}.hall-analyzer-notice p{margin:0;color:#d9e8f3;font-size:12px;line-height:1.5}.hall-analyzer-notice strong{color:#fff0bf}.hall-analyzer-notice .han-rules{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.hall-analyzer-notice .han-rule{font-size:11px;color:#cfe4f2;padding:5px 8px;border-radius:7px;background:rgba(2,10,17,.55);border:1px solid rgba(126,174,205,.18)}
+@media(max-width:650px){.hall-analyzer-notice .han-required{margin-left:0}.hall-analyzer-notice .han-head{align-items:flex-start;flex-wrap:wrap}}
 .analyzer-box summary{cursor:pointer;padding:10px 12px;font-size:12.5px;color:#cfe4f2;list-style:none}
 .analyzer-box summary::-webkit-details-marker{display:none}
 .analyzer-box summary::before{content:"▸ ";color:var(--gold)}
@@ -1115,7 +1118,7 @@ h1.retention-title{margin:0}
 <div class="tft-tool-page" id="tftRankingsPage" role="region" aria-labelledby="tftRankingsTitle">
 <section class="rank-page-box">
  <div class="rank-page-hero">
-  <div><div class="rank-kicker">🏆 COMPETIÇÃO DA COMUNIDADE</div><h1 id="tftRankingsTitle">Rankings TFT</h1><p>Compare os melhores resultados da comunidade e conquiste seu espaço no <strong>Hall dos Caçadores</strong>.</p></div>
+  <div><div class="rank-kicker">🏆 COMPETIÇÃO DA COMUNIDADE</div><h1 id="tftRankingsTitle">Rankings TFT</h1><p>Compare os melhores resultados da comunidade. Os rankings gerais são históricos; o tempo de farm e o Hall dos Caçadores competem por ciclo mensal.</p></div>
   <div class="rank-page-updated" id="rankPageUpdated">Carregando ranking…</div>
  </div>
  <div class="rank-page-tabs" role="tablist" aria-label="Seções do ranking">
@@ -1127,7 +1130,7 @@ h1.retention-title{margin:0}
    <article class="rank-board" data-board="farm"><div class="rank-board-head"><div><span>💰</span><h2>Maior Farm do Dia</h2><p>Maior farm total obtido em um único dia.</p></div><b>TOP 10</b></div><div id="rankBoardFarm" class="rank-board-list"></div></article>
    <article class="rank-board" data-board="pph"><div class="rank-board-head"><div><span>⚔️</span><h2>Melhor Profit/H</h2><p>Maior profit por hora em uma hunt registrada.</p></div><b>TOP 10</b></div><div id="rankBoardPph" class="rank-board-list"></div></article>
    <article class="rank-board" data-board="streak"><div class="rank-board-head"><div><span>🔥</span><h2>Maior Constância</h2><p>Maior sequência atual de dias de farm, com domingo como descanso.</p></div><b>TOP 10</b></div><div id="rankBoardStreak" class="rank-board-list"></div></article>
-   <article class="rank-board" data-board="time"><div class="rank-board-head"><div><span>⏱️</span><h2>Maior Tempo de Farm</h2><p>Maior tempo total registrado pela comunidade.</p></div><b>TOP 10</b></div><div id="rankBoardTime" class="rank-board-list"></div></article>
+   <article class="rank-board" data-board="time"><div class="rank-board-head"><div><span>⏱️</span><h2>Maior Tempo de Farm</h2><p>Maior tempo de farm registrado no mês atual. Reinicia no dia 1.</p></div><b>TOP 10</b></div><div id="rankBoardTime" class="rank-board-list"></div></article>
   </div>
  </div>
  <div id="rankPageHall" class="rank-page-pane" hidden>
@@ -1139,7 +1142,7 @@ h1.retention-title{margin:0}
   <div class="hall-section-title" style="margin-top:14px"><h3>⚔️ Últimas Conquistas</h3><span>Mudanças recentes no Hall dos Caçadores</span></div>
   <div class="hall-events" id="hallEvents"></div>
  </div>
- <div class="rank-rules"><h3>📖 Como funciona</h3><div class="rank-rules-grid"><div><b>1. 🔐 Entre com sua conta Google</b><span>Faça login para participar dos rankings e do Hall do ciclo mensal atual.</span></div><div><b>2. ⚔️ Registre suas Hunts</b><span>Registre suas Hunts normalmente. Bosses, eventos e outros tipos de farm não entram nos rankings gerais.</span></div><div><b>3. 🏆 Conquiste seu lugar nos rankings</b><span>Os melhores resultados do mês aparecem em Maior Farm do Dia, Melhor Profit/H, Maior Constância e Maior Tempo de Farm.</span></div><div><b>4. 👑 Torne-se campeão de uma Hunt</b><span>Para disputar o Hall, envie o Hunt Analyzer, tenha pelo menos 1 hora e passe pela validação matemática. O Profit/H é calculado pelo sistema.</span></div></div></div>
+ <div class="rank-rules"><h3>📖 Como funciona</h3><div class="rank-rules-grid"><div><b>1. 🔐 Entre com sua conta Google</b><span>Faça login para participar dos rankings da comunidade e do Hall do ciclo mensal atual.</span></div><div><b>2. ⚔️ Registre suas Hunts</b><span>Registre suas Hunts normalmente. Bosses, eventos e outros tipos de farm não entram nos rankings gerais.</span></div><div><b>3. 🏆 Conquiste seu lugar nos rankings</b><span>Maior Farm do Dia, Melhor Profit/H e Maior Constância são históricos. O Maior Tempo de Farm reinicia todo dia 1; o Hall dos Caçadores também compete por ciclo mensal.</span></div><div><b>4. 👑 Torne-se campeão de uma Hunt</b><span>Para disputar o Hall, envie o Hunt Analyzer, tenha pelo menos 1 hora e passe pela validação matemática. O Profit/H é calculado pelo sistema.</span></div></div></div>
 </section></div>
 <div class="tft-tool-page" id="tftLootPage" role="region" aria-labelledby="tftLootTitle">
 <section class="loot-box"><h1 id="tftLootTitle">🧰 Guia de Venda de Loot</h1>
@@ -1716,6 +1719,7 @@ function campoNomeHTML(escopo){
 }
 function setTipoFarm(escopo,tipo,manterValor){
  tipoSel[escopo]=tipo;
+ if(escopo==="farm"){const n=document.getElementById("hallAnalyzerNotice");if(n)n.style.display=tipo==="hunt"?"block":"none";}
  const box=document.getElementById("tipoTabs"+escopo);
  if(box)Array.prototype.forEach.call(box.querySelectorAll("button"),b=>b.classList.toggle("on",b.dataset.tipo===tipo));
  const id=idNome(escopo),el=document.getElementById(id),lab=document.getElementById(id+"Label");
@@ -2257,21 +2261,24 @@ function calcularRankingStats(){
  tftPrepareHallState();
  const cycle=tftCurrentRankingCycle();
  const sessoesRaw=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]);
- const sessoes=sessoesRaw.filter(s=>tftSessionInRankingCycle(s,cycle)&&isValidRankingHunt(s));
+ // Ranking geral = histórico acumulado. Só o tempo de farm usa o ciclo mensal.
+ const sessoes=sessoesRaw.filter(s=>isValidRankingHunt(s));
+ const sessoesMes=sessoes.filter(s=>tftSessionInRankingCycle(s,cycle));
  const porDia={}; const porHunt={};
- let tempoTotal=0;
+ let tempoTotal=0,tempoTotalMes=0;
  sessoes.forEach(s=>{
   const mins=Math.max(0,Number(s.time)||0),gold=Number(s.gold)||0;
   tempoTotal+=mins;
-  if(s.data)porDia[s.data]=Math.max(Number(porDia[s.data]||0),Number(porDia[s.data]||0)+Math.max(0,gold));
+  if(s.data)porDia[s.data]=(Number(porDia[s.data]||0)+Math.max(0,gold));
   const key=rankingHuntKey(s),nome=(s.hunt||"Hunt não informada").trim()||"Hunt não informada";
   if(!porHunt[key])porHunt[key]={hunt:nome,huntId:s.huntId||"",huntCity:s.huntCity||"",gold:0,time:0};
   porHunt[key].gold+=gold;porHunt[key].time+=mins;porHunt[key].lastAt=String(s.data||"")+String(s.hora||"")+String(s.id||"");
  });
+ sessoesMes.forEach(s=>{tempoTotalMes+=Math.max(0,Number(s.time)||0)});
  let melhorDia=0;Object.values(porDia).forEach(v=>{if(v>melhorDia)melhorDia=v});
- let melhorHunt=0,melhorHuntNome="",bestHuntDuration=0,bestHuntAt="";Object.values(porHunt).forEach(v=>{const p=v.time>0?v.gold/(v.time/60):0;if(p>melhorHunt){melhorHunt=p;melhorHuntNome=v.hunt;bestHuntDuration=v.time;bestHuntAt=v.lastAt||""}else if(p===melhorHunt&&v.time>bestHuntDuration){bestHuntDuration=v.time;bestHuntAt=v.lastAt||""}});
+ let melhorHunt=0,melhorHuntNome="",bestHuntDuration=0,bestHuntAt="";Object.values(porHunt).forEach(v=>{const p=v.time>0?v.gold/(v.time/60):0;if(p>melhorHunt||(p===melhorHunt&&v.time>bestHuntDuration)){melhorHunt=p;melhorHuntNome=v.hunt;bestHuntDuration=v.time;bestHuntAt=v.lastAt||""}});
  const dates=[...new Set(sessoes.map(s=>s.data).filter(Boolean))];
- return {nickname:(S.nickname||"").trim(),rankingCycle:cycle,cycleStart:tftRankingCycleInfo().startKey,cycleEnd:tftRankingCycleInfo().endKey,profit:Math.round(melhorDia),melhorHunt:Math.round(melhorHunt),melhorHuntNome,streak:rankingStreakFromDates(dates),tempoTotal:Math.round(tempoTotal),bestHuntDuration:Math.round(bestHuntDuration),bestHuntAt};
+ return {nickname:(S.nickname||"").trim(),rankingCycle:cycle,cycleStart:tftRankingCycleInfo().startKey,cycleEnd:tftRankingCycleInfo().endKey,profit:Math.round(melhorDia),melhorHunt:Math.round(melhorHunt),melhorHuntNome,streak:rankingStreakFromDates(dates),tempoTotal:Math.round(tempoTotal),tempoTotalMes:Math.round(tempoTotalMes),tempoRankingCycle:cycle,bestHuntDuration:Math.round(bestHuntDuration),bestHuntAt};
 }
 
 let rankingCache={farm:[],streak:[],hunts:[],hall:[],time:[]};
@@ -2301,15 +2308,18 @@ function tftRankingSort(a,b,metric){
  return String(a.id||a.nickname||"").localeCompare(String(b.id||b.nickname||""),"pt-BR");
 }
 function renderGeneralRankings(){
- const docs=(window.tftRankingDocs||[]).filter(r=>String(r.rankingCycle||"")===tftCurrentRankingCycle());
+ const docs=window.tftRankingDocs||[];
+ // Maior Farm do Dia, Melhor Profit/H e Maior Constância são históricos.
+ // Somente o Maior Tempo de Farm é reiniciado no início de cada mês.
  const farm=docs.slice().sort((a,b)=>tftRankingSort(a,b,"profit"));
  const pph=docs.slice().sort((a,b)=>tftRankingSort(a,b,"melhorHunt"));
  const streak=docs.slice().map(r=>({...r,_streak:Number(r.streak)||0})).sort((a,b)=>tftRankingSort({...a,streak:a._streak},{...b,streak:b._streak},"streak"));
- const time=docs.slice().sort((a,b)=>tftRankingSort(a,b,"tempoTotal"));
+ const cycle=tftCurrentRankingCycle();
+ const time=docs.filter(r=>String(r.tempoRankingCycle||r.rankingCycle||"")===cycle).slice().sort((a,b)=>{const d=(Number(b.tempoTotalMes!=null?b.tempoTotalMes:b.tempoTotal)||0)-(Number(a.tempoTotalMes!=null?a.tempoTotalMes:a.tempoTotal)||0);if(d)return d;return String(a.id||"").localeCompare(String(b.id||""));});
  renderRankingBoard("rankBoardFarm",farm,r=>fmt(Number(r.profit)||0)+" GP",r=>"Melhor dia registrado");
  renderRankingBoard("rankBoardPph",pph,r=>fmt(Number(r.melhorHunt)||0)+" GP/h",r=>r.melhorHuntNome||"Melhor hunt");
  renderRankingBoard("rankBoardStreak",streak,r=>(Number(r._streak)||0)+" "+(Number(r._streak)===1?"dia":"dias"),r=>"Sequência atual");
- renderRankingBoard("rankBoardTime",time,r=>fmtTempoRanking(r.tempoTotal),r=>"Tempo total de farm");
+ renderRankingBoard("rankBoardTime",time,r=>fmtTempoRanking(r.tempoTotalMes!=null?r.tempoTotalMes:r.tempoTotal),r=>"Tempo de farm no mês");
 }
 function tftHallInitials(name){
  name=String(name||"?").trim();if(!name)return "?";
@@ -2485,7 +2495,8 @@ window.renderHuntsEmAlta=renderHuntsEmAlta;
    const topStreak=docs.slice().map(r=>({...r,_streak:streakAindaValida(r.updatedAt)?(Number(r.streak)||0):0}))
       .sort((a,b)=>b._streak-a._streak).slice(0,3);
 
-   const topTime=docs.slice().sort((a,b)=>(Number(b.tempoTotal)||0)-(Number(a.tempoTotal)||0)).slice(0,3);
+   const cycle=tftCurrentRankingCycle();
+   const topTime=docs.filter(r=>String(r.tempoRankingCycle||r.rankingCycle||"")===cycle).slice().sort((a,b)=>(Number(b.tempoTotalMes!=null?b.tempoTotalMes:b.tempoTotal)||0)-(Number(a.tempoTotalMes!=null?a.tempoTotalMes:a.tempoTotal)||0)).slice(0,3);
 
    if(topFarm.length)slides.push({
      kind:"general",title:"💰 Maior Farm do Dia",sub:"Quem teve o maior farm total em um único dia.",
@@ -2501,8 +2512,8 @@ window.renderHuntsEmAlta=renderHuntsEmAlta;
    });
 
    if(topTime.length)slides.push({
-     kind:"general",title:"⏱️ Maior Tempo de Farm",sub:"Quem acumulou mais tempo de farm registrado.",
-     cards:topTime.map((r,i)=>({pos:i+1,name:r.nickname,value:fmtTempoRanking(r.tempoTotal),meta:"tempo total"}))
+     kind:"general",title:"⏱️ Maior Tempo de Farm",sub:"Quem acumulou mais tempo de farm registrado no mês atual.",
+     cards:topTime.map((r,i)=>({pos:i+1,name:r.nickname,value:fmtTempoRanking(r.tempoTotalMes!=null?r.tempoTotalMes:r.tempoTotal),meta:"tempo no mês"}))
    });
 
    /* Maior tempo de farm: calculado a partir dos dados locais do usuário
@@ -2928,7 +2939,12 @@ function render(){
      <div class="field"><label>Valor em Gold</label><input id="farmGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão" onkeydown="if(event.key==='Enter')registrarFarm()"></div>
     </div>
     ${htmlSeletorRecursos('farm')}
-    <details class="analyzer-box" id="farmAnalyzerBox"><summary>📋 Hunt Analyzer <small>(opcional para registrar · obrigatório para disputar o Hall)</small></summary><textarea id="farmAnalyzer" class="an-text" placeholder="Cole aqui o texto completo do Hunt Analyzer copiado do Tibia. O tempo e o gold são preenchidos automaticamente. Guardar o Analyzer é opcional."></textarea><div class="an-extra"><div class="an-status" id="farmAnStatus"></div><label class="an-keep"><input type="checkbox" id="farmAnKeep"> 💾 Guardar este Hunt Analyzer no histórico <small id="farmAnCount"></small></label></div></details>
+    <div class="hall-analyzer-notice" id="hallAnalyzerNotice">
+     <div class="han-head"><span class="han-icon">👑</span><div class="han-title">Quer disputar o Hall dos Caçadores?</div><span class="han-required">ANALYZER OBRIGATÓRIO</span></div>
+     <p>Para esta <strong>Hunt</strong> entrar na disputa mensal do Hall, cole abaixo o <strong>Hunt Analyzer completo copiado do Tibia</strong>. Registrar a farm continua sendo possível sem Analyzer, mas <strong>sem Analyzer ela não poderá disputar o Hall</strong>.</p>
+     <div class="han-rules"><span class="han-rule">⏱️ mínimo de 1 hora</span><span class="han-rule">🧮 Balance/Loot/Supplies validados</span><span class="han-rule">🏆 somente Hunt oficial atual</span></div>
+    </div>
+    <details class="analyzer-box" id="farmAnalyzerBox"><summary>📋 Cole o Hunt Analyzer aqui <small>(obrigatório para o Hall)</small></summary><textarea id="farmAnalyzer" class="an-text" placeholder="Cole aqui o Hunt Analyzer completo copiado do Tibia."></textarea><div class="an-extra"><div class="an-status" id="farmAnStatus"></div><label class="an-keep"><input type="checkbox" id="farmAnKeep"> 💾 Guardar este Hunt Analyzer no histórico <small id="farmAnCount"></small></label></div></details>
     <div class="actions"><button class="btn-green" onclick="registrarFarm()">Registrar Farm</button></div>
    </section>
 
@@ -3084,7 +3100,7 @@ async function syncRanking(){
   const stats=window.calcularRankingStats();
   const rankRef=doc(db,"rankings",u.uid);
   if(!String(stats.nickname||"").trim()) return true;
-  await setDoc(rankRef,{nickname:stats.nickname,rankingCycle:stats.rankingCycle,cycleStart:stats.cycleStart,cycleEnd:stats.cycleEnd,profit:stats.profit,melhorHunt:stats.melhorHunt,melhorHuntNome:stats.melhorHuntNome,streak:stats.streak,tempoTotal:stats.tempoTotal||0,bestHuntDuration:stats.bestHuntDuration||0,bestHuntAt:stats.bestHuntAt||null,updatedAt:new Date()});
+  await setDoc(rankRef,{nickname:stats.nickname,rankingCycle:stats.rankingCycle,cycleStart:stats.cycleStart,cycleEnd:stats.cycleEnd,profit:stats.profit,melhorHunt:stats.melhorHunt,melhorHuntNome:stats.melhorHuntNome,streak:stats.streak,tempoTotal:stats.tempoTotal||0,tempoTotalMes:stats.tempoTotalMes||0,tempoRankingCycle:stats.tempoRankingCycle,bestHuntDuration:stats.bestHuntDuration||0,bestHuntAt:stats.bestHuntAt||null,updatedAt:new Date()});
   return true;
  }catch(e){console.error("Falha ao sincronizar ranking:",e);return false;}
 }
@@ -3235,12 +3251,12 @@ window.carregarRanking = async function(){
   if(window.currentUser){await syncRanking();await syncHallSubmissions();}
   const ciclo=tftCurrentRankingCycle();
   const snap=await getDocs(collection(db,"rankings"));
-  const parse=snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.nickname||"").trim()&&String(r.rankingCycle||"")===ciclo);
+  const parse=snap.docs.map(d=>({id:d.id,...d.data()})).filter(r=>String(r.nickname||"").trim());
   const stable=(a,b,metric)=>{const d=(Number(b[metric])||0)-(Number(a[metric])||0);if(d)return d;const td=(Number(b.bestHuntDuration)||0)-(Number(a.bestHuntDuration)||0);if(td)return td;const at=String(a.bestHuntAt||a.updatedAt||""),bt=String(b.bestHuntAt||b.updatedAt||"");if(at!==bt)return at<bt?-1:1;return String(a.id||"").localeCompare(String(b.id||""));};
   rankingCache.farm=parse.slice().sort((a,b)=>stable(a,b,"profit")).slice(0,10);
   rankingCache.streak=parse.slice().sort((a,b)=>stable(a,b,"streak")).slice(0,10);
   rankingCache.hunts=parse.slice().sort((a,b)=>stable(a,b,"melhorHunt")).slice(0,10);
-  rankingCache.time=parse.slice().sort((a,b)=>stable(a,b,"tempoTotal")).slice(0,10);
+  rankingCache.time=parse.filter(r=>String(r.tempoRankingCycle||r.rankingCycle||"")===ciclo).slice().sort((a,b)=>{const d=(Number(b.tempoTotalMes!=null?b.tempoTotalMes:b.tempoTotal)||0)-(Number(a.tempoTotalMes!=null?a.tempoTotalMes:a.tempoTotal)||0);if(d)return d;return String(a.id||"").localeCompare(String(b.id||""));}).slice(0,10);
   rankingCache.hall=parse;window.tftRankingDocs=parse;
   try{const hs=await getDocs(query(collection(db,"hallSubmissions"),where("rankingCycle","==",ciclo)));window.hallSubmissionsCache=hs.docs.map(d=>({id:d.id,...d.data()}));}
   catch(e){console.warn("Hall submissions indisponíveis; usando compatibilidade dos rankings atuais.",e);window.hallSubmissionsCache=[];}
