@@ -2178,8 +2178,17 @@ function tftRankingCycleInfo(dateValue){
 }
 function tftCurrentRankingCycle(){return tftRankingCycleInfo().cycle}
 function tftSessionInRankingCycle(s,cycle){return !!s&&String(s.data||"").slice(0,7)===String(cycle||tftCurrentRankingCycle());}
+function isOfficialRankingHunt(s){
+ if(!s||tipoDe(s)!=="hunt")return false;
+ const id=String(s.huntId||s.hunt_id||"").trim();
+ // Ranking/Hall aceitam somente uma Hunt cadastrada no hunts.json.
+ // Não usar nome como fallback: isso impediria Hunts personalizadas
+ // ou catálogos antigos de entrarem no ranking por coincidência de nome.
+ return !!id&&!!tftHuntById(id);
+}
+window.isOfficialRankingHunt=isOfficialRankingHunt;
 function isValidRankingHunt(s){
- return !!s&&!isResumo(s)&&!s.somado&&!s.suspeito&&tipoDe(s)==="hunt"&&Number(s.time)>0;
+ return !!s&&!isResumo(s)&&!s.somado&&!s.suspeito&&isOfficialRankingHunt(s)&&Number(s.time)>0;
 }
 window.isValidRankingHunt=isValidRankingHunt;
 function tftAnalyzerNumber(v){
@@ -2416,7 +2425,7 @@ function calcularHuntPerf(){
   const corte=new Date();corte.setHours(12,0,0,0);corte.setDate(corte.getDate()-7);
   const corteKey=corte.getFullYear()+"-"+String(corte.getMonth()+1).padStart(2,"0")+"-"+String(corte.getDate()).padStart(2,"0");
   const sessoes=(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[])
-    .filter(s=>!s.resumoDia&&!s.somado&&tipoDe(s)==="hunt"&&!s.suspeito&&s.data>=corteKey);
+    .filter(s=>!s.resumoDia&&!s.somado&&isOfficialRankingHunt(s)&&!s.suspeito&&s.data>=corteKey);
   const porHunt={};
   sessoes.forEach(s=>{
     const nome=(s.hunt||"").trim();if(!nome)return;
@@ -3084,7 +3093,7 @@ async function syncHallSubmissions(){
  try{
   const cycle=tftCurrentRankingCycle(),refBase=collection(db,"hallSubmissions"),locais=new Set(),writes=[];
   (S.metas||[]).forEach(m=>(m.sessoes||[]).forEach(s=>{
-   if(tipoDe(s)!=="hunt"||String(s.data||"").slice(0,7)!==cycle)return;
+   if(!isOfficialRankingHunt(s)||String(s.data||"").slice(0,7)!==cycle)return;
    const sid=String(s.id),an=analyzerDe(sid);locais.add(sid);
    const v=tftApplyHallEligibility(s),h=tftHuntOfSession(s),submissionId=String(u.uid)+"_"+sid.replace(/[^A-Za-z0-9_-]/g,"_");
    writes.push(setDoc(doc(refBase,submissionId),{submissionId,userId:u.uid,nickname:String(S.nickname||""),huntId:String(s.huntId||h?.id||""),hunt:String(s.hunt||"Hunt não informada"),huntCity:String(s.huntCity||h?.city||""),profit:Number(v.profit)||0,profitPerHour:Number(v.profitPerHour)||0,durationMinutes:Number(v.durationMinutes)||0,hallStatus:v.hallStatus,hallEligible:!!v.hallEligible,hasAnalyzer:!!an,rankingCycle:cycle,createdAt:String(s.data||"")+String(s.hora||"")+sid,updatedAt:new Date()}));
