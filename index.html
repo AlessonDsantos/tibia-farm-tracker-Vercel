@@ -1442,13 +1442,13 @@ async function tftCarregarHunts(){
  if(TFT_HUNTS_PROMISE)return TFT_HUNTS_PROMISE;
  TFT_HUNTS_PROMISE=fetch("/hunts.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>{
   const arr=Array.isArray(j?.hunts)?j.hunts:[];
-  TFT_HUNTS_DB={version:Number(j?.version)||1,hunts:arr.filter(h=>h&&h.id&&h.name).map(h=>({id:String(h.id),name:String(h.name),city:String(h.city||"")}))};
+  TFT_HUNTS_DB={version:Number(j?.version)||1,hunts:arr.filter(h=>h&&h.id&&h.name).map(h=>({id:String(h.id),name:String(h.name),city:String(h.city||""),legacy:!!(h.legacy||h.antiga||h.isLegacy||h["tft-legacy-badge"]==="antiga")}))};
   return TFT_HUNTS_DB;
  }).catch(e=>{console.warn("Tibia Farm Tracker: não foi possível carregar /hunts.json",e);TFT_HUNTS_DB={version:0,hunts:[]};return TFT_HUNTS_DB});
  return TFT_HUNTS_PROMISE;
 }
 function tftHuntOfSession(s){if(!s)return null;return tftHuntById(s.huntId)||tftHuntFindByNameCity(s.hunt,s.huntCity)||tftHuntFindName(s.hunt)}
-function tftHuntEhLegada(s){return !!s&&tipoDe(s)==="hunt"&&!tftHuntOfSession(s)}
+function tftHuntEhLegada(s){if(!s||tipoDe(s)!=="hunt")return false;const h=tftHuntById(s.huntId);return !!h&&!!h.legacy||(!h&&!tftHuntOfSession(s))}
 function tftHuntSetOnSession(s,h){if(!s||!h)return;s.huntId=String(h.id);s.hunt=h.name;s.huntCity=h.city||""}
 
 
@@ -2184,7 +2184,8 @@ function isOfficialRankingHunt(s){
  // Ranking/Hall aceitam somente uma Hunt cadastrada no hunts.json.
  // Não usar nome como fallback: isso impediria Hunts personalizadas
  // ou catálogos antigos de entrarem no ranking por coincidência de nome.
- return !!id&&!!tftHuntById(id);
+ const h=tftHuntById(id);
+ return !!h&&!h.legacy;
 }
 window.isOfficialRankingHunt=isOfficialRankingHunt;
 function isValidRankingHunt(s){
