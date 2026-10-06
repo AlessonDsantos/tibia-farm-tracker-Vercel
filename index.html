@@ -851,6 +851,7 @@ textarea.pty-in{min-height:120px;resize:vertical;font:12.5px/1.5 ui-monospace,Me
 .tft-shell:not([data-tft-page]) #app,
 .tft-shell:not([data-tft-page]) #tftPageHead{display:none!important}
 .tft-shell:not([data-tft-page]):not([data-tft-meta="closed"]) #app{display:block!important}
+.tft-shell[data-tft-nogoal]:not([data-tft-page]) #app{display:none!important}
 .tft-shell:not([data-tft-page]) #app .side,.tft-shell:not([data-tft-page]) #secaoFarm,.tft-shell:not([data-tft-page]) #secaoHistorico,.tft-shell:not([data-tft-page]) #secaoMetas{display:none}
 .tft-shell:not([data-tft-page]):not([data-tft-meta="closed"]) #secaoMetas{display:block}
 .tft-shell:not([data-tft-page]) #app .main,.tft-shell:not([data-tft-page]) #app .left{display:block}
@@ -5075,6 +5076,7 @@ setTab("div");
   if(!foot){foot=document.createElement("section");foot.id="tftHomeFoot";foot.className="tfth";app.parentNode.insertBefore(foot,app.nextSibling);
    foot.innerHTML='<section class="card"><h2>🧰 Ferramentas gratuitas para Tibia</h2><p class="tfth-about">O Tibia Farm Tracker ajuda você a controlar o resultado das suas hunts e a chegar mais rápido na sua meta de farm. Além do registro de farms, o site reúne ferramentas gratuitas que usam os relatórios do Hunt Analyzer do Tibia.</p><div class="tfth-tools">'+TOOLS.map(function(t){return'<a href="'+t[0]+'" data-route="'+t[1]+'"><b>'+t[2]+'</b><span>'+t[3]+'</span></a>'}).join("")+'</div></section>'}
   var g=(typeof meta==="function")?meta():null,nick=String((window.S&&window.S.nickname)||"").trim();
+  var sh=shell();if(sh)sh.toggleAttribute("data-tft-nogoal",!g);
   var h='<header class="card tfth-hero"><h1>Olá, '+E(nick||"aventureiro")+'! 👑</h1><p>Seu resumo de farm</p></header>';
   if(!g){
    host.innerHTML=h+'<section class="card"><div class="tfth-empty"><b style="color:#fff;font-size:15px">Comece pela sua meta</b><p style="max-width:440px;margin:8px auto 14px">Escolha o item que você quer conquistar, defina o valor em gold e registre o farm de cada sessão.</p><button class="btn-green" onclick="novaMeta()">Criar minha primeira meta</button></div></section>';
