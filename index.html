@@ -868,6 +868,19 @@ textarea.pty-in{min-height:120px;resize:vertical;font:12.5px/1.5 ui-monospace,Me
 .tft-shell:not([data-tft-page]):not([data-tft-meta="closed"]) #app{display:block!important}
 .tft-shell[data-tft-nogoal]:not([data-tft-page]) #app{display:none!important}
 .th-sort{cursor:pointer;user-select:none;white-space:nowrap}.th-sort:hover{color:var(--gold2)}.th-sort.on{color:var(--gold2)}.th-sort .sort-ind{font-size:10px;opacity:.55}.th-sort.on .sort-ind{opacity:1}
+.an-compact{margin:8px 0 12px}
+.an-mini-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.an-compact label{font-size:12.5px;color:#cfe4f2;flex:none}
+.an-compact label small{color:var(--muted);font-weight:400}
+.an-compact .an-mini{flex:1 1 180px;min-width:0;min-height:0;height:34px;padding:7px 10px;border-width:1px;border-radius:9px;resize:none;overflow:hidden;white-space:nowrap;cursor:pointer;caret-color:transparent}
+.an-compact .an-mini[readonly]{cursor:default;opacity:.85;border-color:#2c7a5a}
+.an-clear{flex:none;background:transparent;border:1px solid #31516b;color:#cfe4f2;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer}
+.an-clear:hover{border-color:var(--gold,#e2b149);color:#f0d58c}
+.an-compact .an-status{margin:6px 0 0}
+.rec-renew{margin-left:auto;background:transparent;border:1px solid #31516b;color:#f0d58c;border-radius:7px;padding:2px 8px;font-size:11px;cursor:pointer;flex:none}
+.rec-renew:hover{border-color:var(--gold,#e2b149)}
+.rec-aviso-item{display:flex;align-items:center;gap:10px;justify-content:space-between;border:1px solid #31516b;border-radius:9px;padding:9px 11px;margin-top:8px;font-size:13px}
+.rec-aviso-item small{display:block;color:#ffd98a;margin-top:2px}
 .tft-hall-badge{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:10.5px;font-weight:700;background:rgba(255,255,255,.07);color:var(--muted);vertical-align:middle;cursor:help}
 .tft-hall-badge.ok{background:rgba(226,177,73,.18);color:#e2b149}
 .tft-shell:not([data-tft-page]) #app .side,.tft-shell:not([data-tft-page]) #secaoFarm,.tft-shell:not([data-tft-page]) #secaoHistorico,.tft-shell:not([data-tft-page]) #secaoMetas{display:none}
@@ -1181,6 +1194,7 @@ h1.retention-title{margin:0}
  <p style="color:var(--muted);font-size:12px">Cadastre recursos consumidos por tempo. Ao registrar uma hunt, você escolhe quais foram usados: só os selecionados geram custo e consomem duração.</p>
  <div id="crSemMeta" class="aviso-callout" style="display:none">Nenhuma meta ativa no momento. Crie ou selecione uma meta de farm para cadastrar recursos: eles ficam disponíveis para seleção nas próximas hunts da meta ativa.<div class="actions"><button class="btn-green" onclick="novaMeta()">Criar meta</button></div></div>
  <div id="crConteudo">
+ <div id="crRenovBanner" class="aviso-callout" style="display:none"></div>
  <div class="field"><label>Tipo de recurso</label><select id="crTipo"><option value="imbuement">Imbuement</option><option value="token">Silver Token / item carregado</option></select></div>
  <div class="field"><label>Nome do item / recurso</label><input id="crNome" placeholder="Ex.: Spiritthorn Ring"></div>
  <div id="crGoldFields"><div class="field"><label>Valor total gasto (gold)</label><input id="crValor" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 60k ou 60000"></div></div>
@@ -1306,6 +1320,19 @@ h1.retention-title{margin:0}
  <textarea id="anTexto" class="an-text" readonly style="min-height:240px"></textarea>
  <div class="actions"><button class="btn-green" onclick="anUsar('A')">⚖️ Usar como Hunt A</button><button class="btn-green" onclick="anUsar('B')">⚖️ Usar como Hunt B</button></div>
  <div class="actions"><button onclick="anCopiar()">Copiar</button><button class="red" onclick="anRemover()">Remover</button><button onclick="fechar('mAnalyzer')">Fechar</button></div>
+</div></div>
+
+<div class="modal" id="mAnHunt"><div class="box">
+ <h3>⚔️ Qual hunt foi essa?</h3>
+ <p style="font-size:12px;color:var(--muted);margin:0 0 8px">Analyzer lido! Escolha a hunt com um clique.</p>
+ <div id="anHuntLista" class="hunt-pick-list"></div>
+ <div class="actions"><button onclick="tftAnTodas()">🔎 Ver todas as hunts</button><button onclick="fechar('mAnHunt')">Agora não</button></div>
+</div></div>
+
+<div class="modal" id="mRecAviso"><div class="box">
+ <h3>⏳ Recurso quase no fim</h3>
+ <div id="recAvisoLista"></div>
+ <div class="actions"><button onclick="fechar('mRecAviso')">Entendi</button></div>
 </div></div>
 
 <div class="modal" id="mHuntPicker"><div class="box">
@@ -1740,6 +1767,7 @@ function setTipoFarm(escopo,tipo,manterValor){
   if(tipo==="outro"){el.removeAttribute("readonly");el.onclick=null;el.style.cursor="text"}
   else{el.setAttribute("readonly","readonly");el.onclick=()=>abrirHuntPicker(escopo);el.style.cursor="pointer"}
  }
+ {const aw=document.getElementById(escopo+"AnWrap");if(aw){aw.style.display=tipo==="hunt"?"":"none";if(tipo!=="hunt"){const ta=document.getElementById(escopo+"Analyzer");if(ta&&ta.value){ta.value="";const st=document.getElementById(escopo+"AnStatus");if(st)st.textContent=""}}}}
  const t=document.getElementById(escopo==="farm"?"farmTimeLabel":escopo==="add"?"addTimeLabel":"editTimeLabel");
  if(t)t.textContent=tipo==="hunt"?"Tempo de Hunt (minutos)":"Tempo (minutos, opcional)";
  recRefresh(escopo);
@@ -1764,14 +1792,17 @@ function cancelarFarmSuspeito(){
  fechar("mAvisoSuspeito");
 }
 function tftCustosAtualizar(){const g=meta(),f=document.getElementById("crConteudo"),s=document.getElementById("crSemMeta");if(!f||!s)return;f.style.display=g?"":"none";s.style.display=g?"none":"block";if(g){if(!Array.isArray(g.recursosFarm))g.recursosFarm=[];renderRecursosAtivos()}}
-function tftCustosResetar(){["crResultado","crAssociarArea"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none"});document.getElementById("crTipo").value="imbuement";document.getElementById("crNome").value="";document.getElementById("crValor").value="";document.getElementById("crQtd").value="";document.getElementById("crPreco").value="";document.getElementById("crDuracao").value="";atualizarCamposRecurso();tftCustosAtualizar()}
+function tftCustosResetar(){window.crRenovId=null;{const b=document.getElementById("crRenovBanner");if(b)b.style.display="none"}["crResultado","crAssociarArea"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="none"});document.getElementById("crTipo").value="imbuement";document.getElementById("crNome").value="";document.getElementById("crValor").value="";document.getElementById("crQtd").value="";document.getElementById("crPreco").value="";document.getElementById("crDuracao").value="";atualizarCamposRecurso();tftCustosAtualizar()}
 function abrirCalculadoraRecursos(){if(window.tftIrPara)window.tftIrPara("custos")}
 function atualizarCamposRecurso(){const token=document.getElementById("crTipo").value==="token";document.getElementById("crGoldFields").style.display=token?"none":"block";document.getElementById("crTokenFields").style.display=token?"block":"none"}
 document.addEventListener("change",e=>{if(e.target&&e.target.id==="crTipo")atualizarCamposRecurso()});
 function calcularRecurso(){const token=document.getElementById("crTipo").value==="token",nome=document.getElementById("crNome").value.trim()||(token?"Silver Token":"Imbuement"),dur=Number(document.getElementById("crDuracao").value),qtd=token?Number(document.getElementById("crQtd").value):0,preco=token?parseGold(document.getElementById("crPreco").value):0,valor=token?qtd*preco:parseGold(document.getElementById("crValor").value);if(!(dur>0)||!(valor>=0)|| (token&&(!(qtd>0)||!(preco>=0))))return toast("Preencha quantidade/valor e duração válidos.");if(valor/dur>5000000&&!confirm("Atenção: este recurso vai custar "+Math.round(valor/dur).toLocaleString("pt-BR")+" gp por hora de hunt. Confira o valor e a duração (em horas). Continuar?"))return;window.crCalculado={tipo:token?"token":"imbuement",nome,valor,durMin:dur*60,qtd,preco,custoHora:valor/dur};const box=document.getElementById("crResultado");box.style.display="block";box.innerHTML="<b>Resultado: "+nome+"</b><br>Custo total: "+Math.round(valor).toLocaleString("pt-BR")+" gp<br>Duração: "+dur+" h<br><b>Custo por hora: "+(valor/dur).toLocaleString("pt-BR",{maximumFractionDigits:2})+" gp/h</b>"+(token?"<br>Tokens por hora: "+(qtd/dur).toLocaleString("pt-BR",{maximumFractionDigits:2}):"");document.getElementById("crAssociarArea").style.display="block"}
-function associarRecurso(){const g=meta(),r=window.crCalculado;if(!g||!r)return;if(!Array.isArray(g.recursosFarm))g.recursosFarm=[];g.recursosFarm.push({...r,id:Date.now()+Math.random(),restanteMin:r.durMin,ativo:true,criadoEm:new Date().toISOString()});salvar();renderRecursosAtivos();toast("Recurso ativo adicionado. Marque-o ao registrar uma hunt em que for usado.");recRefreshTodos();document.getElementById("crResultado").style.display="none";document.getElementById("crAssociarArea").style.display="none"}
+function associarRecurso(){const g=meta(),r=window.crCalculado;if(!g||!r)return;if(!Array.isArray(g.recursosFarm))g.recursosFarm=[];const rid=window.crRenovId,ex=rid!=null?g.recursosFarm.find(x=>String(x.id)===String(rid)):null;if(ex){Object.assign(ex,r,{id:ex.id,restanteMin:r.durMin,ativo:true,renovadoEm:new Date().toISOString()});window.crRenovId=null;const b=document.getElementById("crRenovBanner");if(b)b.style.display="none"}else g.recursosFarm.push({...r,id:Date.now()+Math.random(),restanteMin:r.durMin,ativo:true,criadoEm:new Date().toISOString()});salvar();renderRecursosAtivos();toast(ex?"Recurso renovado.":"Recurso ativo adicionado. Marque-o ao registrar uma hunt em que for usado.");recRefreshTodos();document.getElementById("crResultado").style.display="none";document.getElementById("crAssociarArea").style.display="none"}
 function escHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","\'":"&#39;"}[c]));}
-function renderRecursosAtivos(){const g=meta(),el=document.getElementById("crAtivos");if(!el)return;const rs=(g&&g.recursosFarm)||[];el.innerHTML="<b>Recursos associados</b>"+(rs.length?rs.map(r=>`<div style="border:1px solid #31516b;border-radius:8px;padding:9px;margin-top:7px;font-size:12px"><b>${escHtml(r.nome)}</b> — ${r.ativo&&r.restanteMin>0?"Ativo":"Expirado"}<br>Restante: ${(Math.max(0,r.restanteMin)/60).toFixed(2)} h · Custo/h: ${Number(r.custoHora).toLocaleString("pt-BR",{maximumFractionDigits:2})} gp/h <button onclick="removerRecurso('${r.id}')" style="float:right">Remover</button></div>`).join(""):"<p style='font-size:12px;color:var(--muted)'>Nenhum recurso associado.</p>")}
+function renderRecursosAtivos(){const g=meta(),el=document.getElementById("crAtivos");if(!el)return;const rs=(g&&g.recursosFarm)||[];el.innerHTML="<b>Recursos associados</b>"+(rs.length?rs.map(r=>`<div style="border:1px solid #31516b;border-radius:8px;padding:9px;margin-top:7px;font-size:12px"><b>${escHtml(r.nome)}</b> — ${r.ativo&&r.restanteMin>0?"Ativo":"Expirado"}<br>Restante: ${(Math.max(0,r.restanteMin)/60).toFixed(2)} h · Custo/h: ${Number(r.custoHora).toLocaleString("pt-BR",{maximumFractionDigits:2})} gp/h <button onclick="removerRecurso('${r.id}')" style="float:right">Remover</button> <button onclick="tftRenovarRecurso('${r.id}')" style="float:right;margin-right:6px">🔄 Renovar</button></div>`).join(""):"<p style='font-size:12px;color:var(--muted)'>Nenhum recurso associado.</p>")}
+function tftRenovarRecurso(id){const g=meta();if(!g)return;const r=(g.recursosFarm||[]).find(x=>String(x.id)===String(id));if(!r)return;fechar("mRecAviso");if(window.tftIrPara)window.tftIrPara("custos");const set=(i,v)=>{const e=document.getElementById(i);if(e)e.value=v},tok=r.tipo==="token";set("crTipo",tok?"token":"imbuement");atualizarCamposRecurso();set("crNome",r.nome||"");if(tok){set("crQtd",r.qtd||"");set("crPreco",r.preco||"")}else set("crValor",r.valor||"");set("crDuracao",Math.round((Number(r.durMin)||0)/6)/10);window.crRenovId=r.id;const b=document.getElementById("crRenovBanner");if(b){b.style.display="block";b.innerHTML="🔄 Renovando <b>"+escHtml(r.nome)+"</b>: ajuste os valores/duração, clique em Calcular e depois em Adicionar. O recurso será atualizado (não duplicado)."}}
+window.tftRenovarRecurso=tftRenovarRecurso;
+function tftRecAviso(g,ses){try{const ids=((ses&&ses.recursosUsados)||[]).map(u=>String(u.id));const baixos=(g.recursosFarm||[]).filter(r=>ids.indexOf(String(r.id))!==-1).filter(r=>{const rest=Number(r.restanteMin);return Number.isFinite(rest)&&rest<=60});if(!baixos.length)return;const fmtT=m=>{m=Math.max(0,Math.round(m));return m>=60?Math.floor(m/60)+"h"+(m%60?String(m%60).padStart(2,"0"):""):m+" min"};document.getElementById("recAvisoLista").innerHTML=baixos.map(r=>{const rest=Number(r.restanteMin);return '<div class="rec-item" style="display:flex;gap:8px;align-items:center;justify-content:space-between;margin:8px 0"><span>'+(rest>0?'Você tem só mais <b>'+fmtT(rest)+'</b> de <b>'+escHtml(r.nome)+'</b>.':'<b>'+escHtml(r.nome)+'</b> acabou.')+'</span><button type="button" onclick="tftRenovarRecurso(decodeURIComponent(\''+encodeURIComponent(String(r.id))+'\'))">🔄 Renovar</button></div>'}).join("");abrir("mRecAviso")}catch(e){}}
 function removerRecurso(id){const g=meta();if(!g)return;g.recursosFarm=(g.recursosFarm||[]).filter(r=>String(r.id)!==String(id));salvar();renderRecursosAtivos();recRefreshTodos()}
 function recAtivo(r){const dur=Number(r.durMin)||0;let rest=Number(r.restanteMin);if(!Number.isFinite(rest))rest=dur;return r.ativo!==false&&rest>0}
 /* Consome SOMENTE os recursos cujo id está em ids (mesma conta de antes: custo/h × tempo usado, limitado ao restante). Sem ids = nada é consumido. */
@@ -1852,8 +1883,8 @@ function registrarFarm(){
   const farmEl=document.getElementById("farmHunt");
   const ses=montarSessaoFarm(g,{id:Date.now()+Math.random(),data:hoje(),hora:d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),tcPrice:S.tcPrice,hunt,huntId:farmEl?.dataset.huntId||null,huntCity:farmEl?.dataset.huntCity||""},v,tipo,tempo,recIdsSelecionados("farm"));
   if(tipo==="hunt"&&!ses.huntId){const hh=tftHuntFindName(hunt);if(hh)tftHuntSetOnSession(ses,hh);}g.sessoes.push(ses);definirAnalyzer(ses.id,anKeep?an:"");tftHallRegistrar(ses,an);tftHallDica(ses,an);
-  recSel.farm={modo:"ind",ids:[]};checar(g);salvar();render();
-  ["farmHunt","farmTime","farmGold","farmAnalyzer"].forEach(id=>{const e=document.getElementById(id);if(e)e.value=""});{const k=document.getElementById("farmAnKeep"),t=document.getElementById("farmAnStatus");if(k)k.checked=false;if(t)t.textContent=""}
+  recSel.farm={modo:"ind",ids:[]};checar(g);salvar();render();tftRecAviso(g,ses);
+  ["farmHunt","farmTime","farmGold","farmAnalyzer"].forEach(id=>{const e=document.getElementById(id);if(e)e.value=""});if(window.tftAnLimpar)window.tftAnLimpar("farm");{const k=document.getElementById("farmAnKeep"),t=document.getElementById("farmAnStatus");if(k)k.checked=false;if(t)t.textContent=""}
   toast(ses.custoRecursos>0?"Farm registrado: "+fmt(ses.gold)+" GP (bruto "+fmt(ses.goldBruto)+" − recursos "+fmt(ses.custoRecursos)+")":"Farm registrado: "+fmt(ses.gold)+" GP")
  };
  if(tipo==="hunt"&&ehValorSuspeito(pphDe(v,tempo))){abrirAvisoFarmSuspeito(pphDe(v,tempo),salvarAgora);return}
@@ -1869,7 +1900,7 @@ function confirmarAdd(){
  if(!(v>0))return toast("Informe o valor em gold.");
  const salvarAgora=()=>{
   const ses=montarSessaoFarm(g,{id:Date.now()+Math.random(),data:addDate,hora:new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}),tcPrice:p,hunt},v,tipo,tempo,recIdsSelecionados("add"));g.sessoes.push(ses);definirAnalyzer(ses.id,anKeep?an:"");tftHallRegistrar(ses,an);tftHallDica(ses,an);
-  checar(g);salvar();fechar("mAdd");render();toast(ses.custoRecursos>0?"Farm adicionado: "+fmt(ses.gold)+" GP (recursos −"+fmt(ses.custoRecursos)+")":"Farm adicionado: "+fmt(ses.gold)+" GP")
+  checar(g);salvar();fechar("mAdd");render();tftRecAviso(g,ses);toast(ses.custoRecursos>0?"Farm adicionado: "+fmt(ses.gold)+" GP (recursos −"+fmt(ses.custoRecursos)+")":"Farm adicionado: "+fmt(ses.gold)+" GP")
  };
  if(tipo==="hunt"&&ehValorSuspeito(pphDe(v,tempo))){abrirAvisoFarmSuspeito(pphDe(v,tempo),salvarAgora);return}
  salvarAgora();
@@ -2887,6 +2918,7 @@ function render(){
      <div><div class="val tc"><span class="coin tc">TC</span>${fmt2(tcDia(g,d))} <small>TC</small></div>
      ${S.tcBRL>0?'<div class="muted" style="font-size:11.5px;margin-top:3px">≈ '+brl(tcDia(g,d)*S.tcBRL)+'</div>':''}</div>
     </div>
+    <div class="an-wrap" id="farmAnWrap" style="${tipoSel.farm==='hunt'?'':'display:none'}"><div class="an-card"><div class="an-card-ic">👑</div><div><b>Cole o Hunt Analyzer e participe do Hall dos Caçadores</b><p>Copie o Hunt Analyzer no Tibia e cole abaixo: o <strong>tempo e o gold são preenchidos automaticamente</strong> e você escolhe a hunt com um clique. Com ele, hunts <strong>da lista oficial</strong> com 1h ou mais disputam o <strong>👑 Hall dos Caçadores</strong>. O Analyzer fica salvo no seu histórico.</p></div></div><div class="an-compact" id="farmAnalyzerBox"><div class="an-mini-row"><label for="farmAnalyzer">📋 Hunt Analyzer <small>(opcional)</small></label><textarea id="farmAnalyzer" class="an-text an-mini" rows="1" spellcheck="false" placeholder="Toque aqui e cole o Hunt Analyzer"></textarea><button type="button" class="an-clear" id="farmAnClear" style="display:none" onclick="tftAnLimpar('farm')" title="Apagar e colar outro">✕ Limpar</button></div><div class="an-status" id="farmAnStatus"></div><small id="farmAnCount" style="display:none"></small></div></div>
     ${tipoTabsHTML('farm')}
     ${campoNomeHTML('farm')}
     <div class="grid2">
@@ -2894,7 +2926,6 @@ function render(){
      <div class="field"><label>Valor em Gold</label><input id="farmGold" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex.: 2kk ou 2000000" title="Use k para mil e kk para milhão" onkeydown="if(event.key==='Enter')registrarFarm()"></div>
     </div>
     ${htmlSeletorRecursos('farm')}
-    <div class="an-card"><div class="an-card-ic">👑</div><div><b>Cole o Hunt Analyzer e participe do Hall dos Caçadores</b><p>Copie o Hunt Analyzer no Tibia e cole abaixo: o <strong>tempo, o gold e o nome da hunt são preenchidos automaticamente</strong>. Com ele, hunts <strong>da lista oficial</strong> com 1h ou mais disputam o <strong>👑 Hall dos Caçadores</strong>. O Analyzer fica salvo no seu histórico.</p></div></div><details class="analyzer-box" id="farmAnalyzerBox" open><summary>📋 Hunt Analyzer <small>(opcional · preenche tempo e gold automaticamente)</small></summary><textarea id="farmAnalyzer" class="an-text" placeholder="Cole aqui o texto completo do Hunt Analyzer copiado do Tibia. O tempo, o gold e o nome da hunt são preenchidos automaticamente e o Analyzer é salvo no seu histórico."></textarea><div class="an-extra"><div class="an-status" id="farmAnStatus"></div><div class="an-saved" style="font-size:11px;opacity:.8;margin-top:4px">💾 Salvo automaticamente no seu histórico <small id="farmAnCount"></small></div></div></details>
     <div class="actions"><button class="btn-green" onclick="registrarFarm()">Registrar Farm</button></div>
    </section>
 
@@ -4943,7 +4974,7 @@ setTab("div");
  /* depois de sincronizar/trocar de meta o app chama render(): mantém a página de custos coerente com a meta ativa */
  var orig=window.render;
  if(typeof orig==="function"&&!orig.__tftTools){
-  var w=function(){var ta=document.getElementById("farmAnalyzer"),keep=ta?ta.value:"";var r=orig.apply(this,arguments);try{if(keep){var n=document.getElementById("farmAnalyzer");if(n&&!n.value){n.value=keep;var dt=document.getElementById("farmAnalyzerBox");if(dt)dt.open=true}}}catch(e){}try{if(paginaAtual()==="custos"&&typeof tftCustosAtualizar==="function")tftCustosAtualizar()}catch(e){}try{if(paginaAtual()==="comparar"&&window.tftCmpAtualizarLista)window.tftCmpAtualizarLista()}catch(e){}return r};
+  var w=function(){var ta=document.getElementById("farmAnalyzer"),keep=ta?ta.value:"";var r=orig.apply(this,arguments);try{if(keep){var n=document.getElementById("farmAnalyzer");if(n&&!n.value){n.value=keep;if(window.tftAnLock)window.tftAnLock("farm")}}}catch(e){}try{if(paginaAtual()==="custos"&&typeof tftCustosAtualizar==="function")tftCustosAtualizar()}catch(e){}try{if(paginaAtual()==="comparar"&&window.tftCmpAtualizarLista)window.tftCmpAtualizarLista()}catch(e){}return r};
   w.__tftTools=true;window.render=w;
  }
 
@@ -5111,8 +5142,12 @@ setTab("div");
   if(r.min>0){set(c.time,String(r.min));msg.push("tempo "+String(Math.floor(r.min/60)).padStart(2,"0")+":"+String(r.min%60).padStart(2,"0")+"h")}
   if(r.bal!=null&&r.bal>0){set(c.gold,String(r.bal));msg.push("balance "+F(r.bal)+" GP")}
   else if(r.bal!=null)msg.push("balance negativo ("+F(r.bal)+"): ajuste o valor manualmente");
-  var h=$(c.hunt),sug=(tipo==="hunt"&&h&&!h.value.trim())?sugerida():"";
-  if(sug){h.value=sug;msg.push('nome "'+sug+'" (suas 3 últimas hunts)')}
+  var h=$(c.hunt),sug="";
+  if(tipo==="hunt"&&h&&!h.value.trim()){
+   if(k==="farm"){if(!ta.dataset.escolhida){ta.dataset.escolhida="1";setTimeout(function(){window.tftAnAbrirEscolha&&window.tftAnAbrirEscolha()},120)}}
+   else sug=sugerida();
+   if(sug){h.value=sug;msg.push('nome "'+sug+'" (suas 3 últimas hunts)')}
+  }
   {var hv=window.tftHallPreAvaliar?window.tftHallPreAvaliar(t,tipo,(h&&h.value.trim())||sug):"";if(hv)msg.push(hv)}
   status(k,"✓ Lido do Analyzer: "+msg.join(" · "),r.bal!=null&&r.bal<=0);
  }
@@ -5121,9 +5156,31 @@ setTab("div");
   if(id==="farmAnalyzer")aplicar("farm");else if(id==="addAnalyzer")aplicar("add");
  });
  document.addEventListener("change",function(e){if(e.target&&/AnKeep$/.test(e.target.id||""))contador()});
+ window.tftAnAplicar=aplicar;
+ /* ---- campo do Registrar Farm: só aceita colar (sem digitar/editar); depois de colado fica travado até clicar em Limpar ---- */
+ function ehCampo(e){return e.target&&e.target.id==="farmAnalyzer"}
+ document.addEventListener("beforeinput",function(e){if(ehCampo(e)&&(e.inputType!=="insertFromPaste"||e.target.readOnly))e.preventDefault()});
+ document.addEventListener("keydown",function(e){if(!ehCampo(e))return;var k=String(e.key).toLowerCase();if(e.key==="Tab")return;if((e.ctrlKey||e.metaKey)&&(k==="v"||k==="c"||k==="a"))return;e.preventDefault()});
+ ["cut","drop"].forEach(function(ev){document.addEventListener(ev,function(e){if(ehCampo(e))e.preventDefault()})});
+ function lock(k){var ta=$(SC[k].txt),b=$(SC[k].pre+"AnClear");if(!ta)return;var tem=!!ta.value.trim();ta.readOnly=tem;if(b)b.style.display=tem?"":"none"}
+ window.tftAnLock=lock;
+ document.addEventListener("input",function(e){if(e.target&&e.target.id==="farmAnalyzer")setTimeout(function(){lock("farm")},0)});
+ window.tftAnLimpar=function(k){var ta=$(SC[k].txt);if(!ta)return;ta.readOnly=false;ta.value="";delete ta.dataset.escolhida;status(k,"");var b=$(SC[k].pre+"AnClear");if(b)b.style.display="none"};
+ /* ---- modal "Qual hunt foi essa?": favoritas + últimas, um clique ---- */
+ window.tftAnAbrirEscolha=function(){
+  var tipo="hunt",fav=favList(tipo).filter(function(n){return n}),rec=recentesDoTipo(tipo,8).filter(function(n){return fav.indexOf(n)===-1}).slice(0,6);
+  if(!fav.length&&!rec.length){huntPickerAlvo="farm";abrirHuntPicker("farm");return}
+  var linha=function(n){var hh=tftHuntFindName(n);return '<div class="hunt-pick-row"><button type="button" class="hunt-pick-name" onclick="tftAnEscolher(decodeURIComponent(&quot;'+encodeURIComponent(n)+'&quot;))"><span>'+esc(n)+'</span>'+(hh&&hh.city?'<small class="hunt-pick-city">'+esc(hh.city)+'</small>':'')+'</button></div>'};
+  var html="";
+  if(fav.length)html+='<div class="hunt-pick-section">⭐ Favoritas</div>'+fav.map(linha).join("");
+  if(rec.length)html+='<div class="hunt-pick-section">🕘 Últimas hunts</div>'+rec.map(linha).join("");
+  var box=$("anHuntLista");if(box)box.innerHTML=html;abrir("mAnHunt");
+ };
+ window.tftAnEscolher=function(nome){huntPickerAlvo="farm";huntPickerTipo="hunt";selecionarHunt(nome);fechar("mAnHunt");aplicar("farm")};
+ window.tftAnTodas=function(){fechar("mAnHunt");abrirHuntPicker("farm")};
  /* após cada render do app: atualiza o contador e limpa o estado do checkbox/status */
  var orig=window.render;
- window.render=function(){var r=orig.apply(this,arguments);try{contador()}catch(e){}return r};
+ window.render=function(){var r=orig.apply(this,arguments);try{contador()}catch(e){}try{window.tftAnLock&&window.tftAnLock("farm")}catch(e){}return r};
  contador();
 })();
 </script>
