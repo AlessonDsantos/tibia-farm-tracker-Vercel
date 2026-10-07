@@ -1433,7 +1433,7 @@ function tftHuntNorm(v){return String(v||"").normalize("NFD").replace(/[\u0300-\
 function tftHuntLabel(h){return h?(h.name+(h.city?" — "+h.city:"")):""}
 function tftHuntById(id){if(!id)return null;return TFT_HUNTS_DB.hunts.find(h=>String(h.id)===String(id))||null}
 function tftHuntFindByNameCity(name,city){const n=tftHuntNorm(name),c=tftHuntNorm(city);return TFT_HUNTS_DB.hunts.find(h=>tftHuntNorm(h.name)===n&&(!c||tftHuntNorm(h.city)===c))||null}
-function tftHuntFindName(name){const n=tftHuntNorm(name);return TFT_HUNTS_DB.hunts.find(h=>tftHuntNorm(h.name)===n)||null}
+function tftHuntFindName(name){const n=tftHuntNorm(name);return TFT_HUNTS_DB.hunts.find(h=>tftHuntNorm(h.name)===n)||TFT_HUNTS_DB.hunts.find(h=>tftHuntNorm(tftHuntLabel(h))===n)||null} /* aceita também o rótulo "Nome — Cidade" gravado em registros antigos */
 async function tftCarregarHunts(){
  if(TFT_HUNTS_PROMISE)return TFT_HUNTS_PROMISE;
  TFT_HUNTS_PROMISE=fetch("/hunts.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>{
@@ -2200,9 +2200,10 @@ function tftHallAvaliarTexto(text){
 function tftHallBruto(s){return Math.round(s.goldBruto!=null?Number(s.goldBruto)||0:(Number(s.gold)||0)+(Number(s.custoRecursos)||0))}
 /* Hall: só hunts que existem no /hunts.json (com huntId). Hunts personalizadas ficam de fora. */
 function tftHuntOficial(huntId){const id=String(huntId||"").trim();if(!id)return false;const l=TFT_HUNTS_DB&&TFT_HUNTS_DB.hunts;return(l&&l.length)?l.some(h=>h.id===id):true}
+function tftHallNormHunt(s){if(s&&!s.huntId&&tipoDe(s)==="hunt"){const h=tftHuntOfSession(s);if(h)tftHuntSetOnSession(s,h)}return s}
 function tftHallAvaliar(ses,text){
  if(!ses||tipoDe(ses)!=="hunt")return{ok:false,motivo:"tipo",calc:null};
- if(!ses.huntId){const hh=tftHuntFindName(ses.hunt);if(hh)tftHuntSetOnSession(ses,hh)}
+ tftHallNormHunt(ses);
  if(!tftHuntOficial(ses.huntId))return{ok:false,motivo:"personalizada",calc:null};
  const r=tftHallAvaliarTexto(text);
  if(r.ok&&(Math.abs((Number(ses.time)||0)-r.calc.dur)>1||Math.abs(tftHallBruto(ses)-r.calc.bal)>1))return{ok:false,motivo:"registro-diferente",calc:r.calc};
@@ -2227,7 +2228,7 @@ function tftHallRegistrar(ses,text){
  }
  if(ses.hallSig===sig&&ses.hallStatus==="eligible"&&ses.hallUp)return;
  const r=tftHallAvaliar(ses,text);
- ses.hallStatus=r.ok?"eligible":"ineligible";ses.hallMotivo=r.ok?"":r.motivo;ses.hallSig=sig;ses.hallCalc=r.calc||null;ses.hallUp=false;
+ ses.hallStatus=r.ok?"eligible":"ineligible";ses.hallMotivo=r.ok?"":r.motivo;ses.hallSig=tftHallSig(ses);ses.hallCalc=r.calc||null;ses.hallUp=false;
  if(r.ok){const p=tftHallLerPend();p[String(ses.id)]=text;if(!tftHallGravarPend(p)){ses.hallStatus="ineligible";ses.hallMotivo="armazenamento"}}
 }
 function tftHallBadge(s){
@@ -2241,7 +2242,7 @@ function tftHallDica(ses,text){
  if(!text||!ses||tipoDe(ses)!=="hunt")return;
  setTimeout(()=>toast(ses.hallStatus==="eligible"?"👑 Esta hunt está elegível para o Hall dos Caçadores.":"Hunt salva. Fora do Hall: "+tftHallMotivoTxt(ses.hallMotivo)+"."),2300);
 }
-function tftHallSessoesCiclo(cyc){return(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]).filter(s=>isValidRankingHunt(s)&&tftCicloDe(s.data)===cyc)}
+function tftHallSessoesCiclo(cyc){return(S.metas||[]).flatMap(m=>Array.isArray(m.sessoes)?m.sessoes:[]).filter(s=>isValidRankingHunt(s)&&tftCicloDe(s.data)===cyc).map(tftHallNormHunt)}
 function tftHallSlug(k){let h=5381;for(let i=0;i<k.length;i++)h=((h<<5)+h+k.charCodeAt(i))>>>0;return String(k).toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,50)+"-"+h.toString(36)}
 const tftHallAnId=(uid,sid)=>uid+"__"+String(sid).replace(/[^A-Za-z0-9_-]/g,"_");
 const tftHallSubId=(uid,cyc,key)=>cyc+"__"+uid+"__"+tftHallSlug(key);
@@ -3141,6 +3142,7 @@ async function syncHallSubmissions(){
  try{
   const nick=String(window.S&&window.S.nickname||"").trim();
   if(!nick)return true;
+  if(!(TFT_HUNTS_DB&&TFT_HUNTS_DB.hunts&&TFT_HUNTS_DB.hunts.length))return true; /* lista oficial ainda não carregou: não mexe no Hall */
   const desejados=window.tftHallDesejados(u.uid,nick),cyc=tftCicloAtual();
   const sig=JSON.stringify([u.uid,cyc,desejados]),chave="tftHallSubSig",agora=Date.now();
   try{const g=JSON.parse(localStorage.getItem(chave)||"null");if(g&&g.sig===sig&&agora-g.ts<12*3600*1000)return true}catch(e){}
@@ -3685,7 +3687,7 @@ function removerMetaSemanal(){
       rtChartState.points=[];rtChartState.coords=[];
       empty.textContent=points.length===1
         ?'Registre mais um farm para começar a comparar sua evolução.'
-        :'Nenhum farm encontrado para exibir no gráfico.';
+        :'Nenhuma hunt de 1h ou mais neste filtro para exibir no gráfico.';
       return;
     }
     show(wrap,true);show(empty,false);
@@ -3984,6 +3986,13 @@ function removerMetaSemanal(){
     hook('salvar');hook('render');
     window.addEventListener('storage',render);
     window.addEventListener('resize',()=>render());
+    /* o painel fica oculto fora da aba Desempenho (largura 0): redesenha o gráfico quando ela aparece */
+    try{
+      const shellEl=document.querySelector('.tft-shell');
+      if(shellEl&&window.MutationObserver)new MutationObserver(()=>{requestAnimationFrame(()=>render());setTimeout(render,150)}).observe(shellEl,{attributes:true,attributeFilter:['data-tft-page']});
+      const cv=document.getElementById('rtProfitChart');let lastW=0;
+      if(cv&&window.ResizeObserver)new ResizeObserver(()=>{const w=cv.getBoundingClientRect().width;if(w&&Math.abs(w-lastW)>1){lastW=w;render()}}).observe(cv);
+    }catch(e){}
     render();
     setTimeout(render,600);
   }
