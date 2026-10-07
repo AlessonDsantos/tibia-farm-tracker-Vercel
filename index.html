@@ -548,6 +548,29 @@ tr.total td:first-child{font-weight:700}
 .tft-side-line{height:1px;width:62%;margin:11px auto 9px;background:linear-gradient(90deg,transparent,rgba(235,194,103,.5),transparent)}
 .tft-side-sig{font-family:Georgia,serif;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#d9b45e;opacity:.85}
 .performance-filter select{background:#061829;color:#d9ecf9;border:1px solid #2c6188;border-radius:7px;padding:7px 9px;font:inherit;max-width:210px}
+/* ===== Menu lateral: rolagem discreta, só o menu rola; logo e rodapé ficam fixos ===== */
+.tft-sidebar{overflow:hidden!important}
+.tft-sidebar .tft-brand-logo,.tft-sidebar .tft-sidebar-bottom{flex:none}
+.tft-sidebar .tft-nav{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scroll-behavior:smooth;
+ margin-right:-6px;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(226,177,73,.28) transparent;
+ -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10px,#000 calc(100% - 14px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 10px,#000 calc(100% - 14px),transparent 100%)}
+.tft-sidebar .tft-nav::-webkit-scrollbar{width:5px}
+.tft-sidebar .tft-nav::-webkit-scrollbar-track{background:transparent}
+.tft-sidebar .tft-nav::-webkit-scrollbar-thumb{background:rgba(226,177,73,.22);border-radius:6px}
+.tft-sidebar .tft-nav:hover::-webkit-scrollbar-thumb{background:rgba(226,177,73,.5)}
+.tft-sidebar .tft-nav::-webkit-scrollbar-thumb:hover{background:rgba(240,213,140,.75)}
+/* telas baixas: menu mais compacto para caber sem rolar */
+@media (max-height:900px){
+ .tft-sidebar{padding-top:10px;padding-bottom:8px}
+ .tft-brand-logo{padding-bottom:8px;margin-bottom:8px}
+ .tft-brand-logo img{width:78%;margin:0 auto}
+ .tft-nav{gap:2px}
+ .tft-nav>a,.tft-nav>button{padding-top:8px!important;padding-bottom:8px!important}
+ .tft-nav .tft-subnav a,.tft-nav .tft-subnav button{padding-top:6px!important;padding-bottom:6px!important}
+}
+@media (max-height:760px){
+ .tft-sidebar .tft-sidebar-bottom{display:none}
+}
 </style>
 <style id="tft-tools-css">
 /* === Ferramentas como páginas normais (sem modal) === */
@@ -4086,7 +4109,7 @@ async function tftCarregarCatalogoLoot(){
   console.error('Erro ao carregar catálogo de loot:',error);
  }
 }
-function tftToggleFerramentas(){var sub=document.getElementById('tftSubnavFerramentas'),btn=document.querySelector('#tftNav button[data-nav="ferramentas"]');if(!sub)return;var open=!sub.classList.contains('open');sub.classList.toggle('open',open);if(btn){btn.setAttribute('aria-expanded',String(open));var ch=btn.querySelector('.tft-chevron');if(ch)ch.textContent=open?'▴':'▾'}tftMarcarNav('ferramentas');tftFecharMenu()}
+function tftToggleFerramentas(){var sub=document.getElementById('tftSubnavFerramentas'),btn=document.querySelector('#tftNav button[data-nav="ferramentas"]');if(!sub)return;var open=!sub.classList.contains('open');sub.classList.toggle('open',open);if(open)setTimeout(function(){try{sub.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(e){}},80);if(btn){btn.setAttribute('aria-expanded',String(open));var ch=btn.querySelector('.tft-chevron');if(ch)ch.textContent=open?'▴':'▾'}tftMarcarNav('ferramentas');tftFecharMenu()}
 function tftNormLoot(s){return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/^\s*(?:an?|uma?)\s+/,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim()}
 function tftParseLoot(raw){let out={};for(let line of raw.split(/\r?\n/)){line=line.trim();if(!line)continue;let m=line.match(/^([\d,.]+)\s*[x×]?\s+(.+?)\s*$/);let qty,name;if(m){qty=Number(m[1].replace(/[,.]/g,''));name=m[2]}else{m=line.match(/^(.+?)\s+[x×]?([\d,.]+)$/);if(!m)continue;name=m[1];qty=Number(m[2].replace(/[,.]/g,''))}if(!Number.isFinite(qty)||qty<=0||!name)continue;let key=tftNormLoot(name);if(!out[key])out[key]={name:name,qty:0};out[key].qty+=qty}return out}
 function tftGp(n){return Number(n).toLocaleString('pt-BR')+' gp'}
