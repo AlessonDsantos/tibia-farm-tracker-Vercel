@@ -958,8 +958,6 @@ h1.retention-title{margin:0}
 #tftPartyXpPage .pxp-in input{width:100%;box-sizing:border-box;height:54px;background:#061829;color:#fff;border:1px solid #315b78;border-radius:10px;padding:0 64px 0 14px;font:inherit;font-size:24px;font-weight:800;outline:none}
 #tftPartyXpPage .pxp-in input:focus{border-color:#e2b149;box-shadow:0 0 0 3px rgba(226,177,73,.15)}
 #tftPartyXpPage .pxp-in span{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:800;letter-spacing:.06em;color:#8aa3b6}
-#tftPartyXpPage .pxp-btn{width:100%;height:44px;margin-top:12px;border:1px solid #e8b957;border-radius:10px;background:linear-gradient(100deg,#e2b149,#c8902c);color:#1a1204;font:inherit;font-weight:800;cursor:pointer}
-#tftPartyXpPage .pxp-btn:hover{filter:brightness(1.08)}
 #tftPartyXpPage .pxp-err{min-height:18px;margin-top:8px;font-size:12.5px;color:#ff9b8f}
 #tftPartyXpPage .pxp-tag{text-align:center;font-size:11px;font-weight:800;letter-spacing:.07em;color:#9eb5c7;margin-bottom:6px}
 #tftPartyXpPage .pxp-big{text-align:center;font-size:34px;font-weight:900;color:#fff;letter-spacing:-.5px}
@@ -1117,7 +1115,6 @@ h1.retention-title{margin:0}
 <div class="pxp-card">
 <label for="pxpLevel">Seu level</label>
 <div class="pxp-in"><input id="pxpLevel" type="number" inputmode="numeric" min="1" max="5000" value="500" placeholder="Ex.: 500" autocomplete="off"><span>LEVEL</span></div>
-<button type="button" class="pxp-btn" id="pxpBtn">Calcular faixa de XP</button>
 <div class="pxp-err" id="pxpErr" role="alert"></div>
 </div>
 <div class="pxp-card">
@@ -1474,7 +1471,7 @@ const BOSSES_ROTACOES=[
  {nome:"Rotacao GT",bosses:["Lady Tenebris","Lloyd","Melting Frozen Horror","Thorn Knight"]},
  {nome:"Rotacao GD",bosses:["Count Vlarkorth","Duke Krule","Earl Osam","Lord Azaram","Sir Nictros"]}
 ];
-var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[],bossesPersonalizados:[],bossesFavoritos:[],rotacoesPersonalizadas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",addDate=null,editId=null,editGastoId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerTipo="hunt",huntPickerBusca="",huntPickerFiltro="todas",metaModoInfinito=false,metaEditandoId=null;
+var S={metas:[],ativa:null,tcPrice:35000,tcBRL:0,nickname:"",huntsPersonalizadas:[],huntsFavoritas:[],bossesPersonalizados:[],bossesFavoritos:[],rotacoesPersonalizadas:[]},aba="hist",abaRel="semanal",abaHist="dia",histDateIni="",histDateFim="",histHunt="",addDate=null,editId=null,editGastoId=null,tSugg=null,menuAberto=false,huntPickerAlvo="add",huntPickerTipo="hunt",huntPickerBusca="",huntPickerFiltro="todas",metaModoInfinito=false,metaEditandoId=null;
 var tipoSel={farm:"hunt",add:"hunt",edit:"hunt"};
 var recSel={farm:{modo:"ind",ids:[]},add:{modo:"ind",ids:[]},edit:{modo:"ind",ids:[]}};
 var recEditMin={},recEditLegado=0; /* edição: minutos que cada recurso consumiu nesta hunt / custo de registro antigo sem detalhe */
@@ -2477,7 +2474,7 @@ window.carregarRankingPage=carregarRankingPage;window.renderGeneralRankings=rend
  let slides=[],index=0,timer=null,loaded=false;
 
  function escH(v){return String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
- function fmtH(v){return Number(v||0).toLocaleString("pt-BR");}
+ function fmtH(v){return Math.round(Number(v)||0).toLocaleString("pt-BR");}
 
  function montarSlides(){
    const docs=window.tftRankingDocs||[];
@@ -2593,7 +2590,7 @@ function salvarCotacaoBRL(){
 function setAba(a){aba=a;render()}
 function setAbaRel(a){abaRel=a;render()}
 function setAbaHist(a){abaHist=a;render()}
-function limparFiltroHist(){histDateIni="";histDateFim="";render()}
+function limparFiltroHist(){histDateIni="";histDateFim="";histHunt="";render()}
 function histNoRange(d){if(histDateIni&&d<histDateIni)return false;if(histDateFim&&d>histDateFim)return false;return true}
 
 /* ================= busca de item no modal ================= */
@@ -2814,24 +2811,34 @@ function ringSVG(p){
 
 function resumoDia(g,d){return g.sessoes.find(s=>s.resumoDia&&s.data===d)||null}
 var histSort={};
+const PPH_MIN_MIN=60;
+const histNomeFarm=s=>String(s.hunt||"Farm não informado").trim()||"Farm não informado";
+const histPphValido=s=>tipoDe(s)==="hunt"&&Number(s.time)>=PPH_MIN_MIN;
+function histPphSessao(s){return histPphValido(s)?(Number(s.gold)||0)/(Number(s.time)/60):null}
+function histPphLista(arr){let g=0,m=0;arr.forEach(s=>{if(histPphValido(s)){g+=Number(s.gold)||0;m+=Number(s.time)}});return m>0?g/(m/60):null}
+const histPphTxt=v=>v==null?"—":fmt(v)+"/h";
+const HIST_PPH_NOTA='<div class="pph-nota">ℹ️ Profit/h só é calculado para hunts de 1h ou mais. Farms mais curtos, Boss e Outros ficam com “—”.</div>';
+function histOpcoesHunt(g){const m=new Map();g.sessoes.forEach(s=>{if(isResumo(s)||s.somado)return;const n=histNomeFarm(s);m.set(n,(m.get(n)||0)+1)});return [...m.entries()].sort((a,b)=>a[0].localeCompare(b[0],"pt-BR"))}
 function histOrdenar(tab,key){const c=histSort[tab];histSort[tab]=c&&c.key===key?{key:key,dir:-c.dir}:{key:key,dir:-1};render()}
 function histTh(tab,key,label){const c=histSort[tab],on=c&&c.key===key;return '<th class="th-sort'+(on?' on':'')+'" onclick="histOrdenar(\''+tab+'\',\''+key+'\')" title="Clique para ordenar (maior → menor e vice-versa)">'+label+'<span class="sort-ind">'+(on?(c.dir<0?' ▼':' ▲'):' ↕')+'</span></th>'}
-function histOrdenarLista(tab,rows){const c=histSort[tab];if(!c)return rows;return rows.slice().sort(function(a,b){const x=a[c.key],y=b[c.key];const r=(typeof x==='string'||typeof y==='string')?String(x).localeCompare(String(y),'pt-BR'):(Number(x)||0)-(Number(y)||0);return r*c.dir})}
+function histOrdenarLista(tab,rows){const c=histSort[tab];if(!c)return rows;return rows.slice().sort(function(a,b){const x=a[c.key],y=b[c.key];if(x==null||y==null)return x==null&&y==null?0:(x==null?1:-1);const r=(typeof x==='string'||typeof y==='string')?String(x).localeCompare(String(y),'pt-BR'):(Number(x)||0)-(Number(y)||0);return r*c.dir})}
 function tabelaHist(g){
+ const opcoes=histOpcoesHunt(g);if(histHunt&&!opcoes.some(o=>o[0]===histHunt))histHunt="";
+ const campoHunt=abaHist==='gastos'?'':'<div class="pf-field"><label for="histHuntSel">Hunt</label><select id="histHuntSel"><option value="">Todas as hunts</option>'+opcoes.map(o=>'<option value="'+esc(o[0])+'"'+(o[0]===histHunt?' selected':'')+'>'+esc(o[0])+' ('+o[1]+')</option>').join('')+'</select></div>';
  const ds=diasFarm(g).slice().reverse();
  const temGastos=Array.isArray(g.gastos)&&g.gastos.length>0;
  if(!ds.length&&!temGastos)return '<div class="empty"><b>Nenhum farm registrado ainda</b>Use “Registrar Farm” para lançar o primeiro valor do dia.</div>';
- let h='<div class="history-tools"><div class="tabs mini-history-tabs"><button class="'+(abaHist==='dia'?'on':'')+'" onclick="setAbaHist(\'dia\')">Resumo diário</button><button class="'+(abaHist==='hunts'?'on':'')+'" onclick="setAbaHist(\'hunts\')">Farms feitos</button><button class="'+(abaHist==='gastos'?'on':'')+'" onclick="setAbaHist(\'gastos\')">💸 Gastos</button></div><div class="performance-filter history-date-filter"><div class="pf-field"><label for="histDateIni">De</label><input id="histDateIni" type="date" value="'+esc(histDateIni)+'"></div><div class="pf-field"><label for="histDateFim">Até</label><input id="histDateFim" type="date" value="'+esc(histDateFim)+'"></div><button type="button" onclick="limparFiltroHist()">Todos</button></div></div>';
+ let h='<div class="history-tools"><div class="tabs mini-history-tabs"><button class="'+(abaHist==='dia'?'on':'')+'" onclick="setAbaHist(\'dia\')">Resumo diário</button><button class="'+(abaHist==='hunts'?'on':'')+'" onclick="setAbaHist(\'hunts\')">Farms feitos</button><button class="'+(abaHist==='gastos'?'on':'')+'" onclick="setAbaHist(\'gastos\')">💸 Gastos</button></div><div class="performance-filter history-date-filter"><div class="pf-field"><label for="histDateIni">De</label><input id="histDateIni" type="date" value="'+esc(histDateIni)+'"></div><div class="pf-field"><label for="histDateFim">Até</label><input id="histDateFim" type="date" value="'+esc(histDateFim)+'"></div>'+campoHunt+'<button type="button" onclick="limparFiltroHist()">Todos</button></div></div>';
  if(abaHist==='hunts')return h+tabelaHistHunts(g,ds);
  if(abaHist==='gastos')return h+tabelaHistGastos(g);
  if(!ds.length)return h+'<div class="empty"><b>Nenhum farm registrado ainda.</b></div>';
- const filtered=ds.filter(histNoRange);
- if(!filtered.length)return h+'<div class="empty"><b>Nenhum registro neste período.</b></div>';
+ const filtered=ds.filter(histNoRange).filter(d=>!histHunt||doDia(g,d).some(s=>histNomeFarm(s)===histHunt));
+ if(!filtered.length)return h+'<div class="empty"><b>Nenhum registro '+(histHunt?'dessa hunt ':'')+'neste período.</b></div>';
  let html=h+'<div class="tablewrap"><table><thead><tr>'+histTh('dia','data','Data')+histTh('dia','farms','Farms')+histTh('dia','tempo','Tempo')+histTh('dia','gold','Farm (Gold)')+histTh('dia','pph','Profit/h')+histTh('dia','tc','Tibia Coin')+'<th></th></tr></thead><tbody>';
- const rowsDia=filtered.map(d=>{const arr=doDia(g,d),r=resumoDia(g,d),count=[...new Set(arr.map(s=>(s.hunt||'Farm não informado').trim()))].filter(Boolean).length,total=goldDia(g,d),time=arr.reduce((a,s)=>a+Number(s.time||0),0);return{d,arr,r,count,total,time,pph:time>0?total/(time/60):0,data:String(d),farms:count,tempo:time,gold:total,tc:tcDia(g,d)}});
- histOrdenarLista('dia',rowsDia).forEach(o=>{const d=o.d,arr=o.arr,r=o.r,count=o.count,total=o.total,time=o.time,pph=o.pph,huntsText=r&&r.hunt?r.hunt:(count+(count===1?' farm':' farms'));
-  html+='<tr><td>'+brData(d)+(d===hoje()?' <span class="today-tag">(Hoje)</span>':'')+'</td><td><b>'+esc(huntsText)+'</b></td><td>'+(time?time+' min':'—')+'</td><td><div class="cell"><span class="coin">G</span>'+fmt(total)+'</div></td><td><div class="cell"><span class="coin">G</span>'+fmt(pph)+'/h</div></td><td><div class="cell"><span class="coin tc">TC</span>'+fmt2(tcDia(g,d))+'</div></td><td><div class="rowbtns">'+btnAnDia(arr)+'</div></td></tr>';});
- return html+'</tbody></table></div>'}
+ const rowsDia=filtered.map(d=>{const arr=doDia(g,d).filter(s=>!histHunt||histNomeFarm(s)===histHunt),r=histHunt?null:resumoDia(g,d),count=[...new Set(arr.map(s=>(s.hunt||'Farm não informado').trim()))].filter(Boolean).length,total=arr.reduce((a,s)=>a+Number(s.gold),0),time=arr.reduce((a,s)=>a+Number(s.time||0),0);return{d,arr,r,count,total,time,pph:histPphLista(arr),data:String(d),farms:count,tempo:time,gold:total,tc:arr.reduce((a,s)=>a+Number(s.gold)/Number(s.tcPrice||S.tcPrice),0)}});
+ histOrdenarLista('dia',rowsDia).forEach(o=>{const d=o.d,arr=o.arr,r=o.r,count=o.count,total=o.total,time=o.time,pph=o.pph,huntsText=histHunt?(histHunt+(arr.length>1?' ×'+arr.length:'')):(r&&r.hunt?r.hunt:(count+(count===1?' farm':' farms')));
+  html+='<tr><td>'+brData(d)+(d===hoje()?' <span class="today-tag">(Hoje)</span>':'')+'</td><td><b>'+esc(huntsText)+'</b></td><td>'+(time?time+' min':'—')+'</td><td><div class="cell"><span class="coin">G</span>'+fmt(total)+'</div></td><td><div class="cell"><span class="coin">G</span>'+(pph==null?'—':fmt(pph)+'/h')+'</div></td><td><div class="cell"><span class="coin tc">TC</span>'+fmt2(o.tc)+'</div></td><td><div class="rowbtns">'+btnAnDia(arr)+'</div></td></tr>';});
+ return html+'</tbody></table></div>'+HIST_PPH_NOTA}
 function tabelaHistGastos(g){
  const gastos=(g.gastos||[]).slice().sort((a,b)=>b.id-a.id);
  const filtered=gastos.filter(x=>histNoRange(x.data));
@@ -2843,9 +2850,10 @@ function tabelaHistHunts(g,ds){
  const filtered=ds.filter(histNoRange);
  if(!filtered.length)return '<div class="empty"><b>Nenhum farm neste período.</b></div>';
  let html='<div class="tablewrap"><table><thead><tr>'+histTh('hunts','data','Data')+histTh('hunts','farm','Farm')+histTh('hunts','tempo','Tempo')+histTh('hunts','profit','Profit')+histTh('hunts','pph','Profit/h')+histTh('hunts','tc','TC')+'<th></th></tr></thead><tbody>';
- const rowsH=[];filtered.forEach(d=>{doDia(g,d).forEach(s=>{const mins=Number(s.time||0),profit=Number(s.gold)||0;rowsH.push({d,s,data:String(d),farm:String(s.hunt||'Farm não informado'),tempo:mins,profit,pph:mins>0?profit/(mins/60):0,tc:profit/Number(s.tcPrice||S.tcPrice)})})});
- const AN=lerAnalyzers();histOrdenarLista('hunts',rowsH).forEach(o=>{const d=o.d,s=o.s,mins=o.tempo,profit=o.profit,pph=o.pph;{html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(s.hunt||'Farm não informado')+(s.huntCity?' <small class="tft-hunt-city-inline">— '+esc(s.huntCity)+'</small>':'')+(tftHuntEhLegada(s)?' <span class="tft-legacy-badge">antiga</span>':'')+(window.tftHallBadge?window.tftHallBadge(s):'')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP'+(Number(s.custoRecursos)>0?'<div style="font-size:10.5px;color:var(--muted)">bruto '+fmt(s.goldBruto)+' − recursos '+fmt(s.custoRecursos)+'</div>':'')+'</td><td>'+(mins?fmt(pph)+'/h':'—')+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns">'+(AN[String(s.id)]?'<button class="rowbtn" title="Ver Hunt Analyzer" onclick="verAnalyzer(\''+s.id+'\')">📋</button>':'')+'<button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';}});
- return html+'</tbody></table></div>'}
+ const rowsH=[];filtered.forEach(d=>{doDia(g,d).forEach(s=>{if(histHunt&&histNomeFarm(s)!==histHunt)return;const mins=Number(s.time||0),profit=Number(s.gold)||0;rowsH.push({d,s,data:String(d),farm:String(s.hunt||'Farm não informado'),tempo:mins,profit,pph:histPphSessao(s),tc:profit/Number(s.tcPrice||S.tcPrice)})})});
+ if(!rowsH.length)return '<div class="empty"><b>Nenhum farm dessa hunt neste período.</b></div>';
+ const AN=lerAnalyzers();histOrdenarLista('hunts',rowsH).forEach(o=>{const d=o.d,s=o.s,mins=o.tempo,profit=o.profit,pph=o.pph;{html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(s.hunt||'Farm não informado')+(s.huntCity?' <small class="tft-hunt-city-inline">— '+esc(s.huntCity)+'</small>':'')+(tftHuntEhLegada(s)?' <span class="tft-legacy-badge">antiga</span>':'')+(window.tftHallBadge?window.tftHallBadge(s):'')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP'+(Number(s.custoRecursos)>0?'<div style="font-size:10.5px;color:var(--muted)">bruto '+fmt(s.goldBruto)+' − recursos '+fmt(s.custoRecursos)+'</div>':'')+'</td><td>'+histPphTxt(pph)+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns">'+(AN[String(s.id)]?'<button class="rowbtn" title="Ver Hunt Analyzer" onclick="verAnalyzer(\''+s.id+'\')">📋</button>':'')+'<button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';}});
+ return html+'</tbody></table></div>'+HIST_PPH_NOTA}
 function tabelaRel(g,tipo){
  const arr=(tipo==="semanal"?g.semanais:g.mensais).slice().reverse();
  if(!arr.length)return '<div class="empty"><b>Nenhum relatório '+tipo+' ainda</b>'+(tipo==="semanal"?'Gere um manualmente com 3+ dias ou espere fechar 7 dias de farm.':'O primeiro é criado automaticamente 30 dias após a criação da meta.')+'</div>';
@@ -2991,6 +2999,7 @@ function render(){
 
 document.addEventListener('change',e=>{
  if(!e.target)return;
+ if(e.target.id==='histHuntSel'){histHunt=e.target.value||'';render();return}
  if(e.target.id==='histDateIni'){
   histDateIni=e.target.value||'';
   if(histDateIni&&!histDateFim)histDateFim=histDateIni;
@@ -3091,7 +3100,7 @@ async function syncRanking(){
    profit:stats.profit,
    profitMin:stats.profitMin||0,
    profitAt:stats.profitAt||"",
-   melhorHunt:stats.melhorHunt,
+   melhorHunt:Math.round(Number(stats.melhorHunt)||0),
    melhorHuntNome:stats.melhorHuntNome,
    melhorHuntMin:stats.melhorHuntMin||0,
    melhorHuntAt:stats.melhorHuntAt||"",
@@ -3381,6 +3390,7 @@ window.verificarAvisoNickname=function(){
 .retention-label{font-size:.78rem;opacity:.68;margin-bottom:7px}
 .retention-value{font-size:1.35rem;font-weight:800}
 .retention-small{font-size:.76rem;opacity:.65;margin-top:4px}
+.pph-nota{margin:8px 2px 0;font-size:11.5px;color:var(--muted);opacity:.85}
 .history-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}.mini-history-tabs{margin:0}.history-date-filter{margin-left:auto}.history-date-filter label{font-size:.78rem}.retention-section{
   border:1px solid rgba(127,127,127,.18);
   border-radius:14px;
@@ -3896,7 +3906,7 @@ function removerMetaSemanal(){
     if(!validos.length)return null;
     const byProfit=validos.reduce((a,b)=>b.profit>a.profit?b:a);
     /* profit/h só considera hunts de mais de 1h (farms curtos distorcem a média); f.time já está em horas aqui */
-    const comTempo=validos.filter(f=>f.time>=1);
+    const comTempo=validos.filter(f=>f.tipo==='hunt'&&f.time>=1);
     const byPph=comTempo.length?comTempo.reduce((a,b)=>b.pph>a.pph?b:a):null;
     /* melhor hunt = maior profit/h somando os registros de +1h da mesma hunt (bosses, outros, farms curtos e suspeitos ficam de fora) */
     const soHunts=validos.filter(f=>f.tipo==="hunt"&&f.time>=1);
@@ -3971,7 +3981,7 @@ function removerMetaSemanal(){
     const totalTime=farms.reduce((s,x)=>s+x.time,0);
     const avgProfit=farms.length?totalProfit/farms.length:0;
     /* profit/h só considera hunts de mais de 1h (time está em horas); totais acima continuam com todos os farms */
-    const farmsPph=farms.filter(x=>x.time>=1);
+    const farmsPph=farms.filter(x=>x.tipo==='hunt'&&x.time>=1);
     const pphProfit=farmsPph.reduce((s,x)=>s+x.profit,0),pphTime=farmsPph.reduce((s,x)=>s+x.time,0);
     /* profit/h médio ponderado pelo tempo (média simples distorcia hunts curtas) */
     const avgPph=pphTime>0?pphProfit/pphTime:0;
@@ -5207,8 +5217,7 @@ setTab("div");
  }
  var i=$("pxpLevel");if(!i)return;
  i.addEventListener("input",calc);
- i.addEventListener("keydown",function(e){if(e.key==="Enter")calc()});
- $("pxpBtn").addEventListener("click",function(){if(!calc())i.focus()});
+ i.addEventListener("change",calc);
  window.TFTPartyXP={calc:function(l){return{min:Math.floor((2*l+2)/3),max:Math.floor(3*l/2)}}};
  calc();
 })();
