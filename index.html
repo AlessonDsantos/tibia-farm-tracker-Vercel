@@ -1361,6 +1361,27 @@ h1.retention-title{margin:0}
  </div>
 </div></div>
 
+<div class="modal" id="mMetaConcluida"><div class="box" style="width:min(480px,100%);text-align:center">
+ <div style="font-size:46px;margin-bottom:6px">🎉</div>
+ <h3 style="font-size:20px">Meta concluída!</h3>
+ <p id="metaConcluidaTxt" style="font-size:13.5px;color:#cfe6f7;margin:8px 0 14px"></p>
+ <div class="actions" style="justify-content:center">
+  <button class="btn-green" onclick="fechar('mMetaConcluida');abrirNovaMetaAposConclusao()">🎯 Definir nova meta</button>
+  <button onclick="fechar('mMetaConcluida')">Continuar farmando</button>
+ </div>
+</div></div>
+
+<div class="modal" id="mMetaReset"><div class="box" style="width:min(480px,100%);text-align:center">
+ <div style="font-size:40px;margin-bottom:6px">⚠️</div>
+ <h3>Definir nova meta?</h3>
+ <p style="font-size:13px;color:#cfe6f7;line-height:1.55;margin:8px 0 6px">Ao definir a nova meta, o <b>saldo acumulado</b> e os <b>gastos</b> da meta anterior serão <b>zerados</b>, e o progresso recomeça do zero.</p>
+ <p style="font-size:12px;margin-bottom:14px">Seus farms continuam no Histórico e no Desempenho.</p>
+ <div class="actions" style="justify-content:center">
+  <button class="btn-green" onclick="confirmarMetaReset()">Sim, definir nova meta</button>
+  <button onclick="cancelarMetaReset()">Cancelar</button>
+ </div>
+</div></div>
+
 <div class="modal" id="mHuntPicker"><div class="box">
  <h3 id="huntPickerTitle">⚔️ Escolher hunt</h3>
  <div class="tabs" style="margin-bottom:8px">
@@ -1586,14 +1607,18 @@ const isResumo=s=>!!s.resumoDia;
 /* reinicioData: quando a meta infinita foi "zerada" pela última vez (reiniciarAcumulado()).
    Sessões/gastos anteriores a essa data continuam no Histórico e no Desempenho,
    só saem da conta do Gold Total / Saldo a partir daqui. */
-const reinicioData=g=>g.resetEm?g.resetEm.slice(0,10):null;
-const gold=g=>{const rd=reinicioData(g);return g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&(!rd||s.data>=rd)).reduce((a,s)=>a+Number(s.gold),0)};
-const tc=g=>{const rd=reinicioData(g);return g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&(!rd||s.data>=rd)).reduce((a,s)=>a+Number(s.gold)/Number(s.tcPrice||S.tcPrice),0)};
+const dataLocalDe=iso=>{const d=new Date(iso);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const reinicioData=g=>g.resetEm?dataLocalDe(g.resetEm):null;
+/* Item (farm ou gasto) conta depois do reinício? Dia posterior = conta; dia anterior = não; no mesmo dia vale a hora do registro (id = momento em que foi registrado). */
+const aposReinicio=(g,x)=>{if(!g.resetEm)return true;const rd=reinicioData(g),d=x&&x.data;if(!d)return true;if(d>rd)return true;if(d<rd)return false;const id=Number(x.id);return !Number.isFinite(id)||id>=Date.parse(g.resetEm)};
+function zerarAcumuladoMeta(g){if(!Array.isArray(g.ciclosAcumulado))g.ciclosAcumulado=[];g.ciclosAcumulado.push({de:g.resetEm||g.criada,ate:new Date().toISOString(),gold:gold(g),gasto:totalGasto(g),saldo:saldo(g)});g.resetEm=new Date().toISOString()}
+const gold=g=>{return g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&aposReinicio(g,s)).reduce((a,s)=>a+Number(s.gold),0)};
+const tc=g=>{return g.sessoes.filter(s=>!s.somado&&!isResumo(s)&&aposReinicio(g,s)).reduce((a,s)=>a+Number(s.gold)/Number(s.tcPrice||S.tcPrice),0)};
 /* gastos: quanto do que foi farmado numa meta já foi usado. O Acumulado (gold(g))
    continua sendo o total farmado (histórico/recordes); o Saldo é o que "sobra"
    pra essa meta depois de descontar os gastos, e é isso que decide a barra de
    progresso, o "Falta" e a estimativa. */
-const totalGasto=g=>{const rd=reinicioData(g);return (Array.isArray(g.gastos)?g.gastos:[]).filter(x=>!rd||!x.data||x.data>=rd).reduce((a,x)=>a+Number(x.valor||0),0)};
+const totalGasto=g=>{return (Array.isArray(g.gastos)?g.gastos:[]).filter(x=>aposReinicio(g,x)).reduce((a,x)=>a+Number(x.valor||0),0)};
 const saldo=g=>gold(g)-totalGasto(g);
 const diasFarm=g=>[...new Set(g.sessoes.filter(s=>!isResumo(s)).map(s=>s.data))].sort();
 const doDia=(g,d)=>g.sessoes.filter(s=>s.data===d&&!s.somado&&!isResumo(s)).sort((a,b)=>String(a.hora||"").localeCompare(String(b.hora||"")));
@@ -1697,6 +1722,9 @@ function abrirNovaMetaAposConclusao(){
  setModoMeta("especifica");
  abrir("mGoal");
  setTimeout(()=>document.getElementById("gName").focus(),50)}
+var metaResetPendente=null;
+function confirmarMetaReset(){const f=metaResetPendente;metaResetPendente=null;if(typeof f==="function")f()}
+function cancelarMetaReset(){metaResetPendente=null;fechar("mMetaReset")}
 function criarMeta(){
  const n=document.getElementById("gName").value.trim(),
   p=Number(document.getElementById("gTc").value);
@@ -1712,9 +1740,15 @@ function criarMeta(){
   const alvo=S.metas.find(m=>m.id===metaEditandoId);
   if(!alvo)return toast("Meta não encontrada.");
   if(alvo.nome!==n)alvo.img=metaModoInfinito?"":gifDoItem(n);
-  alvo.nome=n;alvo.metaGold=g;alvo.infinita=metaModoInfinito;alvo.concluida=null;
-  metaEditandoId=null;
-  salvar();fechar("mGoal");render();toast("Meta atualizada. Farms e desempenho continuam intactos.");
+  const eraConcluida=!!alvo.concluida;
+  const aplicar=()=>{
+   if(eraConcluida)zerarAcumuladoMeta(alvo);
+   alvo.nome=n;alvo.metaGold=g;alvo.infinita=metaModoInfinito;alvo.concluida=null;
+   metaEditandoId=null;
+   salvar();fechar("mGoal");fechar("mMetaReset");render();toast(eraConcluida?"Nova meta definida! Saldo e gastos zerados — o histórico continua intacto.":"Meta atualizada. Farms e desempenho continuam intactos.");
+  };
+  if(eraConcluida){metaResetPendente=aplicar;abrir("mMetaReset");return}
+  aplicar();
   return;
  }
  // O nickname aleatório é criado somente quando a primeira meta é criada.
@@ -1952,9 +1986,7 @@ function reiniciarAcumulado(){
  const g=meta();if(!g||!g.infinita)return;
  const totalAtual=gold(g),gastoAtual=totalGasto(g),saldoAtual=saldo(g);
  if(!confirm("Isso vai zerar o Gold Total e o Saldo desta meta (hoje: "+fmt(totalAtual)+" GP farmado, saldo "+fmt(saldoAtual)+" GP).\n\nOs farms já registrados continuam no Histórico e no Desempenho, só o contador de Gold Total/Saldo volta a 0 a partir de agora. Farms de hoje que você já registrou antes de clicar aqui também somem do contador. Continuar?"))return;
- if(!Array.isArray(g.ciclosAcumulado))g.ciclosAcumulado=[];
- g.ciclosAcumulado.push({de:g.resetEm||g.criada,ate:new Date().toISOString(),gold:totalAtual,gasto:gastoAtual,saldo:saldoAtual});
- g.resetEm=new Date().toISOString();
+ zerarAcumuladoMeta(g);
  salvar();render();toast("Acumulado reiniciado. Começando do zero!");
 }
 window.reiniciarAcumulado=reiniciarAcumulado;
@@ -2165,7 +2197,8 @@ function checar(g){
   if(ds.length<7)break;
   gerarSemanal(g,ds.slice(0,7),false)}
  if(diasDesde(g)>=30&&!g.mensais.some(m=>m.auto))gerarMensal(g,true);
- if(!g.infinita&&!g.concluida&&saldo(g)>=g.metaGold)g.concluida=new Date().toISOString()}
+ if(!g.infinita&&!g.concluida&&saldo(g)>=g.metaGold){g.concluida=new Date().toISOString();tftMetaConcluidaAviso(g)}}
+function tftMetaConcluidaAviso(g,t){t=t||0;setTimeout(function(){if(document.querySelector(".modal.open")&&t<8)return tftMetaConcluidaAviso(g,t+1);if(document.querySelector(".modal.open"))return;const e=document.getElementById("metaConcluidaTxt");if(e)e.innerHTML="Você atingiu <b>"+escHtml(g.nome)+"</b> ("+fmt(g.metaGold)+" GP). Parabéns pelo farm!";abrir("mMetaConcluida")},t?800:350)}
 function gerarSemanal(g,ds,manual){
  const fonte=g.sessoes.filter(s=>ds.includes(s.data)&&!s.somado&&!s.resumoDia);
  const resumos=g.sessoes.filter(s=>ds.includes(s.data)&&s.resumoDia);
@@ -5273,6 +5306,7 @@ setTab("div");
    Estado guardado em S (vai junto para a nuvem): tftWelcome, tftNovVisto, tftNovDia.
    Para publicar uma novidade: adicione UMA entrada NOVA no topo de TFT_NOVIDADES com n maior que a anterior. */
 var TFT_NOVIDADES=[
+ {n:6,data:"2026-10-08",titulo:"Meta concluída: parabéns e recomeço limpo",texto:"Ao concluir uma meta você recebe um aviso e pode definir a próxima. Ao definir, o saldo e os gastos são zerados (o histórico continua intacto)."},
  {n:5,data:"2026-10-08",titulo:"Filtro por hunt e cidade no Histórico",texto:"Filtre o Resumo diário e os Farms feitos por hunt. As hunts oficiais agora aparecem sempre como Nome — Cidade."},
  {n:4,data:"2026-10-08",titulo:"Profit/h só em hunts de 1h ou mais",texto:"No Histórico, gráfico e recordes o profit/h só conta hunts de 1h ou mais. Boss e Outros ficam sem profit/h."},
  {n:3,data:"2026-10-07",titulo:"Aviso de recurso acabando + Renovar",texto:"Ao registrar uma hunt, avisamos quando faltar 1h ou menos de um imbuement/token. Dá para renovar o recurso em um clique."},
