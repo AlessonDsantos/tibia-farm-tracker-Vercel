@@ -1492,6 +1492,20 @@ async function tftCarregarHunts(){
  return TFT_HUNTS_PROMISE;
 }
 function tftHuntOfSession(s){if(!s)return null;return tftHuntById(s.huntId)||tftHuntFindByNameCity(s.hunt,s.huntCity)||tftHuntFindName(s.hunt)}
+/* Resolução estrita (para agrupar/exibir): só devolve a hunt oficial quando não há dúvida de cidade. Nome que existe em várias cidades e registro sem cidade → null. */
+function tftHuntResolver(s){
+ if(!s||tipoDe(s)!=="hunt")return null;
+ const byId=tftHuntById(s.huntId);if(byId)return byId;
+ const db=TFT_HUNTS_DB.hunts;if(!db.length)return null;
+ const n=tftHuntNorm(s.hunt),c=tftHuntNorm(s.huntCity);if(!n)return null;
+ if(c){const f=db.find(h=>tftHuntNorm(h.name)===n&&tftHuntNorm(h.city)===c);if(f)return f}
+ const porNome=db.filter(h=>tftHuntNorm(h.name)===n);
+ if(porNome.length===1)return porNome[0];
+ if(!porNome.length)return db.find(h=>tftHuntNorm(tftHuntLabel(h))===n)||null;
+ return null;
+}
+/* Nome exibido/agrupado: hunt oficial = "Nome — Cidade"; personalizadas e Boss/Outros ficam como foram digitados */
+function tftHuntNomeExibicao(s){const r=tftHuntResolver(s);return r?tftHuntLabel(r):(String((s&&s.hunt)||"").trim()||"Farm não informado")}
 function tftHuntEhLegada(s){return !!s&&tipoDe(s)==="hunt"&&!tftHuntOfSession(s)}
 function tftHuntSetOnSession(s,h){if(!s||!h)return;s.huntId=String(h.id);s.hunt=h.name;s.huntCity=h.city||""}
 
@@ -2181,6 +2195,7 @@ function rankingStreakFromDates(dates){
  return n;
 }
 function rankingHuntKey(s){
+ const r=tftHuntResolver(s);if(r)return "id:"+r.id;
  const id=String(s.huntId||s.hunt_id||"").trim();
  if(id)return "id:"+id;
  return "name:"+String(s.hunt||"Hunt não informada").trim().toLowerCase();
@@ -2212,7 +2227,7 @@ function calcularRankingStats(){
   const dk=RANKING_FARM_DIA_MODO==="somaDia"?String(s.data):"s"+String(s.id);
   const d=dias[dk]||(dias[dk]={v:0,min:0,at:at});d.v+=gold;d.min+=mins;if(at<d.at)d.at=at;
   if(mins<HALL_MIN_MIN)return; /* profit/h só considera hunts de mais de 1h (farms curtos distorcem a média) */
-  const key=rankingHuntKey(s),nome=(s.hunt||"Hunt não informada").trim()||"Hunt não informada";
+  const key=rankingHuntKey(s),nome=tftHuntNomeExibicao(s)||"Hunt não informada";
   const h=porHunt[key]||(porHunt[key]={hunt:nome,gold:0,time:0,at:at});h.gold+=gold;h.time+=mins;if(at>h.at)h.at=at;
  });
  let mf={v:0,min:0,at:""};
@@ -2812,7 +2827,7 @@ function ringSVG(p){
 function resumoDia(g,d){return g.sessoes.find(s=>s.resumoDia&&s.data===d)||null}
 var histSort={};
 const PPH_MIN_MIN=60;
-const histNomeFarm=s=>String(s.hunt||"Farm não informado").trim()||"Farm não informado";
+const histNomeFarm=s=>tftHuntNomeExibicao(s);
 const histPphValido=s=>tipoDe(s)==="hunt"&&Number(s.time)>=PPH_MIN_MIN;
 function histPphSessao(s){return histPphValido(s)?(Number(s.gold)||0)/(Number(s.time)/60):null}
 function histPphLista(arr){let g=0,m=0;arr.forEach(s=>{if(histPphValido(s)){g+=Number(s.gold)||0;m+=Number(s.time)}});return m>0?g/(m/60):null}
@@ -2852,7 +2867,7 @@ function tabelaHistHunts(g,ds){
  let html='<div class="tablewrap"><table><thead><tr>'+histTh('hunts','data','Data')+histTh('hunts','farm','Farm')+histTh('hunts','tempo','Tempo')+histTh('hunts','profit','Profit')+histTh('hunts','pph','Profit/h')+histTh('hunts','tc','TC')+'<th></th></tr></thead><tbody>';
  const rowsH=[];filtered.forEach(d=>{doDia(g,d).forEach(s=>{if(histHunt&&histNomeFarm(s)!==histHunt)return;const mins=Number(s.time||0),profit=Number(s.gold)||0;rowsH.push({d,s,data:String(d),farm:String(s.hunt||'Farm não informado'),tempo:mins,profit,pph:histPphSessao(s),tc:profit/Number(s.tcPrice||S.tcPrice)})})});
  if(!rowsH.length)return '<div class="empty"><b>Nenhum farm dessa hunt neste período.</b></div>';
- const AN=lerAnalyzers();histOrdenarLista('hunts',rowsH).forEach(o=>{const d=o.d,s=o.s,mins=o.tempo,profit=o.profit,pph=o.pph;{html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(s.hunt||'Farm não informado')+(s.huntCity?' <small class="tft-hunt-city-inline">— '+esc(s.huntCity)+'</small>':'')+(tftHuntEhLegada(s)?' <span class="tft-legacy-badge">antiga</span>':'')+(window.tftHallBadge?window.tftHallBadge(s):'')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP'+(Number(s.custoRecursos)>0?'<div style="font-size:10.5px;color:var(--muted)">bruto '+fmt(s.goldBruto)+' − recursos '+fmt(s.custoRecursos)+'</div>':'')+'</td><td>'+histPphTxt(pph)+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns">'+(AN[String(s.id)]?'<button class="rowbtn" title="Ver Hunt Analyzer" onclick="verAnalyzer(\''+s.id+'\')">📋</button>':'')+'<button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';}});
+ const AN=lerAnalyzers();histOrdenarLista('hunts',rowsH).forEach(o=>{const d=o.d,s=o.s,mins=o.tempo,profit=o.profit,pph=o.pph;{html+='<tr><td>'+brData(d)+'</td><td><b>'+iconeTipo(s)+' '+esc(tftHuntResolver(s)?tftHuntResolver(s).name:(s.hunt||'Farm não informado'))+((tftHuntResolver(s)&&tftHuntResolver(s).city)||s.huntCity?' <small class="tft-hunt-city-inline">— '+esc(tftHuntResolver(s)&&tftHuntResolver(s).city?tftHuntResolver(s).city:s.huntCity)+'</small>':'')+(tftHuntEhLegada(s)?' <span class="tft-legacy-badge">antiga</span>':'')+(window.tftHallBadge?window.tftHallBadge(s):'')+'</b></td><td>'+(mins?mins+' min':'—')+'</td><td class="goldtxt">'+fmt(profit)+' GP'+(Number(s.custoRecursos)>0?'<div style="font-size:10.5px;color:var(--muted)">bruto '+fmt(s.goldBruto)+' − recursos '+fmt(s.custoRecursos)+'</div>':'')+'</td><td>'+histPphTxt(pph)+'</td><td class="cyantxt">'+fmt2(profit/Number(s.tcPrice||S.tcPrice))+' TC</td><td><div class="rowbtns">'+(AN[String(s.id)]?'<button class="rowbtn" title="Ver Hunt Analyzer" onclick="verAnalyzer(\''+s.id+'\')">📋</button>':'')+'<button class="rowbtn" title="Editar" onclick="editarFarm(\''+s.id+'\')">✏️</button><button class="rowbtn danger" title="Excluir" onclick="excluirFarm(\''+s.id+'\')">🗑️</button></div></td></tr>';}});
  return html+'</tbody></table></div>'+HIST_PPH_NOTA}
 function tabelaRel(g,tipo){
  const arr=(tipo==="semanal"?g.semanais:g.mensais).slice().reverse();
@@ -3644,7 +3659,7 @@ function removerMetaSemanal(){
     const minutes=number(o.time!=null?o.time:(o.tempo!=null?o.tempo:o.minutes));
     const hours=minutes/60;
     const pph=hours>0?profit/hours:0;
-    const hunt=String(o.hunt||o.local||o.nome||'Hunt não informada').trim()||'Hunt não informada';
+    const hunt=(o.hunt&&window.tftHuntNomeExibicao?window.tftHuntNomeExibicao(o):String(o.hunt||o.local||o.nome||'Hunt não informada').trim())||'Hunt não informada';
     const tipo=String(o.tipo||'hunt');
     const suspeito=!!o.suspeito;
     const date=o.data||o.date||o.createdAt||null;
@@ -5222,5 +5237,5 @@ setTab("div");
  calc();
 })();
 </script>
-<script id="tft-hunts-loader">document.addEventListener("DOMContentLoaded",function(){if(typeof tftCarregarHunts==="function")tftCarregarHunts()});</script></body>
+<script id="tft-hunts-loader">document.addEventListener("DOMContentLoaded",function(){if(typeof tftCarregarHunts==="function")tftCarregarHunts().then(function(){try{if(typeof render==="function")render()}catch(e){}})});</script></body>
 </html>
