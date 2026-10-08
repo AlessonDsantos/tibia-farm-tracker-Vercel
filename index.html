@@ -1332,6 +1332,35 @@ h1.retention-title{margin:0}
  <div class="actions"><button onclick="fechar('mRecAviso')">Entendi</button></div>
 </div></div>
 
+<div class="modal" id="mBemVindo"><div class="box" style="width:min(520px,100%);text-align:center">
+ <div style="font-size:44px;margin-bottom:6px">⚔️</div>
+ <h3 style="font-size:20px">Bem-vindo ao Tibia Farm Tracker!</h3>
+ <p style="color:#e8b957;font-size:14px;font-weight:700;margin-bottom:12px">Seu sucesso começa por aqui.</p>
+ <div style="text-align:left;background:rgba(255,255,255,.04);border:1px solid #1d4666;border-radius:10px;padding:12px 14px;margin-bottom:12px">
+  <div style="font-size:12.5px;color:var(--muted);margin-bottom:8px">Para começar, é só:</div>
+  <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.65;color:#e9f6ff">
+   <li><b>Crie sua meta</b> (por exemplo, juntar gold para um item ou Tibia Coins).</li>
+   <li><b>Registre seus farms</b> informando a hunt, o tempo e o gold.</li>
+   <li><b>Cole o Hunt Analyzer</b> (opcional) para preencher os dados sozinho e disputar o Hall dos Caçadores.</li>
+  </ol>
+ </div>
+ <p style="margin-bottom:14px">Ficou com alguma dúvida? A <b>Central de Ajuda</b> explica tudo.</p>
+ <div class="actions" style="justify-content:center">
+  <button onclick="tftBemVindoAjuda()">❔ Abrir Central de Ajuda</button>
+  <button class="btn-green" onclick="tftBemVindoFechar(true)">Começar</button>
+ </div>
+</div></div>
+
+<div class="modal" id="mNovidades"><div class="box" style="width:min(540px,100%)">
+ <h3>🆕 Confira o que mudou no TFT</h3>
+ <p style="margin-bottom:10px">Novidades desde a sua última visita:</p>
+ <div id="novLista"></div>
+ <div class="actions" style="justify-content:space-between;flex-wrap:wrap">
+  <button onclick="tftNovidadesAjuda()">Ver todas na Central de Ajuda</button>
+  <button class="btn-green" onclick="tftNovidadesFechar()">Fechar</button>
+ </div>
+</div></div>
+
 <div class="modal" id="mHuntPicker"><div class="box">
  <h3 id="huntPickerTitle">⚔️ Escolher hunt</h3>
  <div class="tabs" style="margin-bottom:8px">
@@ -1693,7 +1722,7 @@ function criarMeta(){
  S.metas.push({id:Date.now(),nome:n,img:metaModoInfinito?"":gifDoItem(n),metaGold:g,infinita:metaModoInfinito,criada:new Date().toISOString(),
   sessoes:[],gastos:[],semanais:[],mensais:[],cursor:0,concluida:null});
  S.ativa=S.metas[S.metas.length-1].id;salvar();fechar("mGoal");render();toast("Meta criada.");
- abrirAvisoConfiguracoes()}
+ if(window.tftAvisosVerificar&&window.tftAvisosVerificar("meta"))window.tftSetupPendente=true;else abrirAvisoConfiguracoes()}
 function abrirAvisoConfiguracoes(){
  const m=document.getElementById("mSetupAlert");
  if(m)m.classList.add("open");
@@ -3366,6 +3395,8 @@ onAuthStateChanged(auth, async (user)=>{
 </script>
 <script>
 window.verificarAvisoNickname=function(){
+ if(window.tftAvisosVerificar&&window.tftAvisosVerificar("auth"))return;
+ if(document.querySelector(".modal.open"))return;
  const nick=String((window.S&&window.S.nickname)||"").trim();
  if(/^Jogador\d{4}$/.test(nick)&&window.abrirAvisoConfiguracoes){
   setTimeout(()=>window.abrirAvisoConfiguracoes(),300);
@@ -5235,6 +5266,59 @@ setTab("div");
  i.addEventListener("change",calc);
  window.TFTPartyXP={calc:function(l){return{min:Math.floor((2*l+2)/3),max:Math.floor(3*l/2)}}};
  calc();
+})();
+</script>
+<script id="tft-avisos">
+/* === Boas-vindas (1ª meta ou 1º login Google) e Novidades (só quando há novidade, no máx. 1x por dia) ===
+   Estado guardado em S (vai junto para a nuvem): tftWelcome, tftNovVisto, tftNovDia.
+   Para publicar uma novidade: adicione UMA entrada NOVA no topo de TFT_NOVIDADES com n maior que a anterior. */
+var TFT_NOVIDADES=[
+ {n:5,data:"2026-10-08",titulo:"Filtro por hunt e cidade no Histórico",texto:"Filtre o Resumo diário e os Farms feitos por hunt. As hunts oficiais agora aparecem sempre como Nome — Cidade."},
+ {n:4,data:"2026-10-08",titulo:"Profit/h só em hunts de 1h ou mais",texto:"No Histórico, gráfico e recordes o profit/h só conta hunts de 1h ou mais. Boss e Outros ficam sem profit/h."},
+ {n:3,data:"2026-10-07",titulo:"Aviso de recurso acabando + Renovar",texto:"Ao registrar uma hunt, avisamos quando faltar 1h ou menos de um imbuement/token. Dá para renovar o recurso em um clique."},
+ {n:2,data:"2026-10-07",titulo:"Registrar Farm mais rápido",texto:"Cole o Hunt Analyzer no campo compacto e escolha a hunt (favoritas e últimas) num modal, com um clique."}
+];
+(function(){
+ var $=function(i){return document.getElementById(i)};
+ function dia(){return typeof hoje==="function"?hoje():new Date().toISOString().slice(0,10)}
+ function ultimo(){return TFT_NOVIDADES.reduce(function(m,x){return Math.max(m,x.n)},0)}
+ function esc2(t){return String(t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]})}
+ function guardar(){try{if(typeof salvar==="function")salvar()}catch(e){}}
+ function pagina(){var s=document.querySelector(".tft-shell");return(s&&s.getAttribute("data-tft-page"))||"inicio"}
+ function mostrarBemVindo(){abrir("mBemVindo")}
+ function mostrarNovidades(lista){
+  $("novLista").innerHTML=lista.map(function(x){var d=String(x.data).split("-");return '<div style="border:1px solid #1d4666;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:rgba(255,255,255,.03)"><div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><b style="color:#f2e1b0;font-size:13.5px">'+esc2(x.titulo)+'</b><small style="color:var(--muted);white-space:nowrap">'+d[2]+'/'+d[1]+'</small></div><div style="font-size:12.5px;color:#cfe6f7;margin-top:4px;line-height:1.5">'+esc2(x.texto)+'</div></div>'}).join("");
+  abrir("mNovidades");
+ }
+ /* retorna true quando abriu algum aviso (para quem chamou não abrir outro modal em cima) */
+ window.tftAvisosVerificar=function(origem){
+  try{
+   var S=window.S;if(!S||!Array.isArray(S.metas))return false;
+   if(document.querySelector(".modal.open")){return !!(($("mBemVindo")&&$("mBemVindo").classList.contains("open"))||($("mNovidades")&&$("mNovidades").classList.contains("open")))}
+   if(String(pagina()).indexOf("legal-")===0)return false;
+   var temMeta=S.metas.length>0,logado=!!window.currentUser,u=ultimo();
+   if(!S.tftWelcome){
+    if(origem==="meta"&&S.metas.length===1){S.tftWelcome=true;S.tftNovVisto=u;S.tftNovDia=dia();guardar();mostrarBemVindo();return true}
+    if(temMeta){S.tftWelcome=true;guardar()} /* usuário antigo: não recebe boas-vindas */
+    else if(logado&&origem==="auth"){S.tftWelcome=true;S.tftNovVisto=u;S.tftNovDia=dia();guardar();mostrarBemVindo();return true}
+    else return false;
+   }
+   if(origem==="meta"||!temMeta)return false;
+   var visto=Number(S.tftNovVisto)||0;
+   var novas=TFT_NOVIDADES.filter(function(x){return x.n>visto}).sort(function(a,b){return b.n-a.n});
+   if(!novas.length||S.tftNovDia===dia())return false;
+   mostrarNovidades(novas.slice(0,3));return true;
+  }catch(e){console.warn("avisos",e);return false}
+ };
+ window.tftBemVindoFechar=function(comecar){
+  fechar("mBemVindo");
+  var pend=window.tftSetupPendente;window.tftSetupPendente=false;
+  if(comecar&&window.S&&!(window.S.metas||[]).length&&typeof novaMeta==="function"){novaMeta();return}
+  if(pend&&typeof abrirAvisoConfiguracoes==="function")abrirAvisoConfiguracoes();
+ };
+ window.tftBemVindoAjuda=function(){fechar("mBemVindo");window.tftSetupPendente=false;if(window.tftIrPara){window.tftIrPara("ajuda");setTimeout(function(){var e=$("ajuda-novidades")||document.querySelector("h1");if(e)e.scrollIntoView({behavior:"smooth"})},300)}};
+ window.tftNovidadesFechar=function(){fechar("mNovidades");if(window.S){window.S.tftNovVisto=ultimo();window.S.tftNovDia=dia();guardar()}};
+ window.tftNovidadesAjuda=function(){window.tftNovidadesFechar();if(window.tftIrPara){window.tftIrPara("ajuda");setTimeout(function(){var e=$("ajuda-novidades");if(e)e.scrollIntoView({behavior:"smooth"})},300)}};
 })();
 </script>
 <script id="tft-hunts-loader">document.addEventListener("DOMContentLoaded",function(){if(typeof tftCarregarHunts==="function")tftCarregarHunts().then(function(){try{if(typeof render==="function")render()}catch(e){}})});</script></body>
