@@ -35,6 +35,10 @@
       "destination": "/index.html"
     },
     {
+      "source": "/ferramentas/previsao-de-farm",
+      "destination": "/index.html"
+    },
+    {
       "source": "/ferramentas/divisor-party-hunt",
       "destination": "/index.html"
     },
