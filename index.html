@@ -5353,7 +5353,7 @@ setTab("div");
    foot.innerHTML='<section class="card"><h2>🧰 Ferramentas gratuitas para Tibia</h2><p class="tfth-about">Registre suas hunts, acompanhe seu profit e bata a meta mais rápido. O site também traz ferramentas grátis que leem o Hunt Analyzer: é só colar o log e pronto.</p><div class="tfth-tools">'+TOOLS.map(function(t){return'<a href="'+t[0]+'" data-route="'+t[1]+'"><b>'+t[2]+'</b><span>'+t[3]+'</span></a>'}).join("")+'</div></section>'}
   var g=(typeof meta==="function")?meta():null,nick=String((window.S&&window.S.nickname)||"").trim();
   var sh=shell();if(sh)sh.toggleAttribute("data-tft-nogoal",!g);
-  var h='<header class="card tfth-hero"><h1>Olá, '+E(nick||"aventureiro")+'! 👑</h1><p>Seu resumo de farm</p></header>';
+  var h='<header class="card tfth-hero"><h1>Olá, '+E(nick||"aventureiro")+'! 👑</h1><p>Bem-vindo ao TFT! Cada Hunt é um passo adiante; seu progresso é imparável.</p></header>';
   if(!g){
    host.innerHTML=h+'<section class="card"><div class="tfth-empty"><b style="color:#ffffff;font-size:15px">Comece pela sua meta</b><p style="max-width:440px;margin:8px auto 14px">Escolha o item que você quer conquistar, defina o valor em gold e registre o farm de cada sessão.</p><button class="btn-green" onclick="novaMeta()">Criar minha primeira meta</button></div></section>';
    return;
