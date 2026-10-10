@@ -1,0 +1,4178 @@
+{
+ "schemaVersion": 1,
+ "description": "Correções manuais de dano para o Bestiário. Preencha maxDamage (dano máximo por elemento) e/ou abilities, confira na TibiaWiki e mude status para 'conferido'. Só itens 'conferido' são aplicados (pelo site, se BST_CORRECOES=true, ou pelo script mesclar_correcoes.py). Campos 'contexto' são só leitura.",
+ "elementos": [
+  "physical",
+  "earth",
+  "fire",
+  "ice",
+  "energy",
+  "death",
+  "holy",
+  "drown",
+  "lifedrain",
+  "manadrain"
+ ],
+ "correcoes": [
+  {
+   "name": "Mimar Haffar",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 460000,
+    "experience": 3500000,
+    "bestiario": true,
+    "local": "Moonstone Crater, 133.96.",
+    "wiki": "https://tibia.fandom.com/wiki/Mimar_Haffar"
+   }
+  },
+  {
+   "name": "Dragon Hoard",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 50000,
+    "experience": 600000,
+    "bestiario": true,
+    "local": null,
+    "wiki": "https://tibia.fandom.com/wiki/Dragon_Hoard"
+   }
+  },
+  {
+   "name": "The Moonsnow Magnolia",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 52000,
+    "experience": 240000,
+    "bestiario": true,
+    "local": "Asura Citadel, 132.109.",
+    "wiki": "https://tibia.fandom.com/wiki/The_Moonsnow_Magnolia"
+   }
+  },
+  {
+   "name": "Court Warlock",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 120000,
+    "experience": 147000,
+    "bestiario": true,
+    "local": "Isle of Ada",
+    "wiki": "https://tibia.fandom.com/wiki/Court_Warlock"
+   }
+  },
+  {
+   "name": "The Mega Magmaoid",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 104000,
+    "experience": 80000,
+    "bestiario": true,
+    "local": "Dwelling of the Forgotten",
+    "wiki": "https://tibia.fandom.com/wiki/The_Mega_Magmaoid"
+   }
+  },
+  {
+   "name": "Adlerauge",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 45000,
+    "experience": 75000,
+    "bestiario": true,
+    "local": "Isle of Ada, 132.65",
+    "wiki": "https://tibia.fandom.com/wiki/Adlerauge"
+   }
+  },
+  {
+   "name": "Clavius",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 40000,
+    "experience": 75000,
+    "bestiario": true,
+    "local": "Isle of Ada, 132.70",
+    "wiki": "https://tibia.fandom.com/wiki/Clavius"
+   }
+  },
+  {
+   "name": "Michael the Stalwart",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 60000,
+    "experience": 75000,
+    "bestiario": true,
+    "local": "Isle of Ada, 132.71",
+    "wiki": "https://tibia.fandom.com/wiki/Michael_the_Stalwart"
+   }
+  },
+  {
+   "name": "Duke Krule",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 290000,
+    "experience": 55000,
+    "bestiario": true,
+    "local": "Under Thais' Ancient Temple.",
+    "wiki": "https://tibia.fandom.com/wiki/Duke_Krule"
+   }
+  },
+  {
+   "name": "Gorzindel",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 350000,
+    "experience": 55000,
+    "bestiario": true,
+    "local": "The Secret Library.",
+    "wiki": "https://tibia.fandom.com/wiki/Gorzindel"
+   }
+  },
+  {
+   "name": "Malofur Mangrinder",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 320000,
+    "experience": 55000,
+    "bestiario": true,
+    "local": "The Dream Scar",
+    "wiki": "https://tibia.fandom.com/wiki/Malofur_Mangrinder"
+   }
+  },
+  {
+   "name": "Devoted Radiant Warden",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 44275,
+    "experience": 51280,
+    "bestiario": true,
+    "local": "Radiant Skyhold",
+    "wiki": "https://tibia.fandom.com/wiki/Devoted_Radiant_Warden"
+   }
+  },
+  {
+   "name": "Devoted Radiant Paragon",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 41400,
+    "experience": 50560,
+    "bestiario": true,
+    "local": "Radiant Skyhold",
+    "wiki": "https://tibia.fandom.com/wiki/Devoted_Radiant_Paragon"
+   }
+  },
+  {
+   "name": "Charging Outburst",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 12000,
+    "experience": 50000,
+    "bestiario": true,
+    "local": "Otherworld",
+    "wiki": "https://tibia.fandom.com/wiki/Charging_Outburst"
+   }
+  },
+  {
+   "name": "Outburst",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 290000,
+    "experience": 50000,
+    "bestiario": true,
+    "local": "Otherworld, 125.210.",
+    "wiki": "https://tibia.fandom.com/wiki/Outburst"
+   }
+  },
+  {
+   "name": "Devoted Radiant Templar",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 42550,
+    "experience": 49900,
+    "bestiario": true,
+    "local": "Radiant Ascendancy",
+    "wiki": "https://tibia.fandom.com/wiki/Devoted_Radiant_Templar"
+   }
+  },
+  {
+   "name": "Devoted Radiant Inquisitor",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 40020,
+    "experience": 47050,
+    "bestiario": true,
+    "local": "Radiant Ascendancy",
+    "wiki": "https://tibia.fandom.com/wiki/Devoted_Radiant_Inquisitor"
+   }
+  },
+  {
+   "name": "Radiant Warden",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 38500,
+    "experience": 35540,
+    "bestiario": true,
+    "local": "Radiant Skyhold",
+    "wiki": "https://tibia.fandom.com/wiki/Radiant_Warden"
+   }
+  },
+  {
+   "name": "Radiant Zealot",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 36500,
+    "experience": 35220,
+    "bestiario": true,
+    "local": "Radiant Ascendancy",
+    "wiki": "https://tibia.fandom.com/wiki/Radiant_Zealot"
+   }
+  },
+  {
+   "name": "Radiant Paragon",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 36000,
+    "experience": 34780,
+    "bestiario": true,
+    "local": "Radiant Skyhold",
+    "wiki": "https://tibia.fandom.com/wiki/Radiant_Paragon"
+   }
+  },
+  {
+   "name": "Radiant Templar",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 37000,
+    "experience": 34520,
+    "bestiario": true,
+    "local": "Radiant Ascendancy",
+    "wiki": "https://tibia.fandom.com/wiki/Radiant_Templar"
+   }
+  },
+  {
+   "name": "Radiant Acolyte",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 34600,
+    "experience": 32960,
+    "bestiario": true,
+    "local": "Radiant Skyhold",
+    "wiki": "https://tibia.fandom.com/wiki/Radiant_Acolyte"
+   }
+  },
+  {
+   "name": "Radiant Inquisitor",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 34800,
+    "experience": 32460,
+    "bestiario": true,
+    "local": "Radiant Ascendancy",
+    "wiki": "https://tibia.fandom.com/wiki/Radiant_Inquisitor"
+   }
+  },
+  {
+   "name": "Malvaroth",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 40000,
+    "experience": 28000,
+    "bestiario": true,
+    "local": "Azzilon -1 (131.234)",
+    "wiki": "https://tibia.fandom.com/wiki/Malvaroth"
+   }
+  },
+  {
+   "name": "Mirror Image",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 35000,
+    "experience": 27000,
+    "bestiario": true,
+    "local": "The Mirrored Nightmare.",
+    "wiki": "https://tibia.fandom.com/wiki/Mirror_Image"
+   }
+  },
+  {
+   "name": "Blight Mariner",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 20500,
+    "experience": 25500,
+    "bestiario": true,
+    "local": "Venore, by clicking on a painting 128.232",
+    "wiki": "https://tibia.fandom.com/wiki/Blight_Mariner"
+   }
+  },
+  {
+   "name": "Twisterror",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 35000,
+    "experience": 25000,
+    "bestiario": true,
+    "local": "Azzilon -2 (132.32)",
+    "wiki": "https://tibia.fandom.com/wiki/Twisterror"
+   }
+  },
+  {
+   "name": "Gralvalon",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 33000,
+    "experience": 24000,
+    "bestiario": true,
+    "local": "Azzilon -3 (132.17)",
+    "wiki": "https://tibia.fandom.com/wiki/Gralvalon"
+   }
+  },
+  {
+   "name": "Wrathful Archivist",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 15000,
+    "experience": 24000,
+    "bestiario": true,
+    "local": "Yalahar  On top of house where Soilance is located. Use levitate on the right outside of the house.",
+    "wiki": "https://tibia.fandom.com/wiki/Wrathful_Archivist"
+   }
+  },
+  {
+   "name": "Sopping Carcass",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 32700,
+    "experience": 23425,
+    "bestiario": true,
+    "local": "Putrefactory",
+    "wiki": "https://tibia.fandom.com/wiki/Sopping_Carcass"
+   }
+  },
+  {
+   "name": "Wandering Pillar",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 37000,
+    "experience": 23200,
+    "bestiario": true,
+    "local": "Gloom Pillars",
+    "wiki": "https://tibia.fandom.com/wiki/Wandering_Pillar"
+   }
+  },
+  {
+   "name": "Rotten Man-Maggot",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 31100,
+    "experience": 22625,
+    "bestiario": true,
+    "local": "Putrefactory",
+    "wiki": "https://tibia.fandom.com/wiki/Rotten_Man-Maggot"
+   }
+  },
+  {
+   "name": "Darklight Matter",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 30150,
+    "experience": 22250,
+    "bestiario": true,
+    "local": "Darklight Core",
+    "wiki": "https://tibia.fandom.com/wiki/Darklight_Matter"
+   }
+  },
+  {
+   "name": "Darklight Construct",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 32200,
+    "experience": 22050,
+    "bestiario": true,
+    "local": "Gloom Pillars",
+    "wiki": "https://tibia.fandom.com/wiki/Darklight_Construct"
+   }
+  },
+  {
+   "name": "Meandering Mushroom",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 29100,
+    "experience": 21980,
+    "bestiario": true,
+    "local": "Putrefactory",
+    "wiki": "https://tibia.fandom.com/wiki/Meandering_Mushroom"
+   }
+  },
+  {
+   "name": "Bloated Man-Maggot",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 31700,
+    "experience": 21570,
+    "bestiario": true,
+    "local": "Jaded Roots",
+    "wiki": "https://tibia.fandom.com/wiki/Bloated_Man-Maggot"
+   }
+  },
+  {
+   "name": "Converter",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 29600,
+    "experience": 21425,
+    "bestiario": true,
+    "local": "Gloom Pillars",
+    "wiki": "https://tibia.fandom.com/wiki/Converter"
+   }
+  },
+  {
+   "name": "Mycobiontic Beetle",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 30200,
+    "experience": 21175,
+    "bestiario": true,
+    "local": "Jaded Roots",
+    "wiki": "https://tibia.fandom.com/wiki/Mycobiontic_Beetle"
+   }
+  },
+  {
+   "name": "Druid's Apparition",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 25000,
+    "experience": 21130,
+    "bestiario": true,
+    "local": "Mirrored Nightmare, after Mirror Images are attacked.",
+    "wiki": "https://tibia.fandom.com/wiki/Druid's_Apparition"
+   }
+  },
+  {
+   "name": "Knight's Apparition",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 25000,
+    "experience": 21130,
+    "bestiario": true,
+    "local": "The Mirrored Nightmare, after Mirror Images are attacked.",
+    "wiki": "https://tibia.fandom.com/wiki/Knight's_Apparition"
+   }
+  },
+  {
+   "name": "Monk's Apparition",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 25000,
+    "experience": 21130,
+    "bestiario": true,
+    "local": "The Mirrored Nightmare, after Mirror Images are attacked.",
+    "wiki": "https://tibia.fandom.com/wiki/Monk's_Apparition"
+   }
+  },
+  {
+   "name": "Paladin's Apparition",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 25000,
+    "experience": 21130,
+    "bestiario": true,
+    "local": "The Mirrored Nightmare, after Mirror Images are attacked.",
+    "wiki": "https://tibia.fandom.com/wiki/Paladin's_Apparition"
+   }
+  },
+  {
+   "name": "Sorcerer's Apparition",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 25000,
+    "experience": 21130,
+    "bestiario": true,
+    "local": "The Mirrored Nightmare, after Mirror Images are attacked.",
+    "wiki": "https://tibia.fandom.com/wiki/Sorcerer's_Apparition"
+   }
+  },
+  {
+   "name": "Night Harpy",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 14000,
+    "experience": 21000,
+    "bestiario": true,
+    "local": "Isle of Ada.",
+    "wiki": "https://tibia.fandom.com/wiki/Night_Harpy"
+   }
+  },
+  {
+   "name": "Oozing Carcass",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 27500,
+    "experience": 20980,
+    "bestiario": true,
+    "local": "Putrefactory",
+    "wiki": "https://tibia.fandom.com/wiki/Oozing_Carcass"
+   }
+  },
+  {
+   "name": "Darklight Emitter",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 27500,
+    "experience": 20600,
+    "bestiario": true,
+    "local": "Gloom Pillars",
+    "wiki": "https://tibia.fandom.com/wiki/Darklight_Emitter"
+   }
+  },
+  {
+   "name": "Oozing Corpus",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 28700,
+    "experience": 20600,
+    "bestiario": true,
+    "local": "Jaded Roots",
+    "wiki": "https://tibia.fandom.com/wiki/Oozing_Corpus"
+   }
+  },
+  {
+   "name": "Brinebrute Inferniarch",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 32000,
+    "experience": 20300,
+    "bestiario": true,
+    "local": "Azzilon Castle",
+    "wiki": "https://tibia.fandom.com/wiki/Brinebrute_Inferniarch"
+   }
+  },
+  {
+   "name": "Realityquake",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 110000,
+    "experience": 20000,
+    "bestiario": true,
+    "local": "Otherworld, 125.208.",
+    "wiki": "https://tibia.fandom.com/wiki/Realityquake"
+   }
+  },
+  {
+   "name": "Crypt Fiend",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 30000,
+    "experience": 19070,
+    "bestiario": true,
+    "local": "Unhallowed Crypt",
+    "wiki": "https://tibia.fandom.com/wiki/Crypt_Fiend"
+   }
+  },
+  {
+   "name": "Professor Maxxen",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 90000,
+    "experience": 15500,
+    "bestiario": true,
+    "local": "Deep under Rathleton.",
+    "wiki": "https://tibia.fandom.com/wiki/Professor_Maxxen"
+   }
+  },
+  {
+   "name": "Crypt Mage",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 14000,
+    "experience": 14200,
+    "bestiario": true,
+    "local": "Forsaken Crypt",
+    "wiki": "https://tibia.fandom.com/wiki/Crypt_Mage"
+   }
+  },
+  {
+   "name": "Gorga",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 15000,
+    "experience": 13000,
+    "bestiario": true,
+    "local": "Top floor of Medusa Tower, 128.99.",
+    "wiki": "https://tibia.fandom.com/wiki/Gorga"
+   }
+  },
+  {
+   "name": "Quara Plunderer",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 13500,
+    "experience": 10800,
+    "bestiario": true,
+    "local": "Podzilla Bottom, Podzilla Underwater",
+    "wiki": "https://tibia.fandom.com/wiki/Quara_Plunderer"
+   }
+  },
+  {
+   "name": "Roaming Dread",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 14500,
+    "experience": 10350,
+    "bestiario": true,
+    "local": "Forsaken Crypt",
+    "wiki": "https://tibia.fandom.com/wiki/Roaming_Dread"
+   }
+  },
+  {
+   "name": "Last Planegazer",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 50000,
+    "experience": 10000,
+    "bestiario": true,
+    "local": "Chamber of Reflections.",
+    "wiki": "https://tibia.fandom.com/wiki/Last_Planegazer"
+   }
+  },
+  {
+   "name": "Moonspawn Juggernaut",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 60000,
+    "experience": 10000,
+    "bestiario": true,
+    "local": "Thalassara Surroundings",
+    "wiki": "https://tibia.fandom.com/wiki/Moonspawn_Juggernaut"
+   }
+  },
+  {
+   "name": "The Diamond Blossom",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 20000,
+    "experience": 10000,
+    "bestiario": true,
+    "local": "Asura Palace.",
+    "wiki": "https://tibia.fandom.com/wiki/The_Diamond_Blossom"
+   }
+  },
+  {
+   "name": "The Lily of Night",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 19000,
+    "experience": 10000,
+    "bestiario": true,
+    "local": "Asura Palace.",
+    "wiki": "https://tibia.fandom.com/wiki/The_Lily_of_Night"
+   }
+  },
+  {
+   "name": "Raubritter Chastener",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 10000,
+    "experience": 9500,
+    "bestiario": true,
+    "local": "Isle of Ada.",
+    "wiki": "https://tibia.fandom.com/wiki/Raubritter_Chastener"
+   }
+  },
+  {
+   "name": "Raubritter Marksman",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 10500,
+    "experience": 9025,
+    "bestiario": true,
+    "local": "Isle of Ada.",
+    "wiki": "https://tibia.fandom.com/wiki/Raubritter_Marksman"
+   }
+  },
+  {
+   "name": "Gloom Maw",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 8700,
+    "experience": 8770,
+    "bestiario": true,
+    "local": "Norcferatu Dungeons, Norcferatu Fortress",
+    "wiki": "https://tibia.fandom.com/wiki/Gloom_Maw"
+   }
+  },
+  {
+   "name": "Quara Looter",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 11500,
+    "experience": 8650,
+    "bestiario": true,
+    "local": "Podzilla Bottom, Podzilla Underwater",
+    "wiki": "https://tibia.fandom.com/wiki/Quara_Looter"
+   }
+  },
+  {
+   "name": "Raubritter Skirmisher",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 11000,
+    "experience": 8550,
+    "bestiario": true,
+    "local": "Isle of Ada.",
+    "wiki": "https://tibia.fandom.com/wiki/Raubritter_Skirmisher"
+   }
+  },
+  {
+   "name": "Spellreaper Inferniarch",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 11800,
+    "experience": 8350,
+    "bestiario": true,
+    "local": "Azzilon Catacombs",
+    "wiki": "https://tibia.fandom.com/wiki/Spellreaper_Inferniarch"
+   }
+  },
+  {
+   "name": "Quara Raider",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 12500,
+    "experience": 8150,
+    "bestiario": true,
+    "local": "Podzilla Bottom, Podzilla Underwater",
+    "wiki": "https://tibia.fandom.com/wiki/Quara_Raider"
+   }
+  },
+  {
+   "name": "Ancient Lion Knight",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 9100,
+    "experience": 8100,
+    "bestiario": true,
+    "local": "Bounac, the Order of the Lion settlement, with usurpers text=here.",
+    "wiki": "https://tibia.fandom.com/wiki/Ancient_Lion_Knight"
+   }
+  },
+  {
+   "name": "Hellhunter Inferniarch",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 11300,
+    "experience": 8100,
+    "bestiario": true,
+    "local": "Azzilon Catacombs",
+    "wiki": "https://tibia.fandom.com/wiki/Hellhunter_Inferniarch"
+   }
+  },
+  {
+   "name": "True Feverbloom Asura",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 8600,
+    "experience": 7850,
+    "bestiario": true,
+    "local": "Forbidden Gardens",
+    "wiki": "https://tibia.fandom.com/wiki/True_Feverbloom_Asura"
+   }
+  },
+  {
+   "name": "Silverfrost Sentinel",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 9500,
+    "experience": 7700,
+    "bestiario": true,
+    "local": "Asura Citadel",
+    "wiki": "https://tibia.fandom.com/wiki/Silverfrost_Sentinel"
+   }
+  },
+  {
+   "name": "Iceplume Strider",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 8500,
+    "experience": 7500,
+    "bestiario": true,
+    "local": "Asura Citadel",
+    "wiki": "https://tibia.fandom.com/wiki/Iceplume_Strider"
+   }
+  },
+  {
+   "name": "Winged Jaracal",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 8200,
+    "experience": 7200,
+    "bestiario": true,
+    "local": "Asura Citadel",
+    "wiki": "https://tibia.fandom.com/wiki/Winged_Jaracal"
+   }
+  },
+  {
+   "name": "Mega Dragon",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 7920,
+    "experience": 7180,
+    "bestiario": true,
+    "local": "Nimmersatt's Breeding Ground",
+    "wiki": "https://tibia.fandom.com/wiki/Mega_Dragon"
+   }
+  },
+  {
+   "name": "Weakened Shlorg",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 10000,
+    "experience": 6500,
+    "bestiario": true,
+    "local": "Edron Earth Elemental Cave",
+    "wiki": "https://tibia.fandom.com/wiki/Weakened_Shlorg"
+   }
+  },
+  {
+   "name": "Norcferatu Nightweaver",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 6100,
+    "experience": 6370,
+    "bestiario": true,
+    "local": "Norcferatu Dungeons, Norcferatu Fortress",
+    "wiki": "https://tibia.fandom.com/wiki/Norcferatu_Nightweaver"
+   }
+  },
+  {
+   "name": "Liodile",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 8600,
+    "experience": 6310,
+    "bestiario": true,
+    "local": "Ingol",
+    "wiki": "https://tibia.fandom.com/wiki/Liodile"
+   }
+  },
+  {
+   "name": "Norcferatu Heartless",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 5700,
+    "experience": 5900,
+    "bestiario": true,
+    "local": "Norcferatu Dungeons, Norcferatu Fortress",
+    "wiki": "https://tibia.fandom.com/wiki/Norcferatu_Heartless"
+   }
+  },
+  {
+   "name": "Varg",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 5400,
+    "experience": 5630,
+    "bestiario": true,
+    "local": "Norcferatu Dungeons, Norcferatu Fortress",
+    "wiki": "https://tibia.fandom.com/wiki/Varg"
+   }
+  },
+  {
+   "name": "Feral Werecrocodile",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 6400,
+    "experience": 5430,
+    "bestiario": true,
+    "local": "Murky Caverns, Oskayaat",
+    "wiki": "https://tibia.fandom.com/wiki/Feral_Werecrocodile"
+   }
+  },
+  {
+   "name": "Wardragon",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 6960,
+    "experience": 5340,
+    "bestiario": true,
+    "local": "Nimmersatt's Breeding Ground",
+    "wiki": "https://tibia.fandom.com/wiki/Wardragon"
+   }
+  },
+  {
+   "name": "White Weretiger",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 6100,
+    "experience": 5200,
+    "bestiario": true,
+    "local": "Oskayaat, Oskayaat Undercity",
+    "wiki": "https://tibia.fandom.com/wiki/White_Weretiger"
+   }
+  },
+  {
+   "name": "Dragolisk",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 6180,
+    "experience": 4650,
+    "bestiario": true,
+    "local": "Nimmersatt's Breeding Ground",
+    "wiki": "https://tibia.fandom.com/wiki/Dragolisk"
+   }
+  },
+  {
+   "name": "Frost Flower Asura",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3500,
+    "experience": 4200,
+    "bestiario": true,
+    "local": "Asura Palace.",
+    "wiki": "https://tibia.fandom.com/wiki/Frost_Flower_Asura"
+   }
+  },
+  {
+   "name": "Weretiger",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 5000,
+    "experience": 3920,
+    "bestiario": true,
+    "local": "Oskayaat, Oskayaat Undercity",
+    "wiki": "https://tibia.fandom.com/wiki/Weretiger"
+   }
+  },
+  {
+   "name": "Candy Floss Elemental",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3700,
+    "experience": 3850,
+    "bestiario": true,
+    "local": "Dessert Dungeons",
+    "wiki": "https://tibia.fandom.com/wiki/Candy_Floss_Elemental"
+   }
+  },
+  {
+   "name": "Cunning Werepanther",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 4300,
+    "experience": 3620,
+    "bestiario": true,
+    "local": "Oskayaat, Oskayaat Undercity",
+    "wiki": "https://tibia.fandom.com/wiki/Cunning_Werepanther"
+   }
+  },
+  {
+   "name": "Werepanther",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 4200,
+    "experience": 3550,
+    "bestiario": true,
+    "local": "Murky Caverns, Oskayaat",
+    "wiki": "https://tibia.fandom.com/wiki/Werepanther"
+   }
+  },
+  {
+   "name": "Cave Devourer",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 4500,
+    "experience": 3380,
+    "bestiario": true,
+    "local": "Warzone 5",
+    "wiki": "https://tibia.fandom.com/wiki/Cave_Devourer"
+   }
+  },
+  {
+   "name": "Angry Sugar Fairy",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3000,
+    "experience": 3100,
+    "bestiario": true,
+    "local": "Dessert Dungeons",
+    "wiki": "https://tibia.fandom.com/wiki/Angry_Sugar_Fairy"
+   }
+  },
+  {
+   "name": "Candy Horror",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3100,
+    "experience": 3000,
+    "bestiario": true,
+    "local": "Chocolate Mines",
+    "wiki": "https://tibia.fandom.com/wiki/Candy_Horror"
+   }
+  },
+  {
+   "name": "Denson Larika (Creature)",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 50000,
+    "experience": 3000,
+    "bestiario": true,
+    "local": "Around the pirate tavern, near Klaus.",
+    "wiki": "https://tibia.fandom.com/wiki/Denson_Larika_(Creature)"
+   }
+  },
+  {
+   "name": "Goggle Cake",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 2700,
+    "experience": 2700,
+    "bestiario": true,
+    "local": "Dessert Dungeons",
+    "wiki": "https://tibia.fandom.com/wiki/Goggle_Cake"
+   }
+  },
+  {
+   "name": "Kroazur",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3000,
+    "experience": 2700,
+    "bestiario": true,
+    "local": "Feyrist nightmare creatures cave.",
+    "wiki": "https://tibia.fandom.com/wiki/Kroazur"
+   }
+  },
+  {
+   "name": "Animated Moohtant",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3200,
+    "experience": 2600,
+    "bestiario": true,
+    "local": "Museum of Tibian Arts (only at Night)",
+    "wiki": "https://tibia.fandom.com/wiki/Animated_Moohtant"
+   }
+  },
+  {
+   "name": "Lion Hydra",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 2760,
+    "experience": 2600,
+    "bestiario": true,
+    "local": "Book World",
+    "wiki": "https://tibia.fandom.com/wiki/Lion_Hydra"
+   }
+  },
+  {
+   "name": "Jaracal",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3200,
+    "experience": 2460,
+    "bestiario": true,
+    "local": "Emerald Gardens",
+    "wiki": "https://tibia.fandom.com/wiki/Jaracal"
+   }
+  },
+  {
+   "name": "Honey Elemental",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 2560,
+    "experience": 2400,
+    "bestiario": true,
+    "local": "Chocolate Mines",
+    "wiki": "https://tibia.fandom.com/wiki/Honey_Elemental"
+   }
+  },
+  {
+   "name": "Bluebeak",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 2430,
+    "experience": 2330,
+    "bestiario": true,
+    "local": "Book World",
+    "wiki": "https://tibia.fandom.com/wiki/Bluebeak"
+   }
+  },
+  {
+   "name": "Hawk Hopper",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 2180,
+    "experience": 2250,
+    "bestiario": true,
+    "local": "Book World",
+    "wiki": "https://tibia.fandom.com/wiki/Hawk_Hopper"
+   }
+  },
+  {
+   "name": "Goldhanded Cultist Bride",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3000,
+    "experience": 2000,
+    "bestiario": true,
+    "local": "Museum of Tibian Arts.",
+    "wiki": "https://tibia.fandom.com/wiki/Goldhanded_Cultist_Bride"
+   }
+  },
+  {
+   "name": "Uninvited",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 4700,
+    "experience": 2000,
+    "bestiario": true,
+    "local": "Spawned in Svargrond, Liberty Bay and Port Hope during 25th Anniversary raids.",
+    "wiki": "https://tibia.fandom.com/wiki/Uninvited"
+   }
+  },
+  {
+   "name": "Memory of a Mammoth",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3850,
+    "experience": 1830,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Mammoth"
+   }
+  },
+  {
+   "name": "Memory of a Frazzlemaw",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3770,
+    "experience": 1810,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Frazzlemaw"
+   }
+  },
+  {
+   "name": "Memory of a Hydra",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3550,
+    "experience": 1800,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Hydra"
+   }
+  },
+  {
+   "name": "Renegade Quara Hydromancer",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 2000,
+    "experience": 1800,
+    "bestiario": true,
+    "local": "Seacrest Grounds when Seacrest Serpents are not spawning.",
+    "wiki": "https://tibia.fandom.com/wiki/Renegade_Quara_Hydromancer"
+   }
+  },
+  {
+   "name": "Unexpected",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3500,
+    "experience": 1800,
+    "bestiario": true,
+    "local": "Spawned in Svargrond, Liberty Bay and Port Hope during 25th Anniversary raids.",
+    "wiki": "https://tibia.fandom.com/wiki/Unexpected"
+   }
+  },
+  {
+   "name": "Memory of a Hero",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3850,
+    "experience": 1750,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Hero"
+   }
+  },
+  {
+   "name": "Memory of a Shaper",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3710,
+    "experience": 1750,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Shaper"
+   }
+  },
+  {
+   "name": "Unsolicited",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3700,
+    "experience": 1750,
+    "bestiario": true,
+    "local": "Spawned in Svargrond, Liberty Bay and Port Hope during 25th Anniversary raids.",
+    "wiki": "https://tibia.fandom.com/wiki/Unsolicited"
+   }
+  },
+  {
+   "name": "Unwanted",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3750,
+    "experience": 1720,
+    "bestiario": true,
+    "local": "Spawned in Svargrond, Liberty Bay and Port Hope during 25th Anniversary raids.",
+    "wiki": "https://tibia.fandom.com/wiki/Unwanted"
+   }
+  },
+  {
+   "name": "The Hungerer",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 2000,
+    "experience": 1700,
+    "bestiario": true,
+    "local": "The Hive, Hive Outpost.",
+    "wiki": "https://tibia.fandom.com/wiki/The_Hungerer"
+   }
+  },
+  {
+   "name": "Memory of an Ogre",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3570,
+    "experience": 1680,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_an_Ogre"
+   }
+  },
+  {
+   "name": "Memory of a Fungus",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3580,
+    "experience": 1660,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Fungus"
+   }
+  },
+  {
+   "name": "Memory of a Yalahari",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3540,
+    "experience": 1640,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Yalahari"
+   }
+  },
+  {
+   "name": "Memory of a Golem",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3660,
+    "experience": 1620,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Golem"
+   }
+  },
+  {
+   "name": "Memory of an Insectoid",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3630,
+    "experience": 1610,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_an_Insectoid"
+   }
+  },
+  {
+   "name": "Memory of a Faun",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3500,
+    "experience": 1600,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Faun"
+   }
+  },
+  {
+   "name": "Memory of a Scarab",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3620,
+    "experience": 1590,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Scarab"
+   }
+  },
+  {
+   "name": "Memory of a Vampire",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3650,
+    "experience": 1550,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Vampire"
+   }
+  },
+  {
+   "name": "Memory of a Pirate",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3750,
+    "experience": 1500,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Pirate"
+   }
+  },
+  {
+   "name": "Raging Fire",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 1800,
+    "experience": 1500,
+    "bestiario": true,
+    "local": "Jaccus Maxxen's Dungeon.",
+    "wiki": "https://tibia.fandom.com/wiki/Raging_Fire"
+   }
+  },
+  {
+   "name": "Unstable Spark",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 10500,
+    "experience": 1500,
+    "bestiario": true,
+    "local": "Otherworld.",
+    "wiki": "https://tibia.fandom.com/wiki/Unstable_Spark"
+   }
+  },
+  {
+   "name": "Memory of an Amazon",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3600,
+    "experience": 1480,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_an_Amazon"
+   }
+  },
+  {
+   "name": "Memory of a Dwarf",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3730,
+    "experience": 1460,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Dwarf"
+   }
+  },
+  {
+   "name": "Memory of a Lizard",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3520,
+    "experience": 1450,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Lizard"
+   }
+  },
+  {
+   "name": "Memory of an Elf",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3440,
+    "experience": 1440,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_an_Elf"
+   }
+  },
+  {
+   "name": "Memory of a Banshee",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 3600,
+    "experience": 1430,
+    "bestiario": true,
+    "local": "Time Travel Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Memory_of_a_Banshee"
+   }
+  },
+  {
+   "name": "Renegade Quara Constrictor",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 1500,
+    "experience": 1250,
+    "bestiario": true,
+    "local": "Seacrest Grounds when Seacrest Serpents are not spawning.",
+    "wiki": "https://tibia.fandom.com/wiki/Renegade_Quara_Constrictor"
+   }
+  },
+  {
+   "name": "Renegade Quara Mantassin",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 1200,
+    "experience": 1000,
+    "bestiario": true,
+    "local": "Seacrest Grounds when Seacrest Serpents are not spawning.",
+    "wiki": "https://tibia.fandom.com/wiki/Renegade_Quara_Mantassin"
+   }
+  },
+  {
+   "name": "Ugly Monster",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 10000,
+    "experience": 1000,
+    "bestiario": true,
+    "local": "Cobra Bastion, Iksupan Occupied Sanctuary.",
+    "wiki": "https://tibia.fandom.com/wiki/Ugly_Monster"
+   }
+  },
+  {
+   "name": "Loricate Orger",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 750,
+    "experience": 570,
+    "bestiario": true,
+    "local": "Orcsoberfest Island.",
+    "wiki": "https://tibia.fandom.com/wiki/Loricate_Orger"
+   }
+  },
+  {
+   "name": "Orger",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 700,
+    "experience": 550,
+    "bestiario": true,
+    "local": "Orcsoberfest Island.",
+    "wiki": "https://tibia.fandom.com/wiki/Orger"
+   }
+  },
+  {
+   "name": "Bellicose Orger",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 700,
+    "experience": 500,
+    "bestiario": true,
+    "local": "Orcsoberfest Island.",
+    "wiki": "https://tibia.fandom.com/wiki/Bellicose_Orger"
+   }
+  },
+  {
+   "name": "Flickering Spirit Elemental",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 600,
+    "experience": 450,
+    "bestiario": true,
+    "local": "The Elemental Spheres Quest, Monk's part - Spirit Sphere.",
+    "wiki": "https://tibia.fandom.com/wiki/Flickering_Spirit_Elemental"
+   }
+  },
+  {
+   "name": "Rage of Mazoran",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 4500,
+    "experience": 300,
+    "bestiario": true,
+    "local": "Ferumbras' Ascension Quest area.",
+    "wiki": "https://tibia.fandom.com/wiki/Rage_of_Mazoran"
+   }
+  },
+  {
+   "name": "Feeble Glooth Horror",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 5000,
+    "experience": 245,
+    "bestiario": true,
+    "local": "Deep under Rathleton.",
+    "wiki": "https://tibia.fandom.com/wiki/Feeble_Glooth_Horror"
+   }
+  },
+  {
+   "name": "Weakened Glooth Horror",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 10000,
+    "experience": 245,
+    "bestiario": true,
+    "local": "Unknown",
+    "wiki": "https://tibia.fandom.com/wiki/Weakened_Glooth_Horror"
+   }
+  },
+  {
+   "name": "Abyssal Calamary",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 300,
+    "experience": 200,
+    "bestiario": true,
+    "local": "Seacrest Grounds.",
+    "wiki": "https://tibia.fandom.com/wiki/Abyssal_Calamary"
+   }
+  },
+  {
+   "name": "Monk of the Order",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 240,
+    "experience": 200,
+    "bestiario": true,
+    "local": "Bounac, the Order of the Lion settlement.",
+    "wiki": "https://tibia.fandom.com/wiki/Monk_of_the_Order"
+   }
+  },
+  {
+   "name": "Muglex Clan Chief",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 100,
+    "experience": 175,
+    "bestiario": true,
+    "local": "Muglex Clan Camp",
+    "wiki": "https://tibia.fandom.com/wiki/Muglex_Clan_Chief"
+   }
+  },
+  {
+   "name": "The Corruptor",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 100,
+    "experience": 170,
+    "bestiario": true,
+    "local": "Corrupted Mines",
+    "wiki": "https://tibia.fandom.com/wiki/The_Corruptor"
+   }
+  },
+  {
+   "name": "Elvira Hammerthrust",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 245,
+    "experience": 165,
+    "bestiario": true,
+    "local": "Dwarf Mines, around 126.255.",
+    "wiki": "https://tibia.fandom.com/wiki/Elvira_Hammerthrust"
+   }
+  },
+  {
+   "name": "Animated Cyclops",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 260,
+    "experience": 150,
+    "bestiario": true,
+    "local": "Museum of Tibian Arts (only at Night)",
+    "wiki": "https://tibia.fandom.com/wiki/Animated_Cyclops"
+   }
+  },
+  {
+   "name": "Enraged Soul",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 150,
+    "experience": 120,
+    "bestiario": true,
+    "local": "Upper Spike",
+    "wiki": "https://tibia.fandom.com/wiki/Enraged_Soul"
+   }
+  },
+  {
+   "name": "Mole",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 200,
+    "experience": 100,
+    "bestiario": true,
+    "local": "Warzone 4 and Warzone 6.",
+    "wiki": "https://tibia.fandom.com/wiki/Mole"
+   }
+  },
+  {
+   "name": "Charger",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 1600,
+    "experience": 85,
+    "bestiario": true,
+    "local": "Otherworld.",
+    "wiki": "https://tibia.fandom.com/wiki/Charger"
+   }
+  },
+  {
+   "name": "Scar Tribe Shaman",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 115,
+    "experience": 85,
+    "bestiario": true,
+    "local": "Dawnport Orc Cave.",
+    "wiki": "https://tibia.fandom.com/wiki/Scar_Tribe_Shaman"
+   }
+  },
+  {
+   "name": "Scar Tribe Warrior",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 125,
+    "experience": 85,
+    "bestiario": true,
+    "local": "Dawnport Orc Cave.",
+    "wiki": "https://tibia.fandom.com/wiki/Scar_Tribe_Warrior"
+   }
+  },
+  {
+   "name": "Travelling Merchant",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 100,
+    "experience": 65,
+    "bestiario": true,
+    "local": "It can be found in Outlaw Camp during Rottin Wood and the Married Men Quest.",
+    "wiki": "https://tibia.fandom.com/wiki/Travelling_Merchant"
+   }
+  },
+  {
+   "name": "Minotaur Poacher",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 160,
+    "experience": 55,
+    "bestiario": true,
+    "local": "Dawnport Crystal Dungeon",
+    "wiki": "https://tibia.fandom.com/wiki/Minotaur_Poacher"
+   }
+  },
+  {
+   "name": "Jailer",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 65,
+    "experience": 45,
+    "bestiario": true,
+    "local": "Falcon Bastion.",
+    "wiki": "https://tibia.fandom.com/wiki/Jailer"
+   }
+  },
+  {
+   "name": "Desperate White Deer",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 55,
+    "experience": 35,
+    "bestiario": true,
+    "local": "Same as White Deer: around Ab'Dendriel, Carlin (east from Lothar), Femor Hills and Ferngrims Gate.",
+    "wiki": "https://tibia.fandom.com/wiki/Desperate_White_Deer"
+   }
+  },
+  {
+   "name": "Corrupted Skeleton",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 45,
+    "experience": 34,
+    "bestiario": true,
+    "local": "Corrupted Mines, Yalahar Cemetery Quarter (127.255 and 128.19)",
+    "wiki": "https://tibia.fandom.com/wiki/Corrupted_Skeleton"
+   }
+  },
+  {
+   "name": "Corrupted Ghost",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 30,
+    "experience": 29,
+    "bestiario": true,
+    "local": "Corrupted Mines, Yalahar Cemetery Quarter (128.8)",
+    "wiki": "https://tibia.fandom.com/wiki/Corrupted_Ghost"
+   }
+  },
+  {
+   "name": "Fruit Drop",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 63,
+    "experience": 18,
+    "bestiario": true,
+    "local": "Candia, Chocolate Mines, Dessert Dungeons",
+    "wiki": "https://tibia.fandom.com/wiki/Fruit_Drop"
+   }
+  },
+  {
+   "name": "Truffle Cook",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 54,
+    "experience": 13,
+    "bestiario": true,
+    "local": "Candia, Dessert Dungeons",
+    "wiki": "https://tibia.fandom.com/wiki/Truffle_Cook"
+   }
+  },
+  {
+   "name": "Yalahari (Creature)",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 150,
+    "experience": 5,
+    "bestiario": true,
+    "local": "Inner City (Yalahar).",
+    "wiki": "https://tibia.fandom.com/wiki/Yalahari_(Creature)"
+   }
+  },
+  {
+   "name": "Grynch Clan Goblin",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 80,
+    "experience": 4,
+    "bestiario": true,
+    "local": "They do not have a set respawn spot. They are announced to be stealing presents from a random Tibian city and spawn in the aforetold city. There are two or three messages that appear on each raid and three massive spawns of goblins.",
+    "wiki": "https://tibia.fandom.com/wiki/Grynch_Clan_Goblin"
+   }
+  },
+  {
+   "name": "Spirit Overlord",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 4,
+    "experience": 2,
+    "bestiario": true,
+    "local": "The Elemental Spheres Quest, Monk's part - Spirit Sphere.",
+    "wiki": "https://tibia.fandom.com/wiki/Spirit_Overlord"
+   }
+  },
+  {
+   "name": "Psychic Spirit Elemental",
+   "status": "pendente",
+   "maxDamage": {
+    "physical": null,
+    "earth": null,
+    "fire": null,
+    "ice": null,
+    "energy": null,
+    "death": null,
+    "holy": null,
+    "drown": null,
+    "lifedrain": null,
+    "manadrain": null
+   },
+   "abilities": [],
+   "fonte": "",
+   "observacoes": "",
+   "contexto": {
+    "hitpoints": 1,
+    "experience": 1,
+    "bestiario": true,
+    "local": "The Elemental Spheres Quest, Monk's part - Spirit Sphere.",
+    "wiki": "https://tibia.fandom.com/wiki/Psychic_Spirit_Elemental"
+   }
+  }
+ ]
+}
