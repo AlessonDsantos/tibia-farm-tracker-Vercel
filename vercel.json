@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
     {
@@ -70,6 +69,14 @@
     {
       "source": "/sobre",
       "destination": "/index.html"
+    },
+    {
+      "source": "/guias",
+      "destination": "/guias/index.html"
+    },
+    {
+      "source": "/guias/:slug",
+      "destination": "/guias/:slug.html"
     }
   ],
   "headers": [
