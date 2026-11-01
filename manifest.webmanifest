@@ -1,0 +1,25 @@
+{
+  "name": "Tibia Farm Tracker",
+  "short_name": "TFT",
+  "description": "Registre suas hunts do Tibia, acompanhe profit por hora, metas e rankings, e use ferramentas gratuitas.",
+  "id": "/",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "lang": "pt-BR",
+  "background_color": "#03080f",
+  "theme_color": "#03080f",
+  "categories": ["games", "utilities"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Registrar farm", "short_name": "Registrar", "url": "/registrar-farm?utm_source=pwa", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Desempenho", "short_name": "Desempenho", "url": "/desempenho?utm_source=pwa", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Onde vender o loot", "short_name": "Loot", "url": "/ferramentas/onde-vender-loot?utm_source=pwa", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Conversor de TC", "short_name": "Conversor", "url": "/ferramentas/conversor-tc?utm_source=pwa", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
